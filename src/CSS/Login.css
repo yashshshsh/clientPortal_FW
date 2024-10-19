@@ -1,0 +1,178 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+/* font-family: "Roboto", sans-serif; */
+
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+/* font-family: "Lato", sans-serif; */
+
+.header {
+    height: 13.5vh;
+    border-bottom: 1px solid #DDE1E6;
+}
+
+.logo{
+    margin-left: 6vw;
+}
+
+.logo img {
+    height: 100%;
+    width: 100%;
+}
+
+.leftImg,
+.rightImg {
+    height: 52vh;
+    width: 25vw;
+}
+
+.leftImg img,
+.rightImg img {
+    height: 100%;
+    width: 100%;
+}
+
+@media(min-width : 991px) {
+
+    .leftImg img,
+    .rightImg img {
+        width: 25vw !important;
+        height: 52vh !important;
+        max-width: none;
+    }
+}
+
+.hero-welcome {
+    height: 19.5vh;
+}
+
+.w-text {
+    font-family: "Roboto", sans-serif;
+    font-weight: 700;
+    font-size: 2.8rem;
+    line-height: 2.9rem;
+    margin: 0;
+}
+
+.audLog {
+    font-family: "Lato", sans-serif;
+    font-size: 1.1rem;
+    font-weight: 500;
+    line-height: 1.1rem;
+    margin-top: 1rem;
+}
+
+.audSpan {
+    color: #007DC1;
+    text-decoration: underline;
+}
+
+.log-upper {
+    height: 1.8rem;
+    margin : 2.5rem;
+    width : 82%;
+}
+
+.log-lower{
+    width: 100%;
+}
+
+.email, .password, .forgot{
+    margin : 0 auto;
+    width : 75%;
+}
+
+.log-form{
+    margin: 3rem;
+    height : 65%;
+    width : 85%;
+    border-radius: 5px;
+    background-color: #FCFCFC;
+}
+
+.log-upper span {
+    font-family: "Lato", sans-serif;
+    font-weight: 800;
+    font-size: 1.1rem;
+    line-height: 1.8rem;
+    color: #4B5563;
+}
+
+.log-upper p {
+    font-family: "Lato", sans-serif;
+    font-weight: 500;
+    font-size: 1.1rem;
+    line-height: 1.8rem;
+    color: #4B5563;
+}
+
+.email label,
+.password label {
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-size: 0.8rem;
+    line-height: 1.5rem;
+    color: #9CA3AF;
+}
+
+.inputBars {
+    border: none;
+    border-bottom: 1px solid #9CA3AF;
+    outline: none;
+    background-color: #FCFCFC;
+}
+
+.inputBars1 {
+    border: none;
+    outline: none;
+    background-color: #FCFCFC;
+}
+
+.password {
+    border-bottom: 1px solid #9CA3AF;
+}
+
+.forgot p {
+    color: #7991A4;
+    font-family: "Lato", sans-serif;
+    font-weight: 500;
+    font-size: 0.8rem;
+}
+
+.robot {
+    height: 6.5vh;
+    width: 75%;
+    border: 1px solid #D6D6D6;
+    border-radius: 5px;
+    background-color: #FAFAFA;
+}
+
+.robot p{
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+    font-size: 0.6rem;
+    line-height: 0.8rem;
+    color : #4B5563;
+}
+
+#checkbox {
+    height: 1.5rem;
+    width: 1.5rem;
+    border: 2.03px solid #C1C1C1;
+    background-color: #FFFFFF;
+}
+
+.logInBtn {
+    width: 75%;
+}
+
+.logBtn {
+    width: 46%;
+    background-color: #007DC1;
+    height: 5.7vh;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-family: "Lato", sans-serif;
+    font-weight: 500;
+}
