@@ -2,7 +2,6 @@ import React from 'react'
 import logo from '../Images/Floorwalk logo7x.png'
 import leftImg from '../Images/Rectangle 1789.png'
 import rightImg from '../Images/Rectangle 1790.png'
-import captcha from '../Images/Frame (1).png';
 import { TbEyeCancel } from "react-icons/tb";
 import '../CSS/Login.css'
 
@@ -11,13 +10,13 @@ const Login = () => {
     <div>
       <div className="header d-flex ">
         <div className="logo">
-          <img src={logo}></img>
+          <img src={logo} alt="img"></img>
         </div>
       </div>
 
       <div className="hero-section container-fluid d-flex p-0 justify-content-between">
         <div className="modal-body leftImg d-none d-sm-inline-block">
-          <img src={leftImg} className='img-fluid'></img>
+          <img src={leftImg} alt="img" className='img-fluid'></img>
         </div>
 
         <div className="modal-body hero-form container">
@@ -65,7 +64,7 @@ const Login = () => {
         </div>
 
         <div className="modal-body rightImg d-none d-sm-inline-block">
-          <img src={rightImg} className='img-fluid'></img>
+          <img src={rightImg} alt="img" className='img-fluid'></img>
         </div>
       </div>
     </div>
