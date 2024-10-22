@@ -1,0 +1,60 @@
+/* AuditCalendar.css */
+.calendar-container {
+    width: 100%;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    height: 100%;
+  }
+  
+  .date-column {
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* padding: 10px; */
+  }
+  
+  .date-box {
+    cursor: pointer;
+    border-radius: 4px;
+    width : 3.8rem;
+    height: 3.2rem;
+    color : #121D22;
+    margin-top: 0.6rem;
+  }
+  
+  .iDate{
+    font-weight: 500;
+    font-size: 1.2rem;
+    line-height: 1.8rem;
+  }
+
+  .iDay{
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 18px;
+  }
+
+  .date-box.selected {
+    background-color: #007DC1;
+    color: white;
+  }
+  
+  .audit-info {
+    width: 75%;
+  }
+  
+  .audit-box {
+    background-color: #007DC1;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width : 100%;
+  }
+  
+  .audit-box p {
+    margin: 10px 0;
+  }
+  
