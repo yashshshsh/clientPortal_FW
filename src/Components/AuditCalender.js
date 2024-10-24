@@ -63,7 +63,7 @@ const AuditCalendar = () => {
   };
 
   return (
-    <div className="calendar-container d-flex justify-content-center align-items-center shadow-lg">
+    <div className="calendar-container   d-flex justify-content-center align-items-center shadow-lg">
       <div className="date-column">
         {auditData.map((item, index) => (
           <div

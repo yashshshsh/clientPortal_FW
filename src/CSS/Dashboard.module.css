@@ -6,23 +6,28 @@
 
 /* font-family: "Lato", sans-serif; */
 
-@media(max-width : 495px){
-    .coll-nav{
+@media (max-width: 495px) {
+    .collNav {
         width: 100%;
         display: flex;
         justify-content: center;
     }
-    
 }
 
-.header{
+.navb{
+    padding: 0 4.7rem;
+    background-color:#FAFAFA;
+}
+
+.header {
     border-bottom: 2px solid #DDE1E6;
+    height: 5.6rem;
 }
 
 .logo {
     margin-left: 6vw;
-    height : 90px;
-    width : 180px;
+    height: 90px;
+    width: 180px;
     padding: 0.6rem;
 }
 
@@ -31,13 +36,15 @@
     width: 100%;
 }
 
-.bell-icon i, .globe-icon i, .log-out i{
+.bellIcon i,
+.globeIcon i,
+.logOut i {
     height: 20px;
-    width : 20px;
+    width: 20px;
     font-weight: 500;
 }
 
-.lang{
+.lang {
     outline: none;
     border: none;
     font-family: "Roboto", sans-serif;
@@ -46,64 +53,118 @@
     font-weight: 500;
 }
 
-.log-out p{
+.logOut p {
     font-family: "Roboto", sans-serif;
     font-size: 1rem;
     line-height: 1rem;
     font-weight: 500;
-    color : #9CA3AF;
+    color: #9CA3AF;
 }
 
-.log-out i{
+.logOut i {
     width: 12px;
     height: 1.6rem;
     color: #9CA3AF;
     margin-left: 0.5rem;
 }
 
-.dashboard, .report-browser, .action-track, .up-audits, .store-browser, .store-per, .AI{
+.dashboard, .reportBrowser, .actionTrack, .upAudits, .storeBrowser, .storePer, .AI{
     border-radius: 6px;
-    padding: 5px 10px;
-    background-color: #007DC1;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top : 1rem;
-    width : 11rem ;
+    margin : 0.6rem 0;
+    height: 2.7rem;
+    color: #9CA3AF;
+    font-weight: 400;
+    background-color: white;
 }
 
-.dashboard p, .report-browser p, .action-track p, .up-audits p, .store-browser p, .store-per p, .AI p{
+.dashboard{
+    background-color: #007DC1;
+    color : white;
+}
+
+.AI{
+    width: 9rem;
+    border: 2px solid transparent; 
+    border-image: linear-gradient(90deg, #8DC63F, #007DC1);
+    border-image-slice: 1;
+    /* border-radius: 50%; */
+}
+
+.AI p {
+    background: linear-gradient(90deg, #8DC63F, #007DC1); 
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.div-AI i {
+    background: linear-gradient(90deg, #8DC63F, #007DC1); /* Gradient for icon */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.storePer{
+    width: 12rem;
+}
+
+.storeBrowser{
+    width: 9.5rem;
+}
+
+.dashboard{
+    width: 9rem;
+}
+
+.upAudits{
+    width: 11.7rem;
+}
+
+.actionTrack{
+    width: 9.8rem;
+}
+
+.reportBrowser{
+    width: 11rem;
+}
+
+@media(max-width : 1300px){
+    .dashboard, .reportBrowser, .actionTrack, .upAudits, .storeBrowser, .storePer, .AI{
+        width: 11rem;
+    }
+}
+
+.dashboard p, .reportBrowser p, .actionTrack p, .upAudits p, .storeBrowser p, .storePer p, .AI p{
     font-size: 1rem;
     line-height: 1rem;
     margin-top: 0.5rem;
-    color: #fafafa;
     padding-top: 6px;
 }
 
-.dashboard i, .report-browser i, .action-track i, .up-audits i, .store-browser i, .store-per i, .AI i{
+.dashboard i, .reportBrowser i, .actionTrack i, .upAudits i, .storeBrowser i, .storePer i, .AI i{
     width: 1.2rem;
     height: 1.2rem;
-    color: #fafafa;
 }
 
-.dash-heading{
+.dashHeading {
     font-size: 1.4rem;
     line-height: 1.6rem;
     text-align: start;
-    color : #003C5D;
+    color: #003C5D;
     font-weight: 600;
     font-family: "Roboto", sans-serif;
 }
 
-.dash-first{
+.dashFirst {
     min-height: 53vh;
 }
 
-.first-right{
+.firstRight {
     height: 55vh;
 }
 
-.first-heading{
+.firstHeading {
     font-family: "Roboto", sans-serif;
     font-size: 1rem;
     line-height: 1.2rem;
@@ -112,39 +173,38 @@
     max-height: 1rem;
 }
 
-
-.first-left{
+.firstLeft {
     min-height: 44vh;
-    margin : 0;
+    margin: 0;
 }
 
-.l1-first{
-    height : 93.5%;
+.l1First {
+    height: 93.5%;
 }
 
-.l1{
+.l1 {
     height: 45%;
 }
 
-@media(min-width : 576px){
-    .l1{
+@media(min-width: 576px) {
+    .l1 {
         height: 85%;
     }
 }
 
-.div-calender{
+.divCalender {
     height: 94%;
 }
 
-.hero-dashboard{
+.heroDashboard {
     min-height: auto;
 }
 
-.audit-cycle, .improvement{
-    width : 38vw;
+.auditCycle, .improvement {
+    width: 38vw;
 }
 
-.audit-cycle p, .improvement p{
+.auditCycle p, .improvement p {
     font-family: "Roboto", sans-serif;
     font-weight: 500;
     font-size: 1rem;
@@ -152,44 +212,44 @@
     color: #003C5D;
 }
 
-.audit-cycle select, .improvement select{
+.auditCycle select, .improvement select {
     width: 60%;
     border: none;
     border-bottom: 2px solid #DDE1E6;
     padding-bottom: 5px;
     font-family: "Roboto", sans-serif;
     font-weight: 500;
-    font-size: 0..8rem;
+    font-size: 0.8rem;
     line-height: 1.4rem;
-    color : #9CA3AF;
+    color: #9CA3AF;
 }
 
-@media(max-width : 391px){
-    .audit-cycle{
+@media(max-width: 391px) {
+    .auditCycle {
         width: 100%;
     }
-    .dash-sec-head{
+    .dashSecHead {
         justify-content: center;
         align-items: center;
     }
-    .audit-cycle-right{
+    .auditCycleRight {
         margin: 10px auto;
     }
-    .audit-cycle select{
+    .auditCycle select {
         width: 60%;
         margin: 0 auto;
     }
-    .audit-cycle p{
-        margin : 1rem auto;
+    .auditCycle p {
+        margin: 1rem auto;
     }
-}   
+}  
 
 @media(max-width : 393px){
-    .dash-third-head{
+    .dashThirdHead{
         justify-content: center;
         align-items: center;
     }
-    .improvement-right{
+    .improvementRight{
         margin: 10px auto;
     }
     .improvement select{
@@ -197,7 +257,7 @@
     }
 } 
 
-.add-section{
+.addSection{
     height : 85%;
     width : 140px;
     border-radius: 10px;
@@ -205,7 +265,7 @@
     color: #007DC1;
 }
 
-.add-section p{
+.addSection p{
     margin-top: 1rem;
     font-family: "Roboto", sans-serif;
     font-weight: 600;
@@ -217,7 +277,7 @@
     height: 50%;
 }
 
-.down-icon{
+.downIcon{
     height : 2.8rem;
     width :3rem;
     background-color: #007DC1;
@@ -226,24 +286,24 @@
     font-size: 0.5rem;
 }
 
-.down-icon i{
+.downIcon i{
     font-size: 30px;
 }
 
-.sec-hero-left{
+.secHeroLeft{
     height: 50%;
     width: 100%;
 }
 
-.dash-sec-hero{
+.dashSecHero{
     height: 85%;
 }
 
-.dash-second{
+.dashSecond{
     min-height: 35vh;
 }
 
-.sec-head{
+.secHead{
     font-family: "Roboto", sans-serif;
     font-weight: 600;
     font-size: 1rem;
@@ -252,7 +312,7 @@
     text-align: start;
 }
 
-.sec-hero-section{
+.secHeroSection{
     height: 80%;
     padding: 1rem 1.8rem;
     border-left: 2px solid #D1D5DB;
@@ -286,7 +346,7 @@
     margin-top: 5px;
 }
 
-.dash-third{
+.dashThird{
     min-height: auto;
 }
 
@@ -318,7 +378,7 @@ th {
     font-size: 0.8rem;
 }
 
-.t-score {
+.tScore {
     background-color: #d9534f; 
     color: white;
     padding: 10px 15px;
@@ -330,13 +390,13 @@ th {
     font-family: "Roboto", sans-serif;
 }
 
-.dash-forth {
+.dashForth {
     min-height: 38vh;
     width: 100%;
 }
 
 
-.overall-para p{
+.overallPara p{
     font-family: "Roboto", sans-serif;
     font-weight: 500;
     font-size: 1rem;
@@ -344,7 +404,7 @@ th {
     color: #003C5D;
 }
 
-.overall-para p span{
+.overallPara p span{
     font-family: "Roboto", sans-serif;
     font-weight: 400;
     font-size: 0.6rem;
@@ -352,7 +412,7 @@ th {
     color: #003C5D;
 }
 
-.customer-arr{
+.customerArr{
     background-color: #007DC1;
     height: 3rem;
     text-align : start;
@@ -364,7 +424,7 @@ th {
     line-height: 1rem;
 }
 
-.fifth-table table {
+.fifthTable table {
     width: 100%;
     border-collapse: collapse; /* Ensure there is no extra spacing around table cells */
 }
@@ -375,7 +435,7 @@ table, th, td {
     border: 1px solid #ccc; /* Optional border */
 }
 
-.t-tf{
+.tTf{
     font-family: "Roboto", sans-serif; 
     font-weight: 600;
     font-size: 0.8rem;
@@ -383,7 +443,7 @@ table, th, td {
     color : #003C5D;
 }
 
-.t-per{
+.tPer{
     width: 2.3rem;
     height: 2rem;
     background-color: #D7F1FF;
@@ -395,7 +455,7 @@ table, th, td {
     border-radius: 10px;
 }
 
-.td-first{
+.tdFirst{
     width: 90%;
     margin-top : 0.2rem
 }
