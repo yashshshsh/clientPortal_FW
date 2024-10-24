@@ -97,16 +97,16 @@ const Dashboard = () => {
                                     <DashedProgressBar color={"#8DC63F"} progress={95} />
                                 </div>
                                 <div className={styles.l1 + ' col-sm-6 d-flex justify-content-center align-items-center'}>
-                                    <DashedProgressBar color={"#C9727B"} progress={89} />
+                                    <DashedProgressBar color={"#C9727B"} progress={10} />
                                 </div>
                             </div>
 
                             <div className={'row2 row'}>
                                 <div className={styles.l1 + ' col-sm-6 d-flex justify-content-center align-items-center'}>
-                                    <DashedProgressBar color={"#C6B83F"} progress={95} />
+                                    <DashedProgressBar color={"#C6B83F"} progress={70} />
                                 </div>
                                 <div className={styles.l1 + ' col-sm-6 d-flex justify-content-center align-items-center'}>
-                                    <DashedProgressBar color={"#B4DA1F"} progress={95} />
+                                    <DashedProgressBar color={"#B4DA1F"} progress={85} />
                                 </div>
                             </div>
                         </div>
