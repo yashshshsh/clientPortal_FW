@@ -1,0 +1,332 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+/* font-family: "Roboto", sans-serif; */
+
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+/* font-family: "Lato", sans-serif; */
+
+@media (max-width: 495px) {
+    .collNav {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+}
+
+.navb{
+    padding: 0 4.7rem;
+    background-color:#FAFAFA;
+}
+
+.header {
+    border-bottom: 2px solid #DDE1E6;
+}
+
+.logo {
+    margin-left: 6vw;
+    height: 90px;
+    width: 180px;
+    padding: 0.6rem;
+}
+
+.logo img {
+    height: 90%;
+    width: 100%;
+}
+
+.bellIcon i,
+.globeIcon i,
+.logOut i {
+    height: 20px;
+    width: 20px;
+    font-weight: 500;
+}
+
+.lang {
+    outline: none;
+    border: none;
+    font-family: "Roboto", sans-serif;
+    font-size: 1rem;
+    line-height: 1rem;
+    font-weight: 500;
+}
+
+.logOut p {
+    font-family: "Roboto", sans-serif;
+    font-size: 1rem;
+    line-height: 1rem;
+    font-weight: 500;
+    color: #9CA3AF;
+}
+
+.logOut i {
+    width: 12px;
+    height: 1.6rem;
+    color: #9CA3AF;
+    margin-left: 0.5rem;
+}
+
+.dashboard, .reportBrowser, .actionTrack, .upAudits, .storeBrowser, .storePer, .AI{
+    border-radius: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin : 0.6rem 0;
+    height: 2.7rem;
+    color: #9CA3AF;
+    font-weight: 400;
+    background-color: white;
+}
+
+.reportBrowser{
+    background-color: #007DC1;
+    color : white;
+}
+
+.AI{
+    width: 9rem;
+    border: 2px solid transparent; 
+    border-image: linear-gradient(90deg, #8DC63F, #007DC1);
+    border-image-slice: 1;
+    /* border-radius: 50%; */
+}
+
+.AI p {
+    background: linear-gradient(90deg, #8DC63F, #007DC1); 
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.divAI i {
+    background: linear-gradient(90deg, #8DC63F, #007DC1); /* Gradient for icon */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.storePer{
+    width: 12rem;
+}
+
+.storeBrowser{
+    width: 9.5rem;
+}
+
+.dashboard{
+    width: 9rem;
+}
+
+.upAudits{
+    width: 11.7rem;
+}
+
+.actionTrack{
+    width: 9.8rem;
+}
+
+.reportBrowser{
+    width: 11rem;
+}
+
+@media(max-width : 1300px){
+    .dashboard, .reportBrowser, .actionTrack, .upAudits, .storeBrowser, .storePer, .AI{
+        width: 11rem;
+    }
+}
+
+.dashboard p, .reportBrowser p, .actionTrack p, .upAudits p, .storeBrowser p, .storePer p, .AI p{
+    font-size: 1rem;
+    line-height: 1rem;
+    margin-top: 0.5rem;
+    padding-top: 6px;
+}
+
+.dashboard i, .reportBrowser i, .actionTrack i, .upAudits i, .storeBrowser i, .storePer i, .AI i{
+    width: 1.2rem;
+    height: 1.2rem;
+}
+
+.repoHead{
+    /* width : 12rem; */
+    height : 1.5rem;
+    color : #003C5D;
+    font-size: 1.3rem;
+    font-weight: 500;
+}
+
+.head{
+    min-height: 3.8rem;
+}
+
+.repotPara{
+    font-family: "Roboto", sans-serif;
+}
+
+.exportList{
+    background-color: #007DC1;
+    color: white;
+    width : 7.2rem;
+    height: 100%;
+    gap : 0.5rem;
+    border-radius: 8px;
+    font-family: "Roboto", sans-serif;
+    font-weight: 600;
+    font-size: 0.8rem;
+    line-height: 1.3rem;
+}
+
+.downIcon i{
+    font-size: 1.5rem;
+}
+
+.searchIn{
+    width: 90%;
+    gap : 0.5rem;
+}
+
+.inputSearch{
+    width: 35%;
+    border-radius: 5px;
+    border : 1px solid #353E4C;
+}
+
+.inputSearch i{
+    color: #353E4C;
+    font-size: 1rem;
+}
+
+.searchStore{
+    height: 3rem;
+}
+
+.storeSearch{
+    width: 99%;
+    height: 90%;
+    border : none;
+    outline : none;
+}
+
+.storeSearch::placeholder{
+    font-family: "Lato", sans-serif;
+    font-weight: 400;
+    color : #353E4C;
+    font-size: 1rem;
+    line-height: 19px;
+}
+
+.filter{
+    width: 7em;
+    border: 1px solid #007DC1;
+    border-radius: 5px;
+    padding : 12px 24px;
+    color : #007DC1;
+    font-family: "Roboto", sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 16px;
+}
+
+.filterIcon{
+    font-size: 1.5rem;
+}
+
+.clearFilter{
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1rem;
+    color : #007DC1;
+    text-decoration: underline;
+    width: 6rem;
+}
+
+.clearFilter p{
+    width: 100%;
+    text-align: end;
+}
+
+.marksContainer {
+    background-color: #8DC63F;
+    border-radius: 5px;
+    padding: 11px;
+    text-align: center;
+    width: 50px;
+    color : white;
+}
+
+.progressBarContainer {
+    position: relative;
+    border-radius: 5px;
+    width: 100%; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap : "2rem"
+}
+
+.dash1 {
+    height: 11px; 
+    border-radius: 5px;
+    width: 40px;
+    margin-bottom: 1rem;
+    margin-top : 0.3rem;
+}
+
+.tdFlex{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse; 
+    border-spacing: 0;
+}
+
+table, th, td {
+    padding: 1.2rem;
+    text-align: center;
+    border: 2px solid #D1D5DB; 
+}
+
+thead{
+    background-color: #f2f2f2;
+    color : #353E4C;
+}
+
+th{
+    font-family: "Roboto", sans-serif;
+    font-weight: 700;
+    font-size: 11px;
+    line-height: 11px;
+}
+
+td{
+    font-family: "Lato", sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 16px;
+    color : #353E4C;
+}
+
+.progressBarContainer span{
+    font-family: "Lato", sans-serif;
+    font-weight: 600;
+    font-size: 0.8rem;
+    line-height: 14px;
+}
+
+.reportBtn{
+    height : 40px;
+    width : 100px;
+    background-color: #007DC1;
+    border-radius: 5px;
+    font-family: "Lato", sans-serif;
+    color : white;
+    font-weight: 600;
+    line-height: 14px;
+    border: none;
+    outline: none;
+    font-size: 13px;
+}
