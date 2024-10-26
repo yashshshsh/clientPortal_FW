@@ -279,7 +279,7 @@ const AuditReport = () => {
                             <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                                 <div class="accordion-body2">
                                     <div className="attachImg d-flex">
-                                        <img src = {attachImg}/>
+                                        <img src = {attachImg} alt="img"/>
                                     </div>
                                 </div>
                             </div>

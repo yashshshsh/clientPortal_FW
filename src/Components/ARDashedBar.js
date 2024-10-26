@@ -10,7 +10,7 @@ const ARDashedBar = ({progress,color,text}) => {
     return (
         <div className="progress-container shadow-lg" style={{ marginTop: "1rem" }}>
             
-            {text == 'survey'?<div className="progress-subtext m-3">Survey Details</div>:
+            {text === 'survey'?<div className="progress-subtext m-3">Survey Details</div>:
             <div className="progress-subtext m-3">NPS Survey</div>}
             
 

@@ -89,7 +89,6 @@
     border: 2px solid transparent; 
     border-image: linear-gradient(90deg, #8DC63F, #007DC1);
     border-image-slice: 1;
-    /* border-radius: 50%; */
 }
 
 .AI p {
@@ -99,7 +98,7 @@
 }
 
 .divAI i {
-    background: linear-gradient(90deg, #8DC63F, #007DC1); /* Gradient for icon */
+    background: linear-gradient(90deg, #8DC63F, #007DC1); 
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -212,7 +211,7 @@
 }
 
 .left-details td {
-    padding: 0.5rem 1rem; /* Adjust padding for spacing */
+    padding: 0.5rem 1rem; 
     text-align: left;
 }
 
