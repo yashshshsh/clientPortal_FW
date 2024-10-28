@@ -383,9 +383,9 @@ td{
 }
 
 @media(max-width: 391px) {
-    .auditCycle {
+    /* .auditCycle {
         width: 100%;
-    }
+    } */
     .dashSecHead {
         justify-content: center;
         align-items: center;
@@ -394,7 +394,7 @@ td{
         margin: 10px auto;
     }
     .auditCycle select {
-        width: 60%;
+        width: 100%;
         margin: 0 auto;
     }
     .auditCycle p {
