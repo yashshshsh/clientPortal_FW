@@ -1,5 +1,5 @@
 import React from 'react';
-import '../CSS/DashedBarProgress.css';
+import '../../CSS/ChartsBarsCSS/DashedBarProgress.css';
 
 const DashedProgressBar = ({ progress,color }) => {
   // Calculate the percentage of each dash that should be filled
@@ -22,7 +22,7 @@ const DashedProgressBar = ({ progress,color }) => {
                 : index === filledDashes
                 ? `linear-gradient(to right, ${color} ${partialFill}%, #e6e6e6 ${partialFill}%)`
                 : '#e6e6e6'  // Unfilled dash
-            }}
+            }}  
           ></div>
         ))}
       </div>

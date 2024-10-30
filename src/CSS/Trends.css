@@ -1,0 +1,187 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+/* font-family: "Roboto", sans-serif; */
+
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+/* font-family: "Lato", sans-serif; */
+
+.dashSecHero{
+    height: 85%;
+    background-color: #FAFAFA;
+}
+
+.dashSecond{
+    min-height: 35vh;
+}
+
+.secHead{
+    font-family: "Roboto", sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    color: #007DC1;
+    line-height: 1.4rem;
+    text-align: start;
+}
+
+.secHeroSection{
+    height: 80%;
+    padding: 1rem 1.8rem;
+    border-left: 2px solid #D1D5DB;
+    background-color: #FAFAFA;
+}
+
+.section1{
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    margin-top: 1rem;
+}
+
+.perPara{
+    font-family: "Roboto", sans-serif;
+    font-weight: 600;
+    font-size: 1.1rem;
+    line-height: 1.2rem;
+    color: #003C5D;
+    text-align: start;
+    margin: 0;
+}
+
+.secPara{
+    text-align: start;
+    margin: 0;
+    font-family: "Lato", sans-serif;
+    font-weight: 400;
+    font-size: 0.8rem;
+    line-height: 1rem;
+    margin-top: 5px;
+}
+
+.audit-details{
+    font-family: "Lato", sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 26px;
+    color : #4B5563;
+    border-left: 5px solid #4B5563;
+    background-color: #FAFAFA   ;
+    height : 26px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse; 
+    border-spacing: 0;
+}
+
+table, th, td {
+    padding: 8px;
+    text-align: center;
+    border: 1px solid #ccc; 
+}
+
+td {
+    background-color: white;
+    font-family: "Lato";
+    font-weight: 400;
+    font-size: 0.8rem;
+    line-height: 1rem;
+}
+
+th {
+    background-color: #f2f2f2; 
+    color: #353E4C; 
+    font-family: "Roboto", sans-serif;
+    font-weight: 700;
+    font-size: 0.8rem;
+}
+
+.tScore {
+    background-color: #d9534f; 
+    color: white;
+    padding: 10px 15px;
+    text-align: center;
+    border-radius: 5px;
+    font-weight: 600;
+    display: inline-block;
+    font-size: 1.1rem;
+    font-family: "Roboto", sans-serif;
+}
+
+.customerArr{
+    background-color: #007DC1;
+    height: 3rem;
+    text-align : start;
+    padding: 1rem;
+    color: white;
+    font-family: "Roboto", sans-serif;
+    font-weight: 700;
+    font-size: 0.8rem;
+    line-height: 1rem;
+}
+
+.fifthTable table {
+    width: 100%;
+    border-collapse: collapse; /* Ensure there is no extra spacing around table cells */
+}
+
+table, th, td {
+    padding: 8px;
+    text-align: center;
+    border: 1px solid #ccc; /* Optional border */
+}
+
+.tTf{
+    font-family: "Roboto", sans-serif; 
+    font-weight: 600;
+    font-size: 0.8rem;
+    line-height: 1rem;
+    color : #003C5D;
+}
+
+.tPer{
+    width: 2.3rem;
+    height: 2rem;
+    background-color: #D7F1FF;
+    color : #007DC1;
+    font-family: "Roboto", sans-serif; 
+    font-weight: 600;
+    font-size: 0.8rem;
+    line-height: 1rem;
+    border-radius: 10px;
+}
+
+.tdFirst{
+    width: 90%;
+    margin-top : 0.2rem
+}
+
+.scoreBox{
+    width: 87px;
+    height: 30px;
+    background-color: #8DC63F;
+    color: #FAFAFA;
+    font-size: 12px;
+    font-family: "Roboto", sans-serif;
+    line-height: 16px;
+    font-weight: 600;
+}
+
+.dash1 {
+    height: 11px; 
+    border-radius: 5px;
+    width: 40px;
+    margin-bottom: 1rem;
+    margin-top : 0.3rem;
+}
+
+.dash{
+    border-radius: 5px;
+    width: 20px;
+    height: 15px;
+}
+
+.dashed{
+    height : 2rem;  
+}
