@@ -299,6 +299,11 @@ td{
     color: white;
 }
 
+@media (max-width : 567px){
+    .audit{
+        width: 30rem;
+    }
+}
 
 
 

@@ -123,19 +123,19 @@ const StorePerf = () => {
             <div className="perf-lower px-5 my-3">
                 <p className='text-start'>Top Score Performer Stores</p>
 
-                <div className="table-bordered">
+                <div className="table-bordered table-responsive">
                     <table>
                         <thead>
                             <tr>
-                                <th style={{ width: "46px" }}>S no.</th>
-                                <th style={{ width: "270px" }}>Audit</th>
-                                <th style={{ width: "90px" }}>Max Marks</th>
-                                <th style={{ width: "140px" }}>Customer Arrival and Staff Grooming Analysis</th>
-                                <th style={{ width: "140px" }}>Interaction with Staff</th>
-                                <th style={{ width: "140px" }}>Customer Arrival and Staff Grooming Analysis</th>
-                                <th style={{ width: "140px" }}>Interaction with Staff</th>
-                                <th style={{ width: "140px" }}>Customer Arrival and Staff Grooming Analysis</th>
-                                <th style={{ width: "140px" }}>Interaction with Staff</th>
+                                <th style={{ minWidth: "46px" }}>S no.</th>
+                                <th className="audit" style={{ minWidth: "270px" }}>Audit</th>
+                                <th style={{ minWidth: "90px" }}>Max Marks</th>
+                                <th style={{ minWidth: "140px" }}>Customer Arrival and Staff Grooming Analysis</th>
+                                <th style={{ minWidth: "140px" }}>Interaction with Staff</th>
+                                <th style={{ minWidth: "140px" }}>Customer Arrival and Staff Grooming Analysis</th>
+                                <th style={{ minWidth: "140px" }}>Interaction with Staff</th>
+                                <th style={{ minWidth: "140px" }}>Customer Arrival and Staff Grooming Analysis</th>
+                                <th style={{ minWidth: "140px" }}>Interaction with Staff</th>
                             </tr>
                         </thead>
                         <tbody>

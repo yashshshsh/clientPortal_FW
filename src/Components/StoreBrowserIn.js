@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import logo from '../Images/Floorwalk logo7x.png';
-import CircularBar from '../Components/ChartsBars/CircularBar'
+import CircularBar from './ChartsBars/CircularBar.js'
 import '../CSS/StoreBrowser.css'
 import Trends from './Trends.js'
 import Report from './Report.js';
 import Proof from './Proof.js';
 
-const StoreBrowser = () => {
+const StoreBrowserIn = () => {
 
     const [state, setState] = useState("reports");
     return (
@@ -196,4 +196,4 @@ const StoreBrowser = () => {
     )
 }
 
-export default StoreBrowser
+export default StoreBrowserIn
