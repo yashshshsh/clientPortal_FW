@@ -6,7 +6,7 @@
 
 /* font-family: "Lato", sans-serif; */
 
-.progress-container {
+.progress-container.shadow-lg {
     text-align: center;
     padding: 10px;
     width: 95%;
@@ -33,6 +33,7 @@
     height: 7px;
     background-color: #e6e6e6; /* Default background for empty dash */
     border-radius: 6px;
+    margin: 0 0.2rem;
   }
   
   .progress-subtext {

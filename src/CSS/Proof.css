@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+/* font-family: "Roboto", sans-serif; */
+
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+/* font-family: "Lato", sans-serif; */
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+/* font-family: "DM Sans", sans-serif; */
+
+.df{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bills p,.bills i{
+    color : #007DC1 !important; 
+}
+
+.tags{
+    height: 100px;
+}
+
+.tags i{
+    font-size: 30px;
+    color : #9CA3AF;
+}
+
+.tags p{
+    font-family: "Lato", sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 15px;
+    color : #9CA3AF;
+    margin : 0;
+}
+
+.tags div{
+    height: 90%;
+    width: 120px;
+    border : 1px solid #9CA3AF;
+    cursor: pointer;
+    padding-top: 0.5rem;
+}
+
+.proof-lower p {
+    color: #003C5D;
+    font-family: "Roboto", sans-serif;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 28px;
+}
+
+.proof-lower img {
+    height: 250px;
+    min-width: 370px;
+}
+
+.proof-lower div {
+    width: 400px;
+    min-height: 300px;
+    margin: 1rem auto;
+}
+
+.gradient-border {
+    border-left: 2px solid;
+    border-right: 2px solid;
+    border-image-source: linear-gradient(180deg, #FFFFFF 0%, #003C5D 50%, #FFFFFF 100%);
+    border-image-slice: 1;
+}
+
+.proof-head{
+    color: #003C5D;
+    font-weight: 600;
+    font-size: 28px;
+    line-height: 33px;
+}
+
+.main{
+    background-color: #FAFAFA;
+}

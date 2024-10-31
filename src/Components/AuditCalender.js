@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../CSS/AuditCalender.css';
+import '../CSS/ChartsBarsCSS/AuditCalender.css'
 
 const auditData = [
   {

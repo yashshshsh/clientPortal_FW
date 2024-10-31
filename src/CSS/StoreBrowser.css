@@ -10,7 +10,7 @@
 
 /* font-family: "DM Sans", sans-serif; */
 
-.df{
+.df {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -182,106 +182,107 @@
     height: 1.2rem;
 }
 
-.rbar{
-    height : 30px;
+.rbar {
+    height: 30px;
     font-family: "Roboto", sans-serif;
-    color : #9CA3AF;
+    color: #9CA3AF;
     font-weight: 600;
     font-size: 14px;
     line-height: 16px;
 }
 
-.rbar span{
-    color : #003C5D;
+.rbar span {
+    color: #003C5D;
 }
 
-.hero-first{
+.hero-first {
     min-height: 380px;
     background-color: #FAFAFA;
 }
 
 .overall {
     font-size: 28px;
-    color : #007DC1;
+    color: #007DC1;
     line-height: 32px;
     font-family: "Roboto", sans-serif;
     font-weight: 600;
 }
 
-.score-per{
-    width : 52px;
-    height : 33px;
+.score-per {
+    width: 52px;
+    height: 33px;
     background-color: #B3D97F;
-    color : white;
+    color: white;
     font-family: "Roboto", sans-serif;
     font-weight: 700;
     font-size: 22px;
 }
 
-.audit-details{
+.audit-details {
     font-family: "Lato", sans-serif;
     font-weight: 600;
     font-size: 20px;
     line-height: 26px;
-    color : #4B5563;
+    color: #4B5563;
     border-left: 5px solid #4B5563;
-    background-color: #FAFAFA   ;
-    height : 26px;
+    background-color: #FAFAFA;
+    height: 26px;
 }
 
-.leftText{
+.leftText {
     font-family: "Roboto", sans-serif;
     font-weight: 400;
     font-size: 16px;
     line-height: 16px;
-    color : #003C5D;
+    color: #003C5D;
     width: 10rem;
     height: 2rem;
 }
 
-.rightText{
+.rightText {
     font-family: "Roboto", sans-serif;
     font-weight: 400;
     font-size: 16px;
     line-height: 16px;
-    color : #6B7280;
+    color: #6B7280;
     height: 2rem;
 }
 
-.overallPara,.scorePara{
-    color : #003C5D;
+.overallPara,
+.scorePara {
+    color: #003C5D;
     font-family: "Lato", sans-serif;
     font-weight: 700;
     font-size: 16px;
     line-height: 19px;
 }
 
-.store-score{
-    min-height : 120px;
+.store-score {
+    min-height: 120px;
 }
 
-.stats{
+.stats {
     width: 148px;
     min-height: 26px;
     background-color: #F3F4F6;
-    color : #9CA3AF;
+    color: #9CA3AF;
     font-weight: 600;
     padding: 6px 10px;
     border-radius: 10px;
 }
 
-.stats p{
+.stats p {
     font-size: 12px;
     line-height: 14px;
     font-family: "Lato", sans-serif;
 }
 
-.stats-mean{
+.stats-mean {
     height: 42px;
-    width : 49px;
+    width: 49px;
 }
 
-.grade{
+.grade {
     font-family: "Lato", sans-serif;
     font-weight: 600;
     font-size: 12px;
@@ -290,7 +291,7 @@
     color: #6B7280;
 }
 
-.percent{
+.percent {
     font-size: 7px;
     line-height: 8px;
     color: #6B7280;
@@ -299,53 +300,56 @@
     text-align: center;
 }
 
-.circularBar{
+.circularBar {
     position: relative;
     margin-top: 1rem;
     max-width: 250px;
     max-height: 170px;
 }
 
-.store-score{
-    min-height : 120px;
+.store-score {
+    min-height: 120px;
 }
 
-.hero-sec{
+.hero-sec {
     height: 40px;
-    background-color: #FAFAFA; 
+    background-color: #FAFAFA;
 }
 
-.hero-sec i{
+.hero-sec i {
     font-size: 14px;
 }
 
-.hero-right{
+.hero-right {
     background-color: white;
 }
 
-.trends, .reports{
-    height : 40px;
+.trends,
+.reports {
+    height: 40px;
     width: 85px;
-    gap : 0.5rem;
+    gap: 0.5rem;
     color: #9CA3AF;
     cursor: pointer;
 }
 
-.trends.active, .proof.active, .reports.active{
+.trends.active,
+.proof.active,
+.reports.active {
     color: #007DC1;
     border-bottom: 3px solid #007DC1;
     border-radius: 3px;
 }
 
-.proof{
-    height : 40px;
+.proof {
+    height: 40px;
     width: 165px;
-    gap : 0.5rem;
+    gap: 0.5rem;
     cursor: pointer;
-    color: #9CA3AF; 
+    color: #9CA3AF;
 }
 
-.hero-sec p{
+.hero-sec p {
     margin: 1rem 0;
     font-family: "Lato", sans-serif;
     font-weight: 500;
@@ -353,12 +357,14 @@
     line-height: 19px;
 }
 
-.table-left td, .table-right td {
+.table-left td,
+.table-right td {
     text-align: left !important;
-    border : none;
-    background-color: #FAFAFA; 
+    border: none;
+    background-color: #FAFAFA;
 }
 
-table{
-    border : none !important;
+table {
+    border: none !important;
 }
+

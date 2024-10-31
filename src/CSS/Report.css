@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+/* font-family: "Roboto", sans-serif; */
+
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+/* font-family: "Lato", sans-serif; */
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+/* font-family: "DM Sans", sans-serif; */
+
+.reo{
+    background-color: #FFFFFF;
+}
+
+.audit-details{
+    font-family: "Lato", sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 26px;
+    color : #4B5563;
+    border-left: 5px solid #4B5563;
+    background-color: #FAFAFA   ;
+    height : 26px;
+}
+
+.df{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card{
+    max-width: 430px;
+    min-height: 320px;
+    background-color: #FFFFFF;
+    border: none;
+    border-radius: 10px;
+}
+
+.dashed-bar{
+    min-height: 20%;
+}
+
+.viewReport{
+    background-color : #007DC1;
+    height: 41px;
+    width: 90%;
+}
+
+.viewReport p{
+    color : #FFFFFF;
+    font-size: 14px;
+    line-height: 16px;
+    font-family: "Lato", sans-serif;
+    font-weight: 600;
+}
+
+.sd{
+    font-weight: 600;
+    font-size: 32px;
+    line-height: 37px;
+    color : #003C5D;
+}
+
+.a-left{
+    width: 10rem;
+    color: #003C5D;
+    font-family: "Roboto", sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 18px;
+    height: 2rem;
+    border: none !important;
+}
+
+.a-right{
+    width: 10rem;
+    font-family: "Roboto", sans-serif;
+    color : #6B7280;
+    font-family: 400;
+    font-size: 16px;
+    line-height: 18px;
+    border: none !important;
+}

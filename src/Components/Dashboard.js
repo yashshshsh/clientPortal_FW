@@ -1,11 +1,11 @@
 import React from 'react'
 import styles from '../CSS/Dashboard.module.css'
 import logo from '../Images/Floorwalk logo7x.png'
-import DashedProgressBar from './DashedBarProgress'
-import AuditCalendar from './AuditCalender'
-import BarChart from './BarChart'
-import StoreWiseBarChart from './StoreWiseBarChart'
-import OverallPerformance from './OverallPerformance'
+import DashedProgressBar from '../Components/ChartsBars/DashedBarProgress'
+import AuditCalendar from '../Components/AuditCalender'
+import BarChart from './ChartsBars/BarChart'
+import StoreWiseBarChart from './ChartsBars/StoreWiseBarChart'
+import OverallPerformance from './ChartsBars/OverallPerformance'
 
 const Dashboard = () => {
     return (

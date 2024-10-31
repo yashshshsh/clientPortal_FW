@@ -2,7 +2,9 @@ import React, { useState } from 'react'
 import logo from '../Images/Floorwalk logo7x.png';
 import CircularBar from '../Components/ChartsBars/CircularBar'
 import '../CSS/StoreBrowser.css'
-import Trends from './Trends';
+import Trends from './Trends.js'
+import Report from './Report.js';
+import Proof from './Proof.js';
 
 const StoreBrowser = () => {
 
@@ -185,8 +187,10 @@ const StoreBrowser = () => {
                     <p>Proof Comparison</p>
                 </div>
             </div>
-            <div className="trend-comp">
-                <Trends />
+
+            <div className="trp">
+                {state === "trends"?(<Trends/>) : 
+                state === "reports"?(<Report/>) : (<Proof/>)}
             </div>
         </div>
     )

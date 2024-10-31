@@ -1,15 +1,14 @@
 import React from 'react';
 import '../../CSS/ChartsBarsCSS/DashedBarProgress.css';
 
-const DashedProgressBar = ({ progress,color }) => {
-  // Calculate the percentage of each dash that should be filled
+const DashedProgressBar = ({ progress,color,shadow }) => {
   const dashes = 5;
   const progressPerDash = 100 / dashes;
   const filledDashes = Math.floor(progress / progressPerDash); // Full dashes
   const partialFill = (progress % progressPerDash) / progressPerDash * 100; // Partial fill of the next dash
 
   return (
-    <div className="progress-container shadow-lg" style={{marginTop : "1rem"}}>
+    <div className={`progress-container ${shadow === true?"shadow-lg":""}`} style={{marginTop : "1rem"}}>
       <div style={{color : `${color}`}} className="progress-label">{progress}/100</div>
       <div className="dashed-progress-bar mt-4 px-4">
         {[...Array(dashes)].map((_, index) => (
@@ -26,7 +25,7 @@ const DashedProgressBar = ({ progress,color }) => {
           ></div>
         ))}
       </div>
-      <div className="progress-subtext mt-4">NPS - June - 2024</div>
+      {shadow == false?"":(<div className="progress-subtext mt-4">NPS - June - 2024</div>)}
     </div>
   );
 };
