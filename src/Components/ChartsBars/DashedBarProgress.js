@@ -9,7 +9,7 @@ const DashedProgressBar = ({ progress,color,shadow }) => {
 
   return (
     <div className={`progress-container ${shadow === true?"shadow-lg":""}`} style={{marginTop : "1rem"}}>
-      <div style={{color : `${color}`}} className="progress-label">{progress}/100</div>
+      <div style={{color : `${color}`}} className="progress-label df">{progress}/100</div>
       <div className="dashed-progress-bar mt-4 px-4">
         {[...Array(dashes)].map((_, index) => (
           <div

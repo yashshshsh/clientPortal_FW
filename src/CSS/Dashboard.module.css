@@ -283,6 +283,9 @@
     border-radius: 5px;
     color: white;
     font-size: 0.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .downIcon i{
@@ -291,7 +294,6 @@
 
 .secHeroLeft{
     height: 50%;
-    width: 100%;
 }
 
 .dashSecHero{

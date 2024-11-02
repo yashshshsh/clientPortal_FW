@@ -10,78 +10,6 @@ import OverallPerformance from './ChartsBars/OverallPerformance'
 const Dashboard = () => {
     return (
         <div>
-            <nav className={`${styles.header} navbar navbar-expand-lg`}>
-                <div className="container-fluid d-flex">
-                    <div className={styles.logo}>
-                        <img src={logo} alt='img' />
-                    </div>
-                    <div className={styles.collNav}>
-                        <div className={`${styles.collInner} d-flex justify-content-end`}>
-                            <div className={`${styles.bellIcon} mx-1 d-flex align-items-center justify-content-center`}>
-                                <i className="bi bi-bell"></i>
-                            </div>
-                            <div className={`${styles.globeIcon} mx-3 d-flex align-items-center justify-content-center`}>
-                                <i className="bi bi-globe"></i>
-                                <select className={styles.lang}>
-                                    <option value="en">Eng</option>
-                                </select>
-                            </div>
-                            <div className={`${styles.logOut} d-flex mx-3 align-items-center justify-content-center`}>
-                                <p className='my-2'>Log Out</p>
-                                <i className="bi bi-box-arrow-right"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </nav>
-            <div className={styles.py13}>
-                <div className={`${styles.navb} d-flex flex-wrap justify-content-evenly align-content-between`}>
-                    <div className={`${styles.dashboard} gap-2`}>
-                        <div className={styles.iconList}>
-                            <i className="bi bi-list"></i>
-                        </div>
-                        <p>Dashboard</p>
-                    </div>
-                    <div className={`${styles.reportBrowser} gap-2`}>
-                        <div className={styles.iconChart}>
-                            <i className="bi bi-bar-chart"></i>
-                        </div>
-                        <p>Report Browser</p>
-                    </div>
-                    <div className={`${styles.actionTrack} gap-2`}>
-                        <div className={styles.iconAction}>
-                            <i className="bi bi-box-arrow-in-down-right"></i>
-                        </div>
-                        <p>Action Track</p>
-                    </div>
-                    <div className={`${styles.upAudits} gap-2`}>
-                        <div className={styles.iconClock}>
-                            <i className="bi bi-clock"></i>
-                        </div>
-                        <p>Upcoming audits</p>
-                    </div>
-                    <div className={`${styles.storeBrowser} gap-2`}>
-                        <div className={styles.iconStore}>
-                            <i className="bi bi-shop"></i>
-                        </div>
-                        <p>Store Browser</p>
-                    </div>
-                    <div className={`${styles.storePer} gap-2`}>
-                        <div className={styles.iconPer}>
-                            <i className="bi bi-archive-fill"></i>
-                        </div>
-                        <p>Store Performance</p>
-                    </div>
-                    <div className={`${styles.AI} d-flex gap-2`}>
-                        <div className={styles.divAI}>
-                            <i className="bi bi-stars"></i>
-                        </div>
-                        <p>AI Insights</p>
-                    </div>
-                </div>
-            </div>
-
-
             <div className={styles.heroDashboard + ' p-3'}>
                 <p className={styles.dashHeading}>Dashboard</p>
 
@@ -94,19 +22,19 @@ const Dashboard = () => {
                         <div className={styles.l1First + ' my-1'}>
                             <div className={'row1 row'}>
                                 <div className={styles.l1 + ' col-sm-6 d-flex justify-content-center align-items-center'}>
-                                    <DashedProgressBar color={"#8DC63F"} progress={95} />
+                                    <DashedProgressBar color={"#8DC63F"} progress={95} shadow={true}/>
                                 </div>
                                 <div className={styles.l1 + ' col-sm-6 d-flex justify-content-center align-items-center'}>
-                                    <DashedProgressBar color={"#C9727B"} progress={10} />
+                                    <DashedProgressBar color={"#C9727B"} progress={10} shadow={true}/>
                                 </div>
                             </div>
 
                             <div className={'row2 row'}>
                                 <div className={styles.l1 + ' col-sm-6 d-flex justify-content-center align-items-center'}>
-                                    <DashedProgressBar color={"#C6B83F"} progress={70} />
+                                    <DashedProgressBar color={"#C6B83F"} progress={70} shadow={true}/>
                                 </div>
                                 <div className={styles.l1 + ' col-sm-6 d-flex justify-content-center align-items-center'}>
-                                    <DashedProgressBar color={"#B4DA1F"} progress={85} />
+                                    <DashedProgressBar color={"#B4DA1F"} progress={85} shadow={true}/>
                                 </div>
                             </div>
                         </div>

@@ -63,12 +63,12 @@ const AuditCalendar = () => {
   };
 
   return (
-    <div className="calendar-container   d-flex justify-content-center align-items-center shadow-lg">
+    <div className="calendar-container d-flex justify-content-center align-items-center shadow-lg">
       <div className="date-column">
         {auditData.map((item, index) => (
           <div
             key={index}
-            className={`date-box shadow ${selectedDate.date === item.date ? 'selected' : ''}`}
+            className={`date-box shadow d-flex flex-column justify-content-center align-items-center ${selectedDate.date === item.date ? 'selected' : ''}`}
             onClick={() => handleDateClick(item)}
           >
             <div className='iDate'>{item.date}</div>
