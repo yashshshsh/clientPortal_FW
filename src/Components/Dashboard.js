@@ -10,16 +10,16 @@ import OverallPerformance from './ChartsBars/OverallPerformance'
 const Dashboard = () => {
     return (
         <div>
-            <div className={styles.heroDashboard + ' p-3'}>
+            <div className={styles.heroDashboard + ' px-4 my-4'}>
                 <p className={styles.dashHeading}>Dashboard</p>
 
                 <div className={styles.dashFirst + ' row d-flex'}>
                     <div className={styles.firstLeft + ' col-md-6'}>
-                        <div className={styles.firstHeading + ' text-start'}>
+                        <div className={styles.firstHeading + ' my-2 text-start'}>
                             <p>Latest Audit Cycle Score</p>
                         </div>
 
-                        <div className={styles.l1First + ' my-1'}>
+                        <div className={styles.l1First + ''}>
                             <div className={'row1 row'}>
                                 <div className={styles.l1 + ' col-sm-6 d-flex justify-content-center align-items-center'}>
                                     <DashedProgressBar color={"#8DC63F"} progress={95} shadow={true}/>
@@ -41,16 +41,16 @@ const Dashboard = () => {
                     </div>
 
                     <div className={styles.firstRight + ' col-md-6'}>
-                        <div className={styles.firstHeading + ' text-start'}>
+                        <div className={styles.firstHeading + ' mb-2 text-start'}>
                             <p>Upcoming Audits</p>
                         </div>
-                        <div className={styles.divCalender + ' my-2'}>
+                        <div className={styles.divCalender + ' '}>
                             <AuditCalendar />
                         </div>
                     </div>
                 </div>
 
-                <div className={styles.dashSecond + ' my-2'}>
+                <div className={styles.dashSecond + ' my-4'}>
                     <div className={styles.dashSecHead + ' flex-wrap d-flex'}>
                         <div className={styles.auditCycle + ' d-flex flex-column'}>
                             <p className="text-start">Audit Cycle</p>
@@ -58,7 +58,7 @@ const Dashboard = () => {
                                 <option>Nps - June - 2024</option>
                             </select>
                         </div>
-                        <div className={styles.auditCycleRight + ' mt-4 ms-auto gap-4 d-flex justify-content-center align-items-center'}>
+                        <div className={styles.auditCycleRight + ' my-2 ms-auto gap-4 d-flex justify-content-center align-items-center'}>
                             <div className={styles.addSection + ' d-flex gap-2 justify-content-center align-items-center'}>
                                 <p>Add Section</p>
                                 <i className="bi bi-plus-square"></i>
@@ -70,7 +70,7 @@ const Dashboard = () => {
                         </div>
                     </div>
 
-                    <div className={styles.dashSecHero + ' p-3 justify-content-center align-items-center row d-flex'}>
+                    <div className={styles.dashSecHero + '  justify-content-center align-items-center row d-flex'}>
                         <div className={styles.secHeroLeft + ' col-sm-9'}>
                             <BarChart />
                         </div>
@@ -100,7 +100,7 @@ const Dashboard = () => {
                 </div>
 
                 <div className={styles.dashThird}>
-                    <div className={`${styles.dashThirdHead} flex-wrap d-flex`}>
+                    <div className={`${styles.dashThirdHead} my-4 flex-wrap d-flex`}>
                         <div className={`${styles.improvement} d-flex flex-column`}>
                             <p className='text-start'>Improvement areas based on observation</p>
                             <select>
@@ -114,7 +114,7 @@ const Dashboard = () => {
                         </div>
                     </div>
 
-                    <div className={`${styles.dashThirdHero} my-4 bg-light`}>
+                    <div className={`${styles.dashThirdHero}  bg-light`}>
                         <table>
                             <thead>
                                 <tr>
@@ -150,7 +150,7 @@ const Dashboard = () => {
                 </div>
 
                 <div className={styles.dashForth}>
-                    <div className={`${styles.dashThirdHead} flex-wrap d-flex`}>
+                    <div className={`${styles.dashThirdHead} my-4 flex-wrap d-flex`}>
                         <div className={`${styles.improvement} d-flex flex-column`}>
                             <p className='text-start'>Improvement areas based on observation</p>
                             <select>
@@ -164,9 +164,9 @@ const Dashboard = () => {
                         </div>
                     </div>
 
-                    <div className={`${styles.forthCharts} mt-4 row d-flex`}>
+                    <div className={`${styles.forthCharts}  row d-flex`}>
                         <div className={`${styles.dashForthLeft} col-md-6`}>
-                            <div className={`${styles.overallPara} p-2 d-flex`}>
+                            <div className={`${styles.overallPara}  d-flex`}>
                                 <p>Overall Performance <span>(Store Wise)</span></p>
                                 <div className={`${styles.improvementRight} ms-auto d-flex justify-content-center align-items-center`}>
                                     <div className={`${styles.downIcon}`} style={{ height: "2.5rem", width: "2.5rem" }}>
@@ -178,7 +178,7 @@ const Dashboard = () => {
                         </div>
 
                         <div className={`${styles.dashForthLeft} col-md-6`}>
-                            <div className={`${styles.overallPara} p-2 d-flex`}>
+                            <div className={`${styles.overallPara}  d-flex`}>
                                 <p>Overall Performance <span>(City Wise)</span></p>
                                 <div className={`${styles.improvementRight} ms-auto d-flex justify-content-center align-items-center`}>
                                     <div className={`${styles.downIcon}`} style={{ height: "2.5rem", width: "2.5rem" }}>
@@ -192,7 +192,7 @@ const Dashboard = () => {
                 </div>
 
                 <div className={styles.dashFifth}>
-                    <div className={`${styles.dashThirdHead} flex-wrap d-flex`}>
+                    <div className={`${styles.dashThirdHead} my-4 flex-wrap d-flex`}>
                         <div className={`${styles.improvement} d-flex flex-column`}>
                             <p className='text-start'>Question Summary</p>
                             <select>

@@ -118,7 +118,7 @@ const Trends = () => {
                                                 {[...Array(dashes)].map((_, index) => (
                                                     <div
                                                         key={index}
-                                                        className="dash"
+                                                        className="dash-trend"
                                                         style={{
                                                             background: index < result.score
                                                                 ? "green"  // Fully filled dash

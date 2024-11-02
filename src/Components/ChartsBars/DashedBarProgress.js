@@ -8,7 +8,7 @@ const DashedProgressBar = ({ progress,color,shadow }) => {
   const partialFill = (progress % progressPerDash) / progressPerDash * 100; // Partial fill of the next dash
 
   return (
-    <div className={`progress-container ${shadow === true?"shadow-lg":""}`} style={{marginTop : "1rem"}}>
+    <div className={`progress-container ${shadow === true?" shadow-lg ":""}`} style={{marginTop : "1rem"}}>
       <div style={{color : `${color}`}} className="progress-label df">{progress}/100</div>
       <div className="dashed-progress-bar mt-4 px-4">
         {[...Array(dashes)].map((_, index) => (

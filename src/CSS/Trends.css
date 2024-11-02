@@ -6,12 +6,12 @@
 
 /* font-family: "Lato", sans-serif; */
 
-.dashSecHero{
+.dash-trendSecHero{
     height: 85%;
     background-color: #FAFAFA;
 }
 
-.dashSecond{
+.dash-trendSecond{
     min-height: 35vh;
 }
 
@@ -168,7 +168,7 @@ table, th, td {
     font-weight: 600;
 }
 
-.dash1 {
+.dash-trend1 {
     height: 11px; 
     border-radius: 5px;
     width: 40px;
@@ -176,12 +176,12 @@ table, th, td {
     margin-top : 0.3rem;
 }
 
-.dash{
+.dash-trend{
     border-radius: 5px;
     width: 20px;
     height: 15px;
 }
 
-.dashed{
+.dash-trended{
     height : 2rem;  
 }
