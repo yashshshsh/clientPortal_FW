@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+/* font-family: "Roboto", sans-serif; */
+
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+/* font-family: "Lato", sans-serif; */
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+/* font-family: "DM Sans", sans-serif; */
+
+.df {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.senti-head i {
+    font-size: 2rem;
+}
+
+.senti-head p {
+    font-size: 22px;
+}
+
+.senti-head {
+    height: 33px;
+    color: #003C5D;
+    font-family: "Roboto", sans-serif;
+    font-weight: 600;
+    line-height: 26px;
+}
+
+.hero-forth {
+    margin-top: 1.25rem;
+    /* equivalent to mt-5 */
+}
+
+.accordion {
+    width: 100%;
+}
+
+.accordion-item {
+    border: 0;
+    outline: none;
+}
+
+.accordion-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.accordion-button {
+    background-color: #fafafa;
+    padding: 10px 0;
+    padding-right: 16px;
+}
+
+.accordion-button::after {
+    font-size: 1.2rem;
+    color: #666;
+}
+
+.audit-details {
+    font-family: "Lato", sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 26px;
+    color: #4b5563;
+    border-left: 5px solid #4b5563;
+    background-color: #fafafa;
+    height: 26px;
+}
+
+.accordion-body1 {
+    background-color: #fafafa;
+    padding: 1rem;
+}
+
+.summary {
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 18px;
+    color: #007dc1;
+    min-height: 60px;
+    background-color: #fafafa;
+}
+
+.text-start {
+    text-align: left;
+}
+
+.d-flex {
+    display: flex;
+}
+
+.align-items-center {
+    align-items: center;
+}
+
+.ms-2 {
+    margin-left: 0.5rem;
+}
+
+.accordion-bodyImg img{
+    height: 60vh;
+    width: 60vw;
+}
+
+.main-senti{
+    background-color: #F9FAFB;
+}
