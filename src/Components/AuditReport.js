@@ -1,92 +1,19 @@
 import React from 'react'
-import logo from '../Images/Floorwalk logo7x.png';
 import '../CSS/AuditReport.css'
-import CircularBar from './CircularBar';
-import ARDashedBar from './ARDashedBar';
+import CircularBar from './ChartsBars/CircularBar';
+import ARDashedBar from './ChartsBars/ARDashedBar';
 import attachImg from '../Images/Attachments.png'
 
 const AuditReport = () => {
     return (
-        <div>
-            <nav className="header navbar navbar-expand-lg">
-                <div className="container-fluid d-flex">
-                    <div className="logo">
-                        <img src={logo} alt='Logo' />
-                    </div>
-                    <div className="collNav">
-                        <div className="collInner d-flex justify-content-end">
-                            <div className="bellIcon mx-1 d-flex align-items-center justify-content-center">
-                                <i className="bi bi-bell"></i>
-                            </div>
-                            <div className="globeIcon mx-3 d-flex align-items-center justify-content-center">
-                                <i className="bi bi-globe"></i>
-                                <select className="lang">
-                                    <option value="en">Eng</option>
-                                </select>
-                            </div>
-                            <div className="logOut d-flex mx-3 align-items-center justify-content-center">
-                                <p className='my-2'>Log Out</p>
-                                <i className="bi bi-box-arrow-right"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </nav>
-
-            <div className="py13">
-                <div className="navb d-flex flex-wrap justify-content-evenly align-content-between">
-                    <div className="dashboard gap-2">
-                        <div className="iconList">
-                            <i className="bi bi-list"></i>
-                        </div>
-                        <p>Dashboard</p>
-                    </div>
-                    <div className="reportBrowser gap-2">
-                        <div className="iconChart">
-                            <i className="bi bi-bar-chart"></i>
-                        </div>
-                        <p>Report Browser</p>
-                    </div>
-                    <div className="actionTrack gap-2">
-                        <div className="iconAction">
-                            <i className="bi bi-box-arrow-in-down-right"></i>
-                        </div>
-                        <p>Action Track</p>
-                    </div>
-                    <div className="upAudits gap-2">
-                        <div className="iconClock">
-                            <i className="bi bi-clock"></i>
-                        </div>
-                        <p>Upcoming audits</p>
-                    </div>
-                    <div className="storeBrowser gap-2">
-                        <div className="iconStore">
-                            <i className="bi bi-shop"></i>
-                        </div>
-                        <p>Store Browser</p>
-                    </div>
-                    <div className="storePer gap-2">
-                        <div className="iconPer">
-                            <i className="bi bi-archive-fill"></i>
-                        </div>
-                        <p>Store Performance</p>
-                    </div>
-                    <div className="AI d-flex gap-2">
-                        <div className="divAI">
-                            <i className="bi bi-stars"></i>
-                        </div>
-                        <p>AI Insights</p>
-                    </div>
-                </div>
-            </div>
-
-            <div className="audit-first px-4 mt-3">
+        <div className='px-4 my-4'>
+            <div className="audit-first">
                 <div className="rbar text-start d-flex">
                     <p className='my-2'>Report Browser<span>/Audit Report</span></p>
                 </div>
             </div>
 
-            <div className="audit-heading d-flex align-items-center justify-content-between px-4">
+            <div className="audit-heading d-flex align-items-center justify-content-between">
                 <div className="audit-text d-flex align-items-center">
                     <p className='mt-4'>Audit Report</p>
                 </div>
@@ -102,8 +29,8 @@ const AuditReport = () => {
                 </div>
             </div>
 
-            <div className="hero-audit p-4">
-                <div className="audit-details mt-2 d-flex">
+            <div className="hero-audit">
+                <div className="audit-details d-flex">
                     <p className='ms-2'>Audit Details</p>
                 </div>
 
@@ -111,14 +38,14 @@ const AuditReport = () => {
                     <div className="hero-left col-md-9">
                         <div className="overall d-flex align-items-center gap-2 mt-2">
                             <p className='mt-2'>Overall Score</p>
-                            <div className="score-per mb-2">
-                                <p>80%</p>
+                            <div className="score-per df mb-2">
+                                <p className='my-2'>80%</p>
                             </div>
                         </div>
 
 
-                        <div className="left-details mt-2 d-flex">
-                            <table className='table-bordere'>
+                        <div className="left-details d-flex">
+                            <table>
                                 <tbody>
                                     <tr>
                                         <td className='leftText'><strong>Client</strong></td>
@@ -148,19 +75,19 @@ const AuditReport = () => {
                             </table>
                         </div>
 
-                        <div className="view-Ai d-flex gap-1 m-3 justify-content-center align-items-center">
-                            <div className="iconStar mb-2">
+                        <div className="view-Ai my-3 d-flex gap-1 justify-content-center align-items-center">
+                            <div className="iconStar my-2">
                                 <i className="bi bi-stars"></i>
                             </div>
-                            <p className='mt-2'>View AI Insights</p>
+                            <p className='my-2'>View AI Insights</p>
                         </div>
 
-                        <div className="audit-details mt-5 mb-3 mx-1 d-flex">
+                        <div className="audit-details my-3 d-flex">
                             <p className='ms-2'>Report Actions</p>
                         </div>
                     </div>
 
-                    <div className="hero-right col-md-3 meter p-4 d-flex flex-column align-items-center justify-content-center">
+                    <div className="hero-right col-md-3 meter d-flex flex-column align-items-center justify-content-center">
                         <p className='overallPara'>Overall Store Score</p>
                         <CircularBar />
                         <div className="store-score d-flex justify-content-center align-items-center flex-column">
@@ -200,8 +127,8 @@ const AuditReport = () => {
                     </div>
                 </div>
 
-                <div className="hero-sec mt-4 table-responsive">
-                    <table className='table-bordered'>
+                <div style={{ height: 'auto' }} className="hero-sec my-3 table-responsive">
+                    <table class="table table-sm">
                         <thead>
                             <tr>
                                 <th style={{ width: "4vw" }}>S no.</th>
@@ -221,7 +148,7 @@ const AuditReport = () => {
                                 <td>09 August 2024</td>
                                 <td>Admin</td>
                                 <td>The reception branding needs to be fixed.</td>
-                                <td className='d-flex pending-td justify-content-center align-items-center'>
+                                <td style={{ height: "4rem", borderTop: "none", borderLeft: "none" }} className='d-flex justify-content-center align-items-center'>
                                     <div className="pending d-flex align-items-center justify-content center">
                                         <i style={{ fontSize: "2.2rem", margin: "0", color: "#D98634" }} class="bi bi-dot"></i>
                                         <p className='my-2'>Action Pending</p>
@@ -232,12 +159,12 @@ const AuditReport = () => {
                     </table>
                 </div>
 
-                <div className="hero-third">
-                    <div className="audit-details mt-5 mb-3 mx-1 d-flex">
+                <div className="hero-third my-3">
+                    <div className="audit-details d-flex">
                         <p className='ms-2'>Report Actions</p>
                     </div>
 
-                    <div className="dashed-bars row d-flex">
+                    <div className="dashed-bars my-3 row d-flex">
                         <div className="d-flex col-sm-6 justify-content-center align-items-center">
                             <ARDashedBar color={"#8DC63F"} text={'survey'} progress={95} />
                         </div>
@@ -247,7 +174,7 @@ const AuditReport = () => {
                     </div>
                 </div>
 
-                <div className="hero-forth mt-5">
+                <div className="hero-forth my-3">
                     <div class="accordion" id="accordionExample">
                         <div class="accordion-item">
                             <h2 class="accordion-header">
@@ -266,7 +193,7 @@ const AuditReport = () => {
                     </div>
                 </div>
 
-                <div className="hero-fifth mt-3">
+                <div className="hero-fifth my-3">
                     <div className="accordion">
                         <div class="accordion-item">
                             <h2 class="accordion-header">
@@ -279,24 +206,24 @@ const AuditReport = () => {
                             <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                                 <div class="accordion-body2">
                                     <div className="attachImg d-flex">
-                                        <img src = {attachImg} alt="img"/>
+                                        <img src={attachImg} alt="img" />
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div> 
+                </div>
 
-                <div className="questionnaire mt-3">
+                <div className="questionnaire my-3">
                     <div className="head-que text-start">
                         <p className='pt-2'>Questionnaire</p>
                     </div>
 
-                    <div className="accordion">
+                    <div className="accordion my-3">
                         <div class="accordion-item mt-3">
                             <h2 class="accordion-header">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="#collapseThree">
-                                    <div style={{ backgroundColor: "transparent" }} className="audit-details d-flex">
+                                    <div style={{ backgroundColor: "transparent" }} className="audit-details d-flex ">
                                         <p className='ms-2'>Survey Details</p>
                                     </div>
                                 </button>
@@ -306,14 +233,14 @@ const AuditReport = () => {
                                     <div className="marks d-flex gap-2">
                                         <div className="total d-flex align-items-center gap-2">
                                             <p className='m-2'>Total Marks</p>
-                                            <div className="num">
-                                                <p>3</p>
+                                            <div className="num df">
+                                                <p className='my-2'>3</p>
                                             </div>
                                         </div>
                                         <div className="obtained d-flex align-items-center gap-2">
                                             <p className='m-2'>Obtained Marks</p>
-                                            <div className="obt">
-                                                <p>3</p>
+                                            <div className="obt df">
+                                                <p className='my-2'>3</p>
                                             </div>
                                         </div>
                                     </div>
@@ -447,7 +374,7 @@ const AuditReport = () => {
                         </div>
                     </div>
 
-                    <div className="accordion mt-3 mb-3">
+                    <div className="accordion my-3">
                         <div class="accordion-item">
                             <h2 class="accordion-header">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="#collapseFour">
@@ -461,14 +388,14 @@ const AuditReport = () => {
                                     <div className="marks d-flex gap-2">
                                         <div className="total d-flex align-items-center gap-2">
                                             <p className='m-2'>Total Marks</p>
-                                            <div className="num">
-                                                <p>3</p>
+                                            <div className="num df">
+                                                <p className='my-2'>3</p>
                                             </div>
                                         </div>
                                         <div className="obtained d-flex align-items-center gap-2">
                                             <p className='m-2'>Obtained Marks</p>
-                                            <div className="obt">
-                                                <p>3</p>
+                                            <div className="obt df">
+                                                <p className='my-2'>3</p>
                                             </div>
                                         </div>
                                     </div>
@@ -667,7 +594,7 @@ const AuditReport = () => {
                             </div>
                         </div>
                     </div>
-                </div> 
+                </div>
             </div>
         </div>
     )

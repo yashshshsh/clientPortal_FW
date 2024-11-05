@@ -5,146 +5,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
 /* font-family: "Lato", sans-serif; */
-
-@media (max-width: 495px) {
-    .collNav {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-    }
-}
-
-.navb{
-    padding: 0 4.7rem;
-    background-color:#FAFAFA;
-}
-
-.header {
-    border-bottom: 2px solid #DDE1E6;
-}
-
-.logo {
-    margin-left: 6vw;
-    height: 90px;
-    width: 180px;
-    padding: 0.6rem;
-}
-
-.logo img {
-    height: 90%;
-    width: 100%;
-}
-
-.bellIcon i,
-.globeIcon i,
-.logOut i {
-    height: 20px;
-    width: 20px;
-    font-weight: 500;
-}
-
-.lang {
-    outline: none;
-    border: none;
-    font-family: "Roboto", sans-serif;
-    font-size: 1rem;
-    line-height: 1rem;
-    font-weight: 500;
-}
-
-.logOut p {
-    font-family: "Roboto", sans-serif;
-    font-size: 1rem;
-    line-height: 1rem;
-    font-weight: 500;
-    color: #9CA3AF;
-}
-
-.logOut i {
-    width: 12px;
-    height: 1.6rem;
-    color: #9CA3AF;
-    margin-left: 0.5rem;
-}
-
-.dashboard, .reportBrowser, .actionTrack, .upAudits, .storeBrowser, .storePer, .AI{
-    border-radius: 6px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin : 0.6rem 0;
-    height: 2.7rem;
-    color: #9CA3AF;
-    font-weight: 400;
-    background-color: white;
-}
-
-.reportBrowser{
-    background-color: #007DC1;
-    color : white;
-}
-
-.AI{
-    width: 9rem;
-    border: 2px solid transparent; 
-    border-image: linear-gradient(90deg, #8DC63F, #007DC1);
-    border-image-slice: 1;
-}
-
-.AI p {
-    background: linear-gradient(90deg, #8DC63F, #007DC1); 
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-.divAI i {
-    background: linear-gradient(90deg, #8DC63F, #007DC1); 
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-.storePer{
-    width: 12rem;
-}
-
-.storeBrowser{
-    width: 9.5rem;
-}
-
-.dashboard{
-    width: 9rem;
-}
-
-.upAudits{
-    width: 11.7rem;
-}
-
-.actionTrack{
-    width: 9.8rem;
-}
-
-.reportBrowser{
-    width: 11rem;
-}
-
-@media(max-width : 1300px){
-    .dashboard, .reportBrowser, .actionTrack, .upAudits, .storeBrowser, .storePer, .AI{
-        width: 11rem;
-    }
-}
-
-.dashboard p, .reportBrowser p, .actionTrack p, .upAudits p, .storeBrowser p, .storePer p, .AI p{
-    font-size: 1rem;
-    line-height: 1rem;
-    margin-top: 0.5rem;
-    padding-top: 6px;
-}
-
-.dashboard i, .reportBrowser i, .actionTrack i, .upAudits i, .storeBrowser i, .storePer i, .AI i{
-    width: 1.2rem;
-    height: 1.2rem;
-}
-
 .audit-heading{
     min-height : 56px;
 }
@@ -204,6 +64,19 @@
         display: flex;
         flex-direction: column;
     }
+}
+
+.left-details table {
+    border-collapse: collapse; 
+    border: none; 
+}
+
+.left-details td,
+.left-details tr,
+.left-details tbody {
+    border: none;
+    background-color: #FAFAFA;
+
 }
 
 .left-details {
@@ -361,33 +234,39 @@
 
 .hero-sec table{
     width: 100%;
+    height: auto;
 }
 
-.hero-sec th, .hero-sec td{
-    height : 56px;
+.hero-sec table, .hero-sec th, .hero-sec td {
+    padding: 1.2rem;
+    text-align: center;
+    border-collapse: collapse;
+    border: 2px solid #D1D5DB;  
 }
 
-.hero-sec td{
-    background-color: white;
+.hero-sec thead{
+    color : #353E4C;
 }
 
 .hero-sec th{
-    background-color: #D1D5DB;
     font-family: "Roboto", sans-serif;
     font-weight: 700;
+    font-size: 12px;
+    line-height: 11px;
+    background-color: #F2F2F2;
+}
+
+.hero-sec td{
+    font-family: "Lato", sans-serif;
+    font-weight: 400;
     font-size: 14px;
     line-height: 16px;
     color : #353E4C;
-    border : 1px solid #D1D5DB;
-}
-
-.hero-sec table{
-    border : 2px solid #D1D5DB;
+    border-collapse: collapse;
 }
 
 .pending{
     width : 135px;
-    height : 30px;
     background-color: #FFF2DD;
     border-radius: 10px;
 }

@@ -43,15 +43,15 @@ const Report = () => {
     ];
 
     return (
-        <div className='px-3 reo'>
-            <div className="audit-details mt-2 d-flex">
+        <div className='reo px-4 my-4'>
+            <div className="audit-details d-flex">
                 <p className='ms-2'>Audit Cycle</p>
             </div>
 
-            <div className="survey-cards my-3 row">
+            <div className="survey-cards mx-auto my-3 row">
                 {surveyData.map((item, idx) => (
-                    <div className="card my-2 shadow-lg mx-auto col-md-4">
-                        <p className='sd text-start p-3'>Survey Details</p>
+                    <div className="card shadow-lg my-2 mx-auto col-md-4 ">
+                        <p className='sd text-start px-4 pt-3'>Survey Details</p>
                         <div>
                             <table>
                                 <tbody>
@@ -69,7 +69,7 @@ const Report = () => {
                         <div className="dashed-bar df">
                             <DashedBarProgress color={"#8DC63F"} progress={item.score} shadow={false} />
                         </div>
-                        <div className="viewReport df mx-auto my-2">
+                        <div className="viewReport df my-2 mx-auto">
                             <p className='my-2'>View Report</p>
                         </div>
                     </div>

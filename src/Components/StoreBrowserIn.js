@@ -9,26 +9,26 @@ import Proof from './Proof.js';
 const StoreBrowserIn = () => {
     const [state, setState] = useState("trends");
     return (
-        <div>
-            <div className="audit-first px-4 mt-3">
+        <div style={{backgroundColor : "#FAFAFA"}}>
+            <div className="audit-first px-4 mt-4">
                 <div className="rbar text-start d-flex">
                     <p className='my-2'>Store Browser<span>/Insights</span></p>
                 </div>
             </div>
 
-            <div className="hero-first row row px-4 d-flex justify-content-between">
+            <div className="hero-first row px-4 my-2 d-flex justify-content-between">
                 <div className="hero-left col-md-9">
-                    <div className="overall d-flex align-items-center gap-2 mt-2">
-                        <p className='mt-2'>Overall Score</p>
-                        <div className="score-per mb-2">
-                            <p>80%</p>
+                    <div className="overall d-flex align-items-center gap-2">
+                        <p className='my-3'>Overall Score</p>
+                        <div className="score-per">
+                            <p className='ms-1'>80%</p>
                         </div>
                     </div>
-                    <div className="audit-details mt-2 d-flex">
+                    <div className="audit-details d-flex">
                         <p className='ms-2'>Store Details</p>
                     </div>
 
-                    <div className="store-table my-3 d-flex gap-5">
+                    <div className="store-table d-flex my-4 gap-5">
                         <div className="table-left">
                             <table>
                                 <tbody>
@@ -60,7 +60,7 @@ const StoreBrowserIn = () => {
                     </div>
                 </div>
 
-                <div className="hero-right col-md-3 meter p-4 d-flex flex-column align-items-center justify-content-center">
+                <div className="hero-right col-md-3 meter d-flex flex-column align-items-center justify-content-center">
                     <p className='overallPara'>Overall Store Score</p>
                     <CircularBar />
                     <div className="store-score d-flex justify-content-center align-items-center flex-column">
@@ -68,7 +68,7 @@ const StoreBrowserIn = () => {
                         <div className="stats">
                             <p className='m-0'>What these stats mean?</p>
                         </div>
-                        <div className="grades-div d-flex flex-wrap gap-2 mt-3">
+                        <div className="grades-div d-flex flex-wrap gap-2   ">
                             <div className="stats-mean d-flex flex-column align-items-center justify-content-center">
                                 <p className='grade m-0'>Excellent</p>
                                 <p className='percent m-0'>95% to above</p>

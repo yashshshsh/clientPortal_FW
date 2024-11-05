@@ -98,12 +98,15 @@
     background-color: white;
     width: 112px;
     height: 22px;
-    color: #007DC1;
     font-weight: 700;
     font-family: "Lato", sans-serif;
     line-height: 12px;
-    font-size: 10px;
     border-radius: 5px;
+}
+
+.last-month p{
+    color: #007DC1;
+    font-size: 10px;
 }
 
 .bubbleChart {
@@ -123,7 +126,7 @@
     line-height: 20px;
 }
 
-table {
+table{
     text-align: left;
 }
 
@@ -135,6 +138,7 @@ table {
     color: #003C5D;
     width: 10rem;
     height: 2rem;
+    background-color: white !important;
 }
 
 .rightText {
@@ -144,6 +148,7 @@ table {
     line-height: 16px;
     color: #6B7280;
     height: 2rem;
+    background-color: white !important;
 }
 
 .view-report {

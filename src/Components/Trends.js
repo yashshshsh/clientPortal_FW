@@ -29,11 +29,11 @@ const Trends = () => {
     ];
     const dashes = 5;
     return (
-        <div>
-            <div className="dashSecHero px-4 justify-content-center align-items-center row d-flex">
-                <div className="audit-details ms-4 mt-2 d-flex">
-                    <p>Store Performance</p>
+        <div className='px-4'>
+            <div className="audit-details d-flex">
+                    <p className='ms-2'>Store Performance</p>
                 </div>
+            <div className="dashSecHero justify-content-center align-items-center row d-flex">                
                 <div className="secHeroLeft col-sm-9">
                     <BarChart />
                 </div>
@@ -61,12 +61,12 @@ const Trends = () => {
                 </div>
             </div>
 
-            <div className="store-details px-4">
-                <div className="audit-details mt-2 d-flex">
-                    <p className='ms-3' style={{ color: "#4B5563" }}>Store Performance Details</p>
+            <div className="store-details">
+                <div className="audit-details d-flex">
+                    <p className='ms-2' style={{ color: "#4B5563" }}>Store Performance Details</p>
                 </div>
 
-                <div className="table1 my-3">
+                <div className="table1 my-4">
                     <div className="customerArr">
                         <p>Customer Arrival and Staff Grooming Analysis</p>
                     </div>
@@ -135,13 +135,13 @@ const Trends = () => {
                     </div>
                 </div>
 
-                <div className="table2 my-3">
+                <div className="table2 ">
                     <div className="customerArr">
                         <p>Section 2</p>
                     </div>
 
                     <div className="fifthTable table-responsive">
-                        <table>
+                        <table className='mb-4'>
                             <thead>
                                 <th>S no.</th>
                                 <th>Questions</th>
@@ -187,7 +187,7 @@ const Trends = () => {
                                                 {[...Array(dashes)].map((_, index) => (
                                                     <div
                                                         key={index}
-                                                        className="dash"
+                                                        className="dash2"
                                                         style={{
                                                             background: index < result.score
                                                                 ? "green"  // Fully filled dash

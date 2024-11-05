@@ -30,7 +30,7 @@ const ActionTrack = () => {
 
     return (
         <div>
-            <div className={`${styles.heroSection} p-3`}>
+            <div className={`${styles.heroSection} px-4 my-4`}>
                 <div className={`${styles.repoHead} d-flex align-items-center`}>
                     <div className={styles.reportPara}>
                         <p className="my-2">Action Track</p>
@@ -50,7 +50,7 @@ const ActionTrack = () => {
                     </div>
                 </div>
 
-                <div className={`${styles.searchStore} mt-3 d-flex justify-content-between`}>
+                <div className={`${styles.searchStore} d-flex justify-content-between`}>
                     <div className={`${styles.searchIn} d-flex`}>
                         <div className={`${styles.inputSearch} p-2 gap-2 d-flex justify-content-center align-items-center`}>
                             <i className="bi bi-search"></i>
@@ -68,8 +68,8 @@ const ActionTrack = () => {
                     </div>
                 </div>
 
-                <div className={`${styles.dashTable} table-responsive my-4`}>
-                    <table className={styles.tableBordered}>
+                <div className={`${styles.dashTable} my-4 table-responsive `}>
+                    <table>
                         <thead>
                             <tr>
                                 <th style={{ width: "56px" }}>S no.</th>

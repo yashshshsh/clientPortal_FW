@@ -47,7 +47,7 @@ const UpAudits = () => {
 
         <div className="main-hero row">
           <div className="hero-left col-md-3 ">
-            <div className="audit-head align-items-center p-3 d-flex">
+            <div style={{backgroundColor:"white"}} className="audit-head align-items-center p-3 d-flex">
               <p className='my-2'>Audit Details</p>
             </div>
 

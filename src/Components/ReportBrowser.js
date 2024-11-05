@@ -1,6 +1,7 @@
 import React from 'react';
 import logo from '../Images/Floorwalk logo7x.png';
 import styles from '../CSS/ReportBrowser.module.css';
+import { useNavigate } from 'react-router-dom';
 
 const ReportBrowser = () => {
     const data = [
@@ -30,9 +31,15 @@ const ReportBrowser = () => {
         }
     ];
 
+    const navigate  = useNavigate();
+
+    const handleReportBtn = () =>{
+        navigate('/auditReport');
+    }
+
     return (
         <div>
-            <div className="hero-section p-3">
+            <div className="hero-section my-4 px-4">
                 <div className={`${styles.head} d-flex justify-content-between align-items-center`}>
                     <div className={`${styles.repoHead} d-flex justify-content-center align-items-center`}>
                         <div className={styles.reportPara}>
@@ -47,7 +54,7 @@ const ReportBrowser = () => {
                     </div>
                 </div>
 
-                <div className={`${styles.searchStore} mt-3 d-flex justify-content-between`}>
+                <div className={`${styles.searchStore} d-flex justify-content-between`}>
                     <div className={`${styles.searchIn} d-flex`}>
                         <div className={`${styles.inputSearch} p-2 gap-2 d-flex justify-content-center align-items-center`}>
                             <i className="bi bi-search"></i>
@@ -65,8 +72,8 @@ const ReportBrowser = () => {
                     </div>
                 </div>
 
-                <div className={`${styles.dashTable} table-responsive my-4`}>
-                    <table className="table-bordered">
+                <div className={`${styles.dashTable} my-4 table-responsive`}>
+                    <table>
                         <thead>
                             <tr>
                                 <th>S no.</th>
@@ -158,7 +165,7 @@ const ReportBrowser = () => {
                                         </div>
                                     </td>
                                     <td>
-                                        <button className={styles.reportBtn}>Report</button>
+                                        <button onClick={handleReportBtn} className={styles.reportBtn}>Report</button>
                                     </td>
                                 </tr>
                             ))}

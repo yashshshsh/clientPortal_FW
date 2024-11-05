@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from './Components/Navbar'
 import Dashboard from './Components/Dashboard'
 import ReportBrowser from './Components/ReportBrowser'
+import AuditReport from './Components/AuditReport'
 import ActionTrack from './Components/ActionTrack'
 import UpAudits from './Components/UpAudits';
 import StoreBrowserIn from './Components/StoreBrowserIn';
@@ -18,12 +19,13 @@ import {
 
 function App() {
   return (
-    <>
+    <> 
       <Router>
         <Navbar/>
         <Routes>
           <Route exact path = '/dashboard' element={<Dashboard/>}></Route>
           <Route exact path = '/reportBrowser' element={<ReportBrowser/>}></Route>
+          <Route exact path = '/auditReport' element={<AuditReport/>}></Route>
           <Route exact path = '/actionTrack' element={<ActionTrack/>}></Route>
           <Route exact path = '/upAudits' element={<UpAudits/>}></Route>
           <Route exact path = '/storeBrowser' element={<StoreBrowserIn/>}></Route>

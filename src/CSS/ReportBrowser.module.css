@@ -158,17 +158,18 @@ thead{
 th{
     font-family: "Roboto", sans-serif;
     font-weight: 700;
-    font-size: 11px;
+    font-size: 12px;
     line-height: 11px;
 }
 
 td{
     font-family: "Lato", sans-serif;
-    font-weight: 700;
+    font-weight: 400;
     font-size: 14px;
     line-height: 16px;
     color : #353E4C;
 }
+
 
 .progressBarContainer span{
     font-family: "Lato", sans-serif;

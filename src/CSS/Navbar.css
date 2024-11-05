@@ -82,8 +82,7 @@
 .actionTrack,
 .upAudits,
 .storeBrowser,
-.storePer,
-.AI {
+.storePer{
     border-radius: 6px;
     display: flex;
     justify-content: center;
@@ -99,23 +98,22 @@
 .bg-active {
     background-color: #007DC1;
     color: white;
-}
+}   
 
-.AI {
-    width: 9rem;
+.ai{
+    width: 145px;
+    height: 2.7rem;
+    padding: 10px 24px;
+    border-radius: 8px;
+    margin: 0.6rem 0;
+    font-weight: 400;
     border: 2px solid transparent;
     border-image: linear-gradient(90deg, #8DC63F, #007DC1);
     border-image-slice: 1;
-    /* border-radius: 50%; */
+    cursor: pointer;
 }
 
-.AI p {
-    background: linear-gradient(90deg, #8DC63F, #007DC1);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-.divAI i {
+.ai p, .ai i{
     background: linear-gradient(90deg, #8DC63F, #007DC1);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;

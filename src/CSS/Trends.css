@@ -6,15 +6,6 @@
 
 /* font-family: "Lato", sans-serif; */
 
-.dash-trendSecHero{
-    height: 85%;
-    background-color: #FAFAFA;
-}
-
-.dash-trendSecond{
-    min-height: 35vh;
-}
-
 .secHead{
     font-family: "Roboto", sans-serif;
     font-weight: 600;
@@ -56,6 +47,10 @@
     font-size: 0.8rem;
     line-height: 1rem;
     margin-top: 5px;
+}
+
+.store-details{
+    min-height: 50vh;
 }
 
 .audit-details{
@@ -168,7 +163,7 @@ table, th, td {
     font-weight: 600;
 }
 
-.dash-trend1 {
+.dash1 {
     height: 11px; 
     border-radius: 5px;
     width: 40px;
@@ -176,12 +171,8 @@ table, th, td {
     margin-top : 0.3rem;
 }
 
-.dash-trend{
+.dash2{
     border-radius: 5px;
     width: 20px;
     height: 15px;
-}
-
-.dash-trended{
-    height : 2rem;  
 }

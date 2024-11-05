@@ -32,7 +32,7 @@
 }
 
 .card{
-    max-width: 430px;
+    max-width: 410px;
     min-height: 320px;
     background-color: #FFFFFF;
     border: none;
@@ -47,6 +47,7 @@
     background-color : #007DC1;
     height: 41px;
     width: 90%;
+    border-radius: 5px;
 }
 
 .viewReport p{
@@ -71,8 +72,8 @@
     font-weight: 600;
     font-size: 16px;
     line-height: 18px;
-    height: 2rem;
     border: none !important;
+    padding: 0;
 }
 
 .a-right{
@@ -83,4 +84,5 @@
     font-size: 16px;
     line-height: 18px;
     border: none !important;
+    padding: 0;
 }

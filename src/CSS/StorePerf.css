@@ -110,7 +110,7 @@ td{
     font-size: 14px;
     font-family: "Lato", sans-serif;
     line-height: 14px;
-    height: 50px;
+    height: 50px;   
 }
 
 .row-maxmarks{
@@ -137,6 +137,10 @@ td{
     .audit{
         width: 30rem;
     }
+}
+
+.marks{
+    background-color: transparent;
 }
 
 
