@@ -82,6 +82,20 @@
     font-size: 1.5rem;
 }
 
+@media (max-width : 576px){
+    .storeSearch::placeholder{
+        color: transparent;
+    }
+    .filterText{
+        display: none;
+    }
+    .filter{
+        width: 3rem;
+        height: 3rem;
+    }
+}
+
+
 .perf-lower p{
     font-family: "Roboto", sans-serif;
     font-weight: 500;
@@ -131,6 +145,18 @@ td{
 .row-marks.highlight {
     background-color: #8DC63F; 
     color: white;
+}
+
+.row-marks{
+    height: 29px;
+    width: 23px;
+    border-radius: 5px;
+}
+
+@media (max-width : 600px){
+    .row-marks{
+        padding-left: 0.4rem;
+    }
 }
 
 @media (max-width : 567px){

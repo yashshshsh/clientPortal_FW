@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import logo from '../Images/Floorwalk logo7x.png';
 import '../CSS/UpAudits.css'
 
 const UpAudits = () => {

@@ -29,7 +29,7 @@ const Trends = () => {
     ];
     const dashes = 5;
     return (
-        <div className='px-4'>
+        <div className='px-4 my-3'>
             <div className="audit-details d-flex">
                     <p className='ms-2'>Store Performance</p>
                 </div>
@@ -38,7 +38,7 @@ const Trends = () => {
                     <BarChart />
                 </div>
 
-                <div className="secHeroSection shadow-lg col-sm-3">
+                <div className="secHeroSection my-3 shadow-lg col-sm-3">
                     <div className="secHead">
                         <p>Section</p>
                     </div>

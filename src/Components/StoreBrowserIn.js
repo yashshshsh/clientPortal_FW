@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import logo from '../Images/Floorwalk logo7x.png';
 import CircularBar from './ChartsBars/CircularBar.js'
 import '../CSS/StoreBrowser.css'
 import Trends from './Trends.js'

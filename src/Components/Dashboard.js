@@ -1,6 +1,5 @@
 import React from 'react'
 import styles from '../CSS/Dashboard.module.css'
-import logo from '../Images/Floorwalk logo7x.png'
 import DashedProgressBar from '../Components/ChartsBars/DashedBarProgress'
 import AuditCalendar from '../Components/AuditCalender'
 import BarChart from './ChartsBars/BarChart'
@@ -58,7 +57,7 @@ const Dashboard = () => {
                                 <option>Nps - June - 2024</option>
                             </select>
                         </div>
-                        <div className={styles.auditCycleRight + ' my-2 ms-auto gap-4 d-flex justify-content-center align-items-center'}>
+                        <div className={styles.auditCycleRight + ' my-2 ms-auto gap-4 d-flex align-items-center'}>
                             <div className={styles.addSection + ' d-flex gap-2 justify-content-center align-items-center'}>
                                 <p>Add Section</p>
                                 <i className="bi bi-plus-square"></i>
@@ -114,7 +113,7 @@ const Dashboard = () => {
                         </div>
                     </div>
 
-                    <div className={`${styles.dashThirdHero}  bg-light`}>
+                    <div className={`${styles.dashThirdHero}`}>
                         <table>
                             <thead>
                                 <tr>

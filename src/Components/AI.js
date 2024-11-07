@@ -1,11 +1,10 @@
 import React from 'react'
 import '../CSS/AI.css'
-import logo from '../Images/Floorwalk logo7x.png';
 
 const AI = () => {
     return (
         <div>
-            <div className="hero-ai px-5">
+            <div className="hero-ai">
                 <div className="ai-head my-4 text-start">
                     <p>AI Insights </p>
                 </div>
@@ -16,7 +15,7 @@ const AI = () => {
                     </select>
                 </div>
 
-                <div className="responses my-3 gap-4 d-flex row">
+                <div className="responses my-3 gap-4 d-flex justify-content-center row">
                     <div style={{ backgroundColor: "#007DC18C" }} className="total col-md-3">
                         <div className="total-upper p-1 gap-2 text-start d-flex">
                             <div className="sq-slash df">
@@ -91,8 +90,8 @@ const AI = () => {
                     </div>
 
                     <div style={{ backgroundColor: "#FAFAFA" }} className="pos-res-nps p-4">
-                        <div style={{ backgroundColor: "white" }} className='p-3 d-flex justify-content-between'>
-                            <div className="nps-left gap-5">
+                        <div style={{ backgroundColor: "white" }} className='p-3 row d-flex justify-content-between'>
+                            <div className="nps-left gap-5 col-md-6">
                                 <p className='text-start nps-head-p'>NPS - JUNE - 2024</p>
                                 <div className="table-left">
                                     <table>
@@ -110,8 +109,8 @@ const AI = () => {
                                 </div>
                             </div>
 
-                            <div className="nps-right gap-2 df">
-                                <div style={{ width: "11rem" }} className="view-Ai d-flex gap-1 justify-content-center align-items-center">
+                            <div className="nps-right col-md-6 my-3 gap-2 df">
+                                <div className="view-Ai d-flex gap-1 justify-content-center align-items-center">
                                     <div className="iconStar my-2">
                                         <i className="bi bi-stars"></i>
                                     </div>
@@ -159,8 +158,8 @@ const AI = () => {
                     </div>
 
                     <div style={{ backgroundColor: "#FAFAFA" }} className="pos-res-nps p-4">
-                        <div style={{ backgroundColor: "white" }} className='p-3 d-flex justify-content-between'>
-                            <div className="nps-left gap-5">
+                        <div style={{ backgroundColor: "white" }} className='p-3 row d-flex justify-content-between'>
+                            <div className="nps-left gap-5 col-md-6">
                                 <p className='text-start nps-head-p'>NPS - JUNE - 2024</p>
                                 <div className="table-left">
                                     <table>
@@ -178,8 +177,8 @@ const AI = () => {
                                 </div>
                             </div>
 
-                            <div className="nps-right gap-2 df">
-                                <div style={{ width: "11rem" }} className="view-Ai d-flex gap-1 justify-content-center align-items-center">
+                            <div className="nps-right gap-2 df col-md-6">
+                                <div className="view-Ai d-flex gap-1 justify-content-center align-items-center">
                                     <div className="iconStar my-2">
                                         <i className="bi bi-stars"></i>
                                     </div>
@@ -238,8 +237,8 @@ const AI = () => {
                     </div>
 
                     <div style={{ backgroundColor: "#FAFAFA" }} className="pos-res-nps p-4">
-                        <div style={{ backgroundColor: "white" }} className='p-3 d-flex justify-content-between'>
-                            <div className="nps-left gap-5">
+                        <div style={{ backgroundColor: "white" }} className='p-3 row d-flex justify-content-between'>
+                            <div className="nps-left col-md-6 gap-5">
                                 <p className='text-start nps-head-p'>NPS - JUNE - 2024</p>
                                 <div className="table-left">
                                     <table>
@@ -257,8 +256,8 @@ const AI = () => {
                                 </div>
                             </div>
 
-                            <div className="nps-right gap-2 df">
-                                <div style={{ width: "11rem" }} className="view-Ai d-flex gap-1 justify-content-center align-items-center">
+                            <div className="nps-right col-md-6 gap-2 df">
+                                <div className="view-Ai d-flex gap-1 justify-content-center align-items-center">
                                     <div className="iconStar my-2">
                                         <i className="bi bi-stars"></i>
                                     </div>
@@ -311,12 +310,12 @@ const AI = () => {
                         <div style={{ backgroundColor: "#FF7784" }} className="sq-slash df">
                             <i class="bi bi-slash-square"></i>
                         </div>
-                        <p className='m-0'>Total Neutral Responses</p>
+                        <p className='m-0'>Total Negative Responses</p>
                     </div>
 
                     <div style={{ backgroundColor: "#FAFAFA" }} className="pos-res-nps p-4">
-                        <div style={{ backgroundColor: "white" }} className='p-3 d-flex justify-content-between'>
-                            <div className="nps-left gap-5">
+                        <div style={{ backgroundColor: "white" }} className='p-3 row d-flex justify-content-between'>
+                            <div className="nps-left col-md-6 gap-5">
                                 <p className='text-start nps-head-p'>NPS - JUNE - 2024</p>
                                 <div className="table-left">
                                     <table>
@@ -334,8 +333,8 @@ const AI = () => {
                                 </div>
                             </div>
 
-                            <div className="nps-right gap-2 df">
-                                <div style={{ width: "11rem" }} className="view-Ai d-flex gap-1 justify-content-center align-items-center">
+                            <div className="nps-right col-md-6 gap-2 df">
+                                <div className="view-Ai d-flex gap-1 justify-content-center align-items-center">
                                     <div className="iconStar my-2">
                                         <i className="bi bi-stars"></i>
                                     </div>

@@ -19,12 +19,12 @@ const AuditReport = () => {
                 </div>
                 <div className="audit-right d-flex gap-3">
                     <div className="action d-flex gap-1">
-                        <p className='mt-3'>Create Action</p>
+                        <p className='mt-3 create'>Create Action</p>
                         <i className="bi bi-box-arrow-in-down-right"></i>
                     </div>
                     <div className="export d-flex gap-1">
-                        <p className='mt-3'>Export To</p>
-                        <i class="bi bi-caret-down-fill"></i>
+                        <p className='mt-3 expo'>Export To</p>
+                        <i className="bi bi-download"></i>
                     </div>
                 </div>
             </div>
@@ -128,7 +128,7 @@ const AuditReport = () => {
                 </div>
 
                 <div style={{ height: 'auto' }} className="hero-sec my-3 table-responsive">
-                    <table class="table table-sm">
+                    <table>
                         <thead>
                             <tr>
                                 <th style={{ width: "4vw" }}>S no.</th>
@@ -148,7 +148,7 @@ const AuditReport = () => {
                                 <td>09 August 2024</td>
                                 <td>Admin</td>
                                 <td>The reception branding needs to be fixed.</td>
-                                <td style={{ height: "4rem", borderTop: "none", borderLeft: "none" }} className='d-flex justify-content-center align-items-center'>
+                                <td style={{borderTop: "none", borderLeft: "none" }}>
                                     <div className="pending d-flex align-items-center justify-content center">
                                         <i style={{ fontSize: "2.2rem", margin: "0", color: "#D98634" }} class="bi bi-dot"></i>
                                         <p className='my-2'>Action Pending</p>
@@ -231,11 +231,11 @@ const AuditReport = () => {
                             <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
                                     <div className="marks d-flex gap-2">
-                                        <div className="total d-flex align-items-center gap-2">
+                                        <div className="total2 d-flex align-items-center gap-2">
                                             <p className='m-2'>Total Marks</p>
                                             <div className="num df">
                                                 <p className='my-2'>3</p>
-                                            </div>
+                                            </div>  
                                         </div>
                                         <div className="obtained d-flex align-items-center gap-2">
                                             <p className='m-2'>Obtained Marks</p>
@@ -386,7 +386,7 @@ const AuditReport = () => {
                             <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
                                     <div className="marks d-flex gap-2">
-                                        <div className="total d-flex align-items-center gap-2">
+                                        <div className="total2 d-flex align-items-center gap-2">
                                             <p className='m-2'>Total Marks</p>
                                             <div className="num df">
                                                 <p className='my-2'>3</p>

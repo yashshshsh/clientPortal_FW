@@ -20,12 +20,32 @@
     align-items: center;
 }
 
+.hero-ai{
+    padding : 3rem;
+}
+
+@media (max-width : 500px){
+    .hero-ai{
+        padding: 1rem;
+    }
+}
+
 .ai-head {
     font-family: "Roboto", sans-serif;
     color: #003C5D;
     font-weight: 500;
     font-size: 22px;
     line-height: 26px;
+}
+
+.view-Ai{
+    width: 11rem;
+}
+
+@media(max-width : 500px){
+    .view-Ai{
+        width: 17rem;
+    }
 }
 
 .auditCycle,

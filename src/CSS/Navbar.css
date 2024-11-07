@@ -62,12 +62,16 @@
     font-weight: 500;
 }
 
-.logOut p {
+.logOut p,.bellIcon p {
     font-family: "Roboto", sans-serif;
     font-size: 1rem;
     line-height: 1rem;
     font-weight: 500;
     color: #9CA3AF;
+}
+
+.bellIcon p{
+    color: black;
 }
 
 .logOut i {
@@ -200,4 +204,35 @@
 .AI i {
     width: 1.2rem;
     height: 1.2rem;
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    right: -240px;
+    width: 240px;
+    height: 100%;
+    background-color: #FAFAFA;
+    padding: 20px;
+    overflow-y: auto;
+    transition: right 0.3s ease;
+    z-index: 1000;
+}
+
+.sidebar-open {
+    right: 0;
+}
+
+.py12 select{
+    width: auto;
+    height: 45px;
+    font-size: 18px;
+    font-family: "Lato", sans-serif;
+    font-weight: 600;
+    line-height: 15px;
+    color: #FAFAFA;
+    padding: 10px 24px;
+    background-color: #007DC1;
+    outline: none;
+    border-radius: 5px;
 }

@@ -1,5 +1,4 @@
-import React, { useState } from 'react'
-import logo from '../Images/Floorwalk logo7x.png';
+import React from 'react'
 import '../CSS/StorePerf.css'
 
 const StorePerf = () => {
@@ -41,7 +40,7 @@ const StorePerf = () => {
                     <input className="storeSearch" placeholder="Enter percentage" />
                 </div>
                 <div className="filter gap-2 d-flex justify-content-center align-items-center">
-                    <p className="my-1">Filter</p>
+                    <p className="my-1 filterText">Filter</p>
                     <div className="filterIcon">
                         <i className="bi bi-filter"></i>
                     </div>

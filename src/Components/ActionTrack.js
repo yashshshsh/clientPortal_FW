@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from '../Images/Floorwalk logo7x.png';
 import styles from '../CSS/ActionTrack.module.css';
 
 const ActionTrack = () => {
@@ -57,7 +56,7 @@ const ActionTrack = () => {
                             <input className={styles.storeSearch} placeholder="Search store" />
                         </div>
                         <div className={`${styles.filter} gap-2 d-flex justify-content-center align-items-center`}>
-                            <p className="my-1">Filter</p>
+                            <p className={`${styles.filterText} my-1`}>Filter</p>
                             <div className={styles.filterIcon}>
                                 <i className="bi bi-filter"></i>
                             </div>

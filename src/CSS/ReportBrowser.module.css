@@ -75,7 +75,7 @@
 }
 
 .filter{
-    width: 7em;
+    width: 7rem;
     border: 1px solid #007DC1;
     border-radius: 5px;
     padding : 12px 24px;
@@ -84,6 +84,19 @@
     font-size: 16px;
     font-weight: 600;
     line-height: 16px;
+}
+
+@media (max-width : 576px){
+    .storeSearch::placeholder{
+        color: transparent;
+    }
+    .filterText{
+        display: none;
+    }
+    .filter{
+        width: 3rem;
+        height: 3rem;
+    }
 }
 
 .filterIcon{

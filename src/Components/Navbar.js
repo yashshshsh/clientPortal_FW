@@ -1,16 +1,37 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import logo from '../Images/Floorwalk logo7x.png';
 import '../CSS/Navbar.css'
 import { useNavigate } from 'react-router-dom';
+import CustomSelect from './CustomSelect';
 
 const Navbar = () => {
     const [active, setActive] = useState("dashboard");
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 500);
+    const [isDrop, setIsDrop] = useState(window.innerWidth <= 760);
+    const [menuClicked, setMenuClicked] = useState(false);
 
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const handleResizeMob = () => {
+            setIsMobile(window.innerWidth <= 500);
+        };
+
+        const handleResizeDrop = () => {
+            setIsDrop(window.innerWidth <= 760);
+        };
+
+        window.addEventListener('resize', handleResizeMob);
+        window.addEventListener('resize', handleResizeDrop);
+    }, []);
 
     const handleActive = (active) => {
         setActive(active);
         navigate('/' + active);
+    }
+
+    const handleMenu = () => {
+        setMenuClicked(!menuClicked);
     }
 
     return (
@@ -20,7 +41,8 @@ const Navbar = () => {
                     <div className="logo">
                         <img src={logo} alt="Logo" />
                     </div>
-                    <div className="collNav">
+
+                    {!isMobile ? (<div className="collNav">
                         <div className="collInner d-flex justify-content-end">
                             <div className="bellIcon mx-1 d-flex align-items-center justify-content-center">
                                 <i className="bi bi-bell"></i>
@@ -36,11 +58,13 @@ const Navbar = () => {
                                 <i className="bi bi-box-arrow-right"></i>
                             </div>
                         </div>
-                    </div>
+                    </div>) : (<div onClick={handleMenu} className="bar">
+                        <i style={{ fontSize: "2rem" }} class="bi bi-list"></i>
+                    </div>)}
                 </div>
             </nav>
 
-            <div className="py13">
+            {isDrop ? (<CustomSelect />) : (<div className="py13">
                 <div className="navb d-flex flex-wrap justify-content-evenly align-content-between">
                     <div onClick={() => { handleActive("dashboard") }} className={`dashboard gap-2 ${active === "dashboard" ? "bg-active" : ""}`}>
                         <div className="iconList">
@@ -79,20 +103,42 @@ const Navbar = () => {
                         <p>Store Performance</p>
                     </div>
 
-                    
+
                     {active === "AI" ? (<div className="view-Ai d-flex gap-1 my-2 justify-content-center align-items-center">
                         <div className="iconStar my-2">
                             <i className="bi bi-stars"></i>
                         </div>
                         <p className='my-2'>AI Insights</p>
-                    </div>) : (<div onClick={() => {handleActive("AI")}} className="ai df">
+                    </div>) : (<div onClick={() => { handleActive("AI") }} className="ai df">
                         <i className="bi bi-stars"></i>
                         <p className='my-2'>AI Insights</p>
                     </div>)
                     }
                 </div>
+            </div>)}
+
+            <div className={`sidebar ${menuClicked ? 'sidebar-open' : ''}`}>
+                <div onClick={handleMenu} style={{ borderBottom: "3px solid #CCC" }} className="bar my-2 text-end">
+                    <i style={{ fontSize: "2rem" }} class="bi bi-list"></i>
+                </div>
+                <div style={{ height: "90%" }} className="collInner">
+                    <div style={{ height: "3rem" }} className="bellIcon text-start d-flex align-items-center">
+                        <i style={{ marginBottom: "0.3rem" }} className="bi bi-bell"></i>
+                        <p className='my-2'>Notification</p>
+                    </div>
+                    <div style={{ height: "3rem" }} className="globeIcon text-start d-flex align-items-center">
+                        <i className="bi bi-globe"></i>
+                        <select className="lang">
+                            <option value="en">Eng</option>
+                        </select>
+                    </div>
+                    <div style={{ height: "3rem" }} className="logOut text-start d-flex align-items-center">
+                        <p style={{ color: "black" }} className="my-2">Log Out</p>
+                        <i style={{ color: "black" }} className="bi bi-box-arrow-right"></i>
+                    </div>
+                </div>
             </div>
-        </div>
+        </div >
     )
 }
 
