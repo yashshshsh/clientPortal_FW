@@ -114,8 +114,8 @@ const Dashboard = () => {
                         </div>
                     </div>
 
-                    <div className={`${styles.dashThirdHero + ' my-3 table-responsive'}`}>
-                        <table className='table'>
+                    <div className={`${styles.dashThirdHero + ' my-3'}`}>
+                        <table>
                             <thead>
                                 <tr>
                                     <th style={{ width: "4vw" }}>S no.</th>
