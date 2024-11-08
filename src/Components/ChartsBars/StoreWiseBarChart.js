@@ -8,16 +8,17 @@ import {
   Tooltip,
   Legend,
 } from 'chart.js';
-import ChartDataLabels from 'chartjs-plugin-datalabels'; // Import the datalabels plugin
+import ChartDataLabels from 'chartjs-plugin-datalabels';
+import styles from '../../CSS/Dashboard.module.css'
+import downImg from '../../Images/vertical_align_bottom.png'
 
-// Register Chart.js components and plugins
 ChartJS.register(
   BarElement,
   CategoryScale,
   LinearScale,
   Tooltip,
   Legend,
-  ChartDataLabels // Register the datalabels plugin
+  ChartDataLabels
 );
 
 const StoreWiseBarChart = () => {
@@ -27,38 +28,49 @@ const StoreWiseBarChart = () => {
     { label: 'Store3', value: 50 },
     { label: 'Store4', value: 60 },
     { label: 'Store5', value: 10 },
-    { label: 'Store6', value: 60 }, // Highlighted bar with 60%
+    { label: 'Store6', value: 60 },
     { label: 'Store7', value: 30 },
     { label: 'Store8', value: 50 },
     { label: 'Store9', value: 40 },
     { label: 'Store10', value: 30 },
   ];
 
-  const total = 100; // Assuming the maximum value is 100 for percentage calculation
-
-  // State to manage bar thickness and font size
+  const total = 100;
   const [barThickness, setBarThickness] = useState(50);
   const [fontSize, setFontSize] = useState(16);
+  const [selectedBarIndex, setSelectedBarIndex] = useState(5);
 
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < 991) { // Change based on your breakpoint
-        setBarThickness(20);
+        setBarThickness(15);
         setFontSize(13);
-      } else if(window.innerWidth < 767) {
+      } else if (window.innerWidth < 767) {
         setBarThickness(10);
         setFontSize(10);
       } else {
-        setBarThickness(50);
+        setBarThickness(29);
         setFontSize(16);
       }
     };
-    handleResize(); // Call initially to set the correct values
+    handleResize();
   }, []);
 
+  const handleBarClick = (index) => {
+    setSelectedBarIndex(index === selectedBarIndex ? null : index);
+  };
+
   return (
-    <div>
-      <div className="chart-container mt-4 p-3" style={{ width: '100%' }}>
+    <div style={{minheight : "420px",backgroundColor:"#FAFAFA"}} className='storeBar-parent shadow p-3'>
+      <div className={`${styles.overallPara} mt-3 d-flex align-items-center`}>
+        <p className='my-2 ps-4'>Overall Performance <span>(Store Wise)</span></p>
+        <div className={`${styles.improvementRight} ms-auto d-flex justify-content-center align-items-center`}>
+          <div className={`${styles.downIcon}`}>
+            <img src={downImg} alt="img" />
+          </div>
+        </div>
+      </div>
+      <div className="chart-container my-2 p-3" style={{ width: '100%',height:"380px" }}>
         <Bar
           data={{
             labels: sourceData.map((data) => data.label),
@@ -66,38 +78,50 @@ const StoreWiseBarChart = () => {
               {
                 label: 'Score (%) Store Wise',
                 data: sourceData.map((data) => data.value),
-                backgroundColor: sourceData.map((data) =>
-                  data.label === 'Store6' ? '#007DC1' : '#D7F1FF'
-                ), // Custom colors for bars
+                backgroundColor: sourceData.map((_, index) =>
+                  index === selectedBarIndex ? '#007DC1' : '#D7F1FF'
+                ),
                 borderRadius: 5,
-                barThickness: barThickness, // Use dynamic bar thickness
+                barThickness: barThickness,
               },
             ],
           }}
           options={{
+            responsive: true,
+            maintainAspectRatio: false,
             plugins: {
               legend: {
-                display: false, // Hide legend
+                display: false,
               },
               datalabels: {
-                align: 'end', // Align the labels to the top of the bars
+                align: 'end',
                 anchor: 'end',
-                formatter: (value) => `${((value / total) * 100).toFixed(0)}%`, // Show percentage
-                color: '#007DC1', // Label color
+                formatter: (value, context) => {
+                  return context.dataIndex === selectedBarIndex
+                    ? `${((value / total) * 100).toFixed(0)}%`
+                    : '';
+                },
+                color: '#003C5D',
                 font: {
-                  size: fontSize, // Use dynamic font size
+                  size: fontSize,
                   weight: 'bold',
                 },
               },
             },
+            onClick: (event, elements) => {
+              if (elements.length > 0) {
+                const index = elements[0].index;
+                handleBarClick(index);
+              }
+            },
             scales: {
               y: {
                 beginAtZero: true,
-                max: 100, // Y-axis will go up to 100 for percentages
+                max: 100,
                 ticks: {
-                  stepSize: 20, // Spacing between tick marks
-                  callback: (value) => `${value}%`, // Show percentage labels on the Y-axis
-                  color: '#353E4C', // Y-axis tick color
+                  stepSize: 20,
+                  callback: (value) => `${value}%`,
+                  color: '#353E4C',
                 },
                 title: {
                   display: true,
@@ -109,7 +133,7 @@ const StoreWiseBarChart = () => {
                   color: '#353E4C',
                 },
                 grid: {
-                  color: '#D7F1FF', // Grid line color
+                  display: false, // Remove horizontal grid lines
                 },
               },
               x: {
@@ -121,21 +145,27 @@ const StoreWiseBarChart = () => {
                     weight: '400',
                   },
                   color: '#353E4C',
+                  padding: {
+                    top: 20, // Adjusted padding for margin
+                  },
                 },
                 ticks: {
                   font: {
-                    size: 12,
+                    size: 10,
                   },
-                  color: '#353E4C', // X-axis tick color
+                  color: '#353E4C',
                 },
                 grid: {
-                  display: false, // Hide grid lines for X-axis
+                  display: false, // Remove grid lines on X-axis
+                },
+                border: {
+                  display: false, // Remove X-axis line at 0%
                 },
               },
             },
             layout: {
               padding: {
-                right: 20, // Adds padding to the right so labels don't get cut off
+                right: 20,
               },
             },
           }}

@@ -1,0 +1,551 @@
+[
+    {
+        "id": 42193,
+        "audit_date": "2025-01-31",
+        "submit_at": null,
+        "audit": {
+            "id": 26215,
+            "store": {
+                "id": 13941,
+                "code": "ST003",
+                "type": "",
+                "priority": "",
+                "name": "Showroom 3",
+                "address": "Near Ganeshpeth bus stop",
+                "get_total_percentage": {
+                    "color": 4,
+                    "score": 92
+                },
+                "get_store_rank": 2,
+                "city": {
+                    "id": 1,
+                    "name": "Nagpur",
+                    "state": "IN-MH"
+                },
+                "client": {
+                    "id": 176,
+                    "name": "FloorWalk - Retail Consumer Experience Client Demo",
+                    "email": "contactus@floorwalk.in",
+                    "phone": "8983484130",
+                    "logo_url": "https://floorwalk-client-logos.s3.ap-south-1.amazonaws.com/LOGOS/Floorwalk+Logo.png",
+                    "receive_email_notification": true
+                }
+            },
+            "audit_cycle": {
+                "id": 1360,
+                "name": "Competition Audits - Store Type 2 - Feb - 2023",
+                "type": "WALKIN",
+                "start_date": "2023-02-01",
+                "end_date": "2025-12-31",
+                "client": {
+                    "id": 176,
+                    "name": "FloorWalk - Retail Consumer Experience Client Demo",
+                    "email": "contactus@floorwalk.in",
+                    "phone": "8983484130",
+                    "logo_url": "https://floorwalk-client-logos.s3.ap-south-1.amazonaws.com/LOGOS/Floorwalk+Logo.png",
+                    "receive_email_notification": true
+                },
+                "questionnaire_type": {
+                    "id": 327,
+                    "name": "Walk-in Audit",
+                    "is_default": true,
+                    "client_id": 176
+                }
+            }
+        },
+        "color": 0,
+        "attribute_data": {},
+        "report_summary": "",
+        "audit_store_percentage": null,
+        "sentiment_score": null,
+        "sentiment_text": null
+    },
+    {
+        "id": 42189,
+        "audit_date": "2025-02-28",
+        "submit_at": null,
+        "audit": {
+            "id": 26209,
+            "store": {
+                "id": 13940,
+                "code": "ST002",
+                "type": "",
+                "priority": "",
+                "name": "Showroom 2",
+                "address": "Near Neral metro station",
+                "get_total_percentage": {
+                    "color": 2,
+                    "score": 65
+                },
+                "get_store_rank": 4,
+                "city": {
+                    "id": 3,
+                    "name": "Mumbai",
+                    "state": "IN-MH"
+                },
+                "client": {
+                    "id": 176,
+                    "name": "FloorWalk - Retail Consumer Experience Client Demo",
+                    "email": "contactus@floorwalk.in",
+                    "phone": "8983484130",
+                    "logo_url": "https://floorwalk-client-logos.s3.ap-south-1.amazonaws.com/LOGOS/Floorwalk+Logo.png",
+                    "receive_email_notification": true
+                }
+            },
+            "audit_cycle": {
+                "id": 1359,
+                "name": "Competition Audits - Store Type 1 - Feb - 2023",
+                "type": "WALKIN",
+                "start_date": "2023-02-01",
+                "end_date": "2025-12-31",
+                "client": {
+                    "id": 176,
+                    "name": "FloorWalk - Retail Consumer Experience Client Demo",
+                    "email": "contactus@floorwalk.in",
+                    "phone": "8983484130",
+                    "logo_url": "https://floorwalk-client-logos.s3.ap-south-1.amazonaws.com/LOGOS/Floorwalk+Logo.png",
+                    "receive_email_notification": true
+                },
+                "questionnaire_type": {
+                    "id": 327,
+                    "name": "Walk-in Audit",
+                    "is_default": true,
+                    "client_id": 176
+                }
+            }
+        },
+        "color": 0,
+        "attribute_data": {},
+        "report_summary": "",
+        "audit_store_percentage": null,
+        "sentiment_score": null,
+        "sentiment_text": null
+    },
+    {
+        "id": 42191,
+        "audit_date": "2025-04-18",
+        "submit_at": null,
+        "audit": {
+            "id": 26207,
+            "store": {
+                "id": 13939,
+                "code": "ST001",
+                "type": "",
+                "priority": "",
+                "name": "Showroom 1",
+                "address": "Near Janakpuri metro station",
+                "get_total_percentage": {
+                    "color": 3,
+                    "score": 79
+                },
+                "get_store_rank": 3,
+                "city": {
+                    "id": 650,
+                    "name": "Delhi",
+                    "state": "IN-DL"
+                },
+                "client": {
+                    "id": 176,
+                    "name": "FloorWalk - Retail Consumer Experience Client Demo",
+                    "email": "contactus@floorwalk.in",
+                    "phone": "8983484130",
+                    "logo_url": "https://floorwalk-client-logos.s3.ap-south-1.amazonaws.com/LOGOS/Floorwalk+Logo.png",
+                    "receive_email_notification": true
+                }
+            },
+            "audit_cycle": {
+                "id": 1359,
+                "name": "Competition Audits - Store Type 1 - Feb - 2023",
+                "type": "WALKIN",
+                "start_date": "2023-02-01",
+                "end_date": "2025-12-31",
+                "client": {
+                    "id": 176,
+                    "name": "FloorWalk - Retail Consumer Experience Client Demo",
+                    "email": "contactus@floorwalk.in",
+                    "phone": "8983484130",
+                    "logo_url": "https://floorwalk-client-logos.s3.ap-south-1.amazonaws.com/LOGOS/Floorwalk+Logo.png",
+                    "receive_email_notification": true
+                },
+                "questionnaire_type": {
+                    "id": 327,
+                    "name": "Walk-in Audit",
+                    "is_default": true,
+                    "client_id": 176
+                }
+            }
+        },
+        "color": 0,
+        "attribute_data": {},
+        "report_summary": "",
+        "audit_store_percentage": null,
+        "sentiment_score": null,
+        "sentiment_text": null
+    },
+    {
+        "id": 42196,
+        "audit_date": "2025-05-30",
+        "submit_at": null,
+        "audit": {
+            "id": 26212,
+            "store": {
+                "id": 13939,
+                "code": "ST001",
+                "type": "",
+                "priority": "",
+                "name": "Showroom 1",
+                "address": "Near Janakpuri metro station",
+                "get_total_percentage": {
+                    "color": 3,
+                    "score": 79
+                },
+                "get_store_rank": 3,
+                "city": {
+                    "id": 650,
+                    "name": "Delhi",
+                    "state": "IN-DL"
+                },
+                "client": {
+                    "id": 176,
+                    "name": "FloorWalk - Retail Consumer Experience Client Demo",
+                    "email": "contactus@floorwalk.in",
+                    "phone": "8983484130",
+                    "logo_url": "https://floorwalk-client-logos.s3.ap-south-1.amazonaws.com/LOGOS/Floorwalk+Logo.png",
+                    "receive_email_notification": true
+                }
+            },
+            "audit_cycle": {
+                "id": 1360,
+                "name": "Competition Audits - Store Type 2 - Feb - 2023",
+                "type": "WALKIN",
+                "start_date": "2023-02-01",
+                "end_date": "2025-12-31",
+                "client": {
+                    "id": 176,
+                    "name": "FloorWalk - Retail Consumer Experience Client Demo",
+                    "email": "contactus@floorwalk.in",
+                    "phone": "8983484130",
+                    "logo_url": "https://floorwalk-client-logos.s3.ap-south-1.amazonaws.com/LOGOS/Floorwalk+Logo.png",
+                    "receive_email_notification": true
+                },
+                "questionnaire_type": {
+                    "id": 327,
+                    "name": "Walk-in Audit",
+                    "is_default": true,
+                    "client_id": 176
+                }
+            }
+        },
+        "color": 0,
+        "attribute_data": {},
+        "report_summary": "",
+        "audit_store_percentage": null,
+        "sentiment_score": null,
+        "sentiment_text": null
+    },
+    {
+        "id": 42192,
+        "audit_date": "2025-06-14",
+        "submit_at": null,
+        "audit": {
+            "id": 26206,
+            "store": {
+                "id": 13942,
+                "code": "ST004",
+                "type": "",
+                "priority": "",
+                "name": "Showroom 4",
+                "address": "Near Shopping centre",
+                "get_total_percentage": {
+                    "color": 3,
+                    "score": 73
+                },
+                "get_store_rank": 3,
+                "city": {
+                    "id": 140,
+                    "name": "Ahmedabad",
+                    "state": "IN-GJ"
+                },
+                "client": {
+                    "id": 176,
+                    "name": "FloorWalk - Retail Consumer Experience Client Demo",
+                    "email": "contactus@floorwalk.in",
+                    "phone": "8983484130",
+                    "logo_url": "https://floorwalk-client-logos.s3.ap-south-1.amazonaws.com/LOGOS/Floorwalk+Logo.png",
+                    "receive_email_notification": true
+                }
+            },
+            "audit_cycle": {
+                "id": 1359,
+                "name": "Competition Audits - Store Type 1 - Feb - 2023",
+                "type": "WALKIN",
+                "start_date": "2023-02-01",
+                "end_date": "2025-12-31",
+                "client": {
+                    "id": 176,
+                    "name": "FloorWalk - Retail Consumer Experience Client Demo",
+                    "email": "contactus@floorwalk.in",
+                    "phone": "8983484130",
+                    "logo_url": "https://floorwalk-client-logos.s3.ap-south-1.amazonaws.com/LOGOS/Floorwalk+Logo.png",
+                    "receive_email_notification": true
+                },
+                "questionnaire_type": {
+                    "id": 327,
+                    "name": "Walk-in Audit",
+                    "is_default": true,
+                    "client_id": 176
+                }
+            }
+        },
+        "color": 0,
+        "attribute_data": {},
+        "report_summary": "",
+        "audit_store_percentage": null,
+        "sentiment_score": null,
+        "sentiment_text": null
+    },
+    {
+        "id": 42197,
+        "audit_date": "2025-09-04",
+        "submit_at": null,
+        "audit": {
+            "id": 26211,
+            "store": {
+                "id": 13942,
+                "code": "ST004",
+                "type": "",
+                "priority": "",
+                "name": "Showroom 4",
+                "address": "Near Shopping centre",
+                "get_total_percentage": {
+                    "color": 3,
+                    "score": 73
+                },
+                "get_store_rank": 3,
+                "city": {
+                    "id": 140,
+                    "name": "Ahmedabad",
+                    "state": "IN-GJ"
+                },
+                "client": {
+                    "id": 176,
+                    "name": "FloorWalk - Retail Consumer Experience Client Demo",
+                    "email": "contactus@floorwalk.in",
+                    "phone": "8983484130",
+                    "logo_url": "https://floorwalk-client-logos.s3.ap-south-1.amazonaws.com/LOGOS/Floorwalk+Logo.png",
+                    "receive_email_notification": true
+                }
+            },
+            "audit_cycle": {
+                "id": 1360,
+                "name": "Competition Audits - Store Type 2 - Feb - 2023",
+                "type": "WALKIN",
+                "start_date": "2023-02-01",
+                "end_date": "2025-12-31",
+                "client": {
+                    "id": 176,
+                    "name": "FloorWalk - Retail Consumer Experience Client Demo",
+                    "email": "contactus@floorwalk.in",
+                    "phone": "8983484130",
+                    "logo_url": "https://floorwalk-client-logos.s3.ap-south-1.amazonaws.com/LOGOS/Floorwalk+Logo.png",
+                    "receive_email_notification": true
+                },
+                "questionnaire_type": {
+                    "id": 327,
+                    "name": "Walk-in Audit",
+                    "is_default": true,
+                    "client_id": 176
+                }
+            }
+        },
+        "color": 0,
+        "attribute_data": {},
+        "report_summary": "",
+        "audit_store_percentage": null,
+        "sentiment_score": null,
+        "sentiment_text": null
+    },
+    {
+        "id": 39698,
+        "audit_date": "2025-11-27",
+        "submit_at": null,
+        "audit": {
+            "id": 26222,
+            "store": {
+                "id": 13939,
+                "code": "ST001",
+                "type": "",
+                "priority": "",
+                "name": "Showroom 1",
+                "address": "Near Janakpuri metro station",
+                "get_total_percentage": {
+                    "color": 3,
+                    "score": 79
+                },
+                "get_store_rank": 3,
+                "city": {
+                    "id": 650,
+                    "name": "Delhi",
+                    "state": "IN-DL"
+                },
+                "client": {
+                    "id": 176,
+                    "name": "FloorWalk - Retail Consumer Experience Client Demo",
+                    "email": "contactus@floorwalk.in",
+                    "phone": "8983484130",
+                    "logo_url": "https://floorwalk-client-logos.s3.ap-south-1.amazonaws.com/LOGOS/Floorwalk+Logo.png",
+                    "receive_email_notification": true
+                }
+            },
+            "audit_cycle": {
+                "id": 1362,
+                "name": "Competition Audits - Store Type 4 - Feb - 2023",
+                "type": "WALKIN",
+                "start_date": "2023-02-01",
+                "end_date": "2025-12-31",
+                "client": {
+                    "id": 176,
+                    "name": "FloorWalk - Retail Consumer Experience Client Demo",
+                    "email": "contactus@floorwalk.in",
+                    "phone": "8983484130",
+                    "logo_url": "https://floorwalk-client-logos.s3.ap-south-1.amazonaws.com/LOGOS/Floorwalk+Logo.png",
+                    "receive_email_notification": true
+                },
+                "questionnaire_type": {
+                    "id": 327,
+                    "name": "Walk-in Audit",
+                    "is_default": true,
+                    "client_id": 176
+                }
+            }
+        },
+        "color": 0,
+        "attribute_data": {},
+        "report_summary": "",
+        "audit_store_percentage": null,
+        "sentiment_score": null,
+        "sentiment_text": null
+    },
+    {
+        "id": 42190,
+        "audit_date": "2025-12-29",
+        "submit_at": null,
+        "audit": {
+            "id": 26208,
+            "store": {
+                "id": 13943,
+                "code": "ST005",
+                "type": "",
+                "priority": "",
+                "name": "Showroom 5",
+                "address": "Near Amusement park",
+                "get_total_percentage": {
+                    "color": 5,
+                    "score": 95
+                },
+                "get_store_rank": 1,
+                "city": {
+                    "id": 9,
+                    "name": "Hyderabad",
+                    "state": "IN-TG"
+                },
+                "client": {
+                    "id": 176,
+                    "name": "FloorWalk - Retail Consumer Experience Client Demo",
+                    "email": "contactus@floorwalk.in",
+                    "phone": "8983484130",
+                    "logo_url": "https://floorwalk-client-logos.s3.ap-south-1.amazonaws.com/LOGOS/Floorwalk+Logo.png",
+                    "receive_email_notification": true
+                }
+            },
+            "audit_cycle": {
+                "id": 1359,
+                "name": "Competition Audits - Store Type 1 - Feb - 2023",
+                "type": "WALKIN",
+                "start_date": "2023-02-01",
+                "end_date": "2025-12-31",
+                "client": {
+                    "id": 176,
+                    "name": "FloorWalk - Retail Consumer Experience Client Demo",
+                    "email": "contactus@floorwalk.in",
+                    "phone": "8983484130",
+                    "logo_url": "https://floorwalk-client-logos.s3.ap-south-1.amazonaws.com/LOGOS/Floorwalk+Logo.png",
+                    "receive_email_notification": true
+                },
+                "questionnaire_type": {
+                    "id": 327,
+                    "name": "Walk-in Audit",
+                    "is_default": true,
+                    "client_id": 176
+                }
+            }
+        },
+        "color": 0,
+        "attribute_data": {},
+        "report_summary": "",
+        "audit_store_percentage": null,
+        "sentiment_score": null,
+        "sentiment_text": null
+    },
+    {
+        "id": 42188,
+        "audit_date": "2025-12-31",
+        "submit_at": null,
+        "audit": {
+            "id": 26210,
+            "store": {
+                "id": 13941,
+                "code": "ST003",
+                "type": "",
+                "priority": "",
+                "name": "Showroom 3",
+                "address": "Near Ganeshpeth bus stop",
+                "get_total_percentage": {
+                    "color": 4,
+                    "score": 92
+                },
+                "get_store_rank": 2,
+                "city": {
+                    "id": 1,
+                    "name": "Nagpur",
+                    "state": "IN-MH"
+                },
+                "client": {
+                    "id": 176,
+                    "name": "FloorWalk - Retail Consumer Experience Client Demo",
+                    "email": "contactus@floorwalk.in",
+                    "phone": "8983484130",
+                    "logo_url": "https://floorwalk-client-logos.s3.ap-south-1.amazonaws.com/LOGOS/Floorwalk+Logo.png",
+                    "receive_email_notification": true
+                }
+            },
+            "audit_cycle": {
+                "id": 1359,
+                "name": "Competition Audits - Store Type 1 - Feb - 2023",
+                "type": "WALKIN",
+                "start_date": "2023-02-01",
+                "end_date": "2025-12-31",
+                "client": {
+                    "id": 176,
+                    "name": "FloorWalk - Retail Consumer Experience Client Demo",
+                    "email": "contactus@floorwalk.in",
+                    "phone": "8983484130",
+                    "logo_url": "https://floorwalk-client-logos.s3.ap-south-1.amazonaws.com/LOGOS/Floorwalk+Logo.png",
+                    "receive_email_notification": true
+                },
+                "questionnaire_type": {
+                    "id": 327,
+                    "name": "Walk-in Audit",
+                    "is_default": true,
+                    "client_id": 176
+                }
+            }
+        },
+        "color": 0,
+        "attribute_data": {},
+        "report_summary": "",
+        "audit_store_percentage": null,
+        "sentiment_score": null,
+        "sentiment_text": null
+    }
+]

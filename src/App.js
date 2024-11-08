@@ -19,18 +19,19 @@ import {
 
 function App() {
   return (
-    <> 
+    <>
       <Router>
-        <Navbar/>
+        <Navbar />
         <Routes>
-          <Route exact path = '/dashboard' element={<Dashboard/>}></Route>
-          <Route exact path = '/reportBrowser' element={<ReportBrowser/>}></Route>
-          <Route exact path = '/auditReport' element={<AuditReport/>}></Route>
-          <Route exact path = '/actionTrack' element={<ActionTrack/>}></Route>
-          <Route exact path = '/upAudits' element={<UpAudits/>}></Route>
-          <Route exact path = '/storeBrowser' element={<StoreBrowserIn/>}></Route>
-          <Route exact path = '/storePerformance' element={<StorePerformance/>}></Route>
-          <Route exact path = '/AI' element={<AI/>}></Route>
+          {/* <Route exact path='/' element={<Login/>}></Route> */}
+          <Route exact path='/dashboard' element={<Dashboard />}></Route>
+          <Route exact path='/reportBrowser' element={<ReportBrowser />}></Route>
+          <Route exact path='/auditReport' element={<AuditReport />}></Route>
+          <Route exact path='/actionTrack' element={<ActionTrack />}></Route>
+          <Route exact path='/upAudits' element={<UpAudits />}></Route>
+          <Route exact path='/storeBrowser' element={<StoreBrowserIn />}></Route>
+          <Route exact path='/storePerformance' element={<StorePerformance />}></Route>
+          <Route exact path='/AI' element={<AI />}></Route>
         </Routes>
       </Router>
     </>

@@ -5,14 +5,15 @@ import AuditCalendar from '../Components/AuditCalender'
 import BarChart from './ChartsBars/BarChart'
 import StoreWiseBarChart from './ChartsBars/StoreWiseBarChart'
 import OverallPerformance from './ChartsBars/OverallPerformance'
+import downImg from '../Images/vertical_align_bottom.png'
 
 const Dashboard = () => {
     return (
         <div>
-            <div className={styles.heroDashboard + ' px-4 my-4'}>
-                <p className={styles.dashHeading}>Dashboard</p>
+            <div style={{backgroundColor:"#FAFAFA"}} className={styles.heroDashboard + ' my-4'}>
+                <p className={styles.dashHeading + ' px-4 m-0'}>Dashboard</p>
 
-                <div className={styles.dashFirst + ' row d-flex'}>
+                <div style={{backgroundColor:"white"}} className={styles.dashFirst + ' px-4 row d-flex'}>
                     <div className={styles.firstLeft + ' col-md-6'}>
                         <div className={styles.firstHeading + ' my-2 text-start'}>
                             <p>Latest Audit Cycle Score</p>
@@ -49,7 +50,7 @@ const Dashboard = () => {
                     </div>
                 </div>
 
-                <div className={styles.dashSecond + ' my-4'}>
+                <div style={{backgroundColor:"#FFFFFF",borderRadius:"20px"}} className={styles.dashSecond + ' px-4 pt-4 mt-4'}>
                     <div className={styles.dashSecHead + ' flex-wrap d-flex'}>
                         <div className={styles.auditCycle + ' d-flex flex-column'}>
                             <p className="text-start">Audit Cycle</p>
@@ -64,7 +65,7 @@ const Dashboard = () => {
                             </div>
 
                             <div className={styles.downIcon}>
-                                <i className="bi bi-download"></i>
+                                <img src={downImg} alt="img"/>
                             </div>
                         </div>
                     </div>
@@ -74,7 +75,7 @@ const Dashboard = () => {
                             <BarChart />
                         </div>
 
-                        <div className={styles.secHeroSection + ' shadow-lg col-sm-3'}>
+                        <div className={styles.secHeroSection + ' col-sm-3'}>
                             <div className={styles.secHead}>
                                 <p>Section</p>
                             </div>
@@ -98,8 +99,8 @@ const Dashboard = () => {
                     </div>
                 </div>
 
-                <div className={styles.dashThird}>
-                    <div className={`${styles.dashThirdHead} my-4 flex-wrap d-flex`}>
+                <div style={{backgroundColor:"white"}} className={styles.dashThird + ' mt-3 px-4 pt-4'}>
+                    <div className={`${styles.dashThirdHead} flex-wrap d-flex`}>
                         <div className={`${styles.improvement} d-flex flex-column`}>
                             <p className='text-start'>Improvement areas based on observation</p>
                             <select>
@@ -108,13 +109,13 @@ const Dashboard = () => {
                         </div>
                         <div className={`${styles.improvementRight} ms-auto d-flex justify-content-center align-items-center`}>
                             <div className={styles.downIcon}>
-                                <i className="bi bi-download"></i>
+                                <img src={downImg} alt="img"/>
                             </div>
                         </div>
                     </div>
 
-                    <div className={`${styles.dashThirdHero}`}>
-                        <table>
+                    <div className={`${styles.dashThirdHero + ' my-3 table-responsive'}`}>
+                        <table className='table'>
                             <thead>
                                 <tr>
                                     <th style={{ width: "4vw" }}>S no.</th>
@@ -148,8 +149,8 @@ const Dashboard = () => {
                     </div>
                 </div>
 
-                <div className={styles.dashForth}>
-                    <div className={`${styles.dashThirdHead} my-4 flex-wrap d-flex`}>
+                <div style={{backgroundColor:"white"}} className={styles.dashForth + ' px-4 py-3 mt-3'}>
+                    <div className={`${styles.dashThirdHead} my-3 flex-wrap d-flex`}>
                         <div className={`${styles.improvement} d-flex flex-column`}>
                             <p className='text-start'>Improvement areas based on observation</p>
                             <select>
@@ -158,40 +159,24 @@ const Dashboard = () => {
                         </div>
                         <div className={`${styles.improvementRight} ms-auto d-flex justify-content-center align-items-center`}>
                             <div className={`${styles.downIcon} d-none`}>
-                                <i className="bi bi-download"></i>
+                                <img src={downImg} alt="img"/>
                             </div>
                         </div>
                     </div>
 
                     <div className={`${styles.forthCharts}  row d-flex`}>
                         <div className={`${styles.dashForthLeft} col-md-6`}>
-                            <div className={`${styles.overallPara}  d-flex`}>
-                                <p>Overall Performance <span>(Store Wise)</span></p>
-                                <div className={`${styles.improvementRight} ms-auto d-flex justify-content-center align-items-center`}>
-                                    <div className={`${styles.downIcon}`} style={{ height: "2.5rem", width: "2.5rem" }}>
-                                        <i className="bi bi-download"></i>
-                                    </div>
-                                </div>
-                            </div>
                             <StoreWiseBarChart />
                         </div>
 
                         <div className={`${styles.dashForthLeft} col-md-6`}>
-                            <div className={`${styles.overallPara}  d-flex`}>
-                                <p>Overall Performance <span>(City Wise)</span></p>
-                                <div className={`${styles.improvementRight} ms-auto d-flex justify-content-center align-items-center`}>
-                                    <div className={`${styles.downIcon}`} style={{ height: "2.5rem", width: "2.5rem" }}>
-                                        <i className="bi bi-download"></i>
-                                    </div>
-                                </div>
-                            </div>
                             <OverallPerformance />
                         </div>
                     </div>
                 </div>
 
-                <div className={styles.dashFifth}>
-                    <div className={`${styles.dashThirdHead} my-4 flex-wrap d-flex`}>
+                <div style={{backgroundColor:"white"}} className={styles.dashFifth}>
+                    <div className={`${styles.dashThirdHead} mt-3 px-4 pt-4 flex-wrap d-flex`}>
                         <div className={`${styles.improvement} d-flex flex-column`}>
                             <p className='text-start'>Question Summary</p>
                             <select>
@@ -200,12 +185,12 @@ const Dashboard = () => {
                         </div>
                         <div className={`${styles.improvementRight} ms-auto d-flex justify-content-center align-items-center`}>
                             <div className={`${styles.downIcon}`}>
-                                <i className="bi bi-download"></i>
+                                <img src={downImg} alt="img"/>
                             </div>
                         </div>
                     </div>
 
-                    <div className={styles.fifthHero}>
+                    <div className={styles.fifthHero + ' px-4 mt-3'}>
                         <div className={styles.customerArr}>
                             <p>Customer Arrival and Staff Grooming Analysis</p>
                         </div>

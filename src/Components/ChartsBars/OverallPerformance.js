@@ -9,6 +9,8 @@ import {
   Legend,
 } from 'chart.js';
 import ChartDataLabels from 'chartjs-plugin-datalabels'; // Import the datalabels plugin
+import styles from '../../CSS/Dashboard.module.css'
+import downImg from '../../Images/vertical_align_bottom.png'
 
 // Register Chart.js components and plugins
 ChartJS.register(
@@ -21,8 +23,6 @@ ChartJS.register(
 );
 
 const OverallPerformance = () => {
-  const [barThickness, setBarThickness] = useState(50);
-  const [fontSize, setFontSize] = useState(16);
 
   const sourceData = [
     { label: 'City 1', value: 40 },
@@ -37,27 +37,42 @@ const OverallPerformance = () => {
     { label: 'City 10', value: 30 },
   ];
 
-  const total = 100; // Assuming the maximum value is 100 for percentage calculation
+  const total = 100;
+  const [barThickness, setBarThickness] = useState(50);
+  const [fontSize, setFontSize] = useState(16);
+  const [selectedBarIndex, setSelectedBarIndex] = useState(5);
 
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < 991) { // Change based on your breakpoint
-        setBarThickness(20);
+        setBarThickness(15);
         setFontSize(13);
-      } else if(window.innerWidth < 767) {
+      } else if (window.innerWidth < 767) {
         setBarThickness(10);
         setFontSize(10);
       } else {
-        setBarThickness(50);
+        setBarThickness(29);
         setFontSize(16);
       }
     };
     handleResize(); // Call initially to set the correct values
   }, []);
 
+  const handleBarClick = (index) => {
+    setSelectedBarIndex(index === selectedBarIndex ? null : index);
+  };
+
   return (
-    <div>
-      <div className="chart-container mt-4 p-3" style={{ width: '100%' }}>
+    <div style={{ minheight: "420px",backgroundColor:"#FAFAFA" }} className='storeBar-parent shadow p-3'>
+      <div className={`${styles.overallPara} mt-3 d-flex align-items-center`}>
+        <p className='my-2 ps-4'>Overall Performance <span>(City Wise)</span></p>
+        <div className={`${styles.improvementRight} ms-auto d-flex justify-content-center align-items-center`}>
+          <div className={`${styles.downIcon}`}   >
+            <img src={downImg} alt="img" />
+          </div>
+        </div>
+      </div>
+      <div className="chart-container my-2 p-3" style={{ width: '100%', height: "380px" }}>
         <Bar
           data={{
             labels: sourceData.map((data) => data.label),
@@ -65,15 +80,17 @@ const OverallPerformance = () => {
               {
                 label: 'NPS Score (%) Store Wise',
                 data: sourceData.map((data) => data.value),
-                backgroundColor: sourceData.map((data) =>
-                  data.value === 60 ? '#007DC1' : '#D7F1FF'
+                backgroundColor: sourceData.map((_, index) =>
+                  index === selectedBarIndex ? '#007DC1' : '#D7F1FF'
                 ),
                 borderRadius: 5,
-                barThickness: barThickness, // Use dynamic bar thickness
+                barThickness: barThickness,
               },
             ],
           }}
           options={{
+            responsive: true,
+            maintainAspectRatio: false,
             plugins: {
               legend: {
                 display: false,
@@ -81,13 +98,23 @@ const OverallPerformance = () => {
               datalabels: {
                 align: 'end',
                 anchor: 'end',
-                formatter: (value) => `${((value / total) * 100).toFixed(0)}%`,
-                color: '#007DC1',
+                formatter: (value, context) => {
+                  return context.dataIndex === selectedBarIndex
+                    ? `${((value / total) * 100).toFixed(0)}%`
+                    : '';
+                },
+                color: '#003C5D',
                 font: {
                   size: fontSize, // Use dynamic font size
                   weight: 'bold',
                 },
               },
+            },
+            onClick: (event, elements) => {
+              if (elements.length > 0) {
+                const index = elements[0].index;
+                handleBarClick(index);
+              }
             },
             scales: {
               y: {
@@ -108,7 +135,7 @@ const OverallPerformance = () => {
                   color: '#353E4C',
                 },
                 grid: {
-                  color: '#D7F1FF',
+                  display: false,
                 },
               },
               x: {
@@ -120,15 +147,21 @@ const OverallPerformance = () => {
                     weight: '400',
                   },
                   color: '#353E4C',
+                  padding: {
+                    top: 20, // Adjusted padding for margin
+                  },
                 },
                 ticks: {
                   font: {
-                    size: 12,
+                    size: 10,
                   },
                   color: '#353E4C',
                 },
                 grid: {
                   display: false,
+                },
+                border: {
+                  display: false, // Remove X-axis line at 0%
                 },
               },
             },

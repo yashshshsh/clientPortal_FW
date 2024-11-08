@@ -13,6 +13,7 @@
     color: #003C5D;
     font-weight: 600;
     font-family: "Roboto", sans-serif;
+    background-color: white;
 }
 
 .dashFirst {
@@ -144,20 +145,19 @@
     height: 50%;
 }
 
+.downIcon img{
+    height: 1.2rem;
+}
+
 .downIcon{
-    height : 2.8rem;
-    width :3rem;
     background-color: #007DC1;
     border-radius: 5px;
     color: white;
-    font-size: 0.5rem;
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.downIcon i{
-    font-size: 30px;
+    height: 2.5rem;
+    width: 2.5rem;
 }
 
 .secHeroLeft{
@@ -231,20 +231,20 @@ table, th, td {
     border: 1px solid #ccc; 
 }
 
+th {
+    background-color: #f2f2f2; 
+    color: #353E4C; 
+    font-family: "Roboto", sans-serif;
+    font-weight: 700;
+    font-size: 0.82rem !important;
+}
+
 td {
     background-color: white;
     font-family: "Lato";
     font-weight: 400;
     font-size: 0.8rem;
     line-height: 1rem;
-}
-
-th {
-    background-color: #f2f2f2; 
-    color: #353E4C; 
-    font-family: "Roboto", sans-serif;
-    font-weight: 700;
-    font-size: 0.8rem;
 }
 
 .tScore {
@@ -298,12 +298,6 @@ th {
     border-collapse: collapse; /* Ensure there is no extra spacing around table cells */
 }
 
-table, th, td {
-    padding: 8px;
-    text-align: center;
-    border: 1px solid #ccc; /* Optional border */
-}
-
 .tTf{
     font-family: "Roboto", sans-serif; 
     font-weight: 600;
@@ -328,3 +322,4 @@ table, th, td {
     width: 90%;
     margin-top : 0.2rem
 }
+

@@ -30,6 +30,10 @@ const BarChart = () => {
 
   const total = 100; // Assuming the maximum value is 100 for percentage calculation
 
+  const handleBarClick = (index) => {
+    console.log(`Bar at index ${index} clicked:`, sourceData[index]);
+  };
+
   return (
     <div>
       <div className="chart-container" style={{height:"18rem",width:"100%"}}>
@@ -54,6 +58,13 @@ const BarChart = () => {
           options={{
             indexAxis: 'y', // Horizontal bar chart
             maintainAspectRatio: false,
+            onClick: (event, elements) => {
+              if (elements.length > 0) {
+                const index = elements[0].index; // Get the index of the clicked bar
+                handleBarClick(index);
+                
+              }
+            },
             plugins: {
               legend: {
                 display: false, // Hide legend
@@ -62,10 +73,10 @@ const BarChart = () => {
                 align: 'end', // Align the labels to the end (right) of the bars
                 anchor: 'end',
                 formatter: (value) => `${((value / total) * 100).toFixed(0)}%`, // Show percentage
-                color: '#000', // Label color (adjust as needed)
-                font: {
-                  size: 14, // Set the font size for datalabels
-                  weight: 'bold',
+                color: '#003C5D', // Label color (adjust as needed)
+                font: { 
+                  size: 14,
+                  weight : "bold"
                 },
               },
             },
@@ -91,6 +102,7 @@ const BarChart = () => {
                 },
                 ticks: {
                   padding: 20, // Adds spacing between the bars and labels
+                  color: '#003C5D',
                   font: {
                     size: 12, // Y-axis label font size
                   },
