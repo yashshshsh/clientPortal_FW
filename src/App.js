@@ -9,7 +9,9 @@ import AuditReport from './Components/AuditReport'
 import ActionTrack from './Components/ActionTrack'
 import UpAudits from './Components/UpAudits';
 import StoreBrowserIn from './Components/StoreBrowserIn';
+import StoreBrowser from './Components/StoreBrowser';
 import StorePerformance from './Components/StorePerf'
+
 import AI from './Components/AI'
 import {
   BrowserRouter as Router,
@@ -29,7 +31,8 @@ function App() {
           <Route exact path='/auditReport' element={<AuditReport />}></Route>
           <Route exact path='/actionTrack' element={<ActionTrack />}></Route>
           <Route exact path='/upAudits' element={<UpAudits />}></Route>
-          <Route exact path='/storeBrowser' element={<StoreBrowserIn />}></Route>
+          <Route exact path='/storeBrowser' element={<StoreBrowser/>}></Route>
+          <Route exact path='/storeBrowserInsights' element={<StoreBrowserIn/>}></Route>
           <Route exact path='/storePerformance' element={<StorePerformance />}></Route>
           <Route exact path='/AI' element={<AI />}></Route>
         </Routes>

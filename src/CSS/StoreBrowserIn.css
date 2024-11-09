@@ -1,0 +1,204 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+/* font-family: "Roboto", sans-serif; */
+
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+/* font-family: "Lato", sans-serif; */
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+/* font-family: "DM Sans", sans-serif; */
+
+.df {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.rbar {
+    height: 30px;
+    font-family: "Roboto", sans-serif;
+    color: #9CA3AF;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 16px;
+}
+
+.rbar span {
+    color: #003C5D;
+}
+
+.hero-first {
+    min-height: 380px;
+    background-color: #FAFAFA;
+}
+
+.overall {
+    font-size: 28px;
+    color: #007DC1;
+    line-height: 32px;
+    font-family: "Roboto", sans-serif;
+    font-weight: 600;
+}
+
+.score-per {
+    width: 52px;
+    height: 33px;
+    background-color: #B3D97F;
+    color: white;
+    font-family: "Roboto", sans-serif;
+    font-weight: 700;
+    font-size: 22px;
+}
+
+.audit-details {
+    font-family: "Lato", sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 26px;
+    color: #4B5563;
+    border-left: 5px solid #4B5563;
+    background-color: #FAFAFA;
+    height: 26px;
+}
+
+.leftText {
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 16px;
+    color: #003C5D;
+    width: 10rem;
+    height: 2rem;
+}
+
+.rightText {
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 16px;
+    color: #6B7280;
+    height: 2rem;
+}
+
+.overallPara,
+.scorePara {
+    color: #003C5D;
+    font-family: "Lato", sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19px;
+}
+
+.store-score {
+    min-height: 120px;
+}
+
+.stats {
+    width: 148px;
+    min-height: 26px;
+    background-color: #F3F4F6;
+    color: #9CA3AF;
+    font-weight: 600;
+    padding: 6px 10px;
+    border-radius: 10px;
+}
+
+.stats p {
+    font-size: 12px;
+    line-height: 14px;
+    font-family: "Lato", sans-serif;
+}
+
+.stats-mean {
+    height: 42px;
+    width: 49px;
+}
+
+.grade {
+    font-family: "Lato", sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 11.3px;
+    text-align: center;
+    color: #6B7280;
+}
+
+.percent {
+    font-size: 7px;
+    line-height: 8px;
+    color: #6B7280;
+    font-family: "Lato", sans-serif;
+    font-weight: 600;
+    text-align: center;
+}
+
+.circularBar {
+    position: relative;
+    margin-top: 1rem;
+    max-width: 250px;
+    max-height: 170px;
+}
+
+.store-score {
+    min-height: 120px;
+}
+
+.hero-sec {
+    height: 40px;
+    background-color: #FAFAFA;
+}
+
+.hero-sec i {
+    font-size: 14px;
+}
+
+.hero-right {
+    background-color: white;
+}
+
+.trends,
+.reports {
+    height: 40px;
+    width: 85px;
+    gap: 0.5rem;
+    color: #9CA3AF;
+    cursor: pointer;
+}
+
+.trends.active,
+.proof.active,
+.reports.active {
+    color: #007DC1;
+    border-bottom: 3px solid #007DC1;
+    border-radius: 3px;
+}
+
+.proof {
+    height: 40px;
+    width: 165px;
+    gap: 0.5rem;
+    cursor: pointer;
+    color: #9CA3AF;
+}
+
+.hero-sec p {
+    margin: 1rem 0;
+    font-family: "Lato", sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 19px;
+}
+
+.table-left td,
+.table-right td {
+    text-align: left !important;
+    border: none;
+    background-color: #FAFAFA !important;
+}
+
+table {
+    border: none !important;
+}
+

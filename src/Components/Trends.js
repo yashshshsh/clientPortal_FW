@@ -38,13 +38,13 @@ const Trends = () => {
                     <BarChart />
                 </div>
 
-                <div className="secHeroSection my-3 shadow-lg col-sm-3">
+                <div className="secHeroSection my-3 col-sm-3">
                     <div className="secHead">
                         <p>Section</p>
                     </div>
                     <div className="section1">
-                        <p className="perPara">60%</p>
-                        <p className="secPara">Customer Arrival and Staff Grooming Analysis</p>
+                        <p style={{color:"#003C5D"}} className="perPara">60%</p>
+                        <p style={{color:"#003C5D"}} className="secPara">Customer Arrival and Staff Grooming Analysis</p>
                     </div>
                     <div className="section1">
                         <p className="perPara">60%</p>
@@ -118,7 +118,7 @@ const Trends = () => {
                                                 {[...Array(dashes)].map((_, index) => (
                                                     <div
                                                         key={index}
-                                                        className="dash-trend"
+                                                        className="dash2"
                                                         style={{
                                                             background: index < result.score
                                                                 ? "green"  // Fully filled dash

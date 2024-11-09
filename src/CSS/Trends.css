@@ -34,7 +34,7 @@
     font-weight: 600;
     font-size: 1.1rem;
     line-height: 1.2rem;
-    color: #003C5D;
+    color: #9CA3AF;
     text-align: start;
     margin: 0;
 }
@@ -47,6 +47,7 @@
     font-size: 0.8rem;
     line-height: 1rem;
     margin-top: 5px;
+    color: #9CA3AF;
 }
 
 .store-details{

@@ -1,204 +1,153 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+.repoHead{
+    /* width : 12rem; */
+    height : 1.5rem;
+    color : #003C5D;
+    font-size: 1.3rem;
+    font-weight: 500;
+}
 
-/* font-family: "Roboto", sans-serif; */
+.head{
+    min-height: 3.8rem;
+}
 
-@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+.repotPara{
+    font-family: "Roboto", sans-serif;
+}
 
-/* font-family: "Lato", sans-serif; */
+.exportList{
+    background-color: #007DC1;
+    color: white;
+    width : 7.2rem;
+    height: 100%;
+    gap : 0.5rem;
+    border-radius: 8px;
+    font-family: "Roboto", sans-serif;
+    font-weight: 600;
+    font-size: 0.8rem;
+    line-height: 1.3rem;
+}
 
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+.searchIn{
+    width: 90%;
+    gap : 0.5rem;
+}
 
-/* font-family: "DM Sans", sans-serif; */
+.inputSearch{
+    width: 30%;
+    border-radius: 5px;
+    border : 1px solid #353E4C;
+}
 
-.df {
+.inputSearch input{
+    width: 100%;
+}
+
+.inputSearch i{
+    color: #353E4C;
+    font-size: 1rem;
+}
+
+.inputSearch img{
+    height: 1rem;
+}
+
+.searchStore{
+    height: 3rem;
+}
+
+.storeSearch{
+    width: 99%;
+    height: 90%;
+    border : none;
+    outline : none;
+}
+
+.storeSearch::placeholder{
+    font-family: "Lato", sans-serif;
+    font-weight: 400;
+    color : #353E4C;
+    font-size: 1rem;
+    line-height: 19px;
+}
+
+.filter{
+    width: 7rem;
+    border: 1px solid #007DC1;
+    border-radius: 5px;
+    padding : 12px 24px;
+    color : #007DC1;
+    font-family: "Roboto", sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 16px;
+}
+
+@media (max-width : 576px){
+    .storeSearch::placeholder{
+        color: transparent;
+    }
+    .filterText{
+        display: none;
+    }
+    .filter{
+        width: 3rem;
+        height: 3rem;
+    }
+}
+
+.filterIcon{
+    font-size: 1.5rem;
+}
+
+.clearFilter{
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1rem;
+    color : #007DC1;
+    text-decoration: underline;
+    width: 6rem;
+}
+
+.clearFilter p{
+    width: 100%;
+    text-align: end;
+}
+
+.progressBarContainer {
+    position: relative;
+    border-radius: 5px;
+    width: 100%; 
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap : "2rem"
 }
 
-.rbar {
-    height: 30px;
-    font-family: "Roboto", sans-serif;
-    color: #9CA3AF;
-    font-weight: 600;
-    font-size: 14px;
-    line-height: 16px;
+.dash1 {
+    height: 11px; 
+    border-radius: 5px;
+    width: 40px;
+    margin-bottom: 1rem;
+    margin-top : 0.3rem;
 }
 
-.rbar span {
-    color: #003C5D;
-}
-
-.hero-first {
-    min-height: 380px;
-    background-color: #FAFAFA;
-}
-
-.overall {
-    font-size: 28px;
-    color: #007DC1;
-    line-height: 32px;
-    font-family: "Roboto", sans-serif;
-    font-weight: 600;
-}
-
-.score-per {
-    width: 52px;
-    height: 33px;
-    background-color: #B3D97F;
-    color: white;
-    font-family: "Roboto", sans-serif;
-    font-weight: 700;
-    font-size: 22px;
-}
-
-.audit-details {
+.reportBtn{
+    height : 40px;
+    min-width : 100px;
+    background-color: #007DC1;
+    border-radius: 5px;
     font-family: "Lato", sans-serif;
+    color : white;
     font-weight: 600;
-    font-size: 20px;
-    line-height: 26px;
-    color: #4B5563;
-    border-left: 5px solid #4B5563;
-    background-color: #FAFAFA;
-    height: 26px;
-}
-
-.leftText {
-    font-family: "Roboto", sans-serif;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 16px;
-    color: #003C5D;
-    width: 10rem;
-    height: 2rem;
-}
-
-.rightText {
-    font-family: "Roboto", sans-serif;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 16px;
-    color: #6B7280;
-    height: 2rem;
-}
-
-.overallPara,
-.scorePara {
-    color: #003C5D;
-    font-family: "Lato", sans-serif;
-    font-weight: 700;
-    font-size: 16px;
-    line-height: 19px;
-}
-
-.store-score {
-    min-height: 120px;
-}
-
-.stats {
-    width: 148px;
-    min-height: 26px;
-    background-color: #F3F4F6;
-    color: #9CA3AF;
-    font-weight: 600;
-    padding: 6px 10px;
-    border-radius: 10px;
-}
-
-.stats p {
-    font-size: 12px;
     line-height: 14px;
-    font-family: "Lato", sans-serif;
-}
-
-.stats-mean {
-    height: 42px;
-    width: 49px;
-}
-
-.grade {
-    font-family: "Lato", sans-serif;
-    font-weight: 600;
-    font-size: 12px;
-    line-height: 11.3px;
-    text-align: center;
-    color: #6B7280;
-}
-
-.percent {
-    font-size: 7px;
-    line-height: 8px;
-    color: #6B7280;
-    font-family: "Lato", sans-serif;
-    font-weight: 600;
-    text-align: center;
-}
-
-.circularBar {
-    position: relative;
-    margin-top: 1rem;
-    max-width: 250px;
-    max-height: 170px;
-}
-
-.store-score {
-    min-height: 120px;
-}
-
-.hero-sec {
-    height: 40px;
-    background-color: #FAFAFA;
-}
-
-.hero-sec i {
-    font-size: 14px;
-}
-
-.hero-right {
-    background-color: white;
-}
-
-.trends,
-.reports {
-    height: 40px;
-    width: 85px;
-    gap: 0.5rem;
-    color: #9CA3AF;
-    cursor: pointer;
-}
-
-.trends.active,
-.proof.active,
-.reports.active {
-    color: #007DC1;
-    border-bottom: 3px solid #007DC1;
-    border-radius: 3px;
-}
-
-.proof {
-    height: 40px;
-    width: 165px;
-    gap: 0.5rem;
-    cursor: pointer;
-    color: #9CA3AF;
-}
-
-.hero-sec p {
-    margin: 1rem 0;
-    font-family: "Lato", sans-serif;
-    font-weight: 500;
-    font-size: 14px;
-    line-height: 19px;
-}
-
-.table-left td,
-.table-right td {
-    text-align: left !important;
     border: none;
-    background-color: #FAFAFA;
+    outline: none;
+    font-size: 13px;
 }
 
-table {
-    border: none !important;
+.df{
+    display: flex;
+    justify-content: center;
+    align-self: center;
 }
-
