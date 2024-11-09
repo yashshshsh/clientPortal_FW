@@ -19,6 +19,7 @@
     overflow: auto;
     margin : 1rem 0;
     height: 100%;
+    
   }
 
   .divCol::-webkit-scrollbar {
@@ -70,6 +71,7 @@
     background-color: #D1D5DB;
     opacity: 0.19;
     color : #003C5D;
+    transition: background-color 0.3s ease, opacity 0.3s ease;
   }
 
   .audit-box.selected {

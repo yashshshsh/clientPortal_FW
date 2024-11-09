@@ -80,8 +80,8 @@ const Dashboard = () => {
                                 <p>Section</p>
                             </div>
                             <div className={styles.section1}>
-                                <p className={styles.perPara}>60%</p>
-                                <p className={styles.secPara}>Customer Arrival and Staff Grooming Analysis</p>
+                                <p style={{color:"#003C5D"}} className={styles.perPara}>60%</p>
+                                <p style={{color:"#003C5D"}} className={styles.secPara}>Customer Arrival and Staff Grooming Analysis</p>
                             </div>
                             <div className={styles.section1}>
                                 <p className={styles.perPara}>60%</p>

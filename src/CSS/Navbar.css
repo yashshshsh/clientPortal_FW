@@ -104,6 +104,10 @@
     color: white;
 }   
 
+.bg-active img{
+    filter: brightness(0) invert(1);
+}
+
 .ai{
     width: 145px;
     height: 2.7rem;
@@ -206,6 +210,10 @@
     height: 1.2rem;
 }
 
+img{
+    height: 18px;
+}
+
 .sidebar {
     position: fixed;
     top: 0;
@@ -236,3 +244,4 @@
     outline: none;
     border-radius: 5px;
 }
+

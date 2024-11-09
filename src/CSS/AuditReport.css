@@ -29,7 +29,7 @@
     font-size: 22px;
     font-weight: 500;
     line-height: 26px;
-    width : 130px;
+    min-width : 130px;
 }
 
 .action, .export{
@@ -46,6 +46,7 @@
     font-family: "Roboto", sans-serif;
     font-weight: 600;
     color : white;
+    border-radius: 5px;
     line-height: 24px;
 }
 
@@ -53,6 +54,7 @@
     border : 1px solid #007DC1;
     border-radius: 5px;
     color : #007DC1;
+    font-weight: 600;
 }
 
 .action i,.export i{
@@ -68,7 +70,7 @@
 .left-details tr,
 .left-details tbody {
     border: none;
-    background-color: #FAFAFA;
+    background-color: #FAFAFA !important;
 
 }
 
@@ -107,6 +109,10 @@
 
 .hero-audit{
     background-color: #FAFAFA;
+}
+
+.hero-right{
+    border-radius: 10px;
 }
 
 @media(max-width : 576px){
@@ -295,9 +301,15 @@
     background-color: #FAFAFA;
 }
 
+.body-content{
+    background-color: white;
+    padding: 0.25rem;
+    border-radius: 5px;
+}
+
 .accordion-body1{
-    background-color: #FAFAFA;
-    padding: 1rem;
+    background-color: #0000000F;
+    padding: 0.5rem 0 !important;
 }
 
 .accordion-body2{
@@ -318,6 +330,11 @@
 .accordion-item{
     border : 0;
     outline: none;
+}
+
+.export img{
+    height: 0.5rem;
+    color : #007DC1;
 }
 
 .accordion-button::after {
@@ -537,9 +554,6 @@
 }
 
 @media (max-width: 576px) {
-    .rate-comment {
-        display: none !important;
-    }
     .que-footer{
         margin-top: 1rem;
     }
@@ -553,6 +567,23 @@
 }
 
 .rate-comment{
-    gap : 6rem;
+    color : #9CA3AF;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 30px;
     margin-top : 0.5rem;
+}
+
+.skip{
+    color : #007DC1 !important;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 22px;
+}
+
+.comment p{
+    color : #9CA3AF;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 22px;
 }

@@ -3,6 +3,12 @@ import logo from '../Images/Floorwalk logo7x.png';
 import '../CSS/Navbar.css'
 import { useNavigate } from 'react-router-dom';
 import CustomSelect from './CustomSelect';
+import dashIcon from '../Images/space_dashboard.png'
+import reportIcon from '../Images/insert_chart (1).png'
+import actionIcon from '../Images/bottom_right_click.png'
+import upcomingIcon from '../Images/chronic.png'
+import storeIcon from '../Images/store.png'
+import sBrowserIcon from '../Images/pivot_table_chart (1).png'
 
 const Navbar = () => {
     const [active, setActive] = useState("dashboard");
@@ -67,38 +73,38 @@ const Navbar = () => {
             {isDrop ? (<CustomSelect />) : (<div className="py13">
                 <div className="navb d-flex flex-wrap justify-content-evenly align-content-between">
                     <div onClick={() => { handleActive("dashboard") }} className={`dashboard gap-2 ${active === "dashboard" ? "bg-active" : ""}`}>
-                        <div className="iconList">
-                            <i className="bi bi-list"></i>
+                        <div className="iconList df">
+                            <img src = {dashIcon} alt="img"/>
                         </div>
                         <p>Dashboard</p>
                     </div>
                     <div onClick={() => { handleActive("reportBrowser") }} className={`reportBrowser gap-2 ${active === "reportBrowser" ? "bg-active" : ""}`}>
-                        <div className="iconChart">
-                            <i className="bi bi-bar-chart"></i>
+                        <div className="iconChart df">
+                        <img src = {reportIcon} alt="img"/>
                         </div>
                         <p>Report Browser</p>
                     </div>
                     <div onClick={() => { handleActive("actionTrack") }} className={`actionTrack gap-2 ${active === "actionTrack" ? "bg-active" : ""}`}>
-                        <div className="iconAction">
-                            <i className="bi bi-box-arrow-in-down-right"></i>
+                        <div className="iconAction df">
+                        <img src = {actionIcon} alt="img"/>
                         </div>
                         <p>Action Track</p>
                     </div>
                     <div onClick={() => { handleActive("upAudits") }} className={`upAudits gap-2 ${active === "upAudits" ? "bg-active" : ""}`}>
-                        <div className="iconClock">
-                            <i className="bi bi-clock"></i>
+                        <div className="iconClock df">
+                        <img src = {upcomingIcon} alt="img"/>
                         </div>
                         <p>Upcoming audits</p>
                     </div>
                     <div onClick={() => { handleActive("storeBrowser") }} className={`storeBrowser gap-2 ${active === "storeBrowser" ? "bg-active" : ""}`}>
-                        <div className="iconStore">
-                            <i className="bi bi-shop"></i>
+                        <div className="iconStore df">
+                        <img src = {storeIcon} alt="img"/>
                         </div>
                         <p>Store Browser</p>
                     </div>
                     <div onClick={() => { handleActive("storePerformance") }} className={`storePer gap-2 ${active === "storePerformance" ? "bg-active" : ""}`}>
-                        <div className="iconPer">
-                            <i className="bi bi-archive-fill"></i>
+                        <div className="iconPer df">
+                        <img src = {sBrowserIcon} alt="img"/>
                         </div>
                         <p>Store Performance</p>
                     </div>

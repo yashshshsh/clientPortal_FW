@@ -3,38 +3,39 @@ import '../CSS/AuditReport.css'
 import CircularBar from './ChartsBars/CircularBar';
 import ARDashedBar from './ChartsBars/ARDashedBar';
 import attachImg from '../Images/Attachments.png'
+import downDrop from '../Images/arrow_drop_down.png'
 
 const AuditReport = () => {
     return (
-        <div className='px-4 my-4'>
+        <div className='my-4 px-4'>
             <div className="audit-first">
-                <div className="rbar text-start d-flex">
+                <div className="rbar px-3 text-start d-flex">
                     <p className='my-2'>Report Browser<span>/Audit Report</span></p>
                 </div>
             </div>
 
             <div className="audit-heading d-flex align-items-center justify-content-between">
-                <div className="audit-text d-flex align-items-center">
-                    <p className='mt-4'>Audit Report</p>
+                <div className="audit-text px-3 d-flex align-items-center">
+                    <p className='my-4'>Audit Report</p>
                 </div>
                 <div className="audit-right d-flex gap-3">
                     <div className="action d-flex gap-1">
                         <p className='mt-3 create'>Create Action</p>
                         <i className="bi bi-box-arrow-in-down-right"></i>
                     </div>
-                    <div className="export d-flex gap-1">
+                    <div className="export d-flex gap-2">
                         <p className='mt-3 expo'>Export To</p>
-                        <i className="bi bi-download"></i>
+                        <img src = {downDrop} alt="img"/>
                     </div>
                 </div>
             </div>
 
-            <div className="hero-audit">
+            <div style={{backgroundColor:"#FAFAFA"}} className="hero-audit pt-3 px-3">
                 <div className="audit-details d-flex">
                     <p className='ms-2'>Audit Details</p>
                 </div>
 
-                <div className="hero-first row d-flex justify-content-between">
+                <div className="hero-first pe-3 row d-flex justify-content-between">
                     <div className="hero-left col-md-9">
                         <div className="overall d-flex align-items-center gap-2 mt-2">
                             <p className='mt-2'>Overall Score</p>
@@ -87,7 +88,7 @@ const AuditReport = () => {
                         </div>
                     </div>
 
-                    <div className="hero-right col-md-3 meter d-flex flex-column align-items-center justify-content-center">
+                    <div className="hero-right col-md-3 my-2 meter d-flex flex-column align-items-center justify-content-center">
                         <p className='overallPara'>Overall Store Score</p>
                         <CircularBar />
                         <div className="store-score d-flex justify-content-center align-items-center flex-column">
@@ -127,7 +128,7 @@ const AuditReport = () => {
                     </div>
                 </div>
 
-                <div style={{ height: 'auto' }} className="hero-sec my-3 table-responsive">
+                <div style={{ height: 'auto' }} className="hero-sec my-2 table-responsive">
                     <table>
                         <thead>
                             <tr>
@@ -148,8 +149,8 @@ const AuditReport = () => {
                                 <td>09 August 2024</td>
                                 <td>Admin</td>
                                 <td>The reception branding needs to be fixed.</td>
-                                <td style={{borderTop: "none", borderLeft: "none" }}>
-                                    <div className="pending d-flex align-items-center justify-content center">
+                                <td style={{ borderTop: "none", borderLeft: "none" }}>
+                                    <div className="pending d-flex align-items-center mx-auto">
                                         <i style={{ fontSize: "2.2rem", margin: "0", color: "#D98634" }} class="bi bi-dot"></i>
                                         <p className='my-2'>Action Pending</p>
                                     </div>
@@ -186,7 +187,9 @@ const AuditReport = () => {
                             </h2>
                             <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
                                 <div class="accordion-body1 summary text-start d-flex align-items-center">
-                                    <p>The rickshaw driver was not satisfied with the quality of the auto Rickshaw. He was facing some mechanical issues with it. The seats were not so comfortable.</p>
+                                    <div className='body-content p-3'>
+                                        <p>The rickshaw driver was not satisfied with the quality of the auto Rickshaw. He was facing some mechanical issues with it. The seats were not so comfortable.</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -205,8 +208,10 @@ const AuditReport = () => {
                             </h2>
                             <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                                 <div class="accordion-body2">
-                                    <div className="attachImg d-flex">
-                                        <img src={attachImg} alt="img" />
+                                    <div className='body-content'>
+                                        <div className="attachImg d-flex">
+                                            <img src={attachImg} alt="img" />
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -235,7 +240,7 @@ const AuditReport = () => {
                                             <p className='m-2'>Total Marks</p>
                                             <div className="num df">
                                                 <p className='my-2'>3</p>
-                                            </div>  
+                                            </div>
                                         </div>
                                         <div className="obtained d-flex align-items-center gap-2">
                                             <p className='m-2'>Obtained Marks</p>
@@ -326,13 +331,13 @@ const AuditReport = () => {
                                             <div className="options-upper row d-flex">
                                                 <div className="option1 d-flex align-items-center justify-content-center col-md-6">
                                                     <div className="inner-op-div d-flex align-items-center">
-                                                        <p className='alpha pt-1 m-3'>A</p>
+                                                        <p className='alpha df m-3'>A</p>
                                                         <p className='op-text mt-3'>Option 1</p>
                                                     </div>
                                                 </div>
                                                 <div className="option2 d-flex align-items-center justify-content-center col-md-6">
                                                     <div className="inner-op-div selected d-flex align-items-center">
-                                                        <p className='alpha pt-1 m-3'>B</p>
+                                                        <p className='alpha df m-3'>B</p>
                                                         <p className='op-text mt-3'>Selected Option</p>
                                                     </div>
                                                 </div>
@@ -341,13 +346,13 @@ const AuditReport = () => {
                                             <div className="options-lower mt-3 row d-flex">
                                                 <div className="option3 d-flex align-items-center justify-content-center col-md-6">
                                                     <div className="inner-op-div d-flex align-items-center">
-                                                        <p className='alpha pt-1 m-3'>C</p>
+                                                        <p className='alpha df m-3'>C</p>
                                                         <p className='op-text mt-3'>Option 3</p>
                                                     </div>
                                                 </div>
                                                 <div className="option4 d-flex align-items-center justify-content-center col-md-6">
                                                     <div className="inner-op-div d-flex align-items-center">
-                                                        <p className='alpha pt-1 m-3'>D</p>
+                                                        <p className='alpha df m-3'>D</p>
                                                         <p className='op-text mt-3'>Option 4</p>
                                                     </div>
                                                 </div>
@@ -438,6 +443,7 @@ const AuditReport = () => {
                                             <div className="rating-div">
 
                                                 <div className="rating flex-column d-flex justify-content-center align-items-center">
+                                                    <div>
                                                     <div className="icon-div d-flex gap-2">
                                                         <div className="c1-selected d-flex justify-content-center align-items-center">
                                                             <p className='mt-3'>1</p>
@@ -474,6 +480,7 @@ const AuditReport = () => {
                                                         <p>Least Likely</p>
                                                         <p>Neutral</p>
                                                         <p>Most Likely</p>
+                                                    </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -512,7 +519,7 @@ const AuditReport = () => {
                                                     <i class="bi bi-star"></i>
                                                 </div>
                                                 <div className="comment gap-5 d-flex align-items-center">
-                                                    <p>Skip</p>
+                                                    <p className='skip'>Skip</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -547,13 +554,13 @@ const AuditReport = () => {
                                             <div className="options-upper row d-flex">
                                                 <div className="option1 d-flex align-items-center justify-content-center col-md-6">
                                                     <div className="inner-op-div d-flex align-items-center">
-                                                        <p className='alpha pt-1 m-3'>A</p>
+                                                        <p className='alpha df m-3'>A</p>
                                                         <p className='op-text mt-3'>Option 1</p>
                                                     </div>
                                                 </div>
                                                 <div className="option2 d-flex align-items-center justify-content-center col-md-6">
                                                     <div className="inner-op-div selected d-flex align-items-center">
-                                                        <p className='alpha pt-1 m-3'>B</p>
+                                                        <p className='alpha df m-3'>B</p>
                                                         <p className='op-text mt-3'>Selected Option</p>
                                                     </div>
                                                 </div>
@@ -562,13 +569,13 @@ const AuditReport = () => {
                                             <div className="options-lower mt-3 row d-flex">
                                                 <div className="option3 d-flex align-items-center justify-content-center col-md-6">
                                                     <div className="inner-op-div d-flex align-items-center">
-                                                        <p className='alpha pt-1 m-3'>C</p>
+                                                        <p className='alpha df m-3'>C</p>
                                                         <p className='op-text mt-3'>Option 3</p>
                                                     </div>
                                                 </div>
                                                 <div className="option4 d-flex align-items-center justify-content-center col-md-6">
                                                     <div className="inner-op-div d-flex align-items-center">
-                                                        <p className='alpha pt-1 m-3'>D</p>
+                                                        <p className='alpha df m-3'>D</p>
                                                         <p className='op-text mt-3'>Option 4</p>
                                                     </div>
                                                 </div>

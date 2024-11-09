@@ -1,4 +1,6 @@
 import React from 'react';
+import downImg from '../Images/vertical_align_bottom.png'
+import textImg from '../Images/Text.png'
 import styles from '../CSS/ActionTrack.module.css';
 
 const ActionTrack = () => {
@@ -44,16 +46,21 @@ const ActionTrack = () => {
                     <div className={`${styles.exportList} d-flex justify-content-center align-items-center`}>
                         <p className="my-2">Export List</p>
                         <div className={styles.downIcon}>
-                            <i className="bi bi-download"></i>
+                        <img src={downImg} alt="img" />
                         </div>
                     </div>
                 </div>
 
                 <div className={`${styles.searchStore} d-flex justify-content-between`}>
                     <div className={`${styles.searchIn} d-flex`}>
-                        <div className={`${styles.inputSearch} p-2 gap-2 d-flex justify-content-center align-items-center`}>
-                            <i className="bi bi-search"></i>
-                            <input className={styles.storeSearch} placeholder="Search store" />
+                        <div className={`${styles.inputSearch} p-2 gap-2 d-flex justify-content-between align-items-center`}>
+                            <div className='d-flex w-75'>
+                                <i className="bi bi-search mx-2"></i>
+                                <input className={styles.storeSearch} placeholder="Search store" />
+                            </div>
+                            <div className='d-flex align-items-center'>
+                                <img src={textImg} alt="img" />
+                            </div>
                         </div>
                         <div className={`${styles.filter} gap-2 d-flex justify-content-center align-items-center`}>
                             <p className={`${styles.filterText} my-1`}>Filter</p>

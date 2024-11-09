@@ -45,14 +45,22 @@
 }
 
 .inputSearch{
-    width: 35%;
+    width: 30%;
     border-radius: 5px;
     border : 1px solid #353E4C;
+}
+
+.inputSearch input{
+    width: 100%;
 }
 
 .inputSearch i{
     color: #353E4C;
     font-size: 1rem;
+}
+
+.inputSearch img{
+    height: 1rem;
 }
 
 .searchStore{
@@ -124,6 +132,7 @@
     text-align: center;
     width: 50px;
     color : white;
+    margin : 0 auto;
 }
 
 .progressBarContainer {
@@ -150,44 +159,35 @@
     justify-content: center;
     align-items: center;
 }
-
-table {
+/* table {
     width: 100%;
     border-collapse: collapse; 
     border-spacing: 0;
 }
 
-table, th, td {
-    padding: 1.2rem;
-    text-align: center;
-    border: 2px solid #D1D5DB; 
-}
-
-thead{
-    background-color: #f2f2f2;
-    color : #353E4C;
-}
 
 th{
     font-family: "Roboto", sans-serif;
-    font-weight: 700;
-    font-size: 12px;
-    line-height: 11px;
+    font-weight: 700 !important;
+    font-size: 12px !important;
 }
 
 td{
     font-family: "Lato", sans-serif;
     font-weight: 400;
-    font-size: 14px;
+    font-size: 12px;
     line-height: 16px;
     color : #353E4C;
-}
+} */
 
+.downIcon img{
+    height: 1.2rem;
+}
 
 .progressBarContainer span{
     font-family: "Lato", sans-serif;
     font-weight: 600;
-    font-size: 0.8rem;
+    font-size: 13px;
     line-height: 14px;
 }
 

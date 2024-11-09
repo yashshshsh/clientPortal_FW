@@ -73,7 +73,7 @@
 }
 
 .auditCycle select, .improvement select {
-    width: 60%;
+    width: 35%;
     border: none;
     border-bottom: 2px solid #DDE1E6;
     padding-bottom: 5px;
@@ -200,7 +200,7 @@
     font-weight: 600;
     font-size: 1.1rem;
     line-height: 1.2rem;
-    color: #003C5D;
+    color: #9CA3AF;
     text-align: start;
     margin: 0;
 }
@@ -212,6 +212,7 @@
     font-weight: 400;
     font-size: 0.8rem;
     line-height: 1rem;
+    color: #9CA3AF;
     margin-top: 5px;
 }
 
