@@ -1,0 +1,175 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+/* font-family: "Roboto", sans-serif; */
+
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+/* font-family: "Lato", sans-serif; */
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+/* font-family: "DM Sans", sans-serif; */
+
+@media (max-width: 495px) {
+    .collNav {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+}
+
+.navb {
+    padding: 0 4.7rem;
+    background-color: #FAFAFA;
+}
+
+.header {
+    border-bottom: 2px solid #DDE1E6;
+}
+
+.logo {
+    margin-left: 6vw;
+    height: 90px;
+    width: 180px;
+    padding: 0.6rem;
+}
+
+.logo img {
+    height: 90%;
+    width: 100%;
+}
+
+.rightImg{
+    padding: 0 !important;
+}
+
+.main{
+    background-color: white !important;
+    min-height: 130vh;
+}
+
+.wel{
+    font-family: "Roboto", sans-serif;
+    color : #003C5D;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 48px;
+}
+
+.flp{
+    font-family: "Roboto", sans-serif;
+    color : #8DC63F;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 48px;
+}
+
+.audit-login p{
+    color : #9CA3AF;
+    font-weight: 500;
+    font-size: 18px;
+    font-family: "Lato", sans-serif;
+    line-height: 30px;
+}
+
+.audit-login span{
+    color: #007DC1;
+    text-decoration: underline;
+}
+
+.login-div{
+    max-width: 495px;
+    min-height: 435px;
+    border-radius: 10px;
+}
+
+.welcome{
+    width: 415px;
+}
+
+.inner span{
+    font-family: "Lato", sans-serif;
+    font-weight: 800;
+}
+
+.login-div label{
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 24px;
+    color : #9CA3AF;
+}
+
+.login-div input {
+    background-color: #FCFCFC;
+    color: #4B5563 !important;
+    outline: none;
+    border: none;
+    height: 1.5rem;
+}
+
+.login-div input:focus {
+    outline: none;  /* Ensure that no outline appears on focus */
+    box-shadow: none;  /* Optionally, remove any box-shadow */
+}
+
+.forPass{
+    color : #7991A4;
+    font-family: "Lato", sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.captcha img{
+    height: 28px;
+}
+
+.robot-div{
+    border: 1px solid #D6D6D6;
+    border-radius: 5px;
+}
+
+.check input{
+    background-color: #FFFFFF;
+    height: 24px;
+    width: 24px;
+    border: 1px solid #D6D6D6 !important;
+}
+
+.check p{
+    color: #4B5563;
+    font-weight: 500;
+    font-family: "Roboto", sans-serif;
+    font-size: 12px;
+    line-height: 14px;
+}
+
+.lab-inp{
+    border-bottom: 1px solid #9CA3AF;
+    padding-bottom: 0.2rem;
+}
+
+.login-btn{
+    background-color: #007DC1;
+    color: white;
+    border-radius: 5px;
+    max-width: 177px;
+    min-height: 48px;
+    cursor: pointer;
+}
+
+.login-btn p{
+    color : #FCFCFC;
+    font-family: "Lato", sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+}
+
+.inner p{
+    font-family: "Lato", sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 30px;
+    color : #4B5563;
+}
