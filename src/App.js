@@ -11,6 +11,7 @@ import UpAudits from './Components/UpAudits';
 import StoreBrowserIn from './Components/StoreBrowserIn';
 import StoreBrowser from './Components/StoreBrowser';
 import StorePerformance from './Components/StorePerf'
+import Login from './Components/Login'
 
 import AI from './Components/AI'
 import {
@@ -25,7 +26,7 @@ function App() {
       <Router>
         <Navbar />
         <Routes>
-          {/* <Route exact path='/' element={<Login/>}></Route> */}
+          <Route exact path='/' element={<Login/>}></Route>
           <Route exact path='/dashboard' element={<Dashboard />}></Route>
           <Route exact path='/reportBrowser' element={<ReportBrowser />}></Route>
           <Route exact path='/auditReport' element={<AuditReport />}></Route>

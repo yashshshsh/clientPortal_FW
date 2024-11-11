@@ -1,5 +1,6 @@
 import React from 'react'
 import '../CSS/StorePerf.css'
+import textImg from '../Images/Text.png'
 
 const StorePerf = () => {
     const tableData = [
@@ -28,26 +29,32 @@ const StorePerf = () => {
     ];
 
     return (
-        <div>
-            <div className="perf-head text-start my-3 px-5">
+        <div className='px-4'>
+            <div className="perf-head text-start my-3">
                 <p className='sp'>Store Performance</p>
                 <p className='perf-p my-3'>Use this dashboard to get stores which have scored less than optimal value. You can enter the optimal value in the input box above between 1-100</p>
             </div>
 
-            <div className="searchIn d-flex px-5">
-                <div className="inputSearch p-2 gap-2 d-flex justify-content-center align-items-center">
-                    <i className="bi bi-search"></i>
-                    <input className="storeSearch" placeholder="Enter percentage" />
-                </div>
-                <div className="filter gap-2 d-flex justify-content-center align-items-center">
-                    <p className="my-1 filterText">Filter</p>
-                    <div className="filterIcon">
-                        <i className="bi bi-filter"></i>
+            <div className="searchStore d-flex justify-content-between">
+                <div className="searchIn d-flex">
+                    <div className="inputSearch p-2 gap-2 d-flex justify-content-between align-items-center">
+                        <div className='d-flex w-75'>
+                            <i className="bi bi-search mx-2"></i>
+                            <input className="storeSearch" placeholder="Search store" />
+                        </div>
+                        <div className='d-flex align-items-center'>
+                            <img src={textImg} alt="img" />
+                        </div>
+                    </div>
+                    <div className="filter gap-2 d-flex justify-content-center align-items-center">
+                        <p className="filterText my-1">Filter</p>
+                        <div className="filterIcon">
+                            <i className="bi bi-filter"></i>
+                        </div>
                     </div>
                 </div>
             </div>
-
-            <div className="perf-lower px-5 my-3">
+            <div className="perf-lower my-3">
                 <p className='text-start'>Top Score Performer Stores</p>
 
                 <div className="table-bordered table-responsive">
@@ -70,8 +77,8 @@ const StorePerf = () => {
                                 <tr key={index}>
                                     <td>{row.sNo}</td>
                                     <td>{row.audit}</td>
-                                    <td className="max-marks df">
-                                        <div className="row-maxmarks df">
+                                    <td className="max-marks">
+                                        <div className="row-maxmarks mx-auto df">
                                             {row.maxMarks}
                                         </div>
                                     </td>

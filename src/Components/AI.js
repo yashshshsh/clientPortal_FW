@@ -4,8 +4,8 @@ import '../CSS/AI.css'
 const AI = () => {
     return (
         <div>
-            <div className="hero-ai">
-                <div className="ai-head my-4 text-start">
+            <div className="hero-ai px-4">
+                <div className="ai-head pt-3 text-start">
                     <p>AI Insights </p>
                 </div>
 
@@ -89,10 +89,10 @@ const AI = () => {
                         <p className='m-0'>Total Positive Responses</p>
                     </div>
 
-                    <div style={{ backgroundColor: "#FAFAFA" }} className="pos-res-nps p-4">
-                        <div style={{ backgroundColor: "white" }} className='p-3 row d-flex justify-content-between'>
+                    <div style={{ backgroundColor: "#FAFAFA",borderRadius:"10px" }} className="pos-res-nps my-3 shadow p-4">
+                        <div style={{ backgroundColor: "white" }} className='p-1 res-main row d-flex justify-content-between'>
                             <div className="nps-left gap-5 col-md-6">
-                                <p className='text-start nps-head-p'>NPS - JUNE - 2024</p>
+                                <p className='text-start nps-head-p m-1'>NPS - JUNE - 2024</p>
                                 <div className="table-left">
                                     <table>
                                         <tbody>
@@ -122,12 +122,12 @@ const AI = () => {
                             </div>
                         </div>
 
-                        <div className="hero-forth mt-3">
+                        <div className="hero-forth my-2">
                             <div className="accordion" id="accordionExample">
                                 <div className="accordion-item">
                                     <h2 className="accordion-header">
                                         <button
-                                            className="accordion-button"
+                                            className="accordion-button ps-3"
                                             type="button"
                                             data-bs-toggle="collapse"
                                             data-bs-target="#collapseOne"
@@ -144,7 +144,7 @@ const AI = () => {
                                         className="accordion-collapse collapse show"
                                         data-bs-parent="#accordionExample"
                                     >
-                                        <div className="accordion-body1 summary text-start d-flex align-items-center">
+                                        <div className="accordion-body1 summary d-flex align-items-center">
                                             <p>
                                                 The rickshaw driver was not satisfied with the quality of the auto
                                                 Rickshaw. He was facing some mechanical issues with it. The seats were
@@ -157,10 +157,10 @@ const AI = () => {
                         </div>
                     </div>
 
-                    <div style={{ backgroundColor: "#FAFAFA" }} className="pos-res-nps p-4">
-                        <div style={{ backgroundColor: "white" }} className='p-3 row d-flex justify-content-between'>
+                    <div style={{ backgroundColor: "#FAFAFA",borderRadius:"10px"}} className="pos-res-nps shadow p-4">
+                        <div style={{ backgroundColor: "white" }} className='p-1 row res-main d-flex justify-content-between'>
                             <div className="nps-left gap-5 col-md-6">
-                                <p className='text-start nps-head-p'>NPS - JUNE - 2024</p>
+                                <p className='text-start nps-head-p m-1'>NPS - JUNE - 2024</p>
                                 <div className="table-left">
                                     <table>
                                         <tbody>
@@ -195,7 +195,7 @@ const AI = () => {
                                 <div className="accordion-item">
                                     <h2 className="accordion-header">
                                         <button
-                                            className="accordion-button"
+                                            className="accordion-button ps-3"
                                             type="button"
                                             data-bs-toggle="collapse"
                                             data-bs-target="#collapseTwo"
@@ -228,7 +228,7 @@ const AI = () => {
                     
                 </div>
 
-                <div className="total-neu-res">
+                <div className="total-neu-res my-3">
                     <div style={{ backgroundColor: "#EAB3088C" }} className="pos-res-head px-4 gap-2 text-start d-flex align-items-center">
                         <div style={{ backgroundColor: "#EDA145" }} className="sq-slash df">
                             <i class="bi bi-slash-square"></i>
@@ -236,10 +236,10 @@ const AI = () => {
                         <p className='m-0'>Total Neutral Responses</p>
                     </div>
 
-                    <div style={{ backgroundColor: "#FAFAFA" }} className="pos-res-nps p-4">
-                        <div style={{ backgroundColor: "white" }} className='p-3 row d-flex justify-content-between'>
+                    <div style={{ backgroundColor: "#FAFAFA",borderRadius:"10px" }} className="pos-res-nps my-3 shadow p-4">
+                        <div style={{ backgroundColor: "white" }} className='p-1 row res-main d-flex justify-content-between'>
                             <div className="nps-left col-md-6 gap-5">
-                                <p className='text-start nps-head-p'>NPS - JUNE - 2024</p>
+                                <p className='text-start nps-head-p m-1'>NPS - JUNE - 2024</p>
                                 <div className="table-left">
                                     <table>
                                         <tbody>
@@ -274,7 +274,7 @@ const AI = () => {
                                 <div className="accordion-item">
                                     <h2 className="accordion-header">
                                         <button
-                                            className="accordion-button"
+                                            className="accordion-button ps-3"
                                             type="button"
                                             data-bs-toggle="collapse"
                                             data-bs-target="#collapseThree"
@@ -313,10 +313,10 @@ const AI = () => {
                         <p className='m-0'>Total Negative Responses</p>
                     </div>
 
-                    <div style={{ backgroundColor: "#FAFAFA" }} className="pos-res-nps p-4">
-                        <div style={{ backgroundColor: "white" }} className='p-3 row d-flex justify-content-between'>
+                    <div style={{ backgroundColor: "#FAFAFA",borderRadius:"10px" }} className="pos-res-nps shadow my-3 p-4">
+                        <div style={{ backgroundColor: "white" }} className='p-1 res-main row d-flex justify-content-between'>
                             <div className="nps-left col-md-6 gap-5">
-                                <p className='text-start nps-head-p'>NPS - JUNE - 2024</p>
+                                <p className='text-start nps-head-p m-1'>NPS - JUNE - 2024</p>
                                 <div className="table-left">
                                     <table>
                                         <tbody>
@@ -351,7 +351,7 @@ const AI = () => {
                                 <div className="accordion-item">
                                     <h2 className="accordion-header">
                                         <button
-                                            className="accordion-button"
+                                            className="accordion-button ps-3"
                                             type="button"
                                             data-bs-toggle="collapse"
                                             data-bs-target="#collapseFour"

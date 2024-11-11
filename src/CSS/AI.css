@@ -20,9 +20,6 @@
     align-items: center;
 }
 
-.hero-ai{
-    padding : 3rem;
-}
 
 @media (max-width : 500px){
     .hero-ai{
@@ -64,7 +61,7 @@
 
 .auditCycle select,
 .improvement select {
-    width: 60%;
+    width: 35%;
     border: none;
     border-bottom: 2px solid #DDE1E6;
     padding-bottom: 5px;
@@ -148,6 +145,14 @@
 
 table{
     text-align: left;
+}
+
+.res-main{
+    border-radius: 15px;
+}
+
+.table-left td{
+    background-color: white !important;
 }
 
 .leftText {
@@ -237,7 +242,7 @@ table{
 
 .accordion-body1 {
     background-color: #fafafa;
-    padding: 1rem;
+    padding: 2rem !important;
 }
 
 .summary {

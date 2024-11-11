@@ -70,7 +70,7 @@ const UpAudits = () => {
             </div>
           </div>
 
-          <div className="hero-right col-md-9 bg-warning">
+          <div className="hero-right col-md-9">
           
           </div>
         </div>

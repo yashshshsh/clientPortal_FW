@@ -141,10 +141,6 @@
     max-height: 170px;
 }
 
-.store-score {
-    min-height: 120px;
-}
-
 .hero-sec {
     height: 40px;
     background-color: #FAFAFA;
@@ -191,6 +187,10 @@
     line-height: 19px;
 }
 
+table {
+    border: none !important;
+}
+
 .table-left td,
 .table-right td {
     text-align: left !important;
@@ -198,7 +198,6 @@
     background-color: #FAFAFA !important;
 }
 
-table {
-    border: none !important;
+.inMain{
+    background-color: #FAFAFA !important;
 }
-

@@ -9,7 +9,7 @@ const StoreBrowserIn = () => {
     const [state, setState] = useState("trends");
     return (
         <div className='px-4'>
-            <div style={{ backgroundColor: "#FAFAFA" }}>
+            <div className='inMain'>
                 <div className="audit-first pt-3">
                     <div className="rbar text-start d-flex">
                         <p className='my-2 ms-3'>Store Browser<span>/Insights</span></p>
@@ -28,12 +28,12 @@ const StoreBrowserIn = () => {
                             <p className='ms-2'>Store Details</p>
                         </div>
 
-                        <div className="store-table d-flex mt-4 gap-5">
-                            <div className="table-left">
+                        <div className="store-table d-flex mt-4 gap-5"> 
+                            <div className="table-right">
                                 <table>
                                     <tbody>
                                         <tr>
-                                            <td className='leftText mt'><strong>Store Name</strong></td>
+                                            <td className='leftText'><strong>Store Name</strong></td>
                                             <td className='rightText'>Store Name 1</td>
                                         </tr>
                                         <tr>
@@ -43,7 +43,7 @@ const StoreBrowserIn = () => {
                                     </tbody>
                                 </table>
                             </div>
-                            <div className="table-right text-start">
+                            <div className="table-right">
                                 <table>
                                     <tbody>
                                         <tr>

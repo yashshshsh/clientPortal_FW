@@ -9,6 +9,7 @@ import actionIcon from '../Images/bottom_right_click.png'
 import upcomingIcon from '../Images/chronic.png'
 import storeIcon from '../Images/store.png'
 import sBrowserIcon from '../Images/pivot_table_chart (1).png'
+import logOut from '../Images/Log Out.png'
 
 const Navbar = () => {
     const [active, setActive] = useState("dashboard");
@@ -61,7 +62,7 @@ const Navbar = () => {
                             </div>
                             <div className="logOut d-flex mx-3 align-items-center justify-content-center">
                                 <p className="my-2">Log Out</p>
-                                <i className="bi bi-box-arrow-right"></i>
+                                <img className='mx-1' src={logOut} alt='img'/>
                             </div>
                         </div>
                     </div>) : (<div onClick={handleMenu} className="bar">
