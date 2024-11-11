@@ -5,8 +5,13 @@ import eyeLock from '../Images/visibility_lock.png'
 import captcha from '../Images/Frame.png'
 import rightImg from '../Images/Rectangle 1790.png';
 import '../CSS/Login.css'; 
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
+  const navigate = useNavigate();
+  const handleLoginClick = () =>{
+    navigate('/dashboard');
+  }
   return (
     <div className='hero-main'>
       <nav className="header navbar navbar-expand-lg">
@@ -59,7 +64,7 @@ const Login = () => {
                   </div>
                 </div>
 
-                <div className="login-btn my-4 df ms-auto">
+                <div onClick = {handleLoginClick} className="login-btn my-4 df ms-auto">
                   <p className='my-2'>Log In</p>
                 </div>
               </div>
