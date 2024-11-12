@@ -108,6 +108,13 @@
     width: 6rem;
 }
 
+@media (max-width : 576px){
+    .inputSearch img{
+        display: none;
+    }
+}
+
+
 .clearFilter p{
     width: 100%;
     text-align: end;

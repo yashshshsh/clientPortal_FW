@@ -5,7 +5,7 @@ const AI = () => {
     return (
         <div>
             <div className="hero-ai px-4">
-                <div className="ai-head pt-3 text-start">
+                <div className="ai-head my-2 pt-3 text-start">
                     <p>AI Insights </p>
                 </div>
 

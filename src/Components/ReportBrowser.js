@@ -40,7 +40,7 @@ const ReportBrowser = () => {
 
     return (
         <div>
-            <div className="hero-section my-4 px-4">
+            <div className="hero-section my-1 px-4">
                 <div className={`${styles.head} d-flex justify-content-between align-items-center`}>
                     <div className={`${styles.repoHead} d-flex justify-content-center align-items-center`}>
                         <div className={styles.reportPara}>
@@ -82,7 +82,7 @@ const ReportBrowser = () => {
                     <table>
                         <thead>
                             <tr>
-                                <th>S no.</th>
+                                <th style={{width:"3rem"}}>S no.</th>
                                 <th>Store Code</th>
                                 <th style={{ width: "11vw" }}>Date</th>
                                 <th>Total Marks</th>

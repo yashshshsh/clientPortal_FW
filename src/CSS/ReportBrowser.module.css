@@ -187,6 +187,12 @@ td{
     line-height: 14px;
 }
 
+@media (max-width : 576px){
+    .inputSearch img{
+        display: none;
+    }
+}
+
 .reportBtn{
     height : 40px;
     width : 100px;

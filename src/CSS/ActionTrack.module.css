@@ -243,6 +243,12 @@ td{
     background-color: #8DC63F;
 }
 
+@media (max-width : 576px){
+    .inputSearch img{
+        display: none;
+    }
+}
+
 .auditCycle, .improvement {
     width: 38vw;
 }

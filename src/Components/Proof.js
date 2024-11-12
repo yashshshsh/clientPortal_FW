@@ -41,17 +41,17 @@ const Proof = () => {
                     </div>
                 </div>
 
-                <div className="proof-lower my-3 mx-auto shadow row">
-                    <div className="lower-survey col-sm-3 gradient-border">
-                        <p className='text-center m-1'>Survey Details</p>
+                <div className="proof-lower my-3 shadow row">
+                    <div className="nps text-center col-md-4 ">
+                        <p className='text-center m-2'>Survey Details</p>
                         <img src={img} alt="img" />
                     </div>
-                    <div className="nps col-sm-3 gradient-border">
-                        <p className='text-center m-1'>NPS - June - 2024</p>
+                    <div className="nps text-center col-md-4">
+                        <p className='text-center m-2'>NPS - June - 2024</p>
                         <img src={img} alt="img" />
                     </div>
-                    <div className="nps col-sm-3">
-                        <p className='text-center m-1'>NPS - June - 2024</p>
+                    <div className="nps text-center col-md-4">
+                        <p className='text-center m-2'>NPS - June - 2024</p>
                         <img src={img} alt="img" />
                     </div>
                 </div>

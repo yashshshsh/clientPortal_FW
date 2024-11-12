@@ -10,7 +10,7 @@ import downImg from '../Images/vertical_align_bottom.png'
 const Dashboard = () => {
     return (
         <div>
-            <div style={{backgroundColor:"#FAFAFA"}} className={styles.heroDashboard + ' my-4'}>
+            <div style={{backgroundColor:"#FAFAFA"}} className={styles.heroDashboard + ' my-3'}>
                 <p className={styles.dashHeading + ' px-4 m-0'}>Dashboard</p>
 
                 <div style={{backgroundColor:"white"}} className={styles.dashFirst + ' px-4 row d-flex'}>

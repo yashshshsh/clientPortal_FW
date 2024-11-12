@@ -31,9 +31,9 @@ const Trends = () => {
     return (
         <div className='px-4 my-3'>
             <div className="audit-details d-flex">
-                    <p className='ms-2'>Store Performance</p>
-                </div>
-            <div className="dashSecHero justify-content-center align-items-center row d-flex">                
+                <p className='ms-2'>Store Performance</p>
+            </div>
+            <div className="dashSecHero justify-content-center align-items-center row d-flex">
                 <div className="secHeroLeft col-sm-9">
                     <BarChart />
                 </div>
@@ -43,8 +43,8 @@ const Trends = () => {
                         <p>Section</p>
                     </div>
                     <div className="section1">
-                        <p style={{color:"#003C5D"}} className="perPara">60%</p>
-                        <p style={{color:"#003C5D"}} className="secPara">Customer Arrival and Staff Grooming Analysis</p>
+                        <p style={{ color: "#003C5D" }} className="perPara">60%</p>
+                        <p style={{ color: "#003C5D" }} className="secPara">Customer Arrival and Staff Grooming Analysis</p>
                     </div>
                     <div className="section1">
                         <p className="perPara">60%</p>
@@ -74,11 +74,16 @@ const Trends = () => {
                     <div className="fifthTable table-responsive">
                         <table>
                             <thead>
-                                <th>S no.</th>
+                                <th className='SNO'>S no.</th>
                                 <th>Questions</th>
                                 <th>Max Marks</th>
                                 {data[0].storeAuditResults.map((result, index) => (
-                                    <th key={index}>Competition Audits <br /> Store Type <br /> {result.date}</th>
+                                    <th key={index}>
+                                        <div><p className='my-2'>Competition Audits</p>
+                                            <p className='my-2'>Store Type</p>
+                                            <p>{result.date}</p>
+                                        </div>
+                                    </th>
                                 ))}
                             </thead>
                             <tbody>
@@ -114,7 +119,7 @@ const Trends = () => {
                                     {data[1].storeAuditResults.map((result, idx) => (
                                         <td key={idx}>
                                             <span>{result.score}</span>
-                                            <div className="dashed df gap-2">
+                                            <div className="dashed my-2 df gap-2">
                                                 {[...Array(dashes)].map((_, index) => (
                                                     <div
                                                         key={index}
@@ -143,68 +148,71 @@ const Trends = () => {
                     <div className="fifthTable table-responsive">
                         <table className='mb-4'>
                             <thead>
-                                <th>S no.</th>
+                                <th className='SNO'>S no.</th>
                                 <th>Questions</th>
                                 <th>Max Marks</th>
                                 {data[0].storeAuditResults.map((result, index) => (
-                                    <th key={index}>Competition Audits <br /> Store Type <br /> {result.date}</th>
-                                ))}
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>{data[0].no}</td>
-                                    <td className='text-start'>{data[0].question}</td>
-                                    <td className="maxMarks">
-                                        <div className="scoreBox df">{data[0].maxMarks}</div>
+                                <th key={index}><div><p className='my-2'>Competition Audits</p>
+                                <p className='my-2'>Store Type</p>
+                                <p>{result.date}</p>
+                            </div></th>
+                            ))}
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{data[0].no}</td>
+                                <td className='text-start'>{data[0].question}</td>
+                                <td className="maxMarks">
+                                    <div className="scoreBox df">{data[0].maxMarks}</div>
+                                </td>
+                                {data[0].storeAuditResults.map((result, idx) => (
+                                    <td key={idx} className="competitionAudits">
+                                        <div className="scoreIcons df flex-column">
+                                            <span>{result.score}</span>
+                                            <div
+                                                className="dash1"
+                                                style={{
+                                                    background: result.score === "1"
+                                                        ? `linear-gradient(to right, #8DC63F ${parseInt(result.score) * 100}%, #e6e6e6 ${100 - parseInt(result.score) * 100}%)`
+                                                        : `linear-gradient(to right, red ${parseInt(result.score) * 100}%, #e6e6e6 ${100 - parseInt(result.score) * 100}%)`
+                                                }}
+                                            ></div>
+                                        </div>
                                     </td>
-                                    {data[0].storeAuditResults.map((result, idx) => (
-                                        <td key={idx} className="competitionAudits">
-                                            <div className="scoreIcons df flex-column">
-                                                <span>{result.score}</span>
+                                ))}
+                            </tr>
+
+                            <tr>
+                                <td>{data[1].no}</td>
+                                <td className='text-start'>{data[1].question}</td>
+                                <td className="maxMarks">
+                                    <div className="scoreBox df">{data[1].maxMarks}</div>
+                                </td>
+                                {data[1].storeAuditResults.map((result, idx) => (
+                                    <td key={idx}>
+                                        <span>{result.score}</span>
+                                        <div className="dashed df my-2 gap-2">
+                                            {[...Array(dashes)].map((_, index) => (
                                                 <div
-                                                    className="dash1"
+                                                    key={index}
+                                                    className="dash2"
                                                     style={{
-                                                        background: result.score === "1"
-                                                            ? `linear-gradient(to right, #8DC63F ${parseInt(result.score) * 100}%, #e6e6e6 ${100 - parseInt(result.score) * 100}%)`
-                                                            : `linear-gradient(to right, red ${parseInt(result.score) * 100}%, #e6e6e6 ${100 - parseInt(result.score) * 100}%)`
+                                                        background: index < result.score
+                                                            ? "green"  // Fully filled dash
+                                                            : '#e6e6e6'  // Unfilled dash
                                                     }}
                                                 ></div>
-                                            </div>
-                                        </td>
-                                    ))}
-                                </tr>
-
-                                <tr>
-                                    <td>{data[1].no}</td>
-                                    <td className='text-start'>{data[1].question}</td>
-                                    <td className="maxMarks">
-                                        <div className="scoreBox df">{data[1].maxMarks}</div>
+                                            ))}
+                                        </div>
                                     </td>
-                                    {data[1].storeAuditResults.map((result, idx) => (
-                                        <td key={idx}>
-                                            <span>{result.score}</span>
-                                            <div className="dashed df gap-2">
-                                                {[...Array(dashes)].map((_, index) => (
-                                                    <div
-                                                        key={index}
-                                                        className="dash2"
-                                                        style={{
-                                                            background: index < result.score
-                                                                ? "green"  // Fully filled dash
-                                                                : '#e6e6e6'  // Unfilled dash
-                                                        }}
-                                                    ></div>
-                                                ))}
-                                            </div>
-                                        </td>
-                                    ))}
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                                ))}
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
+        </div >
     )
 }
 

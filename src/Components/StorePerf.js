@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import '../CSS/StorePerf.css'
 import textImg from '../Images/Text.png'
+import { useNavigate } from 'react-router-dom';
 
-const StorePerf = () => {
+const StorePerf = ({ setState }) => {
     const tableData = [
         {
             sNo: 1,
@@ -28,9 +29,66 @@ const StorePerf = () => {
         },
     ];
 
+    const tableDataM = [
+        { sNo: 1, storeCode: "SST-001", showroomName: "Showroom 1", city: "Indore", insights: "Insights" },
+        { sNo: 2, storeCode: "SST-001", showroomName: "Showroom 2", city: "Indore", insights: "Insights" }
+    ];
+
+    const navigate = useNavigate();
+    const ref = useRef();
+
+    const handleInsights = () => {
+        ref.current.click();
+        setTimeout(() => {
+            setState("reports");
+            navigate('/storeBrowserInsights');
+        }, 300);
+    };
+
     return (
         <div className='px-4'>
-            <div className="perf-head text-start my-3">
+            <button ref={ref} type="button" class="btn btn-primary d-none" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Launch demo modal
+            </button>
+
+            <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div className="modal-dialog modal-dialog-centered" style={{ maxWidth: "833px" }}>
+                    <div style={{ backgroundColor: "#F6F6F6" }} className="modal-content p-2">
+                        <div className="modal-header" style={{ border: "none" }}>
+                            <h1 className="modal-title fs-5" id="exampleModalLabel">Competition Audits - Store Type 2 - Feb - 2023</h1>
+                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div className="modal-body">
+                            <table className="mx-auto" style={{ width: "90%", borderCollapse: "collapse" }}>
+                                <thead>
+                                    <tr style={{ backgroundColor: "#004a7c", color: "#fff" }}>
+                                        <th>S no.</th>
+                                        <th>Store Code</th>
+                                        <th>Showroom Name</th>
+                                        <th>City</th>
+                                        <th>Insights</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {tableDataM.map((row, index) => (
+                                        <tr key={index} style={{ backgroundColor: index % 2 === 0 ? "#f5f5f5" : "#ffffff" }}>
+                                            <td>{row.sNo}</td>
+                                            <td>{row.storeCode}</td>
+                                            <td>{row.showroomName}</td>
+                                            <td>{row.city}</td>
+                                            <td>
+                                                <button onClick={handleInsights} className="reportBtn">Insights</button>
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div className="perf-head text-start my-4">
                 <p className='sp'>Store Performance</p>
                 <p className='perf-p my-3'>Use this dashboard to get stores which have scored less than optimal value. You can enter the optimal value in the input box above between 1-100</p>
             </div>
@@ -61,7 +119,7 @@ const StorePerf = () => {
                     <table>
                         <thead>
                             <tr>
-                                <th style={{ minWidth: "46px" }}>S no.</th>
+                                <th className='SNO'>S no.</th>
                                 <th className="audit" style={{ minWidth: "270px" }}>Audit</th>
                                 <th style={{ minWidth: "90px" }}>Max Marks</th>
                                 <th style={{ minWidth: "140px" }}>Customer Arrival and Staff Grooming Analysis</th>
@@ -83,32 +141,32 @@ const StorePerf = () => {
                                         </div>
                                     </td>
                                     <td className="marks">
-                                        <div className={`row-marks mx-auto df ${row.customerArrival1 !== 0 ? "highlight" : ""}`}>
+                                        <div onClick={() => row.customerArrival1 !== 0 && ref.current.click()} className={`row-marks mx-auto df ${row.customerArrival1 !== 0 ? "highlight" : ""}`}>
                                             {row.customerArrival1}
                                         </div>
                                     </td>
                                     <td className="marks">
-                                        <div className={`row-marks mx-auto df ${row.interactionWithStaff1 !== 0 ? "highlight" : ""}`}>
+                                        <div onClick={() => row.interactionWithStaff1 !== 0 && ref.current.click()} className={`row-marks mx-auto df ${row.interactionWithStaff1 !== 0 ? "highlight" : ""}`}>
                                             {row.interactionWithStaff1}
                                         </div>
                                     </td>
                                     <td className="marks">
-                                        <div className={`row-marks mx-auto df ${row.customerArrival2 !== 0 ? "highlight" : ""}`}>
+                                        <div onClick={() => row.customerArrival2 !== 0 && ref.current.click()} className={`row-marks mx-auto df ${row.customerArrival2 !== 0 ? "highlight" : ""}`}>
                                             {row.customerArrival2}
                                         </div>
                                     </td>
                                     <td className="marks">
-                                        <div className={`row-marks mx-auto df ${row.interactionWithStaff2 !== 0 ? "highlight" : ""}`}>
+                                        <div onClick={() => row.interactionWithStaff2 !== 0 && ref.current.click()} className={`row-marks mx-auto df ${row.interactionWithStaff2 !== 0 ? "highlight" : ""}`}>
                                             {row.interactionWithStaff2}
                                         </div>
                                     </td>
                                     <td className="marks">
-                                        <div className={`row-marks mx-auto df ${row.customerArrival3 !== 0 ? "highlight" : ""}`}>
+                                        <div onClick={() => row.customerArrival3 !== 0 && ref.current.click()} className={`row-marks mx-auto df ${row.customerArrival3 !== 0 ? "highlight" : ""}`}>
                                             {row.customerArrival3}
                                         </div>
                                     </td>
                                     <td className="marks">
-                                        <div className={`row-marks mx-auto df ${row.interactionWithStaff3 !== 0 ? "highlight" : ""}`}>
+                                        <div onClick={() => row.interactionWithStaff3 !== 0 && ref.current.click()} className={`row-marks mx-auto df ${row.interactionWithStaff3 !== 0 ? "highlight" : ""}`}>
                                             {row.interactionWithStaff3}
                                         </div>
                                     </td>

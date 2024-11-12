@@ -56,12 +56,12 @@ const Report = () => {
                             <table>
                                 <tbody>
                                     <tr>
-                                        <td className='a-left'>Audit Type</td>
-                                        <td className='a-right'>Walk-in Audit</td>
+                                        <td className='a-left ps-4 text-start'>Audit Type</td>
+                                        <td className='a-right text-start'>Walk-in Audit</td>
                                     </tr>
                                     <tr>
-                                        <td className='a-left'>Audit Date</td>
-                                        <td className='a-right'>28/09/2024</td>
+                                        <td className='a-left ps-4 text-start'>Audit Date</td>
+                                        <td className='a-right text-start'>28/09/2024</td>
                                     </tr>
                                 </tbody>
                             </table>

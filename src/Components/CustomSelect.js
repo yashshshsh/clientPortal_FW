@@ -8,21 +8,11 @@ const CustomSelect = () => {
     const [isOpen, setIsOpen] = useState(false);
     const navigate = useNavigate();
 
-    // const options = [
-    //     { label: "Dashboard", icon: "bi-list" },
-    //     { label: "Report Browser", icon: "bi-bar-chart" },
-    //     { label: "Action Track", icon: "bi-box-arrow-in-down-right" },
-    //     { label: "Upcoming Audits", icon: "bi-clock" },
-    //     { label: "Store Browser", icon: "bi-shop" },
-    //     { label: "Store Performance", icon: "bi-archive-fill" },
-    //     { label: "AI Insights", icon: "bi-stars" },
-    // ];
-
     const handleActive = (active) => {
         navigate('/' + active);
         setIsOpen(!isOpen);
     }
-
+    
     return (
         <div>
             <div className="custom-select z-3 d-flex flex-column align-items-center">

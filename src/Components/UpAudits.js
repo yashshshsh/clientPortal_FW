@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import '../CSS/UpAudits.css'
+import React, { useState } from 'react';
+import '../CSS/UpAudits.css';
 
 const UpAudits = () => {
   const months = [
@@ -7,7 +7,25 @@ const UpAudits = () => {
     "July", "August", "September", "October", "November", "December"
   ];
 
-  const [activeMonth, setActiveMonth] = useState("April");
+  const [activeMonth, setActiveMonth] = useState("November");
+  const [selectedDate, setSelectedDate] = useState(13); // Example: 13th is selected by default
+
+  const year = 2023;
+
+  // Get the month index from the selected month name
+  const monthIndex = months.indexOf(activeMonth);
+  const rows = 10; // Adjust the number of rows
+  const columns = 7; // Adjust the number of columns
+
+  // Calculate the number of days in the selected month
+  const daysInMonth = new Date(year, monthIndex + 1, 0).getDate();
+  const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+
+  // Helper function to get the day of the week for a specific date
+  const getDayOfWeek = (day) => {
+    const date = new Date(year, monthIndex, day);
+    return daysOfWeek[date.getDay()];
+  };
 
   return (
     <div>
@@ -21,10 +39,10 @@ const UpAudits = () => {
         <div className="date-up d-flex my-3">
           <p className='my-2'>4 April 2024</p>
           <div className="left-arr mx-3 d-flex justify-content-center align-items-center">
-            <i class="bi bi-arrow-left"></i>
+            <i className="bi bi-arrow-left"></i>
           </div>
           <div className="left-arr">
-            <i class="bi bi-arrow-right"></i>
+            <i className="bi bi-arrow-right"></i>
           </div>
         </div>
 
@@ -33,7 +51,7 @@ const UpAudits = () => {
             {months.map((month, index) => (
               <div
                 key={index}
-                className={`month my-1 ${"January" === month ? "Jan" : ""} justify-content-center align-items-center`}
+                className={`month my-1 ${index === 0 ? "Jan" : ""} justify-content-center align-items-center`}
                 onClick={() => setActiveMonth(month)}
               >
                 <div className={`month-span ${activeMonth === month ? "active" : ""} d-flex mx-auto`}>
@@ -45,8 +63,8 @@ const UpAudits = () => {
         </div>
 
         <div className="main-hero row">
-          <div className="hero-left col-md-3 ">
-            <div style={{backgroundColor:"white"}} className="audit-head align-items-center p-3 d-flex">
+          <div className="hero-left col-md-3">
+            <div style={{ backgroundColor: "white" }} className="audit-head align-items-center p-3 d-flex">
               <p className='my-2'>Audit Details</p>
             </div>
 
@@ -71,12 +89,27 @@ const UpAudits = () => {
           </div>
 
           <div className="hero-right col-md-9">
-          
+            <div className="date-picker-container">
+              <div className="dates">
+                {Array.from({ length: daysInMonth }, (_, i) => i + 1).map((day) => (
+                  <div
+                    key={day}
+                    className={`date-item ${selectedDate === day ? 'selected' : ''}`}
+                    onClick={() => setSelectedDate(day)}
+                  >
+                    <div className="date-number">{day}</div>
+                    <div className="date-day">{getDayOfWeek(day)}</div>
+                  </div>
+                ))}
+              </div>
+
+            
+            </div>
           </div>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default UpAudits
+export default UpAudits;

@@ -14,6 +14,7 @@ import StorePerformance from './Components/StorePerf';
 import Login from './Components/Login';
 import AI from './Components/AI';
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+import { useState } from 'react';
 
 function App() {
   return (
@@ -27,6 +28,8 @@ function AppWithRouter() {
   const location = useLocation();
   const isNavbarVisible = location.pathname !== "/";
 
+  const [state, setState] = useState("trends");
+
   return (
     <>
       {isNavbarVisible && <Navbar />}
@@ -38,8 +41,8 @@ function AppWithRouter() {
         <Route exact path="/actionTrack" element={<ActionTrack />} />
         <Route exact path="/upAudits" element={<UpAudits />} />
         <Route exact path="/storeBrowser" element={<StoreBrowser />} />
-        <Route exact path="/storeBrowserInsights" element={<StoreBrowserIn />} />
-        <Route exact path="/storePerformance" element={<StorePerformance />} />
+        <Route exact path="/storeBrowserInsights" element={<StoreBrowserIn state={state} setState={setState}/>} />
+        <Route exact path="/storePerformance" element={<StorePerformance setState={setState}/>} />
         <Route exact path="/AI" element={<AI />} />
       </Routes>
     </>

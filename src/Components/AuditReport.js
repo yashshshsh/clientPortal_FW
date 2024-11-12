@@ -98,27 +98,27 @@ const AuditReport = () => {
                             </div>
                             <div className="grades-div d-flex flex-wrap gap-2 mt-3">
                                 <div className="stats-mean d-flex flex-column align-items-center justify-content-center">
-                                    <p className='grade m-0'>Excellent</p>
+                                    <p className='grade m-1'>Excellent</p>
                                     <p className='percent m-0'>95% to above</p>
                                     <div style={{ width: "41px", height: "8px", borderRadius: "10px", backgroundColor: "#C1FF99" }} className="mt-1 stats-div"></div>
                                 </div>
                                 <div className="stats-mean d-flex flex-column align-items-center justify-content-center">
-                                    <p className='grade m-0'>Good</p>
+                                    <p className='grade m-1'>Good</p>
                                     <p className='percent m-0'>80% to 94%</p>
                                     <div style={{ width: "41px", height: "8px", borderRadius: "10px", backgroundColor: "#EAFF99" }} className="mt-1 stats-div"></div>
                                 </div>
                                 <div className="stats-mean d-flex flex-column align-items-center justify-content-center">
-                                    <p className='grade m-0'>Average</p>
+                                    <p className='grade m-1'>Average</p>
                                     <p className='percent m-0'>70% to 80%</p>
                                     <div style={{ width: "41px", height: "8px", borderRadius: "10px", backgroundColor: "#FFFF99" }} className="mt-1 stats-div"></div>
                                 </div>
                                 <div className="stats-mean d-flex flex-column align-items-center justify-content-center">
-                                    <p className='grade m-0'>Poor</p>
+                                    <p className='grade m-1'>Poor</p>
                                     <p className='percent m-0'>50% to 70%</p>
                                     <div style={{ width: "41px", height: "8px", borderRadius: "10px", backgroundColor: "#FFEB99" }} className="mt-1 stats-div"></div>
                                 </div>
                                 <div className="stats-mean d-flex flex-column align-items-center justify-content-center">
-                                    <p className='grade m-0'>Bad</p>
+                                    <p className='grade m-1'>Bad</p>
                                     <p className='percent m-0'>0% to 50%</p>
                                     <div style={{ width: "41px", height: "8px", borderRadius: "10px", backgroundColor: "#FFC299" }} className="mt-1 stats-div"></div>
                                 </div>

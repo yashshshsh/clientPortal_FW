@@ -24,6 +24,10 @@
     }
 }
 
+nav{
+    height: 100px;
+}
+
 .navb {
     padding: 0 4.7rem;
     background-color: #FAFAFA;
@@ -34,15 +38,9 @@
 }
 
 .logo {
-    margin-left: 6vw;
-    height: 90px;
-    width: 180px;
-    padding: 0.6rem;
-}
-
-.logo img {
-    height: 90%;
-    width: 100%;
+    height: auto;
+    width: 160px !important;
+    padding: 1rem 1rem;
 }
 
 .bellIcon i,

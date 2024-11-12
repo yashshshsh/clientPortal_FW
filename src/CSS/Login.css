@@ -18,6 +18,7 @@
     }
 }
 
+
 .navb {
     padding: 0 4.7rem;
     background-color: #FAFAFA;
@@ -25,79 +26,112 @@
 
 .header {
     border-bottom: 2px solid #DDE1E6;
+    position: relative;
 }
 
 .logo {
-    margin-left: 6vw;
-    height: 90px;
-    width: 180px;
-    padding: 0.6rem;
+    height: auto;
+    width: 160px;
+    padding: 1rem 1rem;
 }
 
-.logo img {
-    height: 90%;
+.leftImg,.rightImg{
+    max-height: 310px;
+    max-width: 350px;
+}
+
+.leftImg img,.rightImg img{
+    height: 100%;
     width: 100%;
 }
 
-.rightImg{
-    padding: 0 !important;
+@media (min-width : 1025px){
+    .leftImg img,.rightImg img{
+        width : 310px;
+    }
 }
 
-.main{
+@media (max-width : 767px){
+    .leftImg img,.rightImg img{
+        height: 280px;
+    }
+    .flp{
+        margin-top: 1rem;
+        font-size: 35px !important;
+    }
+    .audit-login p{
+        font-size: 13px !important;
+    }
+}
+
+@media (max-width : 438px){
+    .leftImg img,.rightImg img{
+        height: 100px;
+    }
+    .out-logDiv{
+        width: 90vw !important;
+        margin: 0 auto;
+    }
+}
+
+
+.main {
     background-color: white !important;
     min-height: 130vh;
 }
 
-.wel{
+.mainDiv{
+    width: 100%;
+}
+
+.wel {
     font-family: "Roboto", sans-serif;
-    color : #003C5D;
+    color: #003C5D;
     font-weight: 700;
     font-size: 40px;
     line-height: 48px;
 }
 
-.flp{
+.flp {
     font-family: "Roboto", sans-serif;
-    color : #8DC63F;
+    color: #8DC63F;
     font-weight: 700;
     font-size: 40px;
     line-height: 48px;
+    text-align: center;
 }
 
-.audit-login p{
-    color : #9CA3AF;
+.audit-login p {
+    color: #9CA3AF;
     font-weight: 500;
     font-size: 18px;
     font-family: "Lato", sans-serif;
     line-height: 30px;
 }
 
-.audit-login span{
+.audit-login span {
     color: #007DC1;
     text-decoration: underline;
 }
 
-.login-div{
+.login-div {
     max-width: 495px;
     min-height: 435px;
     border-radius: 10px;
 }
 
-.welcome{
-    width: 415px;
-}
-
-.inner span{
+.inner span {
     font-family: "Lato", sans-serif;
     font-weight: 800;
 }
 
-.login-div label{
+.login-div label {
     font-family: "Roboto", sans-serif;
     font-weight: 400;
     font-size: 14px;
     line-height: 24px;
-    color : #9CA3AF;
+    color: #9CA3AF;
+
 }
 
 .login-div input {
@@ -109,34 +143,34 @@
 }
 
 .login-div input:focus {
-    outline: none;  /* Ensure that no outline appears on focus */
-    box-shadow: none;  /* Optionally, remove any box-shadow */
+    outline: none;
+    box-shadow: none;
 }
 
-.forPass{
-    color : #7991A4;
+.forPass {
+    color: #7991A4;
     font-family: "Lato", sans-serif;
     font-weight: 500;
     font-size: 14px;
 }
 
-.captcha img{
+.captcha img {
     height: 28px;
 }
 
-.robot-div{
+.robot-div {
     border: 1px solid #D6D6D6;
     border-radius: 5px;
 }
 
-.check input{
+.check input {
     background-color: #FFFFFF;
     height: 24px;
     width: 24px;
     border: 1px solid #D6D6D6 !important;
 }
 
-.check p{
+.check p {
     color: #4B5563;
     font-weight: 500;
     font-family: "Roboto", sans-serif;
@@ -144,12 +178,12 @@
     line-height: 14px;
 }
 
-.lab-inp{
+.lab-inp {
     border-bottom: 1px solid #9CA3AF;
     padding-bottom: 0.2rem;
 }
 
-.login-btn{
+.login-btn {
     background-color: #007DC1;
     color: white;
     border-radius: 5px;
@@ -158,18 +192,243 @@
     cursor: pointer;
 }
 
-.login-btn p{
-    color : #FCFCFC;
+.login-btn p {
+    color: #FCFCFC;
     font-family: "Lato", sans-serif;
     font-weight: 500;
     font-size: 16px;
     line-height: 20px;
 }
 
-.inner p{
+.inner p {
     font-family: "Lato", sans-serif;
     font-weight: 500;
     font-size: 18px;
     line-height: 30px;
-    color : #4B5563;
+    color: #4B5563;
 }
+
+
+/* PRACHII */
+
+/* .rightImg {
+    padding: 0 !important;
+}
+
+.main {
+    background-color: white !important;
+    min-height: 130vh;
+}
+
+.wel {
+    font-family: "Roboto", sans-serif;
+    color: #003C5D;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 48px;
+}
+
+.flp {
+    font-family: "Roboto", sans-serif;
+    color: #8DC63F;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 48px;
+    text-align: center;
+}
+
+.audit-login p {
+    color: #9CA3AF;
+    font-weight: 500;
+    font-size: 18px;
+    font-family: "Lato", sans-serif;
+    line-height: 30px;
+}
+
+.audit-login span {
+    color: #007DC1;
+    text-decoration: underline;
+}
+
+.login-div {
+    max-width: 495px;
+    min-height: 435px;
+    border-radius: 10px;
+}
+
+@media (max-width:475px) {
+    .login-div {
+        max-width: 270px;
+
+    }
+}
+
+
+.inner span {
+    font-family: "Lato", sans-serif;
+    font-weight: 800;
+}
+
+.login-div label {
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 24px;
+    color: #9CA3AF;
+
+}
+
+.login-div input {
+    background-color: #FCFCFC;
+    color: #4B5563 !important;
+    outline: none;
+    border: none;
+    height: 1.5rem;
+}
+
+.login-div input:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.forPass {
+    color: #7991A4;
+    font-family: "Lato", sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.captcha img {
+    height: 28px;
+}
+
+.robot-div {
+    border: 1px solid #D6D6D6;
+    border-radius: 5px;
+}
+
+.check input {
+    background-color: #FFFFFF;
+    height: 24px;
+    width: 24px;
+    border: 1px solid #D6D6D6 !important;
+}
+
+.check p {
+    color: #4B5563;
+    font-weight: 500;
+    font-family: "Roboto", sans-serif;
+    font-size: 12px;
+    line-height: 14px;
+}
+
+.lab-inp {
+    border-bottom: 1px solid #9CA3AF;
+    padding-bottom: 0.2rem;
+}
+
+.login-btn {
+    background-color: #007DC1;
+    color: white;
+    border-radius: 5px;
+    max-width: 177px;
+    min-height: 48px;
+    cursor: pointer;
+}
+
+.login-btn p {
+    color: #FCFCFC;
+    font-family: "Lato", sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+}
+
+.inner p {
+    font-family: "Lato", sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 30px;
+    color: #4B5563;
+}
+
+.mainDiv {
+
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
+}
+
+.left-background,
+.right-background {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    z-index: 1;
+    background-size: cover;
+    background-repeat: no-repeat;
+    opacity: 1.5;
+    margin-top: 6rem;
+}
+
+.left-background {
+    left: 0;
+    width: 15rem;
+    background-image: url('../Images/Rectangle 1789.png');
+    position: absolute;
+    max-height: 22rem;
+
+
+}
+
+.right-background {
+    right: 0;
+    width: 18rem;
+    max-height: 22rem;
+    background-image: url('../Images/Rectangle 1790.png');
+}
+
+.Headnav {
+
+    width: 100%;
+    height: 6rem;
+    border-bottom: 1px solid #7e7f80;
+
+
+}
+
+@media (max-width: 767px) {
+    .left-background {
+        width: 7rem;
+        max-height: 7rem;
+        left: -20px;
+        top: 0px;
+
+    }
+
+    .right-background {
+        width: 5rem;
+        max-height: 7rem;
+        right: 0px;
+        top: 0px;
+    }
+
+
+    .Headnav {
+
+        width: 100%;
+        height: 6rem;
+        border-bottom: 1px solid #7e7f80;
+
+    }
+
+    .wel {
+        font-size: 25px !important;
+    }
+
+    .flp {
+        font-size: 25px !important;
+        position: relative;
+    }
+} */

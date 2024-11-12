@@ -5,8 +5,7 @@ import Trends from './Trends.js'
 import Report from './Report.js';
 import Proof from './Proof.js';
 
-const StoreBrowserIn = () => {
-    const [state, setState] = useState("trends");
+const StoreBrowserIn = ({state,setState}) => {
     return (
         <div className='px-4'>
             <div className='inMain'>
