@@ -41,9 +41,14 @@ const Report = () => {
             maxScore: 100,
         },
     ];
-
+    const getProgressColor = (progress) => {
+        if (progress < 30) return "#C9727B";
+        if (progress >= 30 && progress < 60) return "#C6B83F";
+        if (progress >= 60 && progress < 80) return "#B4DA1F";
+        return "#8DC63F";
+    };
     return (
-        <div style={{backgroundColor:"#FAFAFA"}} className='reo my-4 px-4'>
+        <div style={{ backgroundColor: "#FAFAFA" }} className='reo my-4 px-4'>
             <div className="audit-details d-flex">
                 <p className='ms-2'>Audit Cycle</p>
             </div>
@@ -67,7 +72,7 @@ const Report = () => {
                             </table>
                         </div>
                         <div className="dashed-bar df">
-                            <ReportBars color={"#8DC63F"} progress={item.score} shadow={false} />
+                            <ReportBars color={getProgressColor(item.score)} progress={item.score} shadow={false} />
                         </div>
                         <div className="viewReport df my-2 mx-auto">
                             <p className='my-2'>View Report</p>

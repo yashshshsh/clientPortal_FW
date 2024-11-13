@@ -3,7 +3,16 @@ import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
 const CircularBar = () => {
-  const value = 85; // progress value
+  const value = 80; // progress value
+
+  // Function to determine arc color based on the value
+  const getArcColor = (value) => {
+    if (value >= 95) return "#C1FF99"; // Excellent
+    if (value >= 80) return "#EAFF99"; // Good
+    if (value >= 70) return "#FFFF99"; // Average
+    if (value >= 50) return "#FFEB99"; // Poor
+    return "#FFC299"; // Bad
+  };
 
   return (
     <div className='circularBar'>
@@ -16,7 +25,7 @@ const CircularBar = () => {
           rotation: 0.75,
           strokeLinecap: 'round',
           trailColor: '#f0f0f0',
-          pathColor: '#EAFF99',
+          pathColor: getArcColor(value), // Dynamic path color
           textColor: '#003C5D',
           pathTransitionDuration: 0.5,
           textSize: '20px',

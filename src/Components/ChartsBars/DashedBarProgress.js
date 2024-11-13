@@ -1,4 +1,4 @@
-import React from 'react';
+ import React from 'react';
 import '../../CSS/ChartsBarsCSS/DashedBarProgress.css';
 
 const DashedProgressBar = ({ progress,color,shadow }) => {

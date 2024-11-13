@@ -8,12 +8,18 @@ import OverallPerformance from './ChartsBars/OverallPerformance'
 import downImg from '../Images/vertical_align_bottom.png'
 
 const Dashboard = () => {
+    const getProgressColor = (progress) => {
+        if (progress < 30) return "#C9727B";
+        if (progress >= 30 && progress < 60) return "#C6B83F";
+        if (progress >= 60 && progress < 80) return "#B4DA1F";
+        return "#8DC63F";
+    };
     return (
         <div>
-            <div style={{backgroundColor:"#FAFAFA"}} className={styles.heroDashboard + ' my-3'}>
+            <div style={{ backgroundColor: "#FAFAFA" }} className={styles.heroDashboard + ' my-3'}>
                 <p className={styles.dashHeading + ' px-4 m-0'}>Dashboard</p>
 
-                <div style={{backgroundColor:"white"}} className={styles.dashFirst + ' px-4 row d-flex'}>
+                <div style={{ backgroundColor: "white" }} className={styles.dashFirst + ' px-4 row d-flex'}>
                     <div className={styles.firstLeft + ' col-md-6'}>
                         <div className={styles.firstHeading + ' my-2 text-start'}>
                             <p>Latest Audit Cycle Score</p>
@@ -22,19 +28,19 @@ const Dashboard = () => {
                         <div className={styles.l1First + ''}>
                             <div className={'row1 row'}>
                                 <div className={styles.l1 + ' col-sm-6 d-flex justify-content-center align-items-center'}>
-                                    <DashedProgressBar color={"#8DC63F"} progress={95} shadow={true}/>
+                                    <DashedProgressBar color={getProgressColor(95)} progress={95} shadow={true} />
                                 </div>
                                 <div className={styles.l1 + ' col-sm-6 d-flex justify-content-center align-items-center'}>
-                                    <DashedProgressBar color={"#C9727B"} progress={10} shadow={true}/>
+                                    <DashedProgressBar color={getProgressColor(10)} progress={10} shadow={true} />
                                 </div>
                             </div>
 
                             <div className={'row2 row'}>
                                 <div className={styles.l1 + ' col-sm-6 d-flex justify-content-center align-items-center'}>
-                                    <DashedProgressBar color={"#C6B83F"} progress={70} shadow={true}/>
+                                    <DashedProgressBar color={getProgressColor(70)} progress={70} shadow={true} />
                                 </div>
                                 <div className={styles.l1 + ' col-sm-6 d-flex justify-content-center align-items-center'}>
-                                    <DashedProgressBar color={"#B4DA1F"} progress={85} shadow={true}/>
+                                    <DashedProgressBar color={getProgressColor(85)} progress={85} shadow={true} />
                                 </div>
                             </div>
                         </div>
@@ -50,7 +56,7 @@ const Dashboard = () => {
                     </div>
                 </div>
 
-                <div style={{backgroundColor:"#FFFFFF",borderRadius:"20px"}} className={styles.dashSecond + ' px-4 pt-4 mt-4'}>
+                <div style={{ backgroundColor: "#FFFFFF", borderRadius: "20px" }} className={styles.dashSecond + ' px-4 pt-4 mt-4'}>
                     <div className={styles.dashSecHead + ' flex-wrap d-flex'}>
                         <div className={styles.auditCycle + ' d-flex flex-column'}>
                             <p className="text-start">Audit Cycle</p>
@@ -65,7 +71,7 @@ const Dashboard = () => {
                             </div>
 
                             <div className={styles.downIcon}>
-                                <img src={downImg} alt="img"/>
+                                <img src={downImg} alt="img" />
                             </div>
                         </div>
                     </div>
@@ -80,8 +86,8 @@ const Dashboard = () => {
                                 <p>Section</p>
                             </div>
                             <div className={styles.section1}>
-                                <p style={{color:"#003C5D"}} className={styles.perPara}>60%</p>
-                                <p style={{color:"#003C5D"}} className={styles.secPara}>Customer Arrival and Staff Grooming Analysis</p>
+                                <p style={{ color: "#003C5D" }} className={styles.perPara}>60%</p>
+                                <p style={{ color: "#003C5D" }} className={styles.secPara}>Customer Arrival and Staff Grooming Analysis</p>
                             </div>
                             <div className={styles.section1}>
                                 <p className={styles.perPara}>60%</p>
@@ -99,7 +105,7 @@ const Dashboard = () => {
                     </div>
                 </div>
 
-                <div style={{backgroundColor:"white"}} className={styles.dashThird + ' mt-3 px-4 pt-4'}>
+                <div style={{ backgroundColor: "white" }} className={styles.dashThird + ' mt-3 px-4 pt-4'}>
                     <div className={`${styles.dashThirdHead} flex-wrap d-flex`}>
                         <div className={`${styles.improvement} d-flex flex-column`}>
                             <p className='text-start'>Improvement areas based on observation</p>
@@ -109,7 +115,7 @@ const Dashboard = () => {
                         </div>
                         <div className={`${styles.improvementRight} ms-auto d-flex justify-content-center align-items-center`}>
                             <div className={styles.downIcon}>
-                                <img src={downImg} alt="img"/>
+                                <img src={downImg} alt="img" />
                             </div>
                         </div>
                     </div>
@@ -149,7 +155,7 @@ const Dashboard = () => {
                     </div>
                 </div>
 
-                <div style={{backgroundColor:"white"}} className={styles.dashForth + ' px-4 py-3 mt-3'}>
+                <div style={{ backgroundColor: "white" }} className={styles.dashForth + ' px-4 py-3 mt-3'}>
                     <div className={`${styles.dashThirdHead} my-3 flex-wrap d-flex`}>
                         <div className={`${styles.improvement} d-flex flex-column`}>
                             <p className='text-start'>Improvement areas based on observation</p>
@@ -159,7 +165,7 @@ const Dashboard = () => {
                         </div>
                         <div className={`${styles.improvementRight} ms-auto d-flex justify-content-center align-items-center`}>
                             <div className={`${styles.downIcon} d-none`}>
-                                <img src={downImg} alt="img"/>
+                                <img src={downImg} alt="img" />
                             </div>
                         </div>
                     </div>
@@ -175,7 +181,7 @@ const Dashboard = () => {
                     </div>
                 </div>
 
-                <div style={{backgroundColor:"white"}} className={styles.dashFifth}>
+                <div style={{ backgroundColor: "white" }} className={styles.dashFifth}>
                     <div className={`${styles.dashThirdHead} mt-3 px-4 pt-4 flex-wrap d-flex`}>
                         <div className={`${styles.improvement} d-flex flex-column`}>
                             <p className='text-start'>Question Summary</p>
@@ -185,7 +191,7 @@ const Dashboard = () => {
                         </div>
                         <div className={`${styles.improvementRight} ms-auto d-flex justify-content-center align-items-center`}>
                             <div className={`${styles.downIcon}`}>
-                                <img src={downImg} alt="img"/>
+                                <img src={downImg} alt="img" />
                             </div>
                         </div>
                     </div>

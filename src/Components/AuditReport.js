@@ -6,6 +6,13 @@ import attachImg from '../Images/Attachments.png'
 import downDrop from '../Images/arrow_drop_down.png'
 
 const AuditReport = () => {
+    const getProgressColor = (progress) => {
+        if (progress < 30) return "#C9727B";
+        if (progress >= 30 && progress < 60) return "#C6B83F";
+        if (progress >= 60 && progress < 80) return "#B4DA1F";
+        return "#8DC63F";
+    };
+
     return (
         <div className='my-4 px-4'>
             <div className="audit-first">
@@ -25,12 +32,12 @@ const AuditReport = () => {
                     </div>
                     <div className="export d-flex gap-2">
                         <p className='mt-3 expo'>Export To</p>
-                        <img src = {downDrop} alt="img"/>
+                        <img src={downDrop} alt="img" />
                     </div>
                 </div>
             </div>
 
-            <div style={{backgroundColor:"#FAFAFA"}} className="hero-audit pt-3 px-3">
+            <div style={{ backgroundColor: "#FAFAFA" }} className="hero-audit pt-3 px-3">
                 <div className="audit-details d-flex">
                     <p className='ms-2'>Audit Details</p>
                 </div>
@@ -167,10 +174,10 @@ const AuditReport = () => {
 
                     <div className="dashed-bars my-3 row d-flex">
                         <div className="d-flex col-sm-6 justify-content-center align-items-center">
-                            <ARDashedBar color={"#8DC63F"} text={'survey'} progress={95} />
+                            <ARDashedBar color={getProgressColor(95)} text={'survey'} progress={95} />
                         </div>
                         <div className="d-flex col-sm-6 justify-content-center align-items-center">
-                            <ARDashedBar color={"#C9727B"} progress={10} />
+                            <ARDashedBar color={getProgressColor(10)} progress={10} />
                         </div>
                     </div>
                 </div>
@@ -444,43 +451,43 @@ const AuditReport = () => {
 
                                                 <div className="rating flex-column d-flex justify-content-center align-items-center">
                                                     <div>
-                                                    <div className="icon-div d-flex gap-2">
-                                                        <div className="c1-selected d-flex justify-content-center align-items-center">
-                                                            <p className='mt-3'>1</p>
+                                                        <div className="icon-div d-flex gap-2">
+                                                            <div className="c1-selected d-flex justify-content-center align-items-center">
+                                                                <p className='mt-3'>1</p>
+                                                            </div>
+                                                            <div className="c1-selected d-flex justify-content-center align-items-center">
+                                                                <p className='mt-3'>2</p>
+                                                            </div>
+                                                            <div className="c1-selected d-flex justify-content-center align-items-center">
+                                                                <p className='mt-3'>3</p>
+                                                            </div>
+                                                            <div className="c1-selected d-flex justify-content-center align-items-center">
+                                                                <p className='mt-3'>4</p>
+                                                            </div>
+                                                            <div className="c1-selected d-flex justify-content-center align-items-center">
+                                                                <p className='mt-3'>5</p>
+                                                            </div>
+                                                            <div className="c1-selected d-flex justify-content-center align-items-center">
+                                                                <p className='mt-3'>6</p>
+                                                            </div>
+                                                            <div className="c1 d-flex justify-content-center align-items-center">
+                                                                <p className='mt-3'>7</p>
+                                                            </div>
+                                                            <div className="c1 d-flex justify-content-center align-items-center">
+                                                                <p className='mt-3'>8</p>
+                                                            </div>
+                                                            <div className="c1 d-flex justify-content-center align-items-center">
+                                                                <p className='mt-3'>9</p>
+                                                            </div>
+                                                            <div className="c1 d-flex justify-content-center align-items-center">
+                                                                <p className='mt-3'>10</p>
+                                                            </div>
                                                         </div>
-                                                        <div className="c1-selected d-flex justify-content-center align-items-center">
-                                                            <p className='mt-3'>2</p>
+                                                        <div className="rate-comment d-flex justify-content-between align-items-center">
+                                                            <p>Least Likely</p>
+                                                            <p>Neutral</p>
+                                                            <p>Most Likely</p>
                                                         </div>
-                                                        <div className="c1-selected d-flex justify-content-center align-items-center">
-                                                            <p className='mt-3'>3</p>
-                                                        </div>
-                                                        <div className="c1-selected d-flex justify-content-center align-items-center">
-                                                            <p className='mt-3'>4</p>
-                                                        </div>
-                                                        <div className="c1-selected d-flex justify-content-center align-items-center">
-                                                            <p className='mt-3'>5</p>
-                                                        </div>
-                                                        <div className="c1-selected d-flex justify-content-center align-items-center">
-                                                            <p className='mt-3'>6</p>
-                                                        </div>
-                                                        <div className="c1 d-flex justify-content-center align-items-center">
-                                                            <p className='mt-3'>7</p>
-                                                        </div>
-                                                        <div className="c1 d-flex justify-content-center align-items-center">
-                                                            <p className='mt-3'>8</p>
-                                                        </div>
-                                                        <div className="c1 d-flex justify-content-center align-items-center">
-                                                            <p className='mt-3'>9</p>
-                                                        </div>
-                                                        <div className="c1 d-flex justify-content-center align-items-center">
-                                                            <p className='mt-3'>10</p>
-                                                        </div>
-                                                    </div>
-                                                    <div className="rate-comment d-flex justify-content-between align-items-center">
-                                                        <p>Least Likely</p>
-                                                        <p>Neutral</p>
-                                                        <p>Most Likely</p>
-                                                    </div>
                                                     </div>
                                                 </div>
                                             </div>
