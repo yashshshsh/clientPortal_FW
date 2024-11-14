@@ -222,7 +222,7 @@
 }
 
 .percent{
-    font-size: 7px;
+    font-size: 9px !important;
     line-height: 8px;
     color: #6B7280;
     font-family: "Lato", sans-serif;

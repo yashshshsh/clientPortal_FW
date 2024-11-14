@@ -104,7 +104,7 @@ const AuditReport = () => {
                                 <p className='m-0'>What these stats mean?</p>
                             </div>
                             <div className="grades-div d-flex flex-wrap gap-2 mt-3">
-                                <div className="stats-mean d-flex flex-column align-items-center justify-content-center">
+                                <div style={{width : "55px"}} className="stats-mean d-flex flex-column align-items-center justify-content-center">
                                     <p className='grade m-1'>Excellent</p>
                                     <p className='percent m-0'>95% to above</p>
                                     <div style={{ width: "41px", height: "8px", borderRadius: "10px", backgroundColor: "#C1FF99" }} className="mt-1 stats-div"></div>
@@ -139,7 +139,7 @@ const AuditReport = () => {
                     <table>
                         <thead>
                             <tr>
-                                <th style={{ width: "4vw" }}>S no.</th>
+                                <th style={{ width: "7vw" }}>S no.</th>
                                 <th>Report ID</th>
                                 <th>Person Responsible</th>
                                 <th>Target Date</th>

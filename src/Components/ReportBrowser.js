@@ -63,7 +63,7 @@ const ReportBrowser = () => {
                                 <input className={styles.storeSearch} placeholder="Search store" />
                             </div>
                             <div className='d-flex align-items-center'>
-                                <img src = {textImg} alt="img"/>
+                                <img src={textImg} alt="img" />
                             </div>
                         </div>
                         <div className={`${styles.filter} gap-2 d-flex justify-content-center align-items-center`}>
@@ -82,16 +82,29 @@ const ReportBrowser = () => {
                     <table>
                         <thead>
                             <tr>
-                                <th style={{width:"3rem"}}>S no.</th>
+                                <th style={{ width: "3rem" }}>S no.</th>
                                 <th>Store Code</th>
                                 <th style={{ width: "11vw" }}>Date</th>
                                 <th>Total Marks</th>
                                 <th>Store Exterior</th>
-                                <th>Customer Arrival and Staff Grooming Analysis</th>
-                                <th>Store Interior and Product Display</th>
-                                <th>Interaction with Staff</th>
-                                <th>Cash Counter and Billing</th>
-                                <th>Overall Consumer Experience Analysis</th>
+                                <th style={{ width: "11vw" }}>
+                                    <p className='m-1'>Customer Arrival and</p>
+                                    <p className='m-0'>Staff Gromming</p>
+                                    <p className='m-1'>Analysis</p>
+                                </th>
+                                <th style={{ width: "10vw" }}>
+                                    <p className='m-1'>Store Interior and</p>
+                                    <p className='m-0'>Product Display</p>
+                                </th>
+                                <th style={{ width: "9vw" }}>
+                                    <p className='m-1'>Interaction with</p>
+                                    <p className='m-0'>staff</p></th>
+                                <th style={{ width: "9vw" }}>
+                                    <p className='m-1'>Cash Counter</p>
+                                    <p className='m-0'>and Billing</p></th>
+                                <th style={{ width: "11vw" }}>
+                                    <p className='m-1'>Overall Consumer</p>
+                                    <p className='m-0'>Experience Analysis</p></th>
                                 <th>Report</th>
                             </tr>
                         </thead>
@@ -179,7 +192,7 @@ const ReportBrowser = () => {
                     </table>
                 </div>
             </div>
-        </div>
+        </div >
     );
 };
 

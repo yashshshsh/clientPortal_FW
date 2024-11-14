@@ -122,12 +122,30 @@ const StorePerf = ({ setState }) => {
                                 <th className='SNO'>S no.</th>
                                 <th className="audit" style={{ minWidth: "270px" }}>Audit</th>
                                 <th style={{ minWidth: "90px" }}>Max Marks</th>
-                                <th style={{ minWidth: "140px" }}>Customer Arrival and Staff Grooming Analysis</th>
-                                <th style={{ minWidth: "140px" }}>Interaction with Staff</th>
-                                <th style={{ minWidth: "140px" }}>Customer Arrival and Staff Grooming Analysis</th>
-                                <th style={{ minWidth: "140px" }}>Interaction with Staff</th>
-                                <th style={{ minWidth: "140px" }}>Customer Arrival and Staff Grooming Analysis</th>
-                                <th style={{ minWidth: "140px" }}>Interaction with Staff</th>
+                                <th style={{ width: "11vw" }}>
+                                    <p className='m-1'>Customer Arrival and</p>
+                                    <p className='m-0'>Staff Gromming</p>
+                                    <p className='m-1'>Analysis</p>
+                                </th>
+                                <th style={{ width: "11vw" }}>
+                                    <p className='m-1'>Interaction with</p>
+                                    <p className='m-0'>Staff</p></th>
+                                <th style={{ width: "11vw" }}>
+                                    <p className='m-1'>Customer Arrival and</p>
+                                    <p className='m-0'>Staff Gromming</p>
+                                    <p className='m-1'>Analysis</p>
+                                </th>
+                                 <th style={{ width: "11vw" }}>
+                                    <p className='m-1'>Interaction with</p>
+                                    <p className='m-0'>Staff</p></th>
+                                <th style={{ width: "11vw" }}>
+                                    <p className='m-1'>Customer Arrival and</p>
+                                    <p className='m-0'>Staff Gromming</p>
+                                    <p className='m-1'>Analysis</p>
+                                </th>
+                                 <th style={{ width: "11vw" }}>
+                                    <p className='m-1'>Interaction with</p>
+                                    <p className='m-0'>Staff</p></th>
                             </tr>
                         </thead>
                         <tbody>
