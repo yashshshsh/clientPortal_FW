@@ -14,8 +14,6 @@ const UpAudits = () => {
 
   // Get the month index from the selected month name
   const monthIndex = months.indexOf(activeMonth);
-  const rows = 10; // Adjust the number of rows
-  const columns = 7; // Adjust the number of columns
 
   // Calculate the number of days in the selected month
   const daysInMonth = new Date(year, monthIndex + 1, 0).getDate();

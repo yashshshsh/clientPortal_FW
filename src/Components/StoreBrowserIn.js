@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import CircularBar from './ChartsBars/CircularBar.js'
 import '../CSS/StoreBrowserIn.css'
 import Trends from './Trends.js'
