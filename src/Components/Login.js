@@ -66,7 +66,7 @@ const Login = () => {
                 <p className='forPass'>Forgot Password ?</p>
                 <div className="robot-div p-2 df">
                   <ReCAPTCHA
-                    sitekey="6LdM4moqAAAAAC858IqJxnM_55pq62QM6hznjZht"
+                    sitekey="6LdacYIqAAAAAKULP1a-WnFl1gDrTuHr91dQhcOM"
                     onChange={handleCaptchaChange}
                     style={{
                       width: "100%",
