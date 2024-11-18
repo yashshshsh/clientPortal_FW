@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styles from '../CSS/ReportBrowser.module.css';
 import { useNavigate } from 'react-router-dom';
+import * as XLSX from "xlsx";
 import downImg from '../Images/vertical_align_bottom.png'
 import textImg from '../Images/Text.png'
 import Calendar from 'react-calendar';
@@ -41,7 +42,7 @@ const ReportBrowser = () => {
     }
     const [value] = useState(new Date());
     const [openDropdown, setOpenDropdown] = useState(null); // For parent dropdown
-    const [openNestedDropdowns, setOpenNestedDropdowns] = useState([]); 
+    const [openNestedDropdowns, setOpenNestedDropdowns] = useState([]);
     const [calenderOpen1, setCalenderOpen1] = useState(false);
     const [calenderOpen2, setCalenderOpen2] = useState(false);
     const [selectedDate1, setSelectedDate1] = useState(null);
@@ -61,6 +62,30 @@ const ReportBrowser = () => {
         return new Date(date).toLocaleDateString(undefined, options); // Example: "November 17, 2024"
     };
 
+    const downloadTableAsExcelObs = () => {
+        const table = document.getElementById("table-to-export");
+
+        const wb = XLSX.utils.table_to_book(table, { sheet: "Sheet1" });
+
+        // Create a binary string from the workbook
+        const wbout = XLSX.write(wb, { bookType: "xlsx", type: "binary" });
+
+        // Create a buffer for the binary string
+        const s2ab = (s) => {
+            const buf = new ArrayBuffer(s.length);
+            const view = new Uint8Array(buf);
+            for (let i = 0; i < s.length; i++) view[i] = s.charCodeAt(i) & 0xff;
+            return buf;
+        };
+
+        // Create a download link and trigger it
+        const blob = new Blob([s2ab(wbout)], { type: "application/octet-stream" });
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = "table-report.xlsx"; // Set the file name
+        link.click();
+    };
+
     return (
         <div>
             <div className="hero-section my-1 px-4">
@@ -70,7 +95,7 @@ const ReportBrowser = () => {
                             <p className="my-2">Report Browser</p>
                         </div>
                     </div>
-                    <div className={`${styles.exportList} d-flex justify-content-center align-items-center`}>
+                    <div onClick={downloadTableAsExcelObs} className={`${styles.exportList} d-flex justify-content-center align-items-center`}>
                         <p className="my-2">Export List</p>
                         <div className={styles.downIcon}>
                             <img src={downImg} alt="img" />
@@ -125,9 +150,9 @@ const ReportBrowser = () => {
                                 {openNestedDropdowns.includes('startDate') && (
                                     <div className={`${styles.dropdownNes}`}>
                                         <div onClick={() => {
-                                                setCalenderOpen1((prev) => !prev);
-                                                setOpenDropdown((prev) => !prev);
-                                            }}
+                                            setCalenderOpen1((prev) => !prev);
+                                            setOpenDropdown((prev) => !prev);
+                                        }}
                                             className={`${styles.startDateP} df`}
                                         >
                                             <p className='my-1'>{selectedDate1 ? formatDate(selectedDate1) : "Select a start date"}</p>
@@ -149,9 +174,9 @@ const ReportBrowser = () => {
                                 {openNestedDropdowns.includes('endDate') && (
                                     <div className={`${styles.dropdownNes}`}>
                                         <div onClick={() => {
-                                                setCalenderOpen2((prev) => !prev);
-                                                setOpenDropdown((prev) => !prev);
-                                            }}
+                                            setCalenderOpen2((prev) => !prev);
+                                            setOpenDropdown((prev) => !prev);
+                                        }}
                                             className={`${styles.startDateP} df`}
                                         >
                                             <p className='my-1'>{selectedDate2 ? formatDate(selectedDate2) : "Select a end date"}</p>
@@ -193,24 +218,26 @@ const ReportBrowser = () => {
                                         <li>
                                             <div
                                                 className={`${styles.dropList} d-flex justify-content-between align-items-center`}
-                                                onClick={() => {toggleNestedDropdown('startDate');
+                                                onClick={() => {
+                                                    toggleNestedDropdown('startDate');
                                                 }}
                                             >
                                                 <p className="my-2">Start Date</p>
-                                                <i onClick={()=>{
-                                                     
+                                                <i onClick={() => {
+
                                                 }} className={`bi ${openNestedDropdowns.includes('startDate') ? 'bi-dash' : 'bi-plus'}`}></i>
                                             </div>
                                         </li>
                                         <li>
                                             <div
                                                 className={`${styles.dropList} d-flex justify-content-between align-items-center`}
-                                                onClick={() => {toggleNestedDropdown('endDate');
+                                                onClick={() => {
+                                                    toggleNestedDropdown('endDate');
                                                 }}
                                             >
                                                 <p className="my-2">End Date</p>
-                                                <i onClick={()=>{
-                                                     
+                                                <i onClick={() => {
+
                                                 }} className={`bi ${openNestedDropdowns.includes('endDate') ? 'bi-dash' : 'bi-plus'}`}></i>
                                             </div>
                                         </li>
@@ -223,7 +250,7 @@ const ReportBrowser = () => {
             </div>
 
             <div className={`${styles.dashTable} my-4 table-responsive`}>
-                <table>
+                <table id="table-to-export">
                     <thead>
                         <tr>
                             <th style={{ width: "3rem" }}>S no.</th>

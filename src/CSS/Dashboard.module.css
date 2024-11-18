@@ -141,6 +141,15 @@
     transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
+.dropList {
+    font-family: "Lato", sans-serif;
+    color : #353E4C;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 19px;  
+    cursor: pointer;
+}
+
 .dropdown-menu.show {
     opacity: 1;
     transform: translateY(0);

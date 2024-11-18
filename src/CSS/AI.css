@@ -180,6 +180,7 @@ table{
     width: 166px;
     height: 41px;
     border: 2px solid #007DC1;
+    cursor: pointer;
     border-radius: 8px;
 }
 

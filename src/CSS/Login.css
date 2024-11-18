@@ -18,6 +18,11 @@
     }
 }
 
+.df{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 .navb {
     padding: 0 4.7rem;
@@ -147,35 +152,8 @@
     box-shadow: none;
 }
 
-.forPass {
-    color: #7991A4;
-    font-family: "Lato", sans-serif;
-    font-weight: 500;
-    font-size: 14px;
-}
-
-.captcha img {
-    height: 28px;
-}
-
-.robot-div {
-    border: 1px solid #D6D6D6;
-    border-radius: 5px;
-}
-
-.check input {
-    background-color: #FFFFFF;
-    height: 24px;
-    width: 24px;
-    border: 1px solid #D6D6D6 !important;
-}
-
-.check p {
-    color: #4B5563;
-    font-weight: 500;
-    font-family: "Roboto", sans-serif;
-    font-size: 12px;
-    line-height: 14px;
+.robot-div{
+    width: 100%;
 }
 
 .lab-inp {

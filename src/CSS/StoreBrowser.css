@@ -19,6 +19,7 @@
     width : 7.2rem;
     height: 100%;
     gap : 0.5rem;
+    cursor: pointer;
     border-radius: 8px;
     font-family: "Roboto", sans-serif;
     font-weight: 600;

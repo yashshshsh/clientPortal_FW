@@ -1,7 +1,12 @@
 import React from 'react'
 import '../CSS/AI.css'
+import { useNavigate } from 'react-router-dom'
 
 const AI = () => {
+    const navigation = useNavigate();
+    const handleViewReport = () =>{
+        navigation('/auditReport');
+    }
     return (
         <div>
             <div className="hero-ai px-4">
@@ -116,7 +121,7 @@ const AI = () => {
                                     </div>
                                     <p className='my-2'>View AI Insights</p>
                                 </div>
-                                <div className="view-report df">
+                                <div onClick={handleViewReport} className="view-report df">
                                     <p className='my-3'>View Report</p>
                                 </div>
                             </div>
@@ -184,7 +189,7 @@ const AI = () => {
                                     </div>
                                     <p className='my-2'>View AI Insights</p>
                                 </div>
-                                <div className="view-report df">
+                                <div onClick={handleViewReport} className="view-report df">
                                     <p className='my-3'>View Report</p>
                                 </div>
                             </div>
@@ -263,7 +268,7 @@ const AI = () => {
                                     </div>
                                     <p className='my-2'>View AI Insights</p>
                                 </div>
-                                <div className="view-report df">
+                                <div onClick={handleViewReport} className="view-report df">
                                     <p className='my-3'>View Report</p>
                                 </div>
                             </div>
@@ -340,7 +345,7 @@ const AI = () => {
                                     </div>
                                     <p className='my-2'>View AI Insights</p>
                                 </div>
-                                <div className="view-report df">
+                                <div onClick={handleViewReport} className="view-report df">
                                     <p className='my-3'>View Report</p>
                                 </div>
                             </div>

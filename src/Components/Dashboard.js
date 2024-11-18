@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useState, useRef } from 'react'
 import styles from '../CSS/Dashboard.module.css'
 import DashedProgressBar from '../Components/ChartsBars/DashedBarProgress'
 import AuditCalendar from '../Components/AuditCalender'
@@ -17,11 +17,18 @@ const Dashboard = () => {
         return "#8DC63F";
     };
 
-    // const [isSectionDropOpen, setIsSectionDropOpen] = useState(false);
+    const [isSectionDropOpen, setIsSectionDropOpen] = useState(false);
+    const [openNestedDropdowns, setOpenNestedDropdowns] = useState([]); 
 
-    // const toggleDropdown = () => {
-    //     setIsSectionDropOpen((prev) => !prev);
-    // };
+    const toggleDropdown = () => {
+        setIsSectionDropOpen((prev) => !prev);
+    };
+
+    const toggleNestedDropdown = (item) => {
+        setOpenNestedDropdowns((prev) =>
+            prev.includes(item) ? prev.filter((i) => i !== item) : [...prev, item]
+        );
+    };
 
     const barChartRef = useRef(null);
     const barChartRef1 = useRef(null);
@@ -30,7 +37,7 @@ const Dashboard = () => {
     const downloadBarChartAsPNG = (chartRef) => {
         html2canvas(chartRef.current).then((canvas) => {
             const imageUrl = canvas.toDataURL("image/png");
-    
+
             // Trigger the download
             const link = document.createElement("a");
             link.href = imageUrl;
@@ -42,10 +49,8 @@ const Dashboard = () => {
     };
 
     const downloadTableAsExcelObs = () => {
-        // Get the table element
         const table = document.getElementById("table-to-export");
 
-        // Create a new workbook
         const wb = XLSX.utils.table_to_book(table, { sheet: "Sheet1" });
 
         // Create a binary string from the workbook
@@ -145,7 +150,7 @@ const Dashboard = () => {
                         </div>
                         <div className='ms-auto'>
                             <div className={styles.auditCycleRight + ' my-2 ms-auto gap-4 d-flex align-items-center'}>
-                                <div className={styles.addSection + ' d-flex gap-2 justify-content-center align-items-center'}>
+                                <div onClick={toggleDropdown} className={styles.addSection + ' d-flex gap-2 justify-content-center align-items-center'}>
                                     <p>Add Section</p>
                                     <i className="bi bi-plus-square"></i>
                                 </div>
@@ -154,42 +159,33 @@ const Dashboard = () => {
                                     <img src={downImg} alt="img" />
                                 </div>
                             </div>
-                            {/* <div>{isSectionDropOpen && (
+                            <div>{isSectionDropOpen && (
                                 <ul
                                     className={`${styles.dropdownMenu} dropdown-menu position-static d-grid gap-1 p-2 rounded-3 mx-0 shadow w-220px`}
                                 >
                                     <li>
-                                        <a className="dropdown-item rounded-2 active" href="#">
-                                            Action
-                                        </a>
+                                        <div className={`${styles.dropList} d-flex justify-content-between align-items-center`}
+                                            onClick={() => toggleNestedDropdown('survey-details')}>
+                                            <p className="my-2">Survey Details</p>
+                                            <i className={`bi ${openNestedDropdowns.includes('survey-details') ? 'bi-dash' : 'bi-plus'}`}></i>
+                                        </div>
                                     </li>
                                     <li>
-                                        <a className="dropdown-item rounded-2" href="#">
-                                            Another action
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a className="dropdown-item rounded-2" href="#">
-                                            Something else here
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <hr className="dropdown-divider" />
-                                    </li>
-                                    <li>
-                                        <a className="dropdown-item rounded-2" href="#">
-                                            Separated link
-                                        </a>
+                                        <div className={`${styles.dropList} d-flex justify-content-between align-items-center`}
+                                            onClick={() => toggleNestedDropdown('nps-survey')}>
+                                            <p className="my-2">NPS Survey</p>
+                                            <i className={`bi ${openNestedDropdowns.includes('nps-survey') ? 'bi-dash' : 'bi-plus'}`}></i>
+                                        </div>
                                     </li>
                                 </ul>
-                            )}</div> */}
+                            )}</div>
 
                         </div>
                     </div>
 
                     <div className={styles.dashSecHero + '  justify-content-center align-items-center row d-flex'}>
                         <div ref={barChartRef} className={styles.secHeroLeft + ' col-sm-9'}>
-                            <BarChart/>
+                            <BarChart />
                         </div>
 
                         <div className={styles.secHeroSection + ' col-sm-3'}>
@@ -289,7 +285,7 @@ const Dashboard = () => {
 
                         <div className={`${styles.dashForthLeft} col-md-6`}>
                             <OverallPerformance downloadBarChartAsPNG={() => downloadBarChartAsPNG(barChartRef2)}
-                        barChartRef={barChartRef2} />
+                                barChartRef={barChartRef2} />
                         </div>
                     </div>
                 </div>

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import downImg from '../Images/vertical_align_bottom.png'
 import textImg from '../Images/Text.png'
+import * as XLSX from "xlsx";
 import styles from '../CSS/ActionTrack.module.css';
 
 const ActionTrack = () => {
@@ -31,6 +32,30 @@ const ActionTrack = () => {
     const [openDropdown, setOpenDropdown] = useState(false);
     const [openNestedDropdowns, setOpenNestedDropdowns] = useState(null);
 
+    const downloadTableAsExcelObs = () => {
+        const table = document.getElementById("table-to-export");
+
+        const wb = XLSX.utils.table_to_book(table, { sheet: "Sheet1" });
+
+        // Create a binary string from the workbook
+        const wbout = XLSX.write(wb, { bookType: "xlsx", type: "binary" });
+
+        // Create a buffer for the binary string
+        const s2ab = (s) => {
+            const buf = new ArrayBuffer(s.length);
+            const view = new Uint8Array(buf);
+            for (let i = 0; i < s.length; i++) view[i] = s.charCodeAt(i) & 0xff;
+            return buf;
+        };
+
+        // Create a download link and trigger it
+        const blob = new Blob([s2ab(wbout)], { type: "application/octet-stream" });
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = "table-report.xlsx"; // Set the file name
+        link.click();
+    };
+
     return (
         <div>
             {openNestedDropdowns && (
@@ -50,7 +75,7 @@ const ActionTrack = () => {
                             <option>Nps - June - 2024</option>
                         </select>
                     </div>
-                    <div className={`${styles.exportList} d-flex justify-content-center align-items-center`}>
+                    <div onClick={downloadTableAsExcelObs} className={`${styles.exportList} d-flex justify-content-center align-items-center`}>
                         <p className="my-2">Export List</p>
                         <div className={styles.downIcon}>
                             <img src={downImg} alt="img" />
@@ -118,7 +143,7 @@ const ActionTrack = () => {
                 </div>
 
                 <div className={`${styles.dashTable} my-4 table-responsive `}>
-                    <table>
+                    <table id="table-to-export">
                         <thead>
                             <tr>
                                 <th style={{ width: "56px" }}>S no.</th>

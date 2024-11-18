@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import logo from '../Images/Floorwalk logo7x.png';
 import leftImg from '../Images/Rectangle 1789.png';
 import eyeLock from '../Images/visibility_lock.png'
-import captcha from '../Images/Frame.png'
 import rightImg from '../Images/Rectangle 1790.png';
+import ReCAPTCHA from "react-google-recaptcha";
 import '../CSS/Login.css';
 import { useNavigate } from 'react-router-dom';
 
@@ -18,6 +18,12 @@ const Login = () => {
     const handleResize = () => setScreenWidth(window.innerWidth);
     window.addEventListener('resize', handleResize);
   }, []);
+// eslint-disable-next-line
+  const [captchaValue, setCaptchaValue] = useState(null);
+
+  const handleCaptchaChange = (value) => {
+    setCaptchaValue(!!value); // Update state based on the captcha response
+  };
 
   return (
 
@@ -58,14 +64,16 @@ const Login = () => {
                   </div>
                 </div>
                 <p className='forPass'>Forgot Password ?</p>
-                <div className="robot-div p-2 d-flex shadow-sm align-items-center justify-content-between">
-                  <div className="check df">
-                    <input type='checkbox'></input>
-                    <p className='my-2 ms-2'>I’m not a robot</p>
-                  </div>
-                  <div className="captcha">
-                    <img src={captcha} alt="img" />
-                  </div>
+                <div className="robot-div p-2 df">
+                  <ReCAPTCHA
+                    sitekey="6LdM4moqAAAAAC858IqJxnM_55pq62QM6hznjZht"
+                    onChange={handleCaptchaChange}
+                    style={{
+                      width: "100%",
+                      transform: "scale(1.10,1)",
+                      transformOrigin: "0 0",
+                    }}
+                  />
                 </div>
 
                 <div onClick={handleLoginClick} className="login-btn my-4 df ms-auto">

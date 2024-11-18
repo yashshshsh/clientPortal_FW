@@ -46,11 +46,7 @@
     height : 2rem;
     cursor : pointer;
     border : 1px solid black;
-}
-
-.action-textArea{
-    width: 33vw;
-}
+}   
 
 .action-textArea textarea{
     width: 100%;

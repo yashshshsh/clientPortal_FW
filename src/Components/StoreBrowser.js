@@ -3,6 +3,7 @@ import textImg from '../Images/Text.png'
 import downImg from '../Images/vertical_align_bottom.png'
 import '../CSS/StoreBrowser.css'
 import { useNavigate } from 'react-router-dom'
+import * as XLSX from "xlsx";
 
 const StoreBrowser = () => {
     const data = [
@@ -46,7 +47,29 @@ const StoreBrowser = () => {
         setOpenDropdown((prev) => (prev === item ? null : item));
     };
 
+    const downloadTableAsExcelObs = () => {
+        const table = document.getElementById("table-to-export");
 
+        const wb = XLSX.utils.table_to_book(table, { sheet: "Sheet1" });
+
+        // Create a binary string from the workbook
+        const wbout = XLSX.write(wb, { bookType: "xlsx", type: "binary" });
+
+        // Create a buffer for the binary string
+        const s2ab = (s) => {
+            const buf = new ArrayBuffer(s.length);
+            const view = new Uint8Array(buf);
+            for (let i = 0; i < s.length; i++) view[i] = s.charCodeAt(i) & 0xff;
+            return buf;
+        };
+
+        // Create a download link and trigger it
+        const blob = new Blob([s2ab(wbout)], { type: "application/octet-stream" });
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = "table-report.xlsx"; // Set the file name
+        link.click();
+    };
     return (
         <div className='px-4'>
             <div className="head d-flex justify-content-between align-items-center">
@@ -55,7 +78,7 @@ const StoreBrowser = () => {
                         <p className="my-2">Store Browser</p>
                     </div>
                 </div>
-                <div className="exportList d-flex justify-content-center align-items-center">
+                <div onClick={downloadTableAsExcelObs} className="exportList d-flex justify-content-center align-items-center">
                     <p className="my-2">Export List</p>
                     <div className="downIcon">
                         <img src={downImg} alt="img" />
@@ -159,7 +182,7 @@ const StoreBrowser = () => {
             </div>
 
             <div className="table table-responsive my-3">
-                <table>
+                <table id="table-to-export">
                     <thead>
                         <tr>
                             <th>S. No.</th>

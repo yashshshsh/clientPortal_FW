@@ -1,5 +1,7 @@
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
+import * as XLSX from "xlsx";
 import '../CSS/StorePerf.css'
+import downImg from '../Images/vertical_align_bottom.png'
 import textImg from '../Images/Text.png'
 import { useNavigate } from 'react-router-dom';
 
@@ -43,6 +45,42 @@ const StorePerf = ({ setState }) => {
             setState("reports");
             navigate('/storeBrowserInsights');
         }, 300);
+    };
+
+    const [openDropdown, setOpenDropdown] = useState(null); // For parent dropdown
+    const [openNestedDropdowns, setOpenNestedDropdowns] = useState([]);
+
+    const toggleNestedDropdown = (item) => {
+        setOpenNestedDropdowns((prev) =>
+            prev.includes(item) ? prev.filter((i) => i !== item) : [...prev, item]
+        );
+    };
+    const toggleDropdown = (item) => {
+        setOpenDropdown((prev) => (prev === item ? null : item));
+    };
+
+    const downloadTableAsExcelObs = () => {
+        const table = document.getElementById("table-to-export");
+
+        const wb = XLSX.utils.table_to_book(table, { sheet: "Sheet1" });
+
+        // Create a binary string from the workbook
+        const wbout = XLSX.write(wb, { bookType: "xlsx", type: "binary" });
+
+        // Create a buffer for the binary string
+        const s2ab = (s) => {
+            const buf = new ArrayBuffer(s.length);
+            const view = new Uint8Array(buf);
+            for (let i = 0; i < s.length; i++) view[i] = s.charCodeAt(i) & 0xff;
+            return buf;
+        };
+
+        // Create a download link and trigger it
+        const blob = new Blob([s2ab(wbout)], { type: "application/octet-stream" });
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = "table-report.xlsx"; // Set the file name
+        link.click();
     };
 
     return (
@@ -104,19 +142,105 @@ const StorePerf = ({ setState }) => {
                             <img src={textImg} alt="img" />
                         </div>
                     </div>
-                    <div className="filter gap-2 d-flex justify-content-center align-items-center">
-                        <p className="filterText my-1">Filter</p>
-                        <div className="filterIcon">
-                            <i className="bi bi-filter"></i>
+                    <div>
+                        <div className="filterParent d-flex align-items-center gap-3" >
+                            <div onClick={() => toggleDropdown('filter')} className="filter gap-2 d-flex justify-content-center align-items-center">
+                                <p className="filterText my-1">Filter</p>
+                                <div className="filterIcon">
+                                    <i className="bi bi-filter"></i>
+                                </div>
+                            </div>
+
+                            {openNestedDropdowns.includes('code') && (
+                                <div className="dropdownNes dropdownNes-storeCode">
+                                    <input type='text' placeholder='Store Code' />
+                                </div>
+                            )}
+                            {openNestedDropdowns.includes('city') && (
+                                <div className="dropdownNes">
+                                    <select name="City" defaultValue="">
+                                        <option value="" disabled>
+                                            Select a City
+                                        </option>
+                                        <option value="mp">Madhya Pradesh</option>
+                                        <option value="gujarat">Gujarat</option>
+                                        <option value="rajasthan">Rajasthan</option>
+                                    </select>
+                                </div>
+                            )}
+                            {openNestedDropdowns.includes('percentage') && (
+                                <div className="dropdownNes df gap-3">
+                                    <p className='my-2'>Percentage</p>
+                                    <div className='per-inputDiv'>
+                                        <input type='text' />
+                                    </div>
+                                    <p className='my-2'>To</p>
+                                    <div className='per-inputDiv'>
+                                        <input type='text' />
+                                    </div>
+
+                                </div>
+                            )}
+                        </div>
+                        {openDropdown === 'filter' && (
+                            <div>
+                                <ul className={` dropdown-menu shadow-lg d-grid gap-1 p-2 rounded-3 mx-0 w-220px`}>
+                                    <li>
+                                        <div className="dropList d-flex justify-content-between align-items-center"
+                                            onClick={() => toggleNestedDropdown('code')}>
+                                            <p className="my-2">Store Code</p>
+                                            <i className={`bi ${openNestedDropdowns.includes('code') ? 'bi-dash' : 'bi-plus'}`}></i>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div
+                                            className="dropList d-flex justify-content-between align-items-center"
+                                            onClick={() => toggleNestedDropdown('city')}
+                                        >
+                                            <p className="my-2">City</p>
+                                            <i className={`bi ${openNestedDropdowns.includes('city') ? 'bi-dash' : 'bi-plus'}`}></i>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div
+                                            className="dropList d-flex justify-content-between align-items-center"
+                                            onClick={() => {
+                                                toggleNestedDropdown('percentage');
+                                            }}
+                                        >
+                                            <p className="my-2">Percentage</p>
+                                            <i onClick={() => {
+
+                                            }} className={`bi ${openNestedDropdowns.includes('percentage') ? 'bi-dash' : 'bi-plus'}`}></i>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        )}
+                    </div>
+                </div>
+                <div className='df gap-3'>
+                    <div onClick={() => {
+                        setOpenNestedDropdowns([]);
+                        setOpenDropdown(null);
+                    }} className="clearFilter d-flex align-items-center">
+                        <p className="my-1">Clear Filter</p>
+                    </div>
+
+                    <div onClick={downloadTableAsExcelObs} className="exportList d-flex justify-content-center align-items-center">
+                        <p className="my-2">Export List</p>
+                        <div className="downIcon">
+                            <img src={downImg} alt="img" />
                         </div>
                     </div>
                 </div>
+
             </div>
             <div className="perf-lower my-3">
                 <p className='text-start'>Top Score Performer Stores</p>
 
                 <div className="table-bordered table-responsive">
-                    <table>
+                    <table id="table-to-export">
                         <thead>
                             <tr>
                                 <th className='SNO'>S no.</th>
@@ -135,7 +259,7 @@ const StorePerf = ({ setState }) => {
                                     <p className='m-0'>Staff Gromming</p>
                                     <p className='m-1'>Analysis</p>
                                 </th>
-                                 <th style={{ width: "11vw" }}>
+                                <th style={{ width: "11vw" }}>
                                     <p className='m-1'>Interaction with</p>
                                     <p className='m-0'>Staff</p></th>
                                 <th style={{ width: "11vw" }}>
@@ -143,7 +267,7 @@ const StorePerf = ({ setState }) => {
                                     <p className='m-0'>Staff Gromming</p>
                                     <p className='m-1'>Analysis</p>
                                 </th>
-                                 <th style={{ width: "11vw" }}>
+                                <th style={{ width: "11vw" }}>
                                     <p className='m-1'>Interaction with</p>
                                     <p className='m-0'>Staff</p></th>
                             </tr>
