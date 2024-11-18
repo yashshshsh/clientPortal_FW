@@ -37,9 +37,24 @@
     height : 44px;
     display: flex;
     justify-content: center;
+    cursor : pointer;
     align-items: center;
 }
 
+.targetDiv{
+    width: 90%;
+    height : 2rem;
+    cursor : pointer;
+    border : 1px solid black;
+}
+
+.action-textArea{
+    width: 33vw;
+}
+
+.action-textArea textarea{
+    width: 100%;
+}
 .action {
     background-color: #007DC1;
     font-size: 14px;

@@ -82,11 +82,21 @@
     line-height: 19px;
 }
 
+.dropList {
+    font-family: "Lato", sans-serif;
+    color : #353E4C;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 19px;  
+    cursor: pointer;
+}
+
 .filter{
     width: 7em;
     border: 1px solid #007DC1;
     border-radius: 5px;
     padding : 12px 24px;
+    cursor: pointer;
     color : #007DC1;
     font-family: "Roboto", sans-serif;
     font-size: 16px;
@@ -115,6 +125,7 @@
     font-size: 1rem;
     font-weight: 600;
     line-height: 1rem;
+    cursor: pointer;
     color : #007DC1;
     text-decoration: underline;
     width: 6rem;

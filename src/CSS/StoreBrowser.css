@@ -1,5 +1,4 @@
 .repoHead{
-    /* width : 12rem; */
     height : 1.5rem;
     color : #003C5D;
     font-size: 1.3rem;
@@ -76,6 +75,7 @@
     border-radius: 5px;
     padding : 12px 24px;
     color : #007DC1;
+    cursor: pointer;
     font-family: "Roboto", sans-serif;
     font-size: 16px;
     font-weight: 600;
@@ -104,6 +104,7 @@
     font-weight: 600;
     line-height: 1rem;
     color : #007DC1;
+    cursor: pointer;
     text-decoration: underline;
     width: 6rem;
 }
@@ -113,7 +114,6 @@
         display: none;
     }
 }
-
 
 .clearFilter p{
     width: 100%;
@@ -157,4 +157,61 @@
     display: flex;
     justify-content: center;
     align-self: center;
+}
+
+.dropdownNes-storeCode,.per-inputDiv{
+    border-radius: 5px;
+    border : 1.5px solid #353E4C;
+}
+
+.per-inputDiv{
+    width: 5vw;
+}
+
+.dropdownNes input,.per-inputDiv input{
+    outline: none;
+    border :none;
+    border-radius: 2px;
+    padding-left: 0.6rem;
+    height: 2rem;
+    width: 100%;
+}
+
+.dropdownNes-storeCode input::placeholder,.per-inputDiv input::placeholder {
+    font-family: "Lato", sans-serif;
+    font-weight: 400;
+    color : #353E4C;
+    font-size: 1rem;
+    line-height: 19px;
+}
+
+.dropList {
+    font-family: "Lato", sans-serif;
+    color : #353E4C;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 19px;  
+    cursor: pointer;
+}
+
+.dropdownNes {
+    position: relative;
+}
+
+.dropdownNes select{
+    height: 2rem;
+    width: 12vw;
+    border-radius: 5px;
+    border : 1px solid #353E4C;
+    outline : none;
+    padding-left: 0.5rem;
+}
+
+.dropdownNes option{
+    font-family: "Lato", sans-serif;
+    color : #353E4C;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 19px;  
+    cursor: pointer;
 }

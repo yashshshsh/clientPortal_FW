@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import downImg from '../Images/vertical_align_bottom.png'
 import textImg from '../Images/Text.png'
 import styles from '../CSS/ActionTrack.module.css';
@@ -28,9 +28,16 @@ const ActionTrack = () => {
             reportAction: "Mark as Completed"
         }
     ];
+    const [openDropdown, setOpenDropdown] = useState(false);
+    const [openNestedDropdowns, setOpenNestedDropdowns] = useState(null);
 
     return (
         <div>
+            {openNestedDropdowns && (
+                <div className="d-none">
+                    Hii
+                </div>
+            )}
             <div className={`${styles.heroSection} px-4 my-4`}>
                 <div className={`${styles.repoHead} d-flex align-items-center`}>
                     <div className={styles.reportPara}>
@@ -46,7 +53,7 @@ const ActionTrack = () => {
                     <div className={`${styles.exportList} d-flex justify-content-center align-items-center`}>
                         <p className="my-2">Export List</p>
                         <div className={styles.downIcon}>
-                        <img src={downImg} alt="img" />
+                            <img src={downImg} alt="img" />
                         </div>
                     </div>
                 </div>
@@ -62,14 +69,50 @@ const ActionTrack = () => {
                                 <img src={textImg} alt="img" />
                             </div>
                         </div>
-                        <div className={`${styles.filter} gap-2 d-flex justify-content-center align-items-center`}>
+
+                        <div onClick={() => setOpenDropdown(!openDropdown)} className={`${styles.filter} gap-2 d-flex justify-content-center align-items-center`}>
                             <p className={`${styles.filterText} my-1`}>Filter</p>
                             <div className={styles.filterIcon}>
                                 <i className="bi bi-filter"></i>
                             </div>
                         </div>
+                        {openDropdown && (
+                            <div>
+                                <ul className={` dropdown-menu shadow-lg d-grid gap-1 p-2 rounded-3 mx-0 w-220px`}>
+                                    <li>
+                                        <div className={`${styles.dropList} d-flex justify-content-between align-items-center`}
+                                            onClick={() => {
+                                                setOpenNestedDropdowns('All');
+                                                setOpenDropdown(false);
+                                            }}>
+                                            <p className="my-2">All</p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div className={`${styles.dropList} d-flex justify-content-between align-items-center`}
+                                            onClick={() => {
+                                                setOpenNestedDropdowns('Pending');
+                                                setOpenDropdown(false);
+                                            }}>
+                                            <p className="my-2">Pending</p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div
+                                            className={`${styles.dropList} d-flex justify-content-between align-items-center`}
+                                            onClick={() => {
+                                                setOpenNestedDropdowns('Action Taken');
+                                                setOpenDropdown(false);
+                                            }}
+                                        >
+                                            <p className="my-2">Action Taken</p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        )}
                     </div>
-                    <div className={`${styles.clearFilter} d-flex align-items-center`}>
+                    <div onClick={() => { setOpenNestedDropdowns(null) }} className={`${styles.clearFilter} d-flex align-items-center`}>
                         <p className="my-1">Clear Filter</p>
                     </div>
                 </div>
@@ -149,6 +192,7 @@ const ActionTrack = () => {
                         </tbody>
                     </table>
                 </div>
+
             </div>
         </div>
     );

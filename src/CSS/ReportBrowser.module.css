@@ -63,6 +63,45 @@
     height: 3rem;
 }
 
+.dropList {
+    font-family: "Lato", sans-serif;
+    color : #353E4C;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 19px;  
+    cursor: pointer;
+}
+
+.dropdownNes {
+    position: relative;
+}
+
+.dropdownNes select{
+    height: 2rem;
+    width: 12vw;
+    border-radius: 5px;
+    border : 1px solid #353E4C;
+    outline : none;
+    padding-left: 0.5rem;
+}
+
+.dropdownNes option{
+    font-family: "Lato", sans-serif;
+    color : #353E4C;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 19px;  
+    cursor: pointer;
+}
+
+.filterParent{
+    width: 50vw;
+}
+
+.dropList i{
+    font-size: 1.5rem;
+}
+
 .storeSearch{
     width: 99%;
     height: 90%;
@@ -87,6 +126,7 @@
     font-family: "Roboto", sans-serif;
     font-size: 16px;
     font-weight: 600;
+    cursor: pointer;
     line-height: 16px;
 }
 
@@ -206,3 +246,31 @@ td{
     outline: none;
     font-size: 13px;
 }
+
+/* Calender */
+
+.calendarContainer {
+    position: absolute;
+    /* top: 100%;  */
+    left: 0;
+    z-index: 100;
+    width: 20vw;
+    background: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    border-radius: 4px;
+}
+
+.startDateP{
+    height: 2rem;
+    font-family: "Lato", sans-serif;
+    font-weight: 400;
+    color : #353E4C;
+    font-size: 1rem;
+    line-height: 19px;
+    border-radius: 5px;
+    border : 1px solid #353E4C;
+    width: 12vw;
+    cursor: pointer;
+}
+

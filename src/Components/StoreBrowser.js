@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import textImg from '../Images/Text.png'
 import downImg from '../Images/vertical_align_bottom.png'
 import '../CSS/StoreBrowser.css'
@@ -33,6 +33,19 @@ const StoreBrowser = () => {
     const handleReportBtn = () => {
         navigate('/storeBrowserInsights');
     }
+    
+    const [openDropdown, setOpenDropdown] = useState(null); // For parent dropdown
+    const [openNestedDropdowns, setOpenNestedDropdowns] = useState([]);
+
+    const toggleNestedDropdown = (item) => {
+        setOpenNestedDropdowns((prev) =>
+            prev.includes(item) ? prev.filter((i) => i !== item) : [...prev, item]
+        );
+    };
+    const toggleDropdown = (item) => {
+        setOpenDropdown((prev) => (prev === item ? null : item));
+    };
+
 
     return (
         <div className='px-4'>
@@ -61,14 +74,86 @@ const StoreBrowser = () => {
                             <img src={textImg} alt="img" />
                         </div>
                     </div>
-                    <div className="filter gap-2 d-flex justify-content-center align-items-center">
-                        <p className="filterText my-1">Filter</p>
-                        <div className="filterIcon">
-                            <i className="bi bi-filter"></i>
+                    <div>
+                        <div className="filterParent d-flex align-items-center gap-3" >
+                            <div onClick={() => toggleDropdown('filter')} className="filter gap-2 d-flex justify-content-center align-items-center">
+                                <p className="filterText my-1">Filter</p>
+                                <div className="filterIcon">
+                                    <i className="bi bi-filter"></i>
+                                </div>
+                            </div>
+
+                            {openNestedDropdowns.includes('code') && (
+                                <div className="dropdownNes dropdownNes-storeCode">
+                                    <input type='text' placeholder='Store Code' />
+                                </div>
+                            )}
+                            {openNestedDropdowns.includes('city') && (
+                                <div className="dropdownNes">
+                                    <select name="City" defaultValue="">
+                                        <option value="" disabled>
+                                            Select a City
+                                        </option>
+                                        <option value="mp">Madhya Pradesh</option>
+                                        <option value="gujarat">Gujarat</option>
+                                        <option value="rajasthan">Rajasthan</option>
+                                    </select>
+                                </div>
+                            )}
+                            {openNestedDropdowns.includes('percentage') && (
+                                <div className="dropdownNes df gap-3">
+                                    <p className='my-2'>Percentage</p>
+                                    <div className='per-inputDiv'>
+                                        <input type='text' />
+                                    </div>
+                                    <p className='my-2'>To</p>
+                                    <div className='per-inputDiv'>
+                                        <input type='text' />
+                                    </div>
+
+                                </div>
+                            )}
                         </div>
+                        {openDropdown === 'filter' && (
+                            <div>
+                                <ul className={` dropdown-menu shadow-lg d-grid gap-1 p-2 rounded-3 mx-0 w-220px`}>
+                                    <li>
+                                        <div className="dropList d-flex justify-content-between align-items-center"
+                                            onClick={() => toggleNestedDropdown('code')}>
+                                            <p className="my-2">Store Code</p>
+                                            <i className={`bi ${openNestedDropdowns.includes('code') ? 'bi-dash' : 'bi-plus'}`}></i>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div
+                                            className="dropList d-flex justify-content-between align-items-center"
+                                            onClick={() => toggleNestedDropdown('city')}
+                                        >
+                                            <p className="my-2">City</p>
+                                            <i className={`bi ${openNestedDropdowns.includes('city') ? 'bi-dash' : 'bi-plus'}`}></i>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div
+                                            className="dropList d-flex justify-content-between align-items-center"
+                                            onClick={() => {
+                                                toggleNestedDropdown('percentage');
+                                            }}
+                                        >
+                                            <p className="my-2">Percentage</p>
+                                            <i onClick={() => {
+
+                                            }} className={`bi ${openNestedDropdowns.includes('percentage') ? 'bi-dash' : 'bi-plus'}`}></i>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        )}
                     </div>
                 </div>
-                <div className="clearFilter d-flex align-items-center">
+                <div onClick = {()=> {setOpenNestedDropdowns([]);
+                    setOpenDropdown(null);
+                }} className="clearFilter d-flex align-items-center">
                     <p className="my-1">Clear Filter</p>
                 </div>
             </div>

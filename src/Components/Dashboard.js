@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import styles from '../CSS/Dashboard.module.css'
 import DashedProgressBar from '../Components/ChartsBars/DashedBarProgress'
 import AuditCalendar from '../Components/AuditCalender'
@@ -6,6 +6,8 @@ import BarChart from './ChartsBars/BarChart'
 import StoreWiseBarChart from './ChartsBars/StoreWiseBarChart'
 import OverallPerformance from './ChartsBars/OverallPerformance'
 import downImg from '../Images/vertical_align_bottom.png'
+import html2canvas from "html2canvas";
+import * as XLSX from "xlsx";
 
 const Dashboard = () => {
     const getProgressColor = (progress) => {
@@ -14,6 +16,83 @@ const Dashboard = () => {
         if (progress >= 60 && progress < 80) return "#B4DA1F";
         return "#8DC63F";
     };
+
+    // const [isSectionDropOpen, setIsSectionDropOpen] = useState(false);
+
+    // const toggleDropdown = () => {
+    //     setIsSectionDropOpen((prev) => !prev);
+    // };
+
+    const barChartRef = useRef(null);
+    const barChartRef1 = useRef(null);
+    const barChartRef2 = useRef(null);
+
+    const downloadBarChartAsPNG = (chartRef) => {
+        html2canvas(chartRef.current).then((canvas) => {
+            const imageUrl = canvas.toDataURL("image/png");
+    
+            // Trigger the download
+            const link = document.createElement("a");
+            link.href = imageUrl;
+            link.setAttribute("download", "bar-chart.png");
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link); // Clean up
+        });
+    };
+
+    const downloadTableAsExcelObs = () => {
+        // Get the table element
+        const table = document.getElementById("table-to-export");
+
+        // Create a new workbook
+        const wb = XLSX.utils.table_to_book(table, { sheet: "Sheet1" });
+
+        // Create a binary string from the workbook
+        const wbout = XLSX.write(wb, { bookType: "xlsx", type: "binary" });
+
+        // Create a buffer for the binary string
+        const s2ab = (s) => {
+            const buf = new ArrayBuffer(s.length);
+            const view = new Uint8Array(buf);
+            for (let i = 0; i < s.length; i++) view[i] = s.charCodeAt(i) & 0xff;
+            return buf;
+        };
+
+        // Create a download link and trigger it
+        const blob = new Blob([s2ab(wbout)], { type: "application/octet-stream" });
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = "table-data-observation.xlsx"; // Set the file name
+        link.click();
+    };
+
+    const downloadTableAsExcelQue = () => {
+        // Get the table element
+        const table = document.getElementById("table-to-export-que");
+
+        // Create a new workbook
+        const wb = XLSX.utils.table_to_book(table, { sheet: "Sheet1" });
+
+        // Create a binary string from the workbook
+        const wbout = XLSX.write(wb, { bookType: "xlsx", type: "binary" });
+
+        // Create a buffer for the binary string
+        const s2ab = (s) => {
+            const buf = new ArrayBuffer(s.length);
+            const view = new Uint8Array(buf);
+            for (let i = 0; i < s.length; i++) view[i] = s.charCodeAt(i) & 0xff;
+            return buf;
+        };
+
+        // Create a download link and trigger it
+        const blob = new Blob([s2ab(wbout)], { type: "application/octet-stream" });
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = "table-data-que.xlsx"; // Set the file name
+        link.click();
+    };
+
     return (
         <div>
             <div style={{ backgroundColor: "#FAFAFA" }} className={styles.heroDashboard + ' my-3'}>
@@ -64,21 +143,53 @@ const Dashboard = () => {
                                 <option>Nps - June - 2024</option>
                             </select>
                         </div>
-                        <div className={styles.auditCycleRight + ' my-2 ms-auto gap-4 d-flex align-items-center'}>
-                            <div className={styles.addSection + ' d-flex gap-2 justify-content-center align-items-center'}>
-                                <p>Add Section</p>
-                                <i className="bi bi-plus-square"></i>
-                            </div>
+                        <div className='ms-auto'>
+                            <div className={styles.auditCycleRight + ' my-2 ms-auto gap-4 d-flex align-items-center'}>
+                                <div className={styles.addSection + ' d-flex gap-2 justify-content-center align-items-center'}>
+                                    <p>Add Section</p>
+                                    <i className="bi bi-plus-square"></i>
+                                </div>
 
-                            <div className={styles.downIcon}>
-                                <img src={downImg} alt="img" />
+                                <div className={styles.downIcon} onClick={() => downloadBarChartAsPNG(barChartRef)}>
+                                    <img src={downImg} alt="img" />
+                                </div>
                             </div>
+                            {/* <div>{isSectionDropOpen && (
+                                <ul
+                                    className={`${styles.dropdownMenu} dropdown-menu position-static d-grid gap-1 p-2 rounded-3 mx-0 shadow w-220px`}
+                                >
+                                    <li>
+                                        <a className="dropdown-item rounded-2 active" href="#">
+                                            Action
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a className="dropdown-item rounded-2" href="#">
+                                            Another action
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a className="dropdown-item rounded-2" href="#">
+                                            Something else here
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <hr className="dropdown-divider" />
+                                    </li>
+                                    <li>
+                                        <a className="dropdown-item rounded-2" href="#">
+                                            Separated link
+                                        </a>
+                                    </li>
+                                </ul>
+                            )}</div> */}
+
                         </div>
                     </div>
 
                     <div className={styles.dashSecHero + '  justify-content-center align-items-center row d-flex'}>
-                        <div className={styles.secHeroLeft + ' col-sm-9'}>
-                            <BarChart />
+                        <div ref={barChartRef} className={styles.secHeroLeft + ' col-sm-9'}>
+                            <BarChart/>
                         </div>
 
                         <div className={styles.secHeroSection + ' col-sm-3'}>
@@ -114,14 +225,14 @@ const Dashboard = () => {
                             </select>
                         </div>
                         <div className={`${styles.improvementRight} ms-auto d-flex justify-content-center align-items-center`}>
-                            <div className={styles.downIcon}>
+                            <div onClick={downloadTableAsExcelObs} className={styles.downIcon}>
                                 <img src={downImg} alt="img" />
                             </div>
                         </div>
                     </div>
 
                     <div className={`${styles.dashThirdHero + ' my-3'}`}>
-                        <table>
+                        <table id="table-to-export">
                             <thead>
                                 <tr>
                                     <th style={{ width: "4vw" }}>S no.</th>
@@ -172,11 +283,13 @@ const Dashboard = () => {
 
                     <div className={`${styles.forthCharts}  row d-flex`}>
                         <div className={`${styles.dashForthLeft} col-md-6`}>
-                            <StoreWiseBarChart />
+                            <StoreWiseBarChart downloadBarChartAsPNG={() => downloadBarChartAsPNG(barChartRef1)}
+                                barChartRef={barChartRef1} />
                         </div>
 
                         <div className={`${styles.dashForthLeft} col-md-6`}>
-                            <OverallPerformance />
+                            <OverallPerformance downloadBarChartAsPNG={() => downloadBarChartAsPNG(barChartRef2)}
+                        barChartRef={barChartRef2} />
                         </div>
                     </div>
                 </div>
@@ -190,7 +303,7 @@ const Dashboard = () => {
                             </select>
                         </div>
                         <div className={`${styles.improvementRight} ms-auto d-flex justify-content-center align-items-center`}>
-                            <div className={`${styles.downIcon}`}>
+                            <div onClick={downloadTableAsExcelQue} className={`${styles.downIcon}`}>
                                 <img src={downImg} alt="img" />
                             </div>
                         </div>
@@ -201,7 +314,7 @@ const Dashboard = () => {
                             <p>Customer Arrival and Staff Grooming Analysis</p>
                         </div>
                         <div className={styles.fifthTable}>
-                            <table style={{ width: "100%" }}>
+                            <table id="table-to-export-que" style={{ width: "100%" }}>
                                 <thead>
                                     <tr>
                                         <th>S no.</th>

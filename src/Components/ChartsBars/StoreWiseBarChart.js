@@ -21,7 +21,7 @@ ChartJS.register(
   ChartDataLabels
 );
 
-const StoreWiseBarChart = () => {
+const StoreWiseBarChart = ({ downloadBarChartAsPNG, barChartRef }) => {
   const sourceData = [
     { label: 'Store1', value: 40 },
     { label: 'Store2', value: 20 },
@@ -65,12 +65,12 @@ const StoreWiseBarChart = () => {
       <div className={`${styles.overallPara} mt-3 d-flex align-items-center`}>
         <p className='my-2 ps-4'>Overall Performance <span>(Store Wise)</span></p>
         <div className={`${styles.improvementRight} ms-auto d-flex justify-content-center align-items-center`}>
-          <div className={`${styles.downIcon}`}>
+          <div onClick={downloadBarChartAsPNG} className={`${styles.downIcon}`}>
             <img src={downImg} alt="img" />
           </div>
         </div>
       </div>
-      <div className="chart-container my-2 p-3" style={{ width: '100%',height:"380px" }}>
+      <div ref={barChartRef} className="chart-container my-2 p-3" style={{ width: '100%',height:"380px" }}>
         <Bar
           data={{
             labels: sourceData.map((data) => data.label),

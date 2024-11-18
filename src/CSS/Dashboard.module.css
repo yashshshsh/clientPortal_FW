@@ -132,6 +132,18 @@
 
 .auditCycleRight{
     justify-content: center;
+    cursor: pointer;
+}
+
+.dropdown-menu {
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.dropdown-menu.show {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 @media(max-width : 420px){
@@ -158,6 +170,7 @@
     align-items: center;
     height: 2.5rem;
     width: 2.5rem;
+    cursor: pointer;
 }
 
 .secHeroLeft{
