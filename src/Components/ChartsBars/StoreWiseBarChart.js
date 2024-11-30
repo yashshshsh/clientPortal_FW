@@ -9,8 +9,8 @@ import {
   Legend,
 } from 'chart.js';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
-import styles from '../../CSS/Dashboard.module.css'
-import downImg from '../../Images/vertical_align_bottom.png'
+import styles from '../../CSS/Dashboard.module.css';
+import downImg from '../../Images/vertical_align_bottom.png';
 
 ChartJS.register(
   BarElement,
@@ -21,28 +21,15 @@ ChartJS.register(
   ChartDataLabels
 );
 
-const StoreWiseBarChart = ({ downloadBarChartAsPNG, barChartRef }) => {
-  const sourceData = [
-    { label: 'Store1', value: 40 },
-    { label: 'Store2', value: 20 },
-    { label: 'Store3', value: 50 },
-    { label: 'Store4', value: 60 },
-    { label: 'Store5', value: 10 },
-    { label: 'Store6', value: 60 },
-    { label: 'Store7', value: 30 },
-    { label: 'Store8', value: 50 },
-    { label: 'Store9', value: 40 },
-    { label: 'Store10', value: 30 },
-  ];
-
+const StoreWiseBarChart = ({ downloadBarChartAsPNG, barChartRef, stData }) => {
   const total = 100;
   const [barThickness, setBarThickness] = useState(50);
   const [fontSize, setFontSize] = useState(16);
-  const [selectedBarIndex, setSelectedBarIndex] = useState(5);
+  const [selectedBarIndex, setSelectedBarIndex] = useState(null);
 
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth < 991) { // Change based on your breakpoint
+      if (window.innerWidth < 991) {
         setBarThickness(15);
         setFontSize(13);
       } else if (window.innerWidth < 767) {
@@ -53,34 +40,65 @@ const StoreWiseBarChart = ({ downloadBarChartAsPNG, barChartRef }) => {
         setFontSize(16);
       }
     };
+
+    // Add resize listener
+    window.addEventListener('resize', handleResize);
     handleResize();
+
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
+
+  const chartData = Array.isArray(stData?.data)
+  ? stData.data.map((item) => {
+      const [store, values] = item || [];
+      return {
+        label: store?.name || 'Unknown Store',
+        value: values?.[0]?.value || 0, 
+        colorCode: values?.[0]?.color_code || null,
+      };
+    })
+  : [];
+
+  const labels = chartData.map((item) => item.label);
+  const values = chartData.map((item) => item.value);
+  const colors = chartData.map((item, index) =>
+    index === selectedBarIndex ? '#007DC1' : '#D7F1FF'
+  );
 
   const handleBarClick = (index) => {
     setSelectedBarIndex(index === selectedBarIndex ? null : index);
   };
 
   return (
-    <div style={{minheight : "420px",backgroundColor:"#FAFAFA"}} className='storeBar-parent shadow p-3'>
+    <div
+      style={{ minHeight: '420px', backgroundColor: '#FAFAFA' }}
+      className="storeBar-parent shadow p-3"
+    >
       <div className={`${styles.overallPara} mt-3 d-flex align-items-center`}>
-        <p className='my-2 ps-4'>Overall Performance <span>(Store Wise)</span></p>
-        <div className={`${styles.improvementRight} ms-auto d-flex justify-content-center align-items-center`}>
+        <p className="my-2 ps-4">
+          Overall Performance <span>(Store Wise)</span>
+        </p>
+        <div
+          className={`${styles.improvementRight} ms-auto d-flex justify-content-center align-items-center`}
+        >
           <div onClick={downloadBarChartAsPNG} className={`${styles.downIcon}`}>
             <img src={downImg} alt="img" />
           </div>
         </div>
       </div>
-      <div ref={barChartRef} className="chart-container my-2 p-3" style={{ width: '100%',height:"380px" }}>
+      <div
+        ref={barChartRef}
+        className="chart-container my-2 p-3"
+        style={{ width: '100%', height: '380px' }}
+      >
         <Bar
           data={{
-            labels: sourceData.map((data) => data.label),
+            labels,
             datasets: [
               {
                 label: 'Score (%) Store Wise',
-                data: sourceData.map((data) => data.value),
-                backgroundColor: sourceData.map((_, index) =>
-                  index === selectedBarIndex ? '#007DC1' : '#D7F1FF'
-                ),
+                data: values,
+                backgroundColor: colors,
                 borderRadius: 5,
                 barThickness: barThickness,
               },
@@ -133,7 +151,7 @@ const StoreWiseBarChart = ({ downloadBarChartAsPNG, barChartRef }) => {
                   color: '#353E4C',
                 },
                 grid: {
-                  display: false, // Remove horizontal grid lines
+                  display: false,
                 },
               },
               x: {
@@ -146,7 +164,7 @@ const StoreWiseBarChart = ({ downloadBarChartAsPNG, barChartRef }) => {
                   },
                   color: '#353E4C',
                   padding: {
-                    top: 20, // Adjusted padding for margin
+                    top: 20,
                   },
                 },
                 ticks: {
@@ -156,10 +174,10 @@ const StoreWiseBarChart = ({ downloadBarChartAsPNG, barChartRef }) => {
                   color: '#353E4C',
                 },
                 grid: {
-                  display: false, // Remove grid lines on X-axis
+                  display: false,
                 },
                 border: {
-                  display: false, // Remove X-axis line at 0%
+                  display: false,
                 },
               },
             },

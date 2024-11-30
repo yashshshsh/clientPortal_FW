@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import styles from '../CSS/Dashboard.module.css'
 import DashedProgressBar from '../Components/ChartsBars/DashedBarProgress'
 import AuditCalendar from '../Components/AuditCalender'
@@ -7,18 +7,91 @@ import StoreWiseBarChart from './ChartsBars/StoreWiseBarChart'
 import OverallPerformance from './ChartsBars/OverallPerformance'
 import downImg from '../Images/vertical_align_bottom.png'
 import html2canvas from "html2canvas";
-import * as XLSX from "xlsx";
+import ExcelJS from "exceljs";
+import { useFetchAudScores, useFetchConfig, useFetchQueTypes, useFetchTimeSeries, useFetchAudCycles, useFetchQueSurvey, useFetchCityTrends, useFetchImprove, useFetchStoreTrends } from '../CustomHooks/UseFetchUrl'
+import { useFetchUpAudits } from '../CustomHooks/UpComingHook'
 
 const Dashboard = () => {
+
+    const { data: queTypesData, isLoading: queTypesLoading, error: queTypesError } = useFetchQueTypes('/questionnaire_types_for_dashboard');
+    const { data: cyclesData, isLoading: cyclesLoading, error: cyclesError } = useFetchAudCycles('/audit_cycle_for_dashboard');
+    const { data: upAudsData, isLoading: upLoading, error: upError } = useFetchUpAudits('/audit_store/upcoming');
+    const { data: configData, isLoading: configLoading, error: configError } = useFetchConfig('/config');
+
+    const queId = queTypesData?.[0]?.id;
+    const [cycleId, setCycleId] = useState(null);
+    const [selectedQueId, setSelectedQueId] = useState(null);
+    const [detailsData, setDetailsData] = useState([]);
+
+    const { data: scoresData, isLoading: scoresLoading, error: scoresError, getApiData: getScoresApiData } = useFetchAudScores();
+    const { data: impData, isLoading: impLoading, error: impError, getApiData: getImpApiData } = useFetchImprove();
+    const { data: stData, isLoading: stLoading, error: stError, getApiData: stImpApiData } = useFetchStoreTrends();
+    const { data: cityData, isLoading: cityLoading, error: cityError, getApiData: cityImpApiData } = useFetchCityTrends();
+    const { data: qeData, isLoading: qeLoading, error: qeError, getApiData: qeImpApiData } = useFetchQueSurvey();
+    const { data: tsData, isLoading: tsLoading, error: tsError, getApiData: tsImpApiData } = useFetchTimeSeries();
+
+    useEffect(() => {
+        if (queId) {
+            setSelectedQueId(queId);
+        }
+    }, [queId]);
+
+    useEffect(() => {
+        if (selectedQueId && cycleId) {
+            getScoresApiData(`dashboard/questionnaire_type/${selectedQueId}/audit_cycle_scores`);
+            getImpApiData(`dashboard/questionnaire_type/${selectedQueId}/audit_cycle/${cycleId}/improvable_questions`);
+            stImpApiData(`dashboard/questionnaire_type/${selectedQueId}/audit_cycle/${cycleId}/store_trends`);
+            cityImpApiData(`dashboard/questionnaire_type/${selectedQueId}/audit_cycle/${cycleId}/city_trends`);
+            qeImpApiData(`dashboard/questionnaire_type/${selectedQueId}/audit_cycle/${cycleId}/questionnaire_survey`);
+            tsImpApiData(`dashboard/questionnaire_type/${selectedQueId}/audit_cycle/${cycleId}/time_series`);
+        }
+    }, [cycleId]);
+
+    useEffect(() => {
+        if (cyclesData && selectedQueId) {
+            const filteredCycles = cyclesData.filter(cycle => cycle.questionnaire_type.id === selectedQueId);
+            setDetailsData(filteredCycles);
+            if (filteredCycles.length > 0) {
+                setCycleId(filteredCycles[0].id);
+            } else {
+                setCycleId(null);
+            }
+        }
+    }, [cyclesData, selectedQueId]);
+
+
+    const handleSelectChange = (event) => {
+        const selectedId = parseInt(event.target.value, 10);
+        setSelectedQueId(selectedId);
+    };
+
+    const handleSelectChange1 = (event) => {
+        const selectedId1 = parseInt(event.target.value, 10);
+        tsImpApiData(`dashboard/questionnaire_type/${selectedQueId}/audit_cycle/${selectedId1}/time_series`);
+    };
+
+    const handleSelectChange2 = (event) => {
+        const selectedId2 = parseInt(event.target.value, 10);
+        getImpApiData(`dashboard/questionnaire_type/${selectedQueId}/audit_cycle/${selectedId2}/improvable_questions`);
+    };
+
+    const handleSelectChange3 = (event) => {
+        const selectedId3 = parseInt(event.target.value, 10);
+        stImpApiData(`dashboard/questionnaire_type/${selectedQueId}/audit_cycle/${selectedId3}/store_trends`);
+        cityImpApiData(`dashboard/questionnaire_type/${selectedQueId}/audit_cycle/${selectedId3}/city_trends`);
+    };
+
+    const handleSelectChange4 = (event) => {
+        const selectedId4 = parseInt(event.target.value, 10);
+        qeImpApiData(`dashboard/questionnaire_type/${selectedQueId}/audit_cycle/${selectedId4}/questionnaire_survey`);
+    };
+
     const getProgressColor = (progress) => {
         if (progress < 30) return "#C9727B";
         if (progress >= 30 && progress < 60) return "#C6B83F";
         if (progress >= 60 && progress < 80) return "#B4DA1F";
         return "#8DC63F";
     };
-
-    const [isSectionDropOpen, setIsSectionDropOpen] = useState(false);
-    const [openNestedDropdowns, setOpenNestedDropdowns] = useState([]); 
 
     const toggleDropdown = () => {
         setIsSectionDropOpen((prev) => !prev);
@@ -29,10 +102,6 @@ const Dashboard = () => {
             prev.includes(item) ? prev.filter((i) => i !== item) : [...prev, item]
         );
     };
-
-    const barChartRef = useRef(null);
-    const barChartRef1 = useRef(null);
-    const barChartRef2 = useRef(null);
 
     const downloadBarChartAsPNG = (chartRef) => {
         html2canvas(chartRef.current).then((canvas) => {
@@ -49,54 +118,151 @@ const Dashboard = () => {
     };
 
     const downloadTableAsExcelObs = () => {
-        const table = document.getElementById("table-to-export");
+        const workbook = new ExcelJS.Workbook();
+        const worksheet = workbook.addWorksheet("NPS June 2024 Improvable");
 
-        const wb = XLSX.utils.table_to_book(table, { sheet: "Sheet1" });
+        const titleRow = worksheet.addRow(["NPS June 2024 Improvable"]);
+        titleRow.getCell(1).font = { bold: true, size: 20, color: { argb: "FF4F81BD" } }; // Blue bold font
+        titleRow.getCell(1).alignment = { horizontal: "center", vertical: "middle" }; // Center alignment
+        worksheet.mergeCells(1, 1, 1, 5); // Merge cells across the width of the table
+        worksheet.getRow(1).height = 30;
 
-        // Create a binary string from the workbook
-        const wbout = XLSX.write(wb, { bookType: "xlsx", type: "binary" });
+        // Add header row with custom styles
+        const headerRow = worksheet.addRow(["S No.", "Section", "Questions", "Obtained Marks/Total Marks", "Marks Lost"]);
 
-        // Create a buffer for the binary string
-        const s2ab = (s) => {
-            const buf = new ArrayBuffer(s.length);
-            const view = new Uint8Array(buf);
-            for (let i = 0; i < s.length; i++) view[i] = s.charCodeAt(i) & 0xff;
-            return buf;
-        };
+        headerRow.eachCell((cell) => {
+            cell.font = { bold: true, size: 14, color: { argb: "FFFFFFFF" } }; // White text
+            cell.fill = {
+                type: "pattern",
+                pattern: "solid",
+                fgColor: { argb: "FF4F81BD" }, // Blue background
+            };
+            cell.alignment = { horizontal: "center", vertical: "middle", wrapText: true };
+        });
 
-        // Create a download link and trigger it
-        const blob = new Blob([s2ab(wbout)], { type: "application/octet-stream" });
-        const link = document.createElement("a");
-        link.href = URL.createObjectURL(blob);
-        link.download = "table-data-observation.xlsx"; // Set the file name
-        link.click();
+        worksheet.getRow(1).height = 50; // Set header row height
+
+        // Add data rows
+        const data = [
+            [1, "Customer Arrival and Staff Grooming Analysis", "Was the in-store branding like wall branding, pillar branding, drop down headers, glass branding, category drop downs, etc. maintained well? 1/ 5 4", "1/5", 4],
+            [2, "Customer Arrival and Staff Grooming Analysis", "Was the in-store branding...?", "1/5", 4],
+        ];
+
+        data.forEach((row, index) => {
+            const newRow = worksheet.addRow(row);
+
+            // Apply styles to each cell in the row
+            newRow.eachCell((cell) => {
+                cell.font = { size: 14 }; // Font size for data rows
+                cell.fill = {
+                    type: "pattern",
+                    pattern: "solid",
+                    fgColor: { argb: index % 2 === 0 ? "FFFFFF00" : "FFFFC0CB" }, // Yellow for even, pink for odd
+                };
+                cell.alignment = { horizontal: "center", vertical: "middle", wrapText: true };
+            });
+
+            // Set the row height to 20 for all data rows
+            worksheet.getRow(newRow.number).height = 40;
+        });
+
+        // Adjust column widths
+        worksheet.columns = [
+            { width: 10 }, // S No.
+            { width: 30 }, // Section
+            { width: 50 }, // Questions
+            { width: 30 }, // Obtained Marks/Total Marks
+            { width: 20 }, // Marks Lost
+        ];
+
+        // Download the file
+        workbook.xlsx.writeBuffer().then((buffer) => {
+            const blob = new Blob([buffer], { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" });
+            const link = document.createElement("a");
+            link.href = URL.createObjectURL(blob);
+            link.download = "NPS_June_2024_Improvable.xlsx";
+            link.click();
+        });
     };
 
     const downloadTableAsExcelQue = () => {
-        // Get the table element
-        const table = document.getElementById("table-to-export-que");
+        const workbook = new ExcelJS.Workbook();
+        const worksheet = workbook.addWorksheet("Question Summary");
 
-        // Create a new workbook
-        const wb = XLSX.utils.table_to_book(table, { sheet: "Sheet1" });
+        const titleRow = worksheet.addRow(["Question Summary"]);
+        titleRow.getCell(1).font = { bold: true, size: 20, color: { argb: "FF4F81BD" } }; // Blue bold font
+        titleRow.getCell(1).alignment = { horizontal: "center", vertical: "middle" }; // Center alignment
+        worksheet.mergeCells(1, 1, 1, 5); // Merge cells across the width of the table
+        worksheet.getRow(1).height = 30;
 
-        // Create a binary string from the workbook
-        const wbout = XLSX.write(wb, { bookType: "xlsx", type: "binary" });
+        const headerRow = worksheet.addRow(["S No.", "Questions", "Marks Lost"]);
 
-        // Create a buffer for the binary string
-        const s2ab = (s) => {
-            const buf = new ArrayBuffer(s.length);
-            const view = new Uint8Array(buf);
-            for (let i = 0; i < s.length; i++) view[i] = s.charCodeAt(i) & 0xff;
-            return buf;
-        };
+        headerRow.eachCell((cell) => {
+            cell.font = { bold: true, size: 14, color: { argb: "FFFFFFFF" } }; // White text
+            cell.fill = {
+                type: "pattern",
+                pattern: "solid",
+                fgColor: { argb: "FF4F81BD" }, // Blue background
+            };
+            cell.alignment = { horizontal: "center", vertical: "middle", wrapText: true };
+        });
 
-        // Create a download link and trigger it
-        const blob = new Blob([s2ab(wbout)], { type: "application/octet-stream" });
-        const link = document.createElement("a");
-        link.href = URL.createObjectURL(blob);
-        link.download = "table-data-que.xlsx"; // Set the file name
-        link.click();
+        worksheet.getRow(1).height = 50;
+        const data = [
+            [1, "Was the in-store branding like wall branding, pillar branding, drop down headers, glass branding, category drop downs, etc. maintained well? 1/ 5 4", "1/5", 4],
+            [2, "Was the in-store branding...?", "1/5", 4],
+        ];
+
+        data.forEach((row, index) => {
+            const newRow = worksheet.addRow(row);
+
+            // Apply styles to each cell in the row
+            newRow.eachCell((cell) => {
+                cell.font = { size: 14 }; // Font size for data rows
+                cell.fill = {
+                    type: "pattern",
+                    pattern: "solid",
+                    fgColor: { argb: index % 2 === 0 ? "FFFFFF00" : "FFFFC0CB" }, // Yellow for even, pink for odd
+                };
+                cell.alignment = { horizontal: "center", vertical: "middle", wrapText: true };
+            });
+
+            // Set the row height to 20 for all data rows
+            worksheet.getRow(newRow.number).height = 40;
+        });
+
+        worksheet.columns = [
+            { width: 10 }, // S No.
+            { width: 80 }, // Questions
+            { width: 50 }, // Marks Lost
+        ];
+
+        // Download the file
+        workbook.xlsx.writeBuffer().then((buffer) => {
+            const blob = new Blob([buffer], { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" });
+            const link = document.createElement("a");
+            link.href = URL.createObjectURL(blob);
+            link.download = "Question Summary";
+            link.click();
+        });
     };
+
+    const renderBars = () => {
+        if (scoresData.length === 0) {
+            return <p>No data available for the selected type.</p>;
+        }
+        return scoresData.map((item, id) => (
+            <div key={item.id} className={styles.l1 + ' col-sm-6 d-flex justify-content-center align-items-center'}>
+                <DashedProgressBar color={getProgressColor(item.get_total_percentage)} progress={item.get_total_percentage} shadow={true} />
+            </div>
+        ));
+    };
+
+    const barChartRef = useRef(null);
+    const barChartRef1 = useRef(null);
+    const barChartRef2 = useRef(null);
+    const [isSectionDropOpen, setIsSectionDropOpen] = useState(false);
+    const [openNestedDropdowns, setOpenNestedDropdowns] = useState([]);
 
     return (
         <div>
@@ -109,24 +275,18 @@ const Dashboard = () => {
                             <p>Latest Audit Cycle Score</p>
                         </div>
 
-                        <div className={styles.l1First + ''}>
-                            <div className={'row1 row'}>
-                                <div className={styles.l1 + ' col-sm-6 d-flex justify-content-center align-items-center'}>
-                                    <DashedProgressBar color={getProgressColor(95)} progress={95} shadow={true} />
-                                </div>
-                                <div className={styles.l1 + ' col-sm-6 d-flex justify-content-center align-items-center'}>
-                                    <DashedProgressBar color={getProgressColor(10)} progress={10} shadow={true} />
-                                </div>
-                            </div>
+                        <div className={styles.auditCycle + ' d-flex mt-3 flex-column'}>
+                            <select onChange={handleSelectChange}>
+                                {queTypesData?.map((item) => (
+                                    <option key={item.id} value={item.id}>
+                                        {item.name}
+                                    </option>
+                                ))}
+                            </select>   
+                        </div>
 
-                            <div className={'row2 row'}>
-                                <div className={styles.l1 + ' col-sm-6 d-flex justify-content-center align-items-center'}>
-                                    <DashedProgressBar color={getProgressColor(70)} progress={70} shadow={true} />
-                                </div>
-                                <div className={styles.l1 + ' col-sm-6 d-flex justify-content-center align-items-center'}>
-                                    <DashedProgressBar color={getProgressColor(85)} progress={85} shadow={true} />
-                                </div>
-                            </div>
+                        <div className={styles.l1First + 'bg-warning'}>
+                            <div className="row">{renderBars()}</div>
                         </div>
                     </div>
 
@@ -144,8 +304,12 @@ const Dashboard = () => {
                     <div className={styles.dashSecHead + ' flex-wrap d-flex'}>
                         <div className={styles.auditCycle + ' d-flex flex-column'}>
                             <p className="text-start">Audit Cycle</p>
-                            <select>
-                                <option>Nps - June - 2024</option>
+                            <select onChange={handleSelectChange1}>
+                                {detailsData?.map((item) => (
+                                    <option key={item.id} value={item.id}>
+                                        {item.name}
+                                    </option>
+                                ))}
                             </select>
                         </div>
                         <div className='ms-auto'>
@@ -185,7 +349,7 @@ const Dashboard = () => {
 
                     <div className={styles.dashSecHero + '  justify-content-center align-items-center row d-flex'}>
                         <div ref={barChartRef} className={styles.secHeroLeft + ' col-sm-9'}>
-                            <BarChart />
+                            <BarChart tsData={tsData} />
                         </div>
 
                         <div className={styles.secHeroSection + ' col-sm-3'}>
@@ -216,8 +380,12 @@ const Dashboard = () => {
                     <div className={`${styles.dashThirdHead} flex-wrap d-flex`}>
                         <div className={`${styles.improvement} d-flex flex-column`}>
                             <p className='text-start'>Improvement areas based on observation</p>
-                            <select>
-                                <option>Nps-June-2024</option>
+                            <select onChange={handleSelectChange2}>
+                                {detailsData?.map((item) => (
+                                    <option key={item.id} value={item.id}>
+                                        {item.name}
+                                    </option>
+                                ))}
                             </select>
                         </div>
                         <div className={`${styles.improvementRight} ms-auto d-flex justify-content-center align-items-center`}>
@@ -239,24 +407,17 @@ const Dashboard = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Customer Arrival and Staff Grooming Analysis</td>
-                                    <td>Was the in-store branding like wall branding, pillar branding, drop down headers, glass branding, category drop downs, etc. maintained well? 1/ 5 4</td>
-                                    <td>1/5</td>
-                                    <td>
-                                        <div className={styles.tScore}>4</div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Customer Arrival and Staff Grooming Analysis</td>
-                                    <td>Was the in-store branding like wall branding, pillar branding, drop down headers, glass branding, category drop downs, etc. maintained well? 1/ 5 4</td>
-                                    <td>1/5</td>
-                                    <td>
-                                        <div className={styles.tScore}>4</div>
-                                    </td>
-                                </tr>
+                                {impData.map((data, index) => (
+                                    <tr key={data.question_id}>
+                                        <td>{index + 1}</td> {/* Serial number */}
+                                        <td>{data.question_section}</td> {/* Section */}
+                                        <td>{data.question_txt}</td> {/* Question text */}
+                                        <td>{`${data.obtained_marks}/${data.total_marks}`}</td> {/* Marks obtained and total */}
+                                        <td>
+                                            <div className={styles.tScore}>{data.lost_marks}</div> {/* Marks lost */}
+                                        </td>
+                                    </tr>
+                                ))}
                             </tbody>
                         </table>
                     </div>
@@ -266,8 +427,12 @@ const Dashboard = () => {
                     <div className={`${styles.dashThirdHead} my-3 flex-wrap d-flex`}>
                         <div className={`${styles.improvement} d-flex flex-column`}>
                             <p className='text-start'>Improvement areas based on observation</p>
-                            <select>
-                                <option>Nps-June-2024</option>
+                            <select onChange={handleSelectChange3}>
+                                {detailsData?.map((item) => (
+                                    <option key={item.id} value={item.id}>
+                                        {item.name}
+                                    </option>
+                                ))}
                             </select>
                         </div>
                         <div className={`${styles.improvementRight} ms-auto d-flex justify-content-center align-items-center`}>
@@ -279,12 +444,12 @@ const Dashboard = () => {
 
                     <div className={`${styles.forthCharts}  row d-flex`}>
                         <div className={`${styles.dashForthLeft} col-md-6`}>
-                            <StoreWiseBarChart downloadBarChartAsPNG={() => downloadBarChartAsPNG(barChartRef1)}
+                            <StoreWiseBarChart stData={stData} downloadBarChartAsPNG={() => downloadBarChartAsPNG(barChartRef1)}
                                 barChartRef={barChartRef1} />
                         </div>
 
                         <div className={`${styles.dashForthLeft} col-md-6`}>
-                            <OverallPerformance downloadBarChartAsPNG={() => downloadBarChartAsPNG(barChartRef2)}
+                            <OverallPerformance cityData={cityData} downloadBarChartAsPNG={() => downloadBarChartAsPNG(barChartRef2)}
                                 barChartRef={barChartRef2} />
                         </div>
                     </div>
@@ -294,8 +459,12 @@ const Dashboard = () => {
                     <div className={`${styles.dashThirdHead} mt-3 px-4 pt-4 flex-wrap d-flex`}>
                         <div className={`${styles.improvement} d-flex flex-column`}>
                             <p className='text-start'>Question Summary</p>
-                            <select>
-                                <option>Nps-June-2024</option>
+                            <select onChange={handleSelectChange4}>
+                                {detailsData?.map((item) => (
+                                    <option key={item.id} value={item.id}>
+                                        {item.name}
+                                    </option>
+                                ))}
                             </select>
                         </div>
                         <div className={`${styles.improvementRight} ms-auto d-flex justify-content-center align-items-center`}>
@@ -319,22 +488,32 @@ const Dashboard = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Was the store ambience visible from outside and feel inviting?</td>
-                                        <td className={styles.marksLost}>
-                                            <div className={`${styles.tdFirst} d-flex align-items-center justify-content-between`}>
-                                                <div className={styles.tTf}>Yes</div>
-                                                <div className={`${styles.tPer} d-flex align-items-center justify-content-center`}>80%</div>
-                                            </div>
-                                            <div className={`${styles.tdFirst} d-flex align-items-center justify-content-between`}>
-                                                <div className={styles.tTf}>No</div>
-                                                <div className={`${styles.tPer} d-flex align-items-center justify-content-center`}>80%</div>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                    {qeData
+                                        .filter((item) => item.type === "question")
+                                        .map((question, index) => (
+                                            <tr key={question.question_id}>
+                                                <td>{index + 1}</td>
+                                                <td>{question.question_txt}</td>
+                                                <td className={styles.marksLost}>
+                                                    {question.options_list.map((option, optIndex) => (
+                                                        <div
+                                                            key={optIndex}
+                                                            className={`${styles.tdFirst} d-flex align-items-center justify-content-between`}
+                                                        >
+                                                            <div className={styles.tTf}>{option.option_name}</div>
+                                                            <div
+                                                                className={`${styles.tPer} d-flex align-items-center justify-content-center`}
+                                                            >
+                                                                {option.percentage}%
+                                                            </div>
+                                                        </div>
+                                                    ))}
+                                                </td>
+                                            </tr>
+                                        ))}
                                 </tbody>
                             </table>
+
                         </div>
                     </div>
                 </div>

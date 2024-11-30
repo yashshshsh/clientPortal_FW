@@ -7,7 +7,7 @@ const Sentimental = () => {
         <div className='px-5 my-3 main-senti'>
             <div className="senti-head d-flex justify-content-between align-items-center text-start">
                 <p className="my-3">Sentimental Analysts</p>
-                <i class="bi bi-x"></i>
+                <i className="bi bi-x"></i>
             </div>
 
             <div className="hero-forth mt-5">

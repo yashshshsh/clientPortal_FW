@@ -101,15 +101,15 @@ const StoreBrowserIn = ({state,setState}) => {
 
                 <div className="hero-sec df gap-2">
                     <div onClick={() => { setState("trends") }} className={`trends df ${state === "trends" ? "active" : ""}`}>
-                        <i class="bi bi-bar-chart-fill"></i>
+                        <i className="bi bi-bar-chart-fill"></i>
                         <p>Trends</p>
                     </div>
                     <div onClick={() => { setState("reports") }} className={`reports df ${state === "reports" ? "active" : ""}`}>
-                        <i class="bi bi-calendar-minus"></i>
+                        <i className="bi bi-calendar-minus"></i>
                         <p>Report</p>
                     </div>
                     <div onClick={() => { setState("proof") }} className={`proof df ${state === "proof" ? "active" : ""}`}>
-                        <i class="bi bi-arrow-left-right"></i>
+                        <i className="bi bi-arrow-left-right"></i>
                         <p>Proof Comparison</p>
                     </div>
                 </div>

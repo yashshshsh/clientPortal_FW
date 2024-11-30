@@ -2,8 +2,8 @@ import React from 'react';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
-const CircularBar = () => {
-  const value = 80; // progress value
+const CircularBar = ({storeIdData}) => {
+  const value = storeIdData?.audit?.store?.get_total_percentage.score || 0;
 
   // Function to determine arc color based on the value
   const getArcColor = (value) => {

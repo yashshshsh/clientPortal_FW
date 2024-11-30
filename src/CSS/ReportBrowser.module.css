@@ -78,12 +78,25 @@
 }
 
 .dropdownNes select{
-    height: 2rem;
+    height: 3rem;
     width: 12vw;
     border-radius: 5px;
     border : 1px solid #353E4C;
     outline : none;
     padding-left: 0.5rem;
+}
+
+select {
+    width: 12%;
+    border: none;
+    border-bottom: 2px solid #DDE1E6;
+    padding-bottom: 5px;
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+    font-size: 0.8rem;
+    line-height: 1.4rem;
+    color: #9CA3AF;
+    outline: none;
 }
 
 .dropdownNes option{
@@ -170,6 +183,8 @@
     width: 50px;
     color : white;
     margin : 0 auto;
+    padding-right: 20px !important;
+
 }
 
 .progressBarContainer {

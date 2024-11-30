@@ -1,0 +1,19 @@
+.footer{
+    border-top: 1px solid #DDE1E6;
+}
+
+.links a{
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.footer span{
+    font-size: 14px;
+    color : #777777;
+}
+
+.logo img{
+    height: auto;
+    width: 120px !important;
+    padding: 1rem 1rem;
+}

@@ -265,16 +265,17 @@ td{
     width: 38vw;
 }
 
-.auditCycle p, .improvement p {
-    font-family: "Roboto", sans-serif;
-    font-weight: 500;
-    font-size: 1rem;
-    line-height: 1.2rem;
-    color: #003C5D;
+.dropdownNes select{
+    height: 3rem;
+    width: 12vw;
+    border-radius: 5px;
+    border : 1px solid #353E4C;
+    outline : none;
+    padding-left: 0.5rem;
 }
 
-.auditCycle select, .improvement select {
-    width: 35%;
+select {
+    min-width: 8vw;
     border: none;
     border-bottom: 2px solid #DDE1E6;
     padding-bottom: 5px;
@@ -283,6 +284,7 @@ td{
     font-size: 0.8rem;
     line-height: 1.4rem;
     color: #9CA3AF;
+    outline: none;
 }
 
 @media(max-width: 391px) {

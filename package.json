@@ -7,12 +7,14 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "antd": "^5.22.1",
+    "axios": "^1.7.7",
     "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.11.3",
     "chart.js": "^4.4.5",
     "chartjs-plugin-datalabels": "^2.2.0",
     "concurrently": "^9.0.1",
     "date-fns": "^4.1.0",
+    "exceljs": "^4.4.0",
     "html2canvas": "^1.4.1",
     "jquery": "^3.7.1",
     "popper.js": "^1.16.1",
@@ -28,8 +30,10 @@
     "react-router-dom": "^6.27.0",
     "react-scripts": "5.0.1",
     "react-select": "^5.8.3",
+    "react-toastify": "^10.0.6",
     "web-vitals": "^2.1.4",
-    "xlsx": "^0.18.5"
+    "xlsx": "^0.18.5",
+    "xlsx-style": "^0.8.13"
   },
   "scripts": {
     "start": "react-scripts start",

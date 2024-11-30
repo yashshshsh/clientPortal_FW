@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from '../CSS/ReportBrowser.module.css';
 import { useNavigate } from 'react-router-dom';
 import * as XLSX from "xlsx";
@@ -6,40 +6,53 @@ import downImg from '../Images/vertical_align_bottom.png'
 import textImg from '../Images/Text.png'
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
+import { useFetchQueTypes, useFetchAudCycles } from '../CustomHooks/UseFetchUrl'
+import { useFetchAuditstores, useFetchReportAttributes } from '../CustomHooks/ReportHook'
 
 const ReportBrowser = () => {
-    const data = [
-        {
-            no: 1,
-            storeCode: "SST-001",
-            date: "09 August 2024",
-            totalMarks: "90%",
-            storeExterior: "95%",
-            customerArrival: "95%",
-            storeInterior: "95%",
-            interactionWithStaff: "95%",
-            cashCounter: "95%",
-            overallExperience: "95%"
-        },
-        {
-            no: 2,
-            storeCode: "SST-001",
-            date: "09 August 2024",
-            totalMarks: "90%",
-            storeExterior: "95%",
-            customerArrival: "95%",
-            storeInterior: "95%",
-            interactionWithStaff: "95%",
-            cashCounter: "95%",
-            overallExperience: "95%"
+
+    const { data: queTypesData, isLoading: queTypesLoading, error: queTypesError } = useFetchQueTypes('/questionnaire_types_for_dashboard');
+    const { data: cyclesData, isLoading: cyclesLoading, error: cyclesError } = useFetchAudCycles('/audit_cycle_for_dashboard');
+
+    const { data: storesData, isLoading: storesLoading, error: storesError, getApiData: getstoresApiData } = useFetchAuditstores();
+    const { data: reportAttData, isLoading: reportAttLoading, error: reportAttError, getApiData: getreportAttApiData } = useFetchReportAttributes();
+
+    const queId = queTypesData?.[0]?.id;
+    const [cycleId, setCycleId] = useState(null);
+    const [selectedQueId, setSelectedQueId] = useState(null);
+    const [detailsData, setDetailsData] = useState([]);
+
+    useEffect(() => {
+        if (selectedQueId && cycleId) {
+            getstoresApiData(`/report/audit_cycle/${cycleId}/audit_store`);
+            getreportAttApiData(`/audit_cycle/${cycleId}/report_attribute`);
         }
-    ];
+    }, [cycleId]);
+
+    useEffect(() => {
+        if (cyclesData && selectedQueId) {
+            const filteredCycles = cyclesData.filter(cycle => cycle.questionnaire_type.id === selectedQueId);
+            setDetailsData(filteredCycles);
+            if (filteredCycles.length > 0) {
+                setCycleId(filteredCycles[0].id);
+            } else {
+                setCycleId(null);
+            }
+        }
+    }, [cyclesData, selectedQueId]);
+
+    useEffect(() => {
+        if (queId) {
+            setSelectedQueId(queId);
+        }
+    }, [queId]);
 
     const navigate = useNavigate();
 
-    const handleReportBtn = () => {
-        navigate('/auditReport');
-    }
+    const handleReportBtn = (auditStoreId) => {
+        navigate(`/auditReport`, { state: { auditStoreId } });
+    };
+
     const [value] = useState(new Date());
     const [openDropdown, setOpenDropdown] = useState(null); // For parent dropdown
     const [openNestedDropdowns, setOpenNestedDropdowns] = useState([]);
@@ -85,6 +98,19 @@ const ReportBrowser = () => {
         link.download = "table-report.xlsx"; // Set the file name
         link.click();
     };
+    const [selectedOption, setSelectedOption] = useState('');
+    const handleSelectChange = (event) => {
+        const selectedId = parseInt(event.target.value, 10);
+        setSelectedQueId(selectedId);
+        setSelectedOption(event.target.value);
+    };
+
+    const [selectedOption1, setSelectedOption1] = useState('');
+    const handleSelectChange1 = (event) => {
+        const selectedId1 = parseInt(event.target.value, 10);
+        setSelectedOption1(event.target.value);
+        getstoresApiData(`/report/audit_cycle/${selectedId1}/audit_store`);
+    };
 
     return (
         <div>
@@ -103,15 +129,48 @@ const ReportBrowser = () => {
                     </div>
                 </div>
 
+                <div className="select my-2 gap-3 d-flex">
+                    <p className='my-2'>Questionnaire Type : </p>
+                    <select value={selectedOption} onChange={handleSelectChange}>
+                        {queTypesData?.map((item) => (
+                            <option key={item.id} value={item.id}>
+                                {item.name}
+                            </option>
+                        ))}
+                    </select>
+
+                    {/* <select onChange={handleSelectChange1}>
+                        {detailsData?.map((item) => (
+                            <option key={item.id} value={item.id}>
+                                {item.name}
+                            </option>
+                        ))}
+                    </select> */}
+                </div>
+
+                <p>Audit Cycle : </p>
                 <div className={`${styles.searchStore} d-flex justify-content-between`}>
-                    <div className={`${styles.searchIn} d-flex`}>
-                        <div className={`${styles.inputSearch} p-2 gap-2 d-flex justify-content-between align-items-center`}>
+                    <div className={`${styles.searchIn} d-flex align-items-center`}>
+                        {/* <div className={`${styles.inputSearch} p-2 gap-2 d-flex justify-content-between align-items-center`}>
                             <div className="d-flex w-75">
                                 <i className="bi bi-search mx-2"></i>
                                 <input className={styles.storeSearch} placeholder="Search store" />
                             </div>
                             <div className="d-flex align-items-center">
                                 <img src={textImg} alt="img" />
+                            </div>
+                        </div> */}
+
+                        <div className="audit-cycle-inp">
+
+                            <div className={`${styles.dropdownNes}`}>
+                                <select value={selectedOption1} onChange={handleSelectChange1}>
+                                    {detailsData?.map((item) => (
+                                        <option key={item.id} value={item.id}>
+                                            {item.name}
+                                        </option>
+                                    ))}
+                                </select>
                             </div>
                         </div>
                         <div>
@@ -249,113 +308,48 @@ const ReportBrowser = () => {
                 </div>
             </div>
 
-            <div className={`${styles.dashTable} my-4 table-responsive`}>
-                <table id="table-to-export">
+            <div className={`${styles.dashTable} my-4 df table-responsive`}>
+                <table style={{ width: "95%" }} id="table-to-export">
                     <thead>
                         <tr>
                             <th style={{ width: "3rem" }}>S no.</th>
                             <th>Store Code</th>
                             <th style={{ width: "9vw" }}>Date</th>
                             <th>Total Marks</th>
-                            <th>Store Exterior</th>
-                            <th style={{ width: "11vw" }}>
-                                <p className='m-1'>Customer Arrival and</p>
-                                <p className='m-0'>Staff Gromming</p>
-                                <p className='m-1'>Analysis</p>
-                            </th>
-                            <th style={{ width: "10vw" }}>
-                                <p className='m-1'>Store Interior and</p>
-                                <p className='m-0'>Product Display</p>
-                            </th>
-                            <th style={{ width: "9vw" }}>
-                                <p className='m-1'>Interaction with</p>
-                                <p className='m-0'>staff</p></th>
-                            <th style={{ width: "9vw" }}>
-                                <p className='m-1'>Cash Counter</p>
-                                <p className='m-0'>and Billing</p></th>
-                            <th style={{ width: "11vw" }}>
-                                <p className='m-1'>Overall Consumer</p>
-                                <p className='m-0'>Experience Analysis</p></th>
+                            {storesData[0]?.sections.map((section, index) => (
+                                <th key={index} style={{ width: "11vw" }}>
+                                    <p className="m-1">{section.section}</p>
+                                </th>
+                            ))}
                             <th>Report</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {data.map((row, index) => (
-                            <tr key={index}>
-                                <td>{row.no}</td>
-                                <td>{row.storeCode}</td>
-                                <td>{row.date}</td>
+                        {storesData.map((row, rowIndex) => (
+                            <tr key={rowIndex}>
+                                <td>{rowIndex + 1}</td>
+                                <td>{row.store_code || "N/A"}</td>
+                                <td>{row.audit_date}</td>
                                 <td>
-                                    <div className={styles.marksContainer}>{row.totalMarks}</div>
+                                    <div className={styles.marksContainer}>{row.total_score.percentage}%</div>
                                 </td>
+                                {row.sections.map((section, sectionIndex) => (
+                                    <td key={sectionIndex}>
+                                        <div className={styles.progressBarContainer}>
+                                            <span>{section.percentage === null ? "null" : section.percentage + "%"}</span>
+                                            <div
+                                                className={styles.dash1 + `${section.percentage === null ? "d-none" : ""}`}
+                                                style={{
+                                                    background: `linear-gradient(to right, #8DC63F ${parseInt(section.percentage)}%, #e6e6e6 ${100 - parseInt(section.percentage)}%)`,
+                                                }}
+                                            ></div>
+                                        </div>
+                                    </td>
+                                ))}
                                 <td>
-                                    <div className={styles.progressBarContainer}>
-                                        <span>{row.storeExterior}</span>
-                                        <div
-                                            className={styles.dash1}
-                                            style={{
-                                                background: `linear-gradient(to right, #8DC63F ${parseInt(row.storeExterior)}%, #e6e6e6 ${100 - parseInt(row.storeExterior)}%)`,
-                                            }}
-                                        ></div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div className={styles.progressBarContainer}>
-                                        <span>{row.customerArrival}</span>
-                                        <div
-                                            className={styles.dash1}
-                                            style={{
-                                                background: `linear-gradient(to right, #8DC63F ${parseInt(row.customerArrival)}%, #e6e6e6 ${100 - parseInt(row.customerArrival)}%)`,
-                                            }}
-                                        ></div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div className={styles.progressBarContainer}>
-                                        <span>{row.storeInterior}</span>
-                                        <div
-                                            className={styles.dash1}
-                                            style={{
-                                                background: `linear-gradient(to right, #8DC63F ${parseInt(row.storeInterior)}%, #e6e6e6 ${100 - parseInt(row.storeInterior)}%)`,
-                                            }}
-                                        ></div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div className={styles.progressBarContainer}>
-                                        <span>{row.interactionWithStaff}</span>
-                                        <div
-                                            className={styles.dash1}
-                                            style={{
-                                                background: `linear-gradient(to right, #8DC63F ${parseInt(row.interactionWithStaff)}%, #e6e6e6 ${100 - parseInt(row.interactionWithStaff)}%)`,
-                                            }}
-                                        ></div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div className={styles.progressBarContainer}>
-                                        <span>{row.cashCounter}</span>
-                                        <div
-                                            className={styles.dash1}
-                                            style={{
-                                                background: `linear-gradient(to right, #8DC63F ${parseInt(row.cashCounter)}%, #e6e6e6 ${100 - parseInt(row.cashCounter)}%)`,
-                                            }}
-                                        ></div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div className={styles.progressBarContainer}>
-                                        <span>{row.overallExperience}</span>
-                                        <div
-                                            className={styles.dash1}
-                                            style={{
-                                                background: `linear-gradient(to right, #8DC63F ${parseInt(row.overallExperience)}%, #e6e6e6 ${100 - parseInt(row.overallExperience)}%)`,
-                                            }}
-                                        ></div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <button onClick={handleReportBtn} className={styles.reportBtn}>Report</button>
+                                    <button onClick={() => handleReportBtn(row.audit_store_id)} className={styles.reportBtn}>
+                                        Report
+                                    </button>
                                 </td>
                             </tr>
                         ))}

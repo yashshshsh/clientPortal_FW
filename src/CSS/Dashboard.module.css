@@ -39,7 +39,7 @@
 }
 
 .l1First {
-    height: 93.5%;
+    min-height: 93.5%;
 }
 
 .l1 {
@@ -82,6 +82,7 @@
     font-size: 0.8rem;
     line-height: 1.4rem;
     color: #9CA3AF;
+    outline: none;
 }
 
 @media(max-width: 391px) {
@@ -139,6 +140,12 @@
     opacity: 0;
     transform: translateY(-10px);
     transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.logo img{
+    height: auto;
+    width: 120px !important;
+    padding: 1rem 1rem;
 }
 
 .dropList {
@@ -330,7 +337,7 @@ td {
 }
 
 .tPer{
-    width: 2.3rem;
+    min-width: 2.4rem;
     height: 2rem;
     background-color: #D7F1FF;
     color : #007DC1;
@@ -345,4 +352,3 @@ td {
     width: 90%;
     margin-top : 0.2rem
 }
-

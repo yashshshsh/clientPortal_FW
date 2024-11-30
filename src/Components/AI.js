@@ -24,7 +24,7 @@ const AI = () => {
                     <div style={{ backgroundColor: "#007DC18C" }} className="total col-md-3">
                         <div className="total-upper p-1 gap-2 text-start d-flex">
                             <div className="sq-slash df">
-                                <i class="bi bi-slash-square"></i>
+                                <i className="bi bi-slash-square"></i>
                             </div>
                             <p className='m-0'>Total Responses</p>
                         </div>
@@ -39,7 +39,7 @@ const AI = () => {
                     <div style={{ backgroundColor: "#8DC63F8C" }} className="positive col-md-3">
                         <div className="total-upper p-1 gap-2 text-start d-flex">
                             <div style={{ backgroundColor: "#8DC63F" }} className="sq-slash df">
-                                <i class="bi bi-slash-square"></i>
+                                <i className="bi bi-slash-square"></i>
                             </div>
                             <p className='m-0'>Total Positive Responses</p>
                         </div>
@@ -54,7 +54,7 @@ const AI = () => {
                     <div style={{ backgroundColor: "#EAB3088C" }} className="neutral col-md-3">
                         <div className="total-upper p-1 gap-2 text-start d-flex">
                             <div style={{ backgroundColor: "#EDA145" }} className="sq-slash df">
-                                <i class="bi bi-slash-square"></i>
+                                <i className="bi bi-slash-square"></i>
                             </div>
                             <p className='m-0'>Total Neutral Responses</p>
                         </div>
@@ -69,7 +69,7 @@ const AI = () => {
                     <div style={{ backgroundColor: "#F871718C" }} className="negative col-md-3">
                         <div className="total-upper p-1 gap-2 text-start d-flex">
                             <div style={{ backgroundColor: "#FF7784" }} className="sq-slash df">
-                                <i class="bi bi-slash-square"></i>
+                                <i className="bi bi-slash-square"></i>
                             </div>
                             <p className='m-0'>Total Negative Responses</p>
                         </div>
@@ -89,7 +89,7 @@ const AI = () => {
                 <div className="total-pos-res">
                     <div style={{ backgroundColor: "#8DC63F8C" }} className="pos-res-head px-4 gap-2 text-start d-flex align-items-center">
                         <div style={{ backgroundColor: "#8DC63F" }} className="sq-slash df">
-                            <i class="bi bi-slash-square"></i>
+                            <i className="bi bi-slash-square"></i>
                         </div>
                         <p className='m-0'>Total Positive Responses</p>
                     </div>
@@ -236,7 +236,7 @@ const AI = () => {
                 <div className="total-neu-res my-3">
                     <div style={{ backgroundColor: "#EAB3088C" }} className="pos-res-head px-4 gap-2 text-start d-flex align-items-center">
                         <div style={{ backgroundColor: "#EDA145" }} className="sq-slash df">
-                            <i class="bi bi-slash-square"></i>
+                            <i className="bi bi-slash-square"></i>
                         </div>
                         <p className='m-0'>Total Neutral Responses</p>
                     </div>
@@ -313,7 +313,7 @@ const AI = () => {
                 <div className="total-neg-res">
                     <div style={{ backgroundColor: "#F871718C" }} className="pos-res-head px-4 gap-2 text-start d-flex align-items-center">
                         <div style={{ backgroundColor: "#FF7784" }} className="sq-slash df">
-                            <i class="bi bi-slash-square"></i>
+                            <i className="bi bi-slash-square"></i>
                         </div>
                         <p className='m-0'>Total Negative Responses</p>
                     </div>

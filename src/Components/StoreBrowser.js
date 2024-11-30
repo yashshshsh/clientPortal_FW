@@ -1,40 +1,68 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import textImg from '../Images/Text.png'
 import downImg from '../Images/vertical_align_bottom.png'
 import '../CSS/StoreBrowser.css'
 import { useNavigate } from 'react-router-dom'
 import * as XLSX from "xlsx";
+import { useFetchLaststores, useFetchAudYearList } from '../CustomHooks/StoreBrHook';
+import { useFetchQueTypes, useFetchAudCycles } from '../CustomHooks/UseFetchUrl';
+
 
 const StoreBrowser = () => {
-    const data = [
-        {
-            id: 1,
-            storeCode: "SST-001",
-            showroomName: "Showroom 1",
-            address: "Near Janakpuri metro station",
-            city: "Indore",
-            rank: 4,
-            totalScore: "95%",
-            insights: "Insights"
-        },
-        {
-            id: 2,
-            storeCode: "SST-001",
-            showroomName: "Showroom 2",
-            address: "Near Janakpuri metro station",
-            city: "Indore",
-            rank: 1,
-            totalScore: "95%",
-            insights: "Insights"
+    const { data: queTypesData, isLoading: queTypesLoading, error: queTypesError } = useFetchQueTypes('/questionnaire_types_for_dashboard');
+    const { data: cyclesData, isLoading: cyclesLoading, error: cyclesError } = useFetchAudCycles('/audit_cycle_for_dashboard');
+    const { data: lastStoreData, isLoading: lastStoreLoading, error: lastStoreError } = useFetchLaststores('/store?lastStoreId=');
+    const { data: audYearData, isLoading: audYearLoading, error: audYearError } = useFetchAudYearList('/audit_cycle_year_list');
+
+    const queId = queTypesData?.[0]?.id;
+    const [cycleId, setCycleId] = useState(null);
+    const [selectedQueId, setSelectedQueId] = useState(null);
+    const [detailsData, setDetailsData] = useState([]);
+
+    useEffect(() => {
+        if (cyclesData && selectedQueId) {
+            const filteredCycles = cyclesData.filter(cycle => cycle.questionnaire_type.id === selectedQueId);
+            setDetailsData(filteredCycles);
+            if (filteredCycles.length > 0) {
+                setCycleId(filteredCycles[0].id);
+            } else {
+                setCycleId(null);
+            }
         }
-    ];
+    }, [cyclesData, selectedQueId]);
+
+    useEffect(() => {
+        if (queId) {
+            setSelectedQueId(queId);
+        }
+    }, [queId]);
+
+    const handleSelectChange = (event) => {
+        const selectedId = parseInt(event.target.value, 10);
+        setSelectedQueId(selectedId);
+    };
+
+    const handleSelectChange1 = (event) => {
+        const selectedId1 = parseInt(event.target.value, 10);
+        // getstoresApiData(`/report/audit_cycle/${selectedId1}/audit_store`);
+    };
+
+    const data = lastStoreData?.stores_list?.map((store) => ({
+        id: store.id,
+        storeCode: store.code || "N/A",
+        showroomName: store.name,
+        address: store.address,
+        city: store.city.name,
+        rank: store.get_store_rank,
+        totalScore: store.get_total_percentage.score,
+    })) || [];
 
     const navigate = useNavigate();
 
     const handleReportBtn = () => {
         navigate('/storeBrowserInsights');
     }
-    
+
     const [openDropdown, setOpenDropdown] = useState(null); // For parent dropdown
     const [openNestedDropdowns, setOpenNestedDropdowns] = useState([]);
 
@@ -86,6 +114,26 @@ const StoreBrowser = () => {
                 </div>
             </div>
 
+            <div className="select my-2 gap-3 d-flex">
+                {/* <p className='my-2'>Questionnaire Type : </p>
+                <select onChange={handleSelectChange}>
+                    {queTypesData?.map((item) => (
+                        <option key={item.id} value={item.id}>
+                            {item.name}
+                        </option>
+                    ))}
+                </select> */}
+
+                {/* <select onChange={handleSelectChange1}>
+                        {detailsData?.map((item) => (
+                            <option key={item.id} value={item.id}>
+                                {item.name}
+                            </option>
+                        ))}
+                    </select> */}
+            </div>
+{/* 
+            <p>Audit Cycle : </p> */}
             <div className="searchStore d-flex justify-content-between">
                 <div className="searchIn d-flex">
                     <div className="inputSearch p-2 gap-2 d-flex justify-content-between align-items-center">
@@ -97,6 +145,17 @@ const StoreBrowser = () => {
                             <img src={textImg} alt="img" />
                         </div>
                     </div>
+                    {/* <div className="audit-cycle-inp">
+                        <div className="dropdownNes">
+                            <select onChange={handleSelectChange1}>
+                                {detailsData?.map((item) => (
+                                    <option key={item.id} value={item.id}>
+                                        {item.name}
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
+                    </div> */}
                     <div>
                         <div className="filterParent d-flex align-items-center gap-3" >
                             <div onClick={() => toggleDropdown('filter')} className="filter gap-2 d-flex justify-content-center align-items-center">
@@ -174,7 +233,8 @@ const StoreBrowser = () => {
                         )}
                     </div>
                 </div>
-                <div onClick = {()=> {setOpenNestedDropdowns([]);
+                <div onClick={() => {
+                    setOpenNestedDropdowns([]);
                     setOpenDropdown(null);
                 }} className="clearFilter d-flex align-items-center">
                     <p className="my-1">Clear Filter</p>

@@ -1,11 +1,50 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 import * as XLSX from "xlsx";
 import '../CSS/StorePerf.css'
 import downImg from '../Images/vertical_align_bottom.png'
 import textImg from '../Images/Text.png'
 import { useNavigate } from 'react-router-dom';
+import { useFetchQueTypes, useFetchAudCycles } from '../CustomHooks/UseFetchUrl';
+
 
 const StorePerf = ({ setState }) => {
+
+    const { data: queTypesData, isLoading: queTypesLoading, error: queTypesError } = useFetchQueTypes('/questionnaire_types_for_dashboard');
+    const { data: cyclesData, isLoading: cyclesLoading, error: cyclesError } = useFetchAudCycles('/audit_cycle_for_dashboard');
+
+    const queId = queTypesData?.[0]?.id;
+    const [cycleId, setCycleId] = useState(null);
+    const [selectedQueId, setSelectedQueId] = useState(null);
+    const [detailsData, setDetailsData] = useState([]);
+
+    useEffect(() => {
+        if (cyclesData && selectedQueId) {
+            const filteredCycles = cyclesData.filter(cycle => cycle.questionnaire_type.id === selectedQueId);
+            setDetailsData(filteredCycles);
+            if (filteredCycles.length > 0) {
+                setCycleId(filteredCycles[0].id);
+            } else {
+                setCycleId(null);
+            }
+        }
+    }, [cyclesData, selectedQueId]);
+
+    useEffect(() => {
+        if (queId) {
+            setSelectedQueId(queId);
+        }
+    }, [queId]);
+
+    const handleSelectChange = (event) => {
+        const selectedId = parseInt(event.target.value, 10);
+        setSelectedQueId(selectedId);
+    };
+
+    const handleSelectChange1 = (event) => {
+        const selectedId1 = parseInt(event.target.value, 10);
+        // getstoresApiData(`/report/audit_cycle/${selectedId1}/audit_store`);
+    };
+
     const tableData = [
         {
             sNo: 1,
@@ -83,9 +122,10 @@ const StorePerf = ({ setState }) => {
         link.click();
     };
 
+
     return (
         <div className='px-4'>
-            <button ref={ref} type="button" class="btn btn-primary d-none" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <button ref={ref} type="button" className="btn btn-primary d-none" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 Launch demo modal
             </button>
 
@@ -131,15 +171,47 @@ const StorePerf = ({ setState }) => {
                 <p className='perf-p my-3'>Use this dashboard to get stores which have scored less than optimal value. You can enter the optimal value in the input box above between 1-100</p>
             </div>
 
+            <div className="select my-2 gap-3 d-flex">
+                <p className='my-2'>Questionnaire Type : </p>
+                <select onChange={handleSelectChange}>
+                    {queTypesData?.map((item) => (
+                        <option key={item.id} value={item.id}>
+                            {item.name}
+                        </option>
+                    ))}
+                </select>
+
+                {/* <select onChange={handleSelectChange1}>
+                        {detailsData?.map((item) => (
+                            <option key={item.id} value={item.id}>
+                                {item.name}
+                            </option>
+                        ))}
+                    </select> */}
+            </div>
+
+            <p>Audit Cycle : </p>
             <div className="searchStore d-flex justify-content-between">
-                <div className="searchIn d-flex">
-                    <div className="inputSearch p-2 gap-2 d-flex justify-content-between align-items-center">
+                <div className="searchIn d-flex align-items-center">
+                    {/* <div className="inputSearch p-2 gap-2 d-flex justify-content-between align-items-center">
                         <div className='d-flex w-75'>
                             <i className="bi bi-search mx-2"></i>
                             <input className="storeSearch" placeholder="Search store" />
                         </div>
                         <div className='d-flex align-items-center'>
                             <img src={textImg} alt="img" />
+                        </div>
+                    </div> */}
+
+                    <div className="audit-cycle-inp">
+                        <div className="dropdownNes">
+                            <select onChange={handleSelectChange1}>
+                                {detailsData?.map((item) => (
+                                    <option key={item.id} value={item.id}>
+                                        {item.name}
+                                    </option>
+                                ))}
+                            </select>
                         </div>
                     </div>
                     <div>

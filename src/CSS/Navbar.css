@@ -79,6 +79,10 @@ nav{
     margin-left: 0.5rem;
 }
 
+.logOut{
+    cursor: pointer;
+}
+
 .dashboard,
 .reportBrowser,
 .actionTrack,
@@ -243,3 +247,11 @@ img{
     border-radius: 5px;
 }
 
+.gtranslate_wrapper {
+    position: static !important; /* Prevent floating or absolute positioning */
+    width: auto;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

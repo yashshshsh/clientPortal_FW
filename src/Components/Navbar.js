@@ -10,12 +10,17 @@ import upcomingIcon from '../Images/chronic.png'
 import storeIcon from '../Images/store.png'
 import sBrowserIcon from '../Images/pivot_table_chart (1).png'
 import logOut from '../Images/Log Out.png'
+import { handleError, handleSuccess } from './Service/utils';
+import { ToastContainer } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css"
+import axios from 'axios';
 
 const Navbar = () => {
     const [active, setActive] = useState("dashboard");
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 500);
     const [isDrop, setIsDrop] = useState(window.innerWidth <= 760);
     const [menuClicked, setMenuClicked] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     const navigate = useNavigate();
 
@@ -41,11 +46,52 @@ const Navbar = () => {
         setMenuClicked(!menuClicked);
     }
 
+    useEffect(() => {
+        const script = document.createElement('script');
+        script.src = "https://cdn.gtranslate.net/widgets/latest/float.js";
+        script.defer = true;
+
+        window.gtranslateSettings = {
+            default_language: "en",
+            languages: ["en", "fr", "de", "it", "es", "sd", "sn", "zh-TW"],
+            wrapper_selector: ".gtranslate_wrapper",
+            switcher_horizontal_position: "inline",
+            float_switcher_open_direction: "bottom"
+        };
+
+        document.body.appendChild(script);
+
+        return () => {
+            document.body.removeChild(script);
+        };
+    }, []);
+
+    const handleLogOut = async () => {
+        setLoading(true);
+        const fullUrl = "http://localhost:8000/client/market_place/logout_api";
+        const token = localStorage.getItem("authToken")
+        try {
+            const response = await axios.post(fullUrl,{},{
+                headers: {
+                    'Authorization': `Token ${token}`,
+                },
+            });
+            localStorage.removeItem("authToken");
+            handleSuccess("Logout successful");
+            setTimeout(() => navigate('/'), 800);
+        } catch (error) {
+            console.error('An error occurred:', error);
+            handleError("LogOut unsuccessful");
+        } finally {
+            setLoading(false);
+        }
+    }
+
     return (
         <div>
             <nav className="header navbar navbar-expand-lg">
                 <div className="container-fluid d-flex">
-                <img src={logo} alt="Logo" className='logo ms-4' />
+                    <img src={logo} alt="Logo" className='logo ms-4' />
 
                     {!isMobile ? (<div className="collNav">
                         <div className="collInner d-flex justify-content-end">
@@ -53,18 +99,19 @@ const Navbar = () => {
                                 <i className="bi bi-bell"></i>
                             </div>
                             <div className="globeIcon mx-3 d-flex align-items-center justify-content-center">
-                                <i className="bi bi-globe"></i>
+                                {/* <i className="bi bi-globe"></i>
                                 <select className="lang">
                                     <option value="en">Eng</option>
-                                </select>
+                                </select> */}
+                                {/* <div className="gtranslate_wrapper"></div> */}
                             </div>
-                            <div className="logOut d-flex mx-3 align-items-center justify-content-center">
+                            <div onClick={handleLogOut} className="logOut d-flex mx-3 align-items-center justify-content-center">
                                 <p className="my-2">Log Out</p>
                                 <img className='mx-1' src={logOut} alt='img' />
                             </div>
                         </div>
                     </div>) : (<div onClick={handleMenu} className="bar">
-                        <i style={{ fontSize: "2rem" }} class="bi bi-list"></i>
+                        <i style={{ fontSize: "2rem" }} className="bi bi-list"></i>
                     </div>)}
                 </div>
             </nav>
@@ -126,20 +173,22 @@ const Navbar = () => {
 
             <div className={`sidebar ${menuClicked ? 'sidebar-open' : ''}`}>
                 <div onClick={handleMenu} style={{ borderBottom: "3px solid #CCC" }} className="bar my-2 text-end">
-                    <i style={{ fontSize: "2rem" }} class="bi bi-list"></i>
+                    <i style={{ fontSize: "2rem" }} className="bi bi-list"></i>
                 </div>
                 <div style={{ height: "90%" }} className="collInner">
                     <div style={{ height: "3rem" }} className="bellIcon text-start d-flex align-items-center">
                         <i style={{ marginBottom: "0.3rem" }} className="bi bi-bell"></i>
                         <p className='my-2'>Notification</p>
                     </div>
-                    <div style={{ height: "3rem" }} className="globeIcon text-start d-flex align-items-center">
-                        <i className="bi bi-globe"></i>
-                        <select className="lang">
+                    <div style={{ height: "3rem" }} className="globeIcon bg-warning text-start d-flex align-items-center">
+                        <div><i className="bi bi-globe"></i></div>
+
+                        {/*<select className="lang">
                             <option value="en">Eng</option>
-                        </select>
+                        </select> */}
+                        <div className="gtranslate_wrapper"></div>
                     </div>
-                    <div style={{ height: "3rem" }} className="logOut text-start d-flex align-items-center">
+                    <div onClick={handleLogOut} style={{ height: "3rem",cursor:"pointer"}} className="logOut text-start d-flex align-items-center">
                         <p style={{ color: "black" }} className="my-2">Log Out</p>
                         <i style={{ color: "black" }} className="bi bi-box-arrow-right"></i>
                     </div>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React , {useState} from 'react';
 import { Bar } from 'react-chartjs-2';
 import {
   Chart as ChartJS,
@@ -8,30 +8,31 @@ import {
   Tooltip,
   Legend,
 } from 'chart.js';
-import ChartDataLabels from 'chartjs-plugin-datalabels'; // Import the datalabels plugin
+import ChartDataLabels from 'chartjs-plugin-datalabels'; 
 
-// Register Chart.js components and plugins
 ChartJS.register(
   BarElement,
   CategoryScale,
   LinearScale,
   Tooltip,
   Legend,
-  ChartDataLabels // Register the datalabels plugin
+  ChartDataLabels 
 );
 
-const BarChart = () => {
-  const sourceData = [
-    { label: ['Customer', 'Arrival and', 'Staff Grooming', 'Analysis'], value: 50 }, // Use array for multiline labels
-    { label: 'Store Exterior', value: 30 },
-    { label: 'Store Exterior', value: 90 },
-    { label: 'Store Exterior', value: 45 },
-  ];
-
+const BarChart = ({tsData}) => {
+  const sectionLabels = tsData?.section_master || []; // Y-axis labels
+  const values = tsData?.values[0] || []; 
   const total = 100; // Assuming the maximum value is 100 for percentage calculation
+  const [selectedBarIndex, setSelectedBarIndex] = useState(0);
+
+  const sourceData = sectionLabels.map((label, index) => ({
+    label: label,
+    value: values[index]?.value || 0, // Safely get the value
+  }));
+
 
   const handleBarClick = (index) => {
-    console.log(`Bar at index ${index} clicked:`, sourceData[index]);
+    setSelectedBarIndex(index === selectedBarIndex ? null : index);
   };
 
   return (
@@ -44,12 +45,9 @@ const BarChart = () => {
               {
                 label: 'Count',
                 data: sourceData.map((data) => data.value),
-                backgroundColor: [
-                  '#007DC1', // Custom colors for bars
-                  '#D7F1FF',
-                  '#D7F1FF',
-                  '#D7F1FF',
-                ],
+                backgroundColor: sourceData.map((_, index) =>
+                  index === selectedBarIndex ? '#007DC1' : '#D7F1FF'
+                ),
                 borderRadius: 5,
                 barThickness: 20, // Adjust bar thickness
               },
@@ -72,7 +70,11 @@ const BarChart = () => {
               datalabels: {
                 align: 'end', // Align the labels to the end (right) of the bars
                 anchor: 'end',
-                formatter: (value) => `${((value / total) * 100).toFixed(0)}%`, // Show percentage
+                formatter: (value, context) => {
+                  return context.dataIndex === selectedBarIndex
+                    ? `${((value / total) * 100).toFixed(0)}%`
+                    : '';
+                },
                 color: '#003C5D', // Label color (adjust as needed)
                 font: { 
                   size: 14,
@@ -98,10 +100,10 @@ const BarChart = () => {
               },
               y: {
                 title: {
-                  display: false, // Hides the Y-axis title
+                  display: false,
                 },
                 ticks: {
-                  padding: 20, // Adds spacing between the bars and labels
+                  padding: 20,
                   color: '#003C5D',
                   font: {
                     size: 12, // Y-axis label font size
@@ -114,7 +116,7 @@ const BarChart = () => {
             },
             layout: {
               padding: {
-                right: 20, // Adds padding to the right so labels don't get cut off
+                right: 20, 
               },
             },
           }}

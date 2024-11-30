@@ -109,6 +109,16 @@
     background-color: #FAFAFA   ;
     height : 26px;
 }
+.audit-details-tab{
+    font-family: "Lato", sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 26px;
+    color : #4B5563;
+    border-left: 5px solid #4B5563;
+    background-color: #FAFAFA   ;
+    height : 26px;
+}
 
 .overall {
     font-size: 28px;
@@ -120,6 +130,7 @@
 
 .hero-audit{
     background-color: #FAFAFA;
+    min-height: auto;
 }
 
 .hero-right{
@@ -168,7 +179,7 @@
 }
 
 .view-Ai{
-    width: 169px;
+    min-width: 169px;
     height : 44px;
     padding: 10px 24px;
     background: linear-gradient(90deg, #8DC63F 0%, #007DC1 100%);
@@ -312,6 +323,14 @@
     background-color: #FAFAFA;
 }
 
+.noAttachments {
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 18px;
+    color : #007DC1;
+}
+
 .body-content{
     background-color: white;
     padding: 0.25rem;
@@ -329,7 +348,7 @@
 }
 
 .accordion-body{
-    background-color: #003C5D0D;
+    background-color: #FAFAFA;
 }
 
 .accordion-button{
@@ -354,8 +373,14 @@
 }
 
 .attachImg img{
-    width: 90%;
-    height: 90%;
+    width: 8rem !important;
+    height: auto !important;
+    cursor: pointer;
+}
+
+.largeImg img{
+    width: 50rem !important;
+    height: auto !important;
 }
 
 @media(min-width : 500px){
@@ -471,7 +496,6 @@
     }
 }
 
-
 .que-footer p{
     font-family: "Lato", sans-serif;
     font-weight: 600;
@@ -483,8 +507,8 @@
     min-height: 124px;
 }
 
-.rating i{
-    font-size: 60px;
+.icon-div-star i{
+    font-size: 60px !important;
 }
 
 @media (max-width : 450px){
@@ -597,4 +621,34 @@
     font-weight: 500;
     font-size: 14px;
     line-height: 22px;
+}
+
+.matching-p{
+    height: 3rem;
+}
+
+.downPrevImg{
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.downPrevImg img{
+    height: auto;
+    width: 1.2rem !important;
+}
+
+.downPrevImg p{
+    color : #9CA3AF;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 22px;
+}
+
+.star {
+    font-size: 4rem;
+    color: gray;
+}
+
+.star.selected {
+    color: gold;
 }

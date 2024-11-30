@@ -1,34 +1,55 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import downImg from '../Images/vertical_align_bottom.png'
 import textImg from '../Images/Text.png'
 import * as XLSX from "xlsx";
 import styles from '../CSS/ActionTrack.module.css';
+import { useFetchActionReport } from '../CustomHooks/ActionTrackHook'
+import axios from "axios";
+import { useFetchQueTypes, useFetchAudCycles } from '../CustomHooks/UseFetchUrl'
 
 const ActionTrack = () => {
-    const data = [
-        {
-            no: 1,
-            reportId: "40368",
-            personResponsible: "clientdem04@floorwalk.in",
-            targetDate: "09 August 2024",
-            store: "Showroom 4, Ahmedabad",
-            createdBy: "Admin",
-            actionPlan: "The reception branding needs to be fixed.",
-            status: "Action Taken",
-            reportAction: "Report"
-        },
-        {
-            no: 2,
-            reportId: "40368",
-            personResponsible: "clientdem04@floorwalk.in",
-            targetDate: "09 August 2024",
-            store: "Showroom 4, Ahmedabad",
-            createdBy: "Admin",
-            actionPlan: "The reception branding needs to be fixed.",
-            status: "Action Pending",
-            reportAction: "Mark as Completed"
+
+    const { data: queTypesData, isLoading: queTypesLoading, error: queTypesError } = useFetchQueTypes('/questionnaire_types_for_dashboard');
+    const { data: cyclesData, isLoading: cyclesLoading, error: cyclesError } = useFetchAudCycles('/audit_cycle_for_dashboard');
+
+    const { data: actionRepData, isLoading: actionRepLoading, error: actionRepError, getApiData: getactionRepApiData } = useFetchActionReport();
+    const [tabData, setTabData] = useState([]);
+
+    useEffect(() => {
+        if (actionRepData) {
+            setTabData(actionRepData); // Update tabData when actionRepData changes
         }
-    ];
+    }, [actionRepData]);
+
+    const queId = queTypesData?.[0]?.id;
+    const [cycleId, setCycleId] = useState(null);
+    const [selectedQueId, setSelectedQueId] = useState(null);
+    const [detailsData, setDetailsData] = useState([]);
+
+    useEffect(() => {
+        if (selectedQueId && cycleId) {
+            getactionRepApiData(`audit_cycle/${cycleId}/action_reports`);
+        }
+    }, [cycleId, selectedQueId]);
+
+    useEffect(() => {
+        if (cyclesData && selectedQueId) {
+            const filteredCycles = cyclesData.filter(cycle => cycle.questionnaire_type.id === selectedQueId);
+            setDetailsData(filteredCycles);
+            if (filteredCycles.length > 0) {
+                setCycleId(filteredCycles[0].id);
+            } else {
+                setCycleId(null);
+            }
+        }
+    }, [cyclesData, selectedQueId]);
+
+    useEffect(() => {
+        if (queId) {
+            setSelectedQueId(queId);
+        }
+    }, [queId]);
+
     const [openDropdown, setOpenDropdown] = useState(false);
     const [openNestedDropdowns, setOpenNestedDropdowns] = useState(null);
 
@@ -56,6 +77,47 @@ const ActionTrack = () => {
         link.click();
     };
 
+    const [selectedOption, setSelectedOption] = useState('');
+    const handleSelectChange = (event) => {
+        const selectedId = parseInt(event.target.value, 10);
+        setSelectedQueId(selectedId);
+        setSelectedOption(event.target.value);
+    };
+
+    const [selectedOption1, setSelectedOption1] = useState('');
+    const handleSelectChange1 = (event) => {
+        const selectedId1 = parseInt(event.target.value, 10);
+        setSelectedOption1(event.target.value,10);
+        getactionRepApiData(`audit_cycle/${selectedId1}/action_reports`);
+    };
+
+    const handleMarkAsCompleted = async (id) => {
+        try {
+            const token = localStorage.getItem("authToken");
+            const url = `http://localhost:8080/client/action_report/${id}/change_status`;
+
+            const response = await axios.get(url,{
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Token ${token}`,
+                },
+            });
+
+            if (response.status === 200) {
+                // alert("Status updated successfully!");
+                // // Update the status in the table
+                const updatedData = tabData.map((item) =>
+                    item.id === id ? { ...item, status: "TAKEN" } : item
+                );
+                setTabData(updatedData);
+            }
+            getactionRepApiData(`audit_cycle/${cycleId}/action_reports`);
+        } catch (error) {
+            console.error("Error updating status:", error);
+            // alert("Failed to update the status. Please try again.");
+        }
+    };
+
     return (
         <div>
             {openNestedDropdowns && (
@@ -70,10 +132,23 @@ const ActionTrack = () => {
                     </div>
                 </div>
                 <div className={`${styles.head} d-flex justify-content-between align-items-center`}>
-                    <div className={`${styles.auditCycle} d-flex flex-column`}>
-                        <select>
-                            <option>Nps - June - 2024</option>
+                    <div className="select my-2 gap-3 d-flex">
+                        <p className='my-2'>Questionnaire Type : </p>
+                        <select value={selectedOption} onChange={handleSelectChange}>
+                            {queTypesData?.map((item) => (
+                                <option key={item.id} value={item.id}>
+                                    {item.name}
+                                </option>
+                            ))}
                         </select>
+
+                        {/* <select onChange={handleSelectChange1}>
+                        {detailsData?.map((item) => (
+                            <option key={item.id} value={item.id}>
+                                {item.name}
+                            </option>
+                        ))}
+                    </select> */}
                     </div>
                     <div onClick={downloadTableAsExcelObs} className={`${styles.exportList} d-flex justify-content-center align-items-center`}>
                         <p className="my-2">Export List</p>
@@ -83,9 +158,10 @@ const ActionTrack = () => {
                     </div>
                 </div>
 
+                <p>Audit Cycle : </p>
                 <div className={`${styles.searchStore} d-flex justify-content-between`}>
                     <div className={`${styles.searchIn} d-flex`}>
-                        <div className={`${styles.inputSearch} p-2 gap-2 d-flex justify-content-between align-items-center`}>
+                        {/* <div className={`${styles.inputSearch} p-2 gap-2 d-flex justify-content-between align-items-center`}>
                             <div className='d-flex w-75'>
                                 <i className="bi bi-search mx-2"></i>
                                 <input className={styles.storeSearch} placeholder="Search store" />
@@ -93,8 +169,19 @@ const ActionTrack = () => {
                             <div className='d-flex align-items-center'>
                                 <img src={textImg} alt="img" />
                             </div>
-                        </div>
+                        </div> */}
+                        <div className="audit-cycle-inp">
 
+                            <div className={`${styles.dropdownNes}`}>
+                                <select value={selectedOption1} onChange={handleSelectChange1}>
+                                    {detailsData?.map((item) => (
+                                        <option key={item.id} value={item.id}>
+                                            {item.name}
+                                        </option>
+                                    ))}
+                                </select>
+                            </div>
+                        </div>
                         <div onClick={() => setOpenDropdown(!openDropdown)} className={`${styles.filter} gap-2 d-flex justify-content-center align-items-center`}>
                             <p className={`${styles.filterText} my-1`}>Filter</p>
                             <div className={styles.filterIcon}>
@@ -158,31 +245,35 @@ const ActionTrack = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {data.map((row, index) => (
-                                <tr key={index}>
-                                    <td>{row.no}</td>
-                                    <td>{row.reportId}</td>
-                                    <td>{row.personResponsible}</td>
-                                    <td>{row.targetDate}</td>
-                                    <td>{row.store}</td>
-                                    <td>{row.createdBy}</td>
-                                    <td>{row.actionPlan}</td>
+                            {tabData.map((row, index) => (
+                                <tr key={row.id}>
+                                    <td>{index + 1}</td>
+                                    <td>{row.id}</td>
+                                    <td>{row.person_responsible}</td>
+                                    <td>{row.target_date}</td>
+                                    <td>{row.store_details}</td>
+                                    <td>{row.created_by}</td>
+                                    <td>{row.action_plan_description}</td>
                                     <td>
-                                        <div className={`${styles.pendingTd} d-flex justify-content-center align-items-center`}>
+                                        <div
+                                            className={`${styles.pendingTd} d-flex justify-content-center align-items-center`}
+                                        >
                                             <div
-                                                className={`${styles.status} ${row.status === "Action Taken" ? styles.taken : styles.pending} d-flex align-items-center justify-content-center`}
+                                                className={`${styles.status} ${row.status === "TAKEN" ? styles.taken : styles.pending
+                                                    } d-flex align-items-center justify-content-center`}
                                                 style={{
-                                                    backgroundColor: row.status === "Action Taken" ? "#E9FFEF" : "#FFF2DD",
+                                                    backgroundColor:
+                                                        row.status === "TAKEN" ? "#E9FFEF" : "#FFF2DD",
                                                     borderRadius: "10px",
                                                     width: "135px",
-                                                    height: "30px"
+                                                    height: "30px",
                                                 }}
                                             >
                                                 <i
                                                     style={{
                                                         fontSize: "2.2rem",
                                                         margin: "0",
-                                                        color: row.status === "Action Taken" ? "#409261" : "#D98634"
+                                                        color: row.status === "TAKEN" ? "#409261" : "#D98634",
                                                     }}
                                                     className="bi bi-dot"
                                                 ></i>
@@ -192,19 +283,28 @@ const ActionTrack = () => {
                                                         fontWeight: "400",
                                                         fontSize: "13px",
                                                         lineHeight: "14px",
-                                                        color: row.status === "Action Taken" ? "#409261" : "#D98634"
+                                                        color: row.status === "TAKEN" ? "#409261" : "#D98634",
                                                     }}
                                                 >
-                                                    {row.status}
+                                                    {row.status === "TAKEN"
+                                                        ? "Action Taken"
+                                                        : "Action Pending"}
                                                 </p>
                                             </div>
                                         </div>
                                     </td>
                                     <td>
                                         <div className={styles.reportAction}>
-                                            {row.status === "Action Pending" ? (
-                                                <div className={`${styles.penComp} d-flex gap-2 align-items-center justify-content-center`}>
-                                                    <button className={styles.markBtn}>Mark as Completed</button>
+                                            {row.status === "PENDING" ? (
+                                                <div
+                                                    className={`${styles.penComp} d-flex gap-2 align-items-center justify-content-center`}
+                                                >
+                                                    <button
+                                                        className={styles.markBtn}
+                                                        onClick={() => handleMarkAsCompleted(row.id)} // Call handler on click
+                                                    >
+                                                        Mark as Completed
+                                                    </button>
                                                     <button className={styles.reportBtn}>Report</button>
                                                 </div>
                                             ) : (
@@ -216,6 +316,7 @@ const ActionTrack = () => {
                             ))}
                         </tbody>
                     </table>
+
                 </div>
 
             </div>
