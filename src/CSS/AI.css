@@ -143,16 +143,15 @@
     line-height: 20px;
 }
 
-table{
-    text-align: left;
-}
-
 .res-main{
     border-radius: 15px;
 }
 
-.table-left td{
+
+
+.table-left td,.table-left table{
     background-color: white !important;
+    border : none !important;
 }
 
 .leftText {
@@ -164,6 +163,7 @@ table{
     width: 10rem;
     height: 2rem;
     background-color: white !important;
+    text-align: left !important;
 }
 
 .rightText {
@@ -173,6 +173,7 @@ table{
     line-height: 16px;
     color: #6B7280;
     height: 2rem;
+    text-align: left !important;
     background-color: white !important;
 }
 

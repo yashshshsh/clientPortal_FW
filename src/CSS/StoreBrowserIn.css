@@ -187,14 +187,9 @@
     line-height: 19px;
 }
 
-table {
-    border: none !important;
-}
-
-.table-left td,
-.table-right td {
+.table-right td,.table-right th,.table-right table {
     text-align: left !important;
-    border: none;
+    border: none !important;
     background-color: #FAFAFA !important;
 }
 

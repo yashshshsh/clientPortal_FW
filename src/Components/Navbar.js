@@ -1,18 +1,18 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
 import logo from '../Images/Floorwalk logo7x.png';
-import '../CSS/Navbar.css'
-import { useNavigate } from 'react-router-dom';
+import '../CSS/Navbar.css';
+import { Link } from 'react-router-dom';
 import CustomSelect from './CustomSelect';
-import dashIcon from '../Images/space_dashboard.png'
-import reportIcon from '../Images/insert_chart (1).png'
-import actionIcon from '../Images/bottom_right_click.png'
-import upcomingIcon from '../Images/chronic.png'
-import storeIcon from '../Images/store.png'
-import sBrowserIcon from '../Images/pivot_table_chart (1).png'
-import logOut from '../Images/Log Out.png'
+import dashIcon from '../Images/space_dashboard.png';
+import reportIcon from '../Images/insert_chart (1).png';
+import actionIcon from '../Images/bottom_right_click.png';
+import upcomingIcon from '../Images/chronic.png';
+import storeIcon from '../Images/store.png';
+import sBrowserIcon from '../Images/pivot_table_chart (1).png';
+import logOut from '../Images/Log Out.png';
 import { handleError, handleSuccess } from './Service/utils';
 import { ToastContainer } from 'react-toastify';
-import "react-toastify/dist/ReactToastify.css"
+import "react-toastify/dist/ReactToastify.css";
 import axios from 'axios';
 
 const Navbar = () => {
@@ -22,7 +22,13 @@ const Navbar = () => {
     const [menuClicked, setMenuClicked] = useState(false);
     const [loading, setLoading] = useState(false);
 
-    const navigate = useNavigate();
+    const handleActive = (active) => {
+        setActive(active);
+    }
+
+    const handleMenu = () => {
+        setMenuClicked(!menuClicked);
+    }
 
     useEffect(() => {
         const handleResizeMob = () => {
@@ -37,39 +43,10 @@ const Navbar = () => {
         window.addEventListener('resize', handleResizeDrop);
     }, []);
 
-    const handleActive = (active) => {
-        setActive(active);
-        navigate('/' + active);
-    }
-
-    const handleMenu = () => {
-        setMenuClicked(!menuClicked);
-    }
-
-    useEffect(() => {
-        const script = document.createElement('script');
-        script.src = "https://cdn.gtranslate.net/widgets/latest/float.js";
-        script.defer = true;
-
-        window.gtranslateSettings = {
-            default_language: "en",
-            languages: ["en", "fr", "de", "it", "es", "sd", "sn", "zh-TW"],
-            wrapper_selector: ".gtranslate_wrapper",
-            switcher_horizontal_position: "inline",
-            float_switcher_open_direction: "bottom"
-        };
-
-        document.body.appendChild(script);
-
-        return () => {
-            document.body.removeChild(script);
-        };
-    }, []);
-
     const handleLogOut = async () => {
         setLoading(true);
         const fullUrl = "http://localhost:8000/client/market_place/logout_api";
-        const token = localStorage.getItem("authToken")
+        const token = localStorage.getItem("authToken");
         try {
             const response = await axios.post(fullUrl,{},{
                 headers: {
@@ -78,7 +55,7 @@ const Navbar = () => {
             });
             localStorage.removeItem("authToken");
             handleSuccess("Logout successful");
-            setTimeout(() => navigate('/'), 800);
+            setTimeout(() => window.location.href = '/', 800);
         } catch (error) {
             console.error('An error occurred:', error);
             handleError("LogOut unsuccessful");
@@ -99,11 +76,6 @@ const Navbar = () => {
                                 <i className="bi bi-bell"></i>
                             </div>
                             <div className="globeIcon mx-3 d-flex align-items-center justify-content-center">
-                                {/* <i className="bi bi-globe"></i>
-                                <select className="lang">
-                                    <option value="en">Eng</option>
-                                </select> */}
-                                {/* <div className="gtranslate_wrapper"></div> */}
                             </div>
                             <div onClick={handleLogOut} className="logOut d-flex mx-3 align-items-center justify-content-center">
                                 <p className="my-2">Log Out</p>
@@ -119,54 +91,56 @@ const Navbar = () => {
             {isDrop ? (<CustomSelect />) : (<div className="py13">
                 <div className="navb mx-auto">
                     <div className='d-flex flex-wrap justify-content-evenly align-content-between'>
-                        <div onClick={() => { handleActive("dashboard") }} className={`dashboard gap-2 ${active === "dashboard" ? "bg-active" : ""}`}>
+                        <Link to="/dashboard" className={`dashboard gap-2 ${active === "dashboard" ? "bg-active" : ""}`} onClick={() => handleActive("dashboard")}>
                             <div className="iconList df">
                                 <img src={dashIcon} alt="img" />
                             </div>
                             <p>Dashboard</p>
-                        </div>
-                        <div onClick={() => { handleActive("reportBrowser") }} className={`reportBrowser gap-2 ${active === "reportBrowser" ? "bg-active" : ""}`}>
+                        </Link>
+                        <Link to="/reportBrowser" className={`reportBrowser gap-2 ${active === "reportBrowser" ? "bg-active" : ""}`} onClick={() => handleActive("reportBrowser")}>
                             <div className="iconChart df">
                                 <img src={reportIcon} alt="img" />
                             </div>
                             <p>Report Browser</p>
-                        </div>
-                        <div onClick={() => { handleActive("actionTrack") }} className={`actionTrack gap-2 ${active === "actionTrack" ? "bg-active" : ""}`}>
+                        </Link>
+                        <Link to="/actionTrack" className={`actionTrack gap-2 ${active === "actionTrack" ? "bg-active" : ""}`} onClick={() => handleActive("actionTrack")}>
                             <div className="iconAction df">
                                 <img src={actionIcon} alt="img" />
                             </div>
                             <p>Action Track</p>
-                        </div>
-                        <div onClick={() => { handleActive("upAudits") }} className={`upAudits gap-2 ${active === "upAudits" ? "bg-active" : ""}`}>
+                        </Link>
+                        <Link to="/upAudits" className={`upAudits gap-2 ${active === "upAudits" ? "bg-active" : ""}`} onClick={() => handleActive("upAudits")}>
                             <div className="iconClock df">
                                 <img src={upcomingIcon} alt="img" />
                             </div>
                             <p>Upcoming audits</p>
-                        </div>
-                        <div onClick={() => { handleActive("storeBrowser") }} className={`storeBrowser gap-2 ${active === "storeBrowser" ? "bg-active" : ""}`}>
+                        </Link>
+                        <Link to="/storeBrowser" className={`storeBrowser gap-2 ${active === "storeBrowser" ? "bg-active" : ""}`} onClick={() => handleActive("storeBrowser")}>
                             <div className="iconStore df">
                                 <img src={storeIcon} alt="img" />
                             </div>
                             <p>Store Browser</p>
-                        </div>
-                        <div onClick={() => { handleActive("storePerformance") }} className={`storePer gap-2 ${active === "storePerformance" ? "bg-active" : ""}`}>
+                        </Link>
+                        <Link to="/storePerformance" className={`storePer gap-2 ${active === "storePerformance" ? "bg-active" : ""}`} onClick={() => handleActive("storePerformance")}>
                             <div className="iconPer df">
                                 <img src={sBrowserIcon} alt="img" />
                             </div>
                             <p>Store Performance</p>
-                        </div>
+                        </Link>
 
-
-                        {active === "AI" ? (<div className="view-Ai d-flex gap-1 my-2 justify-content-center align-items-center">
-                            <div className="iconStar my-2">
-                                <i className="bi bi-stars"></i>
+                        {active === "AI" ? (
+                            <div className="view-Ai d-flex gap-1 my-2 justify-content-center align-items-center">
+                                <div className="iconStar my-2">
+                                    <i className="bi bi-stars"></i>
+                                </div>
+                                <p className='my-2'>AI Insights</p>
                             </div>
-                            <p className='my-2'>AI Insights</p>
-                        </div>) : (<div onClick={() => { handleActive("AI") }} className="ai df">
-                            <i className="bi bi-stars"></i>
-                            <p className='my-2'>AI Insights</p>
-                        </div>)
-                        }
+                        ) : (
+                            <Link to="/AI" className="ai df" onClick={() => handleActive("AI")}>
+                                <i className="bi bi-stars"></i>
+                                <p className='my-2'>AI Insights</p>
+                            </Link>
+                        )}
                     </div>
                 </div>
             </div>)}
@@ -182,20 +156,16 @@ const Navbar = () => {
                     </div>
                     <div style={{ height: "3rem" }} className="globeIcon bg-warning text-start d-flex align-items-center">
                         <div><i className="bi bi-globe"></i></div>
-
-                        {/*<select className="lang">
-                            <option value="en">Eng</option>
-                        </select> */}
                         <div className="gtranslate_wrapper"></div>
                     </div>
-                    <div onClick={handleLogOut} style={{ height: "3rem",cursor:"pointer"}} className="logOut text-start d-flex align-items-center">
+                    <div onClick={handleLogOut} style={{ height: "3rem", cursor: "pointer" }} className="logOut text-start d-flex align-items-center">
                         <p style={{ color: "black" }} className="my-2">Log Out</p>
                         <i style={{ color: "black" }} className="bi bi-box-arrow-right"></i>
                     </div>
                 </div>
             </div>
         </div >
-    )
+    );
 }
 
-export default Navbar
+export default Navbar;

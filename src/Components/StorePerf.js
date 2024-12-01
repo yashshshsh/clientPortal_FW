@@ -300,10 +300,8 @@ const StorePerf = ({ setState }) => {
                     </div>
 
                     <div onClick={downloadTableAsExcelObs} className="exportList d-flex justify-content-center align-items-center">
-                        <p className="my-2">Export List</p>
-                        <div className="downIcon">
-                            <img src={downImg} alt="img" />
-                        </div>
+                    <p className="my-2">Export List</p>
+                    <img src={downImg} alt="img" />
                     </div>
                 </div>
 
@@ -319,29 +317,22 @@ const StorePerf = ({ setState }) => {
                                 <th className="audit" style={{ minWidth: "270px" }}>Audit</th>
                                 <th style={{ minWidth: "90px" }}>Max Marks</th>
                                 <th style={{ width: "11vw" }}>
-                                    <p className='m-1'>Customer Arrival and</p>
-                                    <p className='m-0'>Staff Gromming</p>
-                                    <p className='m-1'>Analysis</p>
+                                    Customer Arrival and Staff Gromming Analysis
                                 </th>
                                 <th style={{ width: "11vw" }}>
-                                    <p className='m-1'>Interaction with</p>
-                                    <p className='m-0'>Staff</p></th>
-                                <th style={{ width: "11vw" }}>
-                                    <p className='m-1'>Customer Arrival and</p>
-                                    <p className='m-0'>Staff Gromming</p>
-                                    <p className='m-1'>Analysis</p>
+                                    Interaction with Staff
                                 </th>
                                 <th style={{ width: "11vw" }}>
-                                    <p className='m-1'>Interaction with</p>
-                                    <p className='m-0'>Staff</p></th>
-                                <th style={{ width: "11vw" }}>
-                                    <p className='m-1'>Customer Arrival and</p>
-                                    <p className='m-0'>Staff Gromming</p>
-                                    <p className='m-1'>Analysis</p>
+                                    Customer Arrival and Staff Gromming Analysis
                                 </th>
                                 <th style={{ width: "11vw" }}>
-                                    <p className='m-1'>Interaction with</p>
-                                    <p className='m-0'>Staff</p></th>
+                                    Interaction with Staff
+                                </th>
+                                <th style={{ width: "11vw" }}>
+                                    Customer Arrival and Staff Gromming Analysis
+                                </th>
+                                <th style={{ width: "11vw" }}>
+                                    Interaction with Staff</th>
                             </tr>
                         </thead>
                         <tbody>

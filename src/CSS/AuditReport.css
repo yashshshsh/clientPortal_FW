@@ -5,6 +5,35 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
 /* font-family: "Lato", sans-serif; */
+
+table {
+    width: 100%;
+    border-collapse: collapse; 
+    border-spacing: 0;
+}
+
+table, th, td {
+    padding: 8px;
+    text-align: center;
+    border: 1px solid #ccc; 
+}
+
+th {
+    background-color: #f2f2f2; 
+    color: #353E4C; 
+    font-family: "Roboto", sans-serif;
+    font-weight: 700;
+    font-size: 0.82rem !important;
+}
+
+td {
+    background-color: white;
+    font-family: "Lato";
+    font-weight: 400;
+    font-size: 0.8rem;
+    line-height: 1rem;
+}
+
 .audit-heading{
     min-height : 56px;
 }
@@ -73,14 +102,13 @@
 }
 
 .left-details table {
-    border-collapse: collapse; 
-    border: none; 
+    border: none !important; 
 }
 
 .left-details td,
 .left-details tr,
 .left-details tbody {
-    border: none;
+    border: none !important;
     background-color: #FAFAFA !important;
 
 }
@@ -91,7 +119,7 @@
 
 .left-details td {
     padding: 0.5rem 1rem; 
-    text-align: left;
+    text-align: left !important;
 }
 
 .left-details td:first-child {
@@ -652,3 +680,4 @@
 .star.selected {
     color: gold;
 }
+

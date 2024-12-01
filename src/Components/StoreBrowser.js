@@ -108,9 +108,7 @@ const StoreBrowser = () => {
                 </div>
                 <div onClick={downloadTableAsExcelObs} className="exportList d-flex justify-content-center align-items-center">
                     <p className="my-2">Export List</p>
-                    <div className="downIcon">
-                        <img src={downImg} alt="img" />
-                    </div>
+                    <img src={downImg} alt="img" />
                 </div>
             </div>
 
@@ -132,7 +130,7 @@ const StoreBrowser = () => {
                         ))}
                     </select> */}
             </div>
-{/* 
+            {/* 
             <p>Audit Cycle : </p> */}
             <div className="searchStore d-flex justify-content-between">
                 <div className="searchIn d-flex">

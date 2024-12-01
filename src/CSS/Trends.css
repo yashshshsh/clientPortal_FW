@@ -65,7 +65,7 @@
     height : 26px;
 }
 
-table {
+/* table {
     width: 100%;
     border-collapse: collapse; 
     border-spacing: 0;
@@ -91,7 +91,7 @@ th {
     font-family: "Roboto", sans-serif;
     font-weight: 700;
     font-size: 0.8rem;
-}
+} */
 
 .SNO{
     width: 4vw !important;
@@ -121,16 +121,16 @@ th {
     line-height: 1rem;
 }
 
-.fifthTable table {
+/* .fifthTable table {
     width: 100%;
-    border-collapse: collapse; /* Ensure there is no extra spacing around table cells */
-}
-
+    border-collapse: collapse;
+} */
+/* 
 table, th, td {
     padding: 8px;
     text-align: center;
-    border: 1px solid #ccc; /* Optional border */
-}
+    border: 1px solid #ccc; 
+} */
 
 .tTf{
     font-family: "Roboto", sans-serif; 

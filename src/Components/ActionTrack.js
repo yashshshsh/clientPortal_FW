@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import downImg from '../Images/vertical_align_bottom.png'
 import textImg from '../Images/Text.png'
 import * as XLSX from "xlsx";
-import styles from '../CSS/ActionTrack.module.css';
+import '../CSS/ActionTrack.css'
 import { useFetchActionReport } from '../CustomHooks/ActionTrackHook'
 import axios from "axios";
 import { useFetchQueTypes, useFetchAudCycles } from '../CustomHooks/UseFetchUrl'
@@ -125,13 +125,13 @@ const ActionTrack = () => {
                     Hii
                 </div>
             )}
-            <div className={`${styles.heroSection} px-4 my-4`}>
-                <div className={`${styles.repoHead} d-flex align-items-center`}>
-                    <div className={styles.reportPara}>
+            <div className="heroSection px-4 my-4">
+                <div className="repoHead d-flex align-items-center">
+                    <div className="reportPara">
                         <p className="my-2">Action Track</p>
                     </div>
                 </div>
-                <div className={`${styles.head} d-flex justify-content-between align-items-center`}>
+                <div className="head d-flex justify-content-between align-items-center">
                     <div className="select my-2 gap-3 d-flex">
                         <p className='my-2'>Questionnaire Type : </p>
                         <select value={selectedOption} onChange={handleSelectChange}>
@@ -150,17 +150,15 @@ const ActionTrack = () => {
                         ))}
                     </select> */}
                     </div>
-                    <div onClick={downloadTableAsExcelObs} className={`${styles.exportList} d-flex justify-content-center align-items-center`}>
+                    <div onClick={downloadTableAsExcelObs} className="exportList d-flex justify-content-center align-items-center">
                         <p className="my-2">Export List</p>
-                        <div className={styles.downIcon}>
-                            <img src={downImg} alt="img" />
-                        </div>
+                        <img src={downImg} alt="img" />
                     </div>
                 </div>
 
                 <p>Audit Cycle : </p>
-                <div className={`${styles.searchStore} d-flex justify-content-between`}>
-                    <div className={`${styles.searchIn} d-flex`}>
+                <div className="searchStore d-flex justify-content-between">
+                    <div className="searchIn d-flex">
                         {/* <div className={`${styles.inputSearch} p-2 gap-2 d-flex justify-content-between align-items-center`}>
                             <div className='d-flex w-75'>
                                 <i className="bi bi-search mx-2"></i>
@@ -172,7 +170,7 @@ const ActionTrack = () => {
                         </div> */}
                         <div className="audit-cycle-inp">
 
-                            <div className={`${styles.dropdownNes}`}>
+                            <div className="dropdownNes">
                                 <select value={selectedOption1} onChange={handleSelectChange1}>
                                     {detailsData?.map((item) => (
                                         <option key={item.id} value={item.id}>
@@ -182,17 +180,17 @@ const ActionTrack = () => {
                                 </select>
                             </div>
                         </div>
-                        <div onClick={() => setOpenDropdown(!openDropdown)} className={`${styles.filter} gap-2 d-flex justify-content-center align-items-center`}>
-                            <p className={`${styles.filterText} my-1`}>Filter</p>
-                            <div className={styles.filterIcon}>
+                        <div onClick={() => setOpenDropdown(!openDropdown)} className="filter gap-2 d-flex justify-content-center align-items-center">
+                            <p className="filterText my-1">Filter</p>
+                            <div className="filterIcon">
                                 <i className="bi bi-filter"></i>
                             </div>
                         </div>
                         {openDropdown && (
                             <div>
-                                <ul className={` dropdown-menu shadow-lg d-grid gap-1 p-2 rounded-3 mx-0 w-220px`}>
+                                <ul className="dropdown-menu shadow-lg d-grid gap-1 p-2 rounded-3 mx-0 w-220px">
                                     <li>
-                                        <div className={`${styles.dropList} d-flex justify-content-between align-items-center`}
+                                        <div className="dropList d-flex justify-content-between align-items-center"
                                             onClick={() => {
                                                 setOpenNestedDropdowns('All');
                                                 setOpenDropdown(false);
@@ -201,7 +199,7 @@ const ActionTrack = () => {
                                         </div>
                                     </li>
                                     <li>
-                                        <div className={`${styles.dropList} d-flex justify-content-between align-items-center`}
+                                        <div className="dropList d-flex justify-content-between align-items-center"
                                             onClick={() => {
                                                 setOpenNestedDropdowns('Pending');
                                                 setOpenDropdown(false);
@@ -211,7 +209,7 @@ const ActionTrack = () => {
                                     </li>
                                     <li>
                                         <div
-                                            className={`${styles.dropList} d-flex justify-content-between align-items-center`}
+                                            className="dropList d-flex justify-content-between align-items-center"
                                             onClick={() => {
                                                 setOpenNestedDropdowns('Action Taken');
                                                 setOpenDropdown(false);
@@ -224,12 +222,12 @@ const ActionTrack = () => {
                             </div>
                         )}
                     </div>
-                    <div onClick={() => { setOpenNestedDropdowns(null) }} className={`${styles.clearFilter} d-flex align-items-center`}>
+                    <div onClick={() => { setOpenNestedDropdowns(null) }} className="clearFilter d-flex align-items-center">
                         <p className="my-1">Clear Filter</p>
                     </div>
                 </div>
 
-                <div className={`${styles.dashTable} my-4 table-responsive `}>
+                <div className="dashTable my-4 table-responsive">
                     <table id="table-to-export">
                         <thead>
                             <tr>
@@ -256,11 +254,10 @@ const ActionTrack = () => {
                                     <td>{row.action_plan_description}</td>
                                     <td>
                                         <div
-                                            className={`${styles.pendingTd} d-flex justify-content-center align-items-center`}
+                                            className="pendingTd d-flex justify-content-center align-items-center"
                                         >
                                             <div
-                                                className={`${styles.status} ${row.status === "TAKEN" ? styles.taken : styles.pending
-                                                    } d-flex align-items-center justify-content-center`}
+                                                className={`status ${row.status === "TAKEN" ? "taken" : "pending"} d-flex align-items-center justify-content-center`}
                                                 style={{
                                                     backgroundColor:
                                                         row.status === "TAKEN" ? "#E9FFEF" : "#FFF2DD",
@@ -294,21 +291,19 @@ const ActionTrack = () => {
                                         </div>
                                     </td>
                                     <td>
-                                        <div className={styles.reportAction}>
+                                        <div className="reportAction">
                                             {row.status === "PENDING" ? (
-                                                <div
-                                                    className={`${styles.penComp} d-flex gap-2 align-items-center justify-content-center`}
-                                                >
+                                                <div className="penComp d-flex gap-2 align-items-center justify-content-center">
                                                     <button
-                                                        className={styles.markBtn}
-                                                        onClick={() => handleMarkAsCompleted(row.id)} // Call handler on click
+                                                        className="markBtn"
+                                                        onClick={() => handleMarkAsCompleted(row.id)} 
                                                     >
                                                         Mark as Completed
                                                     </button>
-                                                    <button className={styles.reportBtn}>Report</button>
+                                                    <button className="reportBtn">Report</button>
                                                 </div>
                                             ) : (
-                                                <button className={styles.reportBt}>Report</button>
+                                                <button className="reportBt">Report</button>
                                             )}
                                         </div>
                                     </td>

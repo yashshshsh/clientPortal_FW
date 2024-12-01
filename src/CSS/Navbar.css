@@ -10,6 +10,15 @@
 
 /* font-family: "DM Sans", sans-serif; */
 
+a {
+    text-decoration: none;
+    color: inherit; 
+}
+
+a:hover {
+    text-decoration: none; /* Ensures no underline on hover */
+}
+
 .df {
     display: flex;
     justify-content: center;

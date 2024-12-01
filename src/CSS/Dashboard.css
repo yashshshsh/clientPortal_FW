@@ -142,6 +142,11 @@
     transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
+.dropdown-menu {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 .logo img{
     height: auto;
     width: 120px !important;
@@ -155,11 +160,6 @@
     font-weight: 700;
     line-height: 19px;  
     cursor: pointer;
-}
-
-.dropdown-menu.show {
-    opacity: 1;
-    transform: translateY(0);
 }
 
 @media(max-width : 420px){
@@ -249,27 +249,28 @@
     min-height: auto;
 }
 
+table, th, td {
+    padding: 8px;
+    text-align: center !important;
+    border: 1px solid #ccc !important; 
+}
+    
 table {
     width: 100%;
     border-collapse: collapse; 
     border-spacing: 0;
 }
 
-table, th, td {
-    padding: 8px;
-    text-align: center;
-    border: 1px solid #ccc; 
-}
-
-th {
+th{
     background-color: #f2f2f2; 
     color: #353E4C; 
     font-family: "Roboto", sans-serif;
     font-weight: 700;
     font-size: 0.82rem !important;
+    height: 67px;
 }
 
-td {
+td{
     background-color: white;
     font-family: "Lato";
     font-weight: 400;
@@ -321,11 +322,6 @@ td {
     font-weight: 700;
     font-size: 0.8rem;
     line-height: 1rem;
-}
-
-.fifthTable table {
-    width: 100%;
-    border-collapse: collapse; /* Ensure there is no extra spacing around table cells */
 }
 
 .tTf{

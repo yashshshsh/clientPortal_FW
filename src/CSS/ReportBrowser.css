@@ -211,26 +211,6 @@ select {
     justify-content: center;
     align-items: center;
 }
-/* table {
-    width: 100%;
-    border-collapse: collapse; 
-    border-spacing: 0;
-}
-
-
-th{
-    font-family: "Roboto", sans-serif;
-    font-weight: 700 !important;
-    font-size: 12px !important;
-}
-
-td{
-    font-family: "Lato", sans-serif;
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 16px;
-    color : #353E4C;
-} */
 
 .downIcon img{
     height: 1.2rem;

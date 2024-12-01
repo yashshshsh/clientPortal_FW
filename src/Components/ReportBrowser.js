@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import styles from '../CSS/ReportBrowser.module.css';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect, useContext } from 'react';
+import '../CSS/ReportBrowser.css'
 import * as XLSX from "xlsx";
 import downImg from '../Images/vertical_align_bottom.png'
 import textImg from '../Images/Text.png'
@@ -8,8 +7,13 @@ import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import { useFetchQueTypes, useFetchAudCycles } from '../CustomHooks/UseFetchUrl'
 import { useFetchAuditstores, useFetchReportAttributes } from '../CustomHooks/ReportHook'
+import { Link } from 'react-router-dom';
+import SelectContext from '../Context/SelectContext'
 
 const ReportBrowser = () => {
+
+    const context = useContext(SelectContext);
+    const { selectedOption, setSelectedOption, selectedOption1, setSelectedOption1, selectedQueId, setSelectedQueId, flag, setFlag } = context;
 
     const { data: queTypesData, isLoading: queTypesLoading, error: queTypesError } = useFetchQueTypes('/questionnaire_types_for_dashboard');
     const { data: cyclesData, isLoading: cyclesLoading, error: cyclesError } = useFetchAudCycles('/audit_cycle_for_dashboard');
@@ -19,7 +23,7 @@ const ReportBrowser = () => {
 
     const queId = queTypesData?.[0]?.id;
     const [cycleId, setCycleId] = useState(null);
-    const [selectedQueId, setSelectedQueId] = useState(null);
+
     const [detailsData, setDetailsData] = useState([]);
 
     useEffect(() => {
@@ -42,16 +46,11 @@ const ReportBrowser = () => {
     }, [cyclesData, selectedQueId]);
 
     useEffect(() => {
-        if (queId) {
+        if (queId && flag) {
             setSelectedQueId(queId);
+            setFlag(false);
         }
     }, [queId]);
-
-    const navigate = useNavigate();
-
-    const handleReportBtn = (auditStoreId) => {
-        navigate(`/auditReport`, { state: { auditStoreId } });
-    };
 
     const [value] = useState(new Date());
     const [openDropdown, setOpenDropdown] = useState(null); // For parent dropdown
@@ -98,14 +97,13 @@ const ReportBrowser = () => {
         link.download = "table-report.xlsx"; // Set the file name
         link.click();
     };
-    const [selectedOption, setSelectedOption] = useState('');
+
     const handleSelectChange = (event) => {
         const selectedId = parseInt(event.target.value, 10);
         setSelectedQueId(selectedId);
         setSelectedOption(event.target.value);
     };
 
-    const [selectedOption1, setSelectedOption1] = useState('');
     const handleSelectChange1 = (event) => {
         const selectedId1 = parseInt(event.target.value, 10);
         setSelectedOption1(event.target.value);
@@ -115,17 +113,15 @@ const ReportBrowser = () => {
     return (
         <div>
             <div className="hero-section my-1 px-4">
-                <div className={`${styles.head} d-flex justify-content-between align-items-center`}>
-                    <div className={`${styles.repoHead} d-flex justify-content-center align-items-center`}>
-                        <div className={styles.reportPara}>
+                <div className="head d-flex justify-content-between align-items-center">
+                    <div className="repoHead d-flex justify-content-center align-items-center">
+                        <div className="reportPara">
                             <p className="my-2">Report Browser</p>
                         </div>
                     </div>
-                    <div onClick={downloadTableAsExcelObs} className={`${styles.exportList} d-flex justify-content-center align-items-center`}>
+                    <div onClick={downloadTableAsExcelObs} className="exportList d-flex justify-content-center align-items-center">
                         <p className="my-2">Export List</p>
-                        <div className={styles.downIcon}>
-                            <img src={downImg} alt="img" />
-                        </div>
+                        <img src={downImg} alt="img" />
                     </div>
                 </div>
 
@@ -149,8 +145,8 @@ const ReportBrowser = () => {
                 </div>
 
                 <p>Audit Cycle : </p>
-                <div className={`${styles.searchStore} d-flex justify-content-between`}>
-                    <div className={`${styles.searchIn} d-flex align-items-center`}>
+                <div className="searchStore d-flex justify-content-between">
+                    <div className="searchIn d-flex align-items-center">
                         {/* <div className={`${styles.inputSearch} p-2 gap-2 d-flex justify-content-between align-items-center`}>
                             <div className="d-flex w-75">
                                 <i className="bi bi-search mx-2"></i>
@@ -162,8 +158,7 @@ const ReportBrowser = () => {
                         </div> */}
 
                         <div className="audit-cycle-inp">
-
-                            <div className={`${styles.dropdownNes}`}>
+                            <div className="dropdownNes">
                                 <select value={selectedOption1} onChange={handleSelectChange1}>
                                     {detailsData?.map((item) => (
                                         <option key={item.id} value={item.id}>
@@ -174,16 +169,16 @@ const ReportBrowser = () => {
                             </div>
                         </div>
                         <div>
-                            <div className={`${styles.filterParent} d-flex align-items-center gap-3`}   >
-                                <div onClick={() => toggleDropdown('filter')} className={`${styles.filter} gap-2 d-flex justify-content-center align-items-center`}>
-                                    <p className={`${styles.filterText} my-1`}>Filter</p>
-                                    <div className={styles.filterIcon}>
+                            <div className="filterParent d-flex align-items-center gap-3">
+                                <div onClick={() => toggleDropdown('filter')} className="filter gap-2 d-flex justify-content-center align-items-center">
+                                    <p className="filterText my-1">Filter</p>
+                                    <div className="filterIcon">
                                         <i className="bi bi-filter"></i>
                                     </div>
                                 </div>
 
                                 {openNestedDropdowns.includes('state') && (
-                                    <div className={`${styles.dropdownNes}`}>
+                                    <div className="dropdownNes">
                                         <select name="state" defaultValue="">
                                             <option value="" disabled>
                                                 Select a State
@@ -195,7 +190,7 @@ const ReportBrowser = () => {
                                     </div>
                                 )}
                                 {openNestedDropdowns.includes('city') && (
-                                    <div className={`${styles.dropdownNes}`}>
+                                    <div className="dropdownNes">
                                         <select name="City" defaultValue="">
                                             <option value="" disabled>
                                                 Select a City
@@ -207,18 +202,18 @@ const ReportBrowser = () => {
                                     </div>
                                 )}
                                 {openNestedDropdowns.includes('startDate') && (
-                                    <div className={`${styles.dropdownNes}`}>
+                                    <div className="dropdownNes">
                                         <div onClick={() => {
                                             setCalenderOpen1((prev) => !prev);
                                             setOpenDropdown((prev) => !prev);
                                         }}
-                                            className={`${styles.startDateP} df`}
+                                            className="startDateP df"
                                         >
                                             <p className='my-1'>{selectedDate1 ? formatDate(selectedDate1) : "Select a start date"}</p>
                                         </div>
 
                                         {calenderOpen1 && (
-                                            <div className={`${styles.calendarContainer} `}>
+                                            <div className="calendarContainer">
                                                 <Calendar
                                                     value={value}
                                                     onChange={(newDate) => {
@@ -231,18 +226,18 @@ const ReportBrowser = () => {
                                     </div>
                                 )}
                                 {openNestedDropdowns.includes('endDate') && (
-                                    <div className={`${styles.dropdownNes}`}>
+                                    <div className="dropdownNes">
                                         <div onClick={() => {
                                             setCalenderOpen2((prev) => !prev);
                                             setOpenDropdown((prev) => !prev);
                                         }}
-                                            className={`${styles.startDateP} df`}
+                                            className="startDateP df"
                                         >
                                             <p className='my-1'>{selectedDate2 ? formatDate(selectedDate2) : "Select a end date"}</p>
                                         </div>
 
                                         {calenderOpen2 && (
-                                            <div className={`${styles.calendarContainer} `}>
+                                            <div className="calendarContainer">
                                                 <Calendar
                                                     value={value}
                                                     onChange={(newDate) => {
@@ -257,9 +252,9 @@ const ReportBrowser = () => {
                             </div>
                             {openDropdown === 'filter' && (
                                 <div>
-                                    <ul className={` dropdown-menu shadow-lg d-grid gap-1 p-2 rounded-3 mx-0 w-220px`}>
+                                    <ul className="dropdown-menu shadow-lg d-grid gap-1 p-2 rounded-3 mx-0 w-220px">
                                         <li>
-                                            <div className={`${styles.dropList} d-flex justify-content-between align-items-center`}
+                                            <div className="dropList d-flex justify-content-between align-items-center"
                                                 onClick={() => toggleNestedDropdown('state')}>
                                                 <p className="my-2">State</p>
                                                 <i className={`bi ${openNestedDropdowns.includes('state') ? 'bi-dash' : 'bi-plus'}`}></i>
@@ -267,7 +262,7 @@ const ReportBrowser = () => {
                                         </li>
                                         <li>
                                             <div
-                                                className={`${styles.dropList} d-flex justify-content-between align-items-center`}
+                                                className="dropList d-flex justify-content-between align-items-center"
                                                 onClick={() => toggleNestedDropdown('city')}
                                             >
                                                 <p className="my-2">City</p>
@@ -276,7 +271,7 @@ const ReportBrowser = () => {
                                         </li>
                                         <li>
                                             <div
-                                                className={`${styles.dropList} d-flex justify-content-between align-items-center`}
+                                                className="dropList d-flex justify-content-between align-items-center"
                                                 onClick={() => {
                                                     toggleNestedDropdown('startDate');
                                                 }}
@@ -289,7 +284,7 @@ const ReportBrowser = () => {
                                         </li>
                                         <li>
                                             <div
-                                                className={`${styles.dropList} d-flex justify-content-between align-items-center`}
+                                                className="dropList d-flex justify-content-between align-items-center"
                                                 onClick={() => {
                                                     toggleNestedDropdown('endDate');
                                                 }}
@@ -308,7 +303,7 @@ const ReportBrowser = () => {
                 </div>
             </div>
 
-            <div className={`${styles.dashTable} my-4 df table-responsive`}>
+            <div className="dashTable my-4 df table-responsive">
                 <table style={{ width: "95%" }} id="table-to-export">
                     <thead>
                         <tr>
@@ -331,14 +326,14 @@ const ReportBrowser = () => {
                                 <td>{row.store_code || "N/A"}</td>
                                 <td>{row.audit_date}</td>
                                 <td>
-                                    <div className={styles.marksContainer}>{row.total_score.percentage}%</div>
+                                    <div className="marksContainer">{row.total_score.percentage}%</div>
                                 </td>
                                 {row.sections.map((section, sectionIndex) => (
                                     <td key={sectionIndex}>
-                                        <div className={styles.progressBarContainer}>
+                                        <div className="progressBarContainer">
                                             <span>{section.percentage === null ? "null" : section.percentage + "%"}</span>
                                             <div
-                                                className={styles.dash1 + `${section.percentage === null ? "d-none" : ""}`}
+                                                className={`dash1 ${section.percentage === null ? "d-none" : ""}`}
                                                 style={{
                                                     background: `linear-gradient(to right, #8DC63F ${parseInt(section.percentage)}%, #e6e6e6 ${100 - parseInt(section.percentage)}%)`,
                                                 }}
@@ -347,9 +342,9 @@ const ReportBrowser = () => {
                                     </td>
                                 ))}
                                 <td>
-                                    <button onClick={() => handleReportBtn(row.audit_store_id)} className={styles.reportBtn}>
-                                        Report
-                                    </button>
+                                    <Link to={`/auditReport`} state={{ auditStoreId: row.audit_store_id }} className="reportBtn">
+                                        <button className="reportBtn">Report</button>
+                                    </Link>
                                 </td>
                             </tr>
                         ))}

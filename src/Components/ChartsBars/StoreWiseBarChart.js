@@ -9,7 +9,7 @@ import {
   Legend,
 } from 'chart.js';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
-import styles from '../../CSS/Dashboard.module.css';
+import'../../CSS/Dashboard.css';
 import downImg from '../../Images/vertical_align_bottom.png';
 
 ChartJS.register(
@@ -74,14 +74,14 @@ const StoreWiseBarChart = ({ downloadBarChartAsPNG, barChartRef, stData }) => {
       style={{ minHeight: '420px', backgroundColor: '#FAFAFA' }}
       className="storeBar-parent shadow p-3"
     >
-      <div className={`${styles.overallPara} mt-3 d-flex align-items-center`}>
+      <div className="overallPara mt-3 d-flex align-items-center">
         <p className="my-2 ps-4">
           Overall Performance <span>(Store Wise)</span>
         </p>
         <div
-          className={`${styles.improvementRight} ms-auto d-flex justify-content-center align-items-center`}
+          className="improvementRight ms-auto d-flex justify-content-center align-items-center"
         >
-          <div onClick={downloadBarChartAsPNG} className={`${styles.downIcon}`}>
+          <div onClick={downloadBarChartAsPNG} className="downIcon">
             <img src={downImg} alt="img" />
           </div>
         </div>

@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react'
-import styles from '../CSS/Dashboard.module.css'
+import '../CSS/Dashboard.css'
 import DashedProgressBar from '../Components/ChartsBars/DashedBarProgress'
 import AuditCalendar from '../Components/AuditCalender'
 import BarChart from './ChartsBars/BarChart'
@@ -68,24 +68,15 @@ const Dashboard = () => {
     const handleSelectChange1 = (event) => {
         const selectedId1 = parseInt(event.target.value, 10);
         tsImpApiData(`dashboard/questionnaire_type/${selectedQueId}/audit_cycle/${selectedId1}/time_series`);
+        getImpApiData(`dashboard/questionnaire_type/${selectedQueId}/audit_cycle/${selectedId1}/improvable_questions`);
+        cityImpApiData(`dashboard/questionnaire_type/${selectedQueId}/audit_cycle/${selectedId1}/city_trends`);
+        qeImpApiData(`dashboard/questionnaire_type/${selectedQueId}/audit_cycle/${selectedId1}/questionnaire_survey`);
     };
 
-    const handleSelectChange2 = (event) => {
-        const selectedId2 = parseInt(event.target.value, 10);
-        getImpApiData(`dashboard/questionnaire_type/${selectedQueId}/audit_cycle/${selectedId2}/improvable_questions`);
-    };
-
-    const handleSelectChange3 = (event) => {
-        const selectedId3 = parseInt(event.target.value, 10);
-        stImpApiData(`dashboard/questionnaire_type/${selectedQueId}/audit_cycle/${selectedId3}/store_trends`);
-        cityImpApiData(`dashboard/questionnaire_type/${selectedQueId}/audit_cycle/${selectedId3}/city_trends`);
-    };
-
-    const handleSelectChange4 = (event) => {
-        const selectedId4 = parseInt(event.target.value, 10);
-        qeImpApiData(`dashboard/questionnaire_type/${selectedQueId}/audit_cycle/${selectedId4}/questionnaire_survey`);
-    };
-
+    // const handleSelectChange2 = (event) => {
+    //     const selectedId2 = parseInt(event.target.value, 10);
+    //     getImpApiData(`dashboard/questionnaire_type/${selectedQueId}/audit_cycle/${selectedId2}/improvable_questions`);
+    // };
     const getProgressColor = (progress) => {
         if (progress < 30) return "#C9727B";
         if (progress >= 30 && progress < 60) return "#C6B83F";
@@ -252,7 +243,7 @@ const Dashboard = () => {
             return <p>No data available for the selected type.</p>;
         }
         return scoresData.map((item, id) => (
-            <div key={item.id} className={styles.l1 + ' col-sm-6 d-flex justify-content-center align-items-center'}>
+            <div key={item.id} className="l1 col-sm-6 d-flex justify-content-center align-items-center">
                 <DashedProgressBar color={getProgressColor(item.get_total_percentage)} progress={item.get_total_percentage} shadow={true} />
             </div>
         ));
@@ -266,43 +257,43 @@ const Dashboard = () => {
 
     return (
         <div>
-            <div style={{ backgroundColor: "#FAFAFA" }} className={styles.heroDashboard + ' my-3'}>
-                <p className={styles.dashHeading + ' px-4 m-0'}>Dashboard</p>
+            <div style={{ backgroundColor: "#FAFAFA" }} className="heroDashboard my-3">
+                <p className="dashHeading px-4 m-0">Dashboard</p>
 
-                <div style={{ backgroundColor: "white" }} className={styles.dashFirst + ' px-4 row d-flex'}>
-                    <div className={styles.firstLeft + ' col-md-6'}>
-                        <div className={styles.firstHeading + ' my-2 text-start'}>
+                <div style={{ backgroundColor: "white" }} className="dashFirst px-4 row d-flex">
+                    <div className="firstLeft col-md-6">
+                        <div className="firstHeading my-2 text-start">
                             <p>Latest Audit Cycle Score</p>
                         </div>
 
-                        <div className={styles.auditCycle + ' d-flex mt-3 flex-column'}>
+                        <div className="auditCycle d-flex mt-3 flex-column">
                             <select onChange={handleSelectChange}>
                                 {queTypesData?.map((item) => (
                                     <option key={item.id} value={item.id}>
                                         {item.name}
                                     </option>
                                 ))}
-                            </select>   
+                            </select>
                         </div>
 
-                        <div className={styles.l1First + 'bg-warning'}>
+                        <div className="l1First">
                             <div className="row">{renderBars()}</div>
                         </div>
                     </div>
 
-                    <div className={styles.firstRight + ' col-md-6'}>
-                        <div className={styles.firstHeading + ' mb-2 text-start'}>
+                    <div className="firstRight col-md-6">
+                        <div className="firstHeading mb-2 text-start">
                             <p>Upcoming Audits</p>
                         </div>
-                        <div className={styles.divCalender + ' '}>
+                        <div className="divCalender">
                             <AuditCalendar />
                         </div>
                     </div>
                 </div>
 
-                <div style={{ backgroundColor: "#FFFFFF", borderRadius: "20px" }} className={styles.dashSecond + ' px-4 pt-4 mt-4'}>
-                    <div className={styles.dashSecHead + ' flex-wrap d-flex'}>
-                        <div className={styles.auditCycle + ' d-flex flex-column'}>
+                <div style={{ backgroundColor: "#FFFFFF", borderRadius: "20px" }} className="dashSecond px-4 pt-4 mt-4">
+                    <div className="dashSecHead flex-wrap d-flex">
+                        <div className="auditCycle d-flex flex-column">
                             <p className="text-start">Audit Cycle</p>
                             <select onChange={handleSelectChange1}>
                                 {detailsData?.map((item) => (
@@ -313,29 +304,29 @@ const Dashboard = () => {
                             </select>
                         </div>
                         <div className='ms-auto'>
-                            <div className={styles.auditCycleRight + ' my-2 ms-auto gap-4 d-flex align-items-center'}>
-                                <div onClick={toggleDropdown} className={styles.addSection + ' d-flex gap-2 justify-content-center align-items-center'}>
+                            <div className="auditCycleRight my-2 ms-auto gap-4 d-flex align-items-center">
+                                <div onClick={toggleDropdown} className="addSection d-flex gap-2 justify-content-center align-items-center">
                                     <p>Add Section</p>
                                     <i className="bi bi-plus-square"></i>
                                 </div>
 
-                                <div className={styles.downIcon} onClick={() => downloadBarChartAsPNG(barChartRef)}>
+                                <div className="downIcon" onClick={() => downloadBarChartAsPNG(barChartRef)}>
                                     <img src={downImg} alt="img" />
                                 </div>
                             </div>
-                            <div>{isSectionDropOpen && (
-                                <ul
-                                    className={`${styles.dropdownMenu} dropdown-menu position-static d-grid gap-1 p-2 rounded-3 mx-0 shadow w-220px`}
-                                >
+                            <div>
+                                
+                                {isSectionDropOpen && (
+                                <ul className="dropdown-menu position-static d-grid gap-1 p-2 rounded-3 mx-0 shadow w-220px">
                                     <li>
-                                        <div className={`${styles.dropList} d-flex justify-content-between align-items-center`}
+                                        <div className="dropList d-flex justify-content-between align-items-center"
                                             onClick={() => toggleNestedDropdown('survey-details')}>
                                             <p className="my-2">Survey Details</p>
                                             <i className={`bi ${openNestedDropdowns.includes('survey-details') ? 'bi-dash' : 'bi-plus'}`}></i>
                                         </div>
                                     </li>
                                     <li>
-                                        <div className={`${styles.dropList} d-flex justify-content-between align-items-center`}
+                                        <div className="dropList d-flex justify-content-between align-items-center"
                                             onClick={() => toggleNestedDropdown('nps-survey')}>
                                             <p className="my-2">NPS Survey</p>
                                             <i className={`bi ${openNestedDropdowns.includes('nps-survey') ? 'bi-dash' : 'bi-plus'}`}></i>
@@ -347,59 +338,52 @@ const Dashboard = () => {
                         </div>
                     </div>
 
-                    <div className={styles.dashSecHero + '  justify-content-center align-items-center row d-flex'}>
-                        <div ref={barChartRef} className={styles.secHeroLeft + ' col-sm-9'}>
+                    <div className="dashSecHero justify-content-center align-items-center row d-flex">
+                        <div ref={barChartRef} className="secHeroLeft col-sm-9">
                             <BarChart tsData={tsData} />
                         </div>
 
-                        <div className={styles.secHeroSection + ' col-sm-3'}>
-                            <div className={styles.secHead}>
+                        <div className="secHeroSection col-sm-3">
+                            <div className="secHead">
                                 <p>Section</p>
                             </div>
-                            <div className={styles.section1}>
-                                <p style={{ color: "#003C5D" }} className={styles.perPara}>60%</p>
-                                <p style={{ color: "#003C5D" }} className={styles.secPara}>Customer Arrival and Staff Grooming Analysis</p>
+                            <div className="section1">
+                                <p style={{ color: "#003C5D" }} className="perPara">60%</p>
+                                <p style={{ color: "#003C5D" }} className="secPara">Customer Arrival and Staff Grooming Analysis</p>
                             </div>
-                            <div className={styles.section1}>
-                                <p className={styles.perPara}>60%</p>
-                                <p className={styles.secPara}>Store Exterior</p>
+                            <div className="section1">
+                                <p className="perPara">60%</p>
+                                <p className="secPara">Store Exterior</p>
                             </div>
-                            <div className={styles.section1}>
-                                <p className={styles.perPara}>60%</p>
-                                <p className={styles.secPara}>Store Exterior</p>
+                            <div className="section1">
+                                <p className="perPara">60%</p>
+                                <p className="secPara">Store Exterior</p>
                             </div>
-                            <div className={styles.section1}>
-                                <p className={styles.perPara}>60%</p>
-                                <p className={styles.secPara}>Store Exterior</p>
+                            <div className="section1">
+                                <p className="perPara">60%</p>
+                                <p className="secPara">Store Exterior</p>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div style={{ backgroundColor: "white" }} className={styles.dashThird + ' mt-3 px-4 pt-4'}>
-                    <div className={`${styles.dashThirdHead} flex-wrap d-flex`}>
-                        <div className={`${styles.improvement} d-flex flex-column`}>
+                <div style={{ backgroundColor: "white" }} className="dashThird mt-3 px-4 pt-4">
+                    <div className="dashThirdHead flex-wrap d-flex">
+                        <div className="improvement d-flex flex-column">
                             <p className='text-start'>Improvement areas based on observation</p>
-                            <select onChange={handleSelectChange2}>
-                                {detailsData?.map((item) => (
-                                    <option key={item.id} value={item.id}>
-                                        {item.name}
-                                    </option>
-                                ))}
-                            </select>
                         </div>
-                        <div className={`${styles.improvementRight} ms-auto d-flex justify-content-center align-items-center`}>
-                            <div onClick={downloadTableAsExcelObs} className={styles.downIcon}>
+                        <div className="improvementRight ms-auto d-flex justify-content-center align-items-center">
+                            <div onClick={downloadTableAsExcelObs} className="downIcon">
                                 <img src={downImg} alt="img" />
                             </div>
                         </div>
                     </div>
 
-                    <div className={`${styles.dashThirdHero + ' my-3'}`}>
-                        <table id="table-to-export">
+                    <div className="dashThirdHero my-3">
+                        <table className='dth-table' id="table-to-export">
                             <thead>
                                 <tr>
-                                    <th style={{ width: "4vw" }}>S no.</th>
+                                    <th>S no.</th>
                                     <th>Section</th>
                                     <th>Questions</th>
                                     <th>Obtained Marks/Total Marks</th>
@@ -414,7 +398,7 @@ const Dashboard = () => {
                                         <td>{data.question_txt}</td> {/* Question text */}
                                         <td>{`${data.obtained_marks}/${data.total_marks}`}</td> {/* Marks obtained and total */}
                                         <td>
-                                            <div className={styles.tScore}>{data.lost_marks}</div> {/* Marks lost */}
+                                            <div className="tScore">{data.lost_marks}</div> {/* Marks lost */}
                                         </td>
                                     </tr>
                                 ))}
@@ -423,62 +407,48 @@ const Dashboard = () => {
                     </div>
                 </div>
 
-                <div style={{ backgroundColor: "white" }} className={styles.dashForth + ' px-4 py-3 mt-3'}>
-                    <div className={`${styles.dashThirdHead} my-3 flex-wrap d-flex`}>
-                        <div className={`${styles.improvement} d-flex flex-column`}>
+                <div style={{ backgroundColor: "white" }} className="dashForth px-4 py-3 mt-3">
+                    <div className="dashThirdHead my-3 flex-wrap d-flex">
+                        <div className="improvement d-flex flex-column">
                             <p className='text-start'>Improvement areas based on observation</p>
-                            <select onChange={handleSelectChange3}>
-                                {detailsData?.map((item) => (
-                                    <option key={item.id} value={item.id}>
-                                        {item.name}
-                                    </option>
-                                ))}
-                            </select>
                         </div>
-                        <div className={`${styles.improvementRight} ms-auto d-flex justify-content-center align-items-center`}>
-                            <div className={`${styles.downIcon} d-none`}>
+                        <div className="improvementRight ms-auto d-flex justify-content-center align-items-center">
+                            <div className="downIcon d-none">
                                 <img src={downImg} alt="img" />
                             </div>
                         </div>
                     </div>
 
-                    <div className={`${styles.forthCharts}  row d-flex`}>
-                        <div className={`${styles.dashForthLeft} col-md-6`}>
+                    <div className="forthCharts row d-flex">
+                        <div className="dashForthLeft col-md-6">
                             <StoreWiseBarChart stData={stData} downloadBarChartAsPNG={() => downloadBarChartAsPNG(barChartRef1)}
                                 barChartRef={barChartRef1} />
                         </div>
 
-                        <div className={`${styles.dashForthLeft} col-md-6`}>
+                        <div className="dashForthLeft col-md-6">
                             <OverallPerformance cityData={cityData} downloadBarChartAsPNG={() => downloadBarChartAsPNG(barChartRef2)}
                                 barChartRef={barChartRef2} />
                         </div>
                     </div>
                 </div>
 
-                <div style={{ backgroundColor: "white" }} className={styles.dashFifth}>
-                    <div className={`${styles.dashThirdHead} mt-3 px-4 pt-4 flex-wrap d-flex`}>
-                        <div className={`${styles.improvement} d-flex flex-column`}>
+                <div style={{ backgroundColor: "white" }} className="dashFifth">
+                    <div className="dashThirdHead mt-3 px-4 pt-4 flex-wrap d-flex">
+                        <div className="improvement d-flex flex-column">
                             <p className='text-start'>Question Summary</p>
-                            <select onChange={handleSelectChange4}>
-                                {detailsData?.map((item) => (
-                                    <option key={item.id} value={item.id}>
-                                        {item.name}
-                                    </option>
-                                ))}
-                            </select>
                         </div>
-                        <div className={`${styles.improvementRight} ms-auto d-flex justify-content-center align-items-center`}>
-                            <div onClick={downloadTableAsExcelQue} className={`${styles.downIcon}`}>
+                        <div className="improvementRight ms-auto d-flex justify-content-center align-items-center">
+                            <div onClick={downloadTableAsExcelQue} className="downIcon">
                                 <img src={downImg} alt="img" />
                             </div>
                         </div>
                     </div>
 
-                    <div className={styles.fifthHero + ' px-4 mt-3'}>
-                        <div className={styles.customerArr}>
+                    <div className="fifthHero px-4 mt-3">
+                        <div className="customerArr">
                             <p>Customer Arrival and Staff Grooming Analysis</p>
                         </div>
-                        <div className={styles.fifthTable}>
+                        <div className="fifthTable">
                             <table id="table-to-export-que" style={{ width: "100%" }}>
                                 <thead>
                                     <tr>
@@ -494,15 +464,11 @@ const Dashboard = () => {
                                             <tr key={question.question_id}>
                                                 <td>{index + 1}</td>
                                                 <td>{question.question_txt}</td>
-                                                <td className={styles.marksLost}>
+                                                <td className="marksLost">
                                                     {question.options_list.map((option, optIndex) => (
-                                                        <div
-                                                            key={optIndex}
-                                                            className={`${styles.tdFirst} d-flex align-items-center justify-content-between`}
-                                                        >
-                                                            <div className={styles.tTf}>{option.option_name}</div>
-                                                            <div
-                                                                className={`${styles.tPer} d-flex align-items-center justify-content-center`}
+                                                        <div key={optIndex} className="tdFirst d-flex align-items-center justify-content-between">
+                                                            <div className="tTf">{option.option_name}</div>
+                                                            <div className="tPer d-flex align-items-center justify-content-center"
                                                             >
                                                                 {option.percentage}%
                                                             </div>

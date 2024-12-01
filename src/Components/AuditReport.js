@@ -115,6 +115,14 @@ const AuditReport = () => {
         handleClose();
     };
 
+    useEffect(() => {
+        if (RepSecData && AttachIdData && ansData) {
+            console.log("REPSECDATA : ", RepSecData);
+            console.log("AttachIdData : ", AttachIdData);
+            console.log("ansData : ", ansData);
+        }
+    }, [ansData, AttachIdData, RepSecData]);
+
 
     return (
         <>
@@ -416,7 +424,12 @@ const AuditReport = () => {
                     </div>
 
                     {SecData.map((section) => (
-                        <Section key={section.id} section={section} ansData={ansData} RepSecData={RepSecData} AttachIdData={AttachIdData} />
+                        <div key={section.id} className="my-4">
+                            <div style={{ backgroundColor: "transparent" }} className="audit-details d-flex my-2">
+                                <p className='ms-2'>{section.name}</p>
+                            </div>
+                            <Section section={section} ansData={ansData} RepSecData={RepSecData} AttachIdData={AttachIdData} />
+                        </div>
                     ))}
                 </div>
             </div></>

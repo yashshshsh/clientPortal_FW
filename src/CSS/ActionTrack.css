@@ -27,7 +27,7 @@
     color: white;
     width : 7.2rem;
     height: 100%;
-    gap : 0.5rem;
+    /* gap : 0.5rem; */
     border-radius: 8px;
     font-family: "Roboto", sans-serif;
     font-weight: 600;
@@ -36,8 +36,8 @@
     line-height: 1.3rem;
 }
 
-.downIcon i{
-    font-size: 1.5rem;
+.exportList img{
+    height: 1.2rem;
 }
 
 .searchIn{
@@ -170,38 +170,6 @@
     justify-content: center;
     align-items: center;
 }
-
-/* table {
-    width: 100%;
-    border-collapse: collapse; 
-    border-spacing: 0;
-}
-
-table, th, td {
-    padding: 1.2rem;
-    text-align: center;
-    border: 2px solid #D1D5DB; 
-}
-
-thead{
-    background-color: #f2f2f2;
-    color : #353E4C;
-}
-
-th{
-    font-family: "Roboto", sans-serif;
-    font-weight: 700;
-    font-size: 12px;
-    line-height: 11px;
-}
-
-td{
-    font-family: "Lato", sans-serif;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 16px;
-    color : #353E4C;
-} */
 
 .progressBarContainer span{
     font-family: "Lato", sans-serif;
