@@ -64,6 +64,21 @@
     height: 3rem;
 }
 
+.clearFilter{
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1rem;
+    cursor: pointer;
+    color : #007DC1;
+    text-decoration: underline;
+    width: 6rem;
+}
+
+.clearFilter p{
+    width: 100%;
+    text-align: end;
+}
+
 .dropList {
     font-family: "Lato", sans-serif;
     color : #353E4C;
@@ -258,7 +273,7 @@ select {
 }
 
 .startDateP{
-    height: 2rem;
+    height: 3rem;
     font-family: "Lato", sans-serif;
     font-weight: 400;
     color : #353E4C;

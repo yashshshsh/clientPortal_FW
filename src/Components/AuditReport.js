@@ -3,7 +3,7 @@ import '../CSS/AuditReport.css'
 import CircularBar from './ChartsBars/CircularBar';
 import ARDashedBar from './ChartsBars/ARDashedBar';
 import attachImg from '../Images/Attachments.png'
-import downDrop from '../Images/arrow_drop_down.png'
+import downDrop from '../Images/arrow_drop_down (1).png'
 import { Modal, Button } from 'react-bootstrap';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -13,20 +13,18 @@ import 'antd/dist/reset.css'
 import 'react-calendar/dist/Calendar.css';
 import { useLocation } from 'react-router-dom';
 import downImg from '../Images/vertical_align_bottom.png'
+import ActionImg from '../Images/CAction.png'
+import axios from "axios";
 import Section from './Section';
-import { useFetchReportId, useFetchSection, useFetchReportSection, useFetchRepAns, useFetchImpFactor, useFetchReportAdmin, useFetchReportAction, useFetchRepAttachemnts, useFetchRepAttachmentsID, useCreateAction } from '../CustomHooks/IndReport'
+import { useFetchReportId, useFetchSection, useFetchReportSection, useFetchRepAns, useFetchImpFactor, useFetchReportAdmin, useFetchReportAction, useFetchRepAttachemnts, useFetchRepAttachmentsID, useCreateAction, useFetchAiInsights } from '../CustomHooks/IndReport'
+import AIModal from './AIModal';
+import DemoAIModal from './DemoAIModal';
 
 const AuditReport = () => {
 
     const location = useLocation();
     const { auditStoreId } = location.state || {};
     const numericAuditStoreId = Number(auditStoreId);
-    const ref = useRef(null);
-
-    useEffect(() => {
-        console.log("Store Id : ", auditStoreId);
-    }, [auditStoreId]);
-
 
     const [formState, setFormState] = useState({ actionPlan: '', selectedDate: null, calendarVisible: false, selectedPerson: null });
 
@@ -38,10 +36,10 @@ const AuditReport = () => {
     const { data: repActionData, isLoading: repActionLoading, error: repActionError } = useFetchReportAction(`audit_store/${numericAuditStoreId}/report_action`);
     const { data: attachmentData, isLoading: attachmentLoading, error: attachmentError } = useFetchRepAttachemnts(`audit_store/${numericAuditStoreId}/attachment`);
     const { data: ansData, isLoading: ansLoading, error: ansError } = useFetchRepAns(`audit_store/${numericAuditStoreId}/answer`);
-    // const { data: createData, isLoading: createLoading, error: createError,postData : postApiData } = useCreateAction(`audit_store/${numericAuditStoreId}/report_action`,{action_plan: formState.actionPlan,target_date: formState.selectedDate,person: formState.selectedPerson});
     const { data: createData, isLoading: createLoading, error: createError, postData: postApiData } = useCreateAction();
 
     const { data: AttachIdData, isLoading: AttachIdLoading, error: AttachIdError, getApiData: getAttachIdApiData } = useFetchRepAttachmentsID();
+    const { data: insightsData, isLoading: insightsLoading, error: insightsError, getApiData: getinsightsData } = useFetchRepAttachmentsID();
 
     useEffect(() => {
         const fetchAttachments = async () => {
@@ -68,12 +66,7 @@ const AuditReport = () => {
     };
 
 
-    const [show, setShow] = useState(false);
     const [calendarVisible, setCalendarVisible] = useState(false);
-
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
-
     const [prevUrl, setPrevUrl] = useState(null);
     const [directUrl, setDirectUrl] = useState(null);
 
@@ -115,17 +108,29 @@ const AuditReport = () => {
         handleClose();
     };
 
-    useEffect(() => {
-        if (RepSecData && AttachIdData && ansData) {
-            console.log("REPSECDATA : ", RepSecData);
-            console.log("AttachIdData : ", AttachIdData);
-            console.log("ansData : ", ansData);
+    const [show, setShow] = useState(false);
+    const [showSenti, setShowSenti] = useState(false);
+    const ref = useRef(null);
+    const viewref = useRef(null);
+    const handleViewAi = async () => {
+        try {
+            setShowSenti(true);
+            await getinsightsData(`sentiment_data/${numericAuditStoreId}`);
+            viewref.current.click();
+        } catch (error) {
+            console.error("Error fetching AI insights:", error.message);
         }
-    }, [ansData, AttachIdData, RepSecData]);
+    }
 
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
 
     return (
         <>
+            <DemoAIModal viewref={viewref} showSenti={showSenti} setShowSenti={setShowSenti} insightsData={insightsData} />
+            <Button ref={viewref} variant="dark" className="d-none" onClick={() => setShowSenti(true)}>
+                Launch demo modal
+            </Button>
             <Button ref={ref} variant="primary d-none" onClick={handleShow}>
                 Launch demo modal
             </Button>
@@ -199,13 +204,13 @@ const AuditReport = () => {
                     <div className="audit-text px-3 d-flex align-items-center">
                         <p className='my-4'>Audit Report</p>
                     </div>
-                    <div className="audit-right d-flex gap-3">
+                    <div className="audit-right d-flex gap-3 me-3">
                         <div onClick={() => {
                             ref.current.click();
-                            console.log("ref is clicked")
-                        }} className="action d-flex gap-1">
+
+                        }} className="action d-flex gap-2">
                             <p className='mt-3 create'>Create Action</p>
-                            <i className="bi bi-box-arrow-in-down-right"></i>
+                            <img src={ActionImg} alt="img" />
                         </div>
                         <div className="export d-flex gap-2">
                             <p className='mt-3 expo'>Export To</p>
@@ -261,7 +266,7 @@ const AuditReport = () => {
                             </div>
 
 
-                            <div className="view-Ai my-3 d-flex gap-1 justify-content-center align-items-center">
+                            <div onClick={handleViewAi} className="view-Ai my-3 d-flex gap-1 justify-content-center align-items-center">
                                 <div className="iconStar my-2">
                                     <i className="bi bi-stars"></i>
                                 </div>
@@ -270,7 +275,7 @@ const AuditReport = () => {
                         </div>
 
                         <div className="hero-right col-md-3 my-2 meter d-flex flex-column align-items-center justify-content-center">
-                            <p className='overallPara'>Overall Store Score</p>
+                            <p className='overallPara m-0'>Overall Store Score</p>
                             <CircularBar storeIdData={storeIdData} />
                             <div className="store-score d-flex justify-content-center align-items-center flex-column">
                                 <p className='scorePara'>Your Store Score Is Poor</p>
@@ -326,7 +331,7 @@ const AuditReport = () => {
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>1</td>
+                                    <td style={{backgroundColor:"#FAFAFA"}}>1</td>
                                     <td>40368</td>
                                     <td>clientdem04@floorwalk.in</td>
                                     <td>09 August 2024</td>
@@ -348,10 +353,10 @@ const AuditReport = () => {
                             <p className='ms-2'>Report Sections</p>
                         </div>
 
-                        {/* RepSecData */}
+
                         <div className="dashed-bars my-3 row d-flex">
                             {RepSecData.map((section) => {
-                                const progress = Math.floor(section.marks_percentage); // Convert percentage to integer
+                                const progress = Math.floor(section.marks_percentage);
                                 const color = getProgressColor(progress);
                                 const columnClass = RepSecData.length <= 2 ? 'col-sm-6' : 'col-sm-4';
 
@@ -377,7 +382,7 @@ const AuditReport = () => {
                                     </button>
                                 </h2>
                                 <div id="collapseOne" className="accordion-collapse collapse show" data-bs-parent="#accordionExample">
-                                    <div className="accordion-body1 summary text-start d-flex align-items-center">
+                                    <div className="accordion-bodySum summary text-start d-flex align-items-center">
                                         <div className='body-content p-3'>
                                             <p>{storeIdData.report_summary}</p>
                                         </div>
@@ -398,41 +403,60 @@ const AuditReport = () => {
                                     </button>
                                 </h2>
                                 <div id="collapseTwo" className="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                                    <div className="accordion-body2">
+                                    <div className="accordion-bodySum">
                                         <div className='body-content d-flex gap-3'>
                                             {attachmentData.map((attachment, index) => (
-                                                <div key={index} className="attachImg d-flex" onClick={() => { setPrevUrl(attachment.extra.preview_url); setDirectUrl(attachment.direct_url) }}>
-                                                    <img src={attachment.extra.thumbnail_url} alt={`Thumbnail ${index + 1}`} />
+                                                <div
+                                                    key={index}
+                                                    className="attachImg d-flex"
+                                                    onClick={() => {
+                                                        // If the clicked attachment is already being shown in the preview, hide the preview
+                                                        if (prevUrl === attachment.extra.preview_url) {
+                                                            setPrevUrl(null);  // Reset to no preview
+                                                        } else {
+                                                            setPrevUrl(attachment.extra.preview_url);  // Set the preview URL to the clicked attachment
+                                                        }
+                                                        setDirectUrl(attachment.direct_url);  // Update the direct URL for download
+                                                    }}
+                                                >
+                                                    <img
+                                                        src={attachment.extra.thumbnail_url}
+                                                        alt={`Thumbnail ${index + 1}`}
+                                                        style={{ width: "100px", height: "100px", cursor: "pointer" }}
+                                                    />
                                                 </div>
                                             ))}
                                         </div>
                                         <div className={`largeImg df flex-column my-3 ${prevUrl ? "" : "d-none"}`}>
-                                            {prevUrl && (<img src={prevUrl} alt="Preview" />)}
-                                            <div className="downPrevImg bg-dark my-3 df gap-1 p-1" onClick={() => handleDownloadClick(directUrl)}>
-                                                <img src={downImg} alt="img" />
-                                                <p className='my-2'>Download</p>
+                                            {prevUrl && (<img src={prevUrl} alt="Preview" style={{ maxWidth: "500px" }} />)}
+                                            <div
+                                                className="downPrevImg bg-dark my-3 df gap-1 p-1"
+                                                style={{ cursor: "pointer" }}
+                                                onClick={() => handleDownloadClick(directUrl)}
+                                            >
+                                                <img src={downImg} alt="Download Icon" style={{ width: "20px" }} />
+                                                <p className="my-2 text-white">Download</p>
                                             </div>
                                         </div>
                                     </div>
+
                                 </div>
                             </div>
                         </div>
                     </div>
-
-                    <div className="head-que text-start">
-                        <p className='p-2'>Questionnaire</p>
-                    </div>
-
-                    {SecData.map((section) => (
-                        <div key={section.id} className="my-4">
-                            <div style={{ backgroundColor: "transparent" }} className="audit-details d-flex my-2">
-                                <p className='ms-2'>{section.name}</p>
-                            </div>
-                            <Section section={section} ansData={ansData} RepSecData={RepSecData} AttachIdData={AttachIdData} />
-                        </div>
-                    ))}
                 </div>
-            </div></>
+
+                <div className="head-que text-start">
+                    <p className='p-2'>Questionnaire</p>
+                </div>
+
+                {SecData.map((section, idx) => (
+                    <div key={section.id} className="my-4">
+                        <Section section={section} ansData={ansData} idx={idx} RepSecData={RepSecData} AttachIdData={AttachIdData} />
+                    </div>
+                ))}
+            </div>
+        </>
 
     )
 }

@@ -105,7 +105,7 @@ export function useFetchConfig(url, dependencies = []) {
 
 export function useFetchAudScores() {
     const [data, setData] = useState([]);
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState("");
 
     const getApiData = async (url) => {
@@ -135,7 +135,7 @@ export function useFetchAudScores() {
 
 export function useFetchImprove() {
     const [data, setData] = useState([]);
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState("");
 
     const getApiData = async (url) => {
@@ -165,7 +165,7 @@ export function useFetchImprove() {
 
 export function useFetchStoreTrends() {
     const [data, setData] = useState([]);
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState("");
 
     const getApiData = async (url) => {
@@ -195,7 +195,7 @@ export function useFetchStoreTrends() {
 
 export function useFetchCityTrends() {
     const [data, setData] = useState([]);
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState("");
 
     const getApiData = async (url) => {
@@ -225,7 +225,7 @@ export function useFetchCityTrends() {
 
 export function useFetchQueSurvey() {
     const [data, setData] = useState([]);
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState("");
 
     const getApiData = async (url) => {
@@ -255,7 +255,7 @@ export function useFetchQueSurvey() {
 
 export function useFetchTimeSeries() {
     const [data, setData] = useState([]);
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState("");
 
     const getApiData = async (url) => {

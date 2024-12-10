@@ -13,13 +13,13 @@ const Footer = () => {
                         <img src={logo} alt="logo" />
                     </div>
                     <div className="links df">
-                        <a href={configData.RHEA_BASE_URL}>{configData.RHEA_DOMAIN}</a>
+                        <a href={configData.RHEA_BASE_URL}>floorwalk.in</a>
                         &nbsp;<span>|</span>&nbsp;
-                        <a href={"mailto:" + configData.SUPPORT_EMAIL}>{configData.SUPPORT_EMAIL}</a>
+                        <a href={"mailto:" + configData.SUPPORT_EMAIL}>contactus@floorwalk.in</a>
                         &nbsp;<span>|</span>&nbsp;
-                        <a href={configData.TW_PAGE_URL}>@{configData.TW_USERNAME}</a>
+                        <a href={configData.TW_PAGE_URL}>@FloorWalkIndia</a>
                         &nbsp;<span>|</span>&nbsp;
-                        <span>v{configData.PHOEBE_VERSION}</span>
+                        <span>v4.0.117</span>
                     </div>
                     <div className='df fw-consultant'>
                         <span>FloorWalk Consultants Pvt. Ltd. © 2014 to Present</span>

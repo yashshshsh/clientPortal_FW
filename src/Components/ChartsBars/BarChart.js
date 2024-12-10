@@ -1,4 +1,4 @@
-import React , {useState} from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Bar } from 'react-chartjs-2';
 import {
   Chart as ChartJS,
@@ -8,7 +8,7 @@ import {
   Tooltip,
   Legend,
 } from 'chart.js';
-import ChartDataLabels from 'chartjs-plugin-datalabels'; 
+import ChartDataLabels from 'chartjs-plugin-datalabels';
 
 ChartJS.register(
   BarElement,
@@ -16,29 +16,47 @@ ChartJS.register(
   LinearScale,
   Tooltip,
   Legend,
-  ChartDataLabels 
+  ChartDataLabels
 );
 
-const BarChart = ({tsData}) => {
-  const sectionLabels = tsData?.section_master || []; // Y-axis labels
-  const values = tsData?.values[0] || []; 
-  const total = 100; // Assuming the maximum value is 100 for percentage calculation
-  const [selectedBarIndex, setSelectedBarIndex] = useState(0);
+const BarChart = ({ filteredData }) => {
+  const chartRef = useRef(null); // Reference to the chart
+  const sectionLabels = filteredData?.section_master || [];
+  const values = filteredData?.values[0] || [];
+
+  const total = 100;
+  const [selectedBarIndex, setSelectedBarIndex] = useState(null);
 
   const sourceData = sectionLabels.map((label, index) => ({
     label: label,
-    value: values[index]?.value || 0, // Safely get the value
+    value: values[index]?.value || 0,
   }));
-
 
   const handleBarClick = (index) => {
     setSelectedBarIndex(index === selectedBarIndex ? null : index);
   };
 
+  useEffect(() => {
+    const link = document.createElement('link');
+    link.href = 'https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900&display=swap';
+    link.rel = 'stylesheet';
+    document.head.appendChild(link);
+    return () => document.head.removeChild(link);
+  }, []);
+
   return (
     <div>
-      <div className="chart-container" style={{height:"18rem",width:"100%"}}>
+      <div
+        className="chart-container"
+        style={{
+          height: '18rem',
+          width: '97%',
+          position: 'relative',
+          overflow: 'hidden',
+        }}
+      >
         <Bar
+          ref={chartRef} // Attach ref to the chart
           data={{
             labels: sourceData.map((data) => data.label),
             datasets: [
@@ -46,77 +64,78 @@ const BarChart = ({tsData}) => {
                 label: 'Count',
                 data: sourceData.map((data) => data.value),
                 backgroundColor: sourceData.map((_, index) =>
-                  index === selectedBarIndex ? '#007DC1' : '#D7F1FF'
+                  index === selectedBarIndex ? '#007DC1' : '#B0E3FF'
                 ),
+                hoverBackgroundColor: '#007DC1',
                 borderRadius: 5,
-                barThickness: 20, // Adjust bar thickness
+                barThickness: 20,
               },
             ],
           }}
           options={{
-            indexAxis: 'y', // Horizontal bar chart
+            responsive: true,
             maintainAspectRatio: false,
+            devicePixelRatio: 2, // Improve clarity for zoomed-in view
+            indexAxis: 'y',
             onClick: (event, elements) => {
               if (elements.length > 0) {
-                const index = elements[0].index; // Get the index of the clicked bar
+                const index = elements[0].index;
                 handleBarClick(index);
-                
               }
             },
             plugins: {
               legend: {
-                display: false, // Hide legend
+                display: false,
               },
               datalabels: {
-                align: 'end', // Align the labels to the end (right) of the bars
+                align: 'end',
                 anchor: 'end',
-                formatter: (value, context) => {
-                  return context.dataIndex === selectedBarIndex
-                    ? `${((value / total) * 100).toFixed(0)}%`
-                    : '';
+                formatter: (value) => {
+                  return value < 100 ? `${((value / total) * 100).toFixed(0)}%` : '';
                 },
-                color: '#003C5D', // Label color (adjust as needed)
-                font: { 
+                color: '#003C5D',
+                font: {
                   size: 14,
-                  weight : "bold"
+                  weight: 'bold',
+                  family: 'Lato, sans-serif',
                 },
               },
             },
             scales: {
               x: {
                 beginAtZero: true,
-                max: 100, // X-axis will go up to 100 for percentages
+                max: total,
                 ticks: {
-                  stepSize: 20, // Spacing between tick marks
-                  callback: (value) => `${value}%`, // Show percentage labels on the X-axis
-                },
-                title: {
-                  display: false,
+                  stepSize: 20,
+                  callback: (value) => `${value}%`,
+                  color: '#003C5D',
+                  font: {
+                    size: 12,
+                    family: 'Lato, sans-serif',
+                  },
                 },
                 grid: {
-                  color: '#DDE3EE', // Set grid line color to #DDE3EE
-                  borderDash: [5, 5], // Create dashed lines (5px dash, 5px space)
+                  color: '#DDE3EE',
+                  borderDash: [5, 5],
                 },
               },
               y: {
-                title: {
-                  display: false,
-                },
                 ticks: {
                   padding: 20,
                   color: '#003C5D',
                   font: {
-                    size: 12, // Y-axis label font size
+                    size: 12,
+                    family: 'Lato, sans-serif',
                   },
                 },
                 grid: {
-                  display: false, // Disable horizontal grid lines
+                  display: false,
                 },
               },
             },
             layout: {
               padding: {
-                right: 20, 
+                right: 20,
               },
             },
           }}

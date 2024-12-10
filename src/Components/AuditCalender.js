@@ -51,7 +51,7 @@ const AuditCalendar = () => {
         {calenderData.map((item, index) => (
           <div
             key={index}
-            className={`audit-box my-2 ${selectedDate === item.audit_date ? 'selected' : ''} d-flex justify-content-between`}
+            className={`audit-box p-4 my-2 ${selectedDate === item.audit_date ? 'selected' : ''} d-flex justify-content-between`}
           >
             <div className="box-left text-start">
               <p><strong>Audit Cycle</strong></p>

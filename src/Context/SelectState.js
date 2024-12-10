@@ -6,13 +6,10 @@ const SelectState = (props) => {
     const [selectedOption1,setSelectedOption1] = useState("1");
     const [selectedQueId, setSelectedQueId] = useState(null);
     const [flag,setFlag] = useState(true);
-
-    useEffect(()=>{
-      console.log("Selected Option1  : ",selectedOption1);
-    },[selectedOption1])
+    const [active, setActive] = useState("");
 
   return (
-    <SelectContext.Provider value={{selectedOption,setSelectedOption,selectedOption1,setSelectedOption1,selectedQueId, setSelectedQueId,flag,setFlag}}>
+    <SelectContext.Provider value={{selectedOption,active, setActive,setSelectedOption,selectedOption1,setSelectedOption1,selectedQueId, setSelectedQueId,flag,setFlag}}>
         {props.children}
     </SelectContext.Provider>
   )

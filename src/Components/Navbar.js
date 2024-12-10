@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import logo from '../Images/Floorwalk logo7x.png';
 import '../CSS/Navbar.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import CustomSelect from './CustomSelect';
 import dashIcon from '../Images/space_dashboard.png';
 import reportIcon from '../Images/insert_chart (1).png';
@@ -14,13 +14,24 @@ import { handleError, handleSuccess } from './Service/utils';
 import { ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import axios from 'axios';
+import GTranslateWidget from './GTranslateWidget';
+import SelectContext from '../Context/SelectContext';
 
 const Navbar = () => {
-    const [active, setActive] = useState("dashboard");
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 500);
     const [isDrop, setIsDrop] = useState(window.innerWidth <= 760);
     const [menuClicked, setMenuClicked] = useState(false);
     const [loading, setLoading] = useState(false);
+
+    const context = useContext(SelectContext);
+    const {active,setActive} = context;
+
+    const navigate = useNavigate();
+
+    useEffect(()=>{
+        setActive("dashboard");
+        // navigate('/dashboard');
+    },[]);
 
     const handleActive = (active) => {
         setActive(active);
@@ -48,7 +59,7 @@ const Navbar = () => {
         const fullUrl = "http://localhost:8000/client/market_place/logout_api";
         const token = localStorage.getItem("authToken");
         try {
-            const response = await axios.post(fullUrl,{},{
+            const response = await axios.post(fullUrl, {}, {
                 headers: {
                     'Authorization': `Token ${token}`,
                 },
@@ -76,6 +87,7 @@ const Navbar = () => {
                                 <i className="bi bi-bell"></i>
                             </div>
                             <div className="globeIcon mx-3 d-flex align-items-center justify-content-center">
+                                <GTranslateWidget />
                             </div>
                             <div onClick={handleLogOut} className="logOut d-flex mx-3 align-items-center justify-content-center">
                                 <p className="my-2">Log Out</p>
@@ -154,9 +166,8 @@ const Navbar = () => {
                         <i style={{ marginBottom: "0.3rem" }} className="bi bi-bell"></i>
                         <p className='my-2'>Notification</p>
                     </div>
-                    <div style={{ height: "3rem" }} className="globeIcon bg-warning text-start d-flex align-items-center">
-                        <div><i className="bi bi-globe"></i></div>
-                        <div className="gtranslate_wrapper"></div>
+                    <div className="globeIcon mx-3 d-flex align-items-center justify-content-center">
+                        <GTranslateWidget />
                     </div>
                     <div onClick={handleLogOut} style={{ height: "3rem", cursor: "pointer" }} className="logOut text-start d-flex align-items-center">
                         <p style={{ color: "black" }} className="my-2">Log Out</p>

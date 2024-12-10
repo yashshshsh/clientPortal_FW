@@ -71,6 +71,7 @@
     background-color: #D1D5DB;
     opacity: 0.19;
     color : #003C5D;
+    background-color: #D1D5DB;
     transition: background-color 0.3s ease, opacity 0.3s ease;
   }
 
@@ -88,3 +89,15 @@
     margin: 10px 0;
   }
   
+  .box-left p, .box-right p{
+    margin: 0;
+
+  }
+
+  .box-left strong{
+    font-weight: 600;
+  }
+
+  .box-right p{
+    font-weight: 400;
+  }

@@ -6,32 +6,64 @@
 
 /* font-family: "Lato", sans-serif; */
 
-table {
+.section-table table tbody tr:nth-child(odd) td {
+    background-color: #f9f9f9;
+}
+
+.section-table table tbody tr:nth-child(even) td {
+    background-color: white;
+}
+
+.section-table table td {
+    border-bottom: 1px solid #ccc !important;
+    min-height: 5rem;
+    padding: 8px;
+    text-align: center;
+    /* font-size: 1rem; */
+    font-family: "Roboto", sans-serif;
+}
+
+.section-table table{
     width: 100%;
     border-collapse: collapse; 
     border-spacing: 0;
 }
 
-table, th, td {
+.section-table table,.section-table table th,.section-table table td{
     padding: 8px;
     text-align: center;
-    border: 1px solid #ccc; 
+    border : none !important;
 }
 
-th {
-    background-color: #f2f2f2; 
-    color: #353E4C; 
-    font-family: "Roboto", sans-serif;
-    font-weight: 700;
-    font-size: 0.82rem !important;
-}
-
-td {
+.section-table table th{
+    border-bottom: 1px solid #ccc !important; 
     background-color: white;
-    font-family: "Lato";
-    font-weight: 400;
-    font-size: 0.8rem;
-    line-height: 1rem;
+    height: 1rem !important;
+    /* font-size: 1rem !important; */
+}
+
+.section-table table td{
+    min-height: 5rem;   
+}
+
+.attachHead p{
+    font-weight: bold;
+}
+
+.sec-name{
+    height: 3rem;
+    font-size: 1.2rem;
+}
+
+.section-summary span{
+    font-weight: bold;
+    font-size: 14px;
+    font-family: "Roboto", sans-serif;
+}
+
+.section-summary p{
+    font-size: 14px;
+    font-family: "Roboto", sans-serif;
 }
 
 .audit-heading{
@@ -62,12 +94,13 @@ td {
 }
 
 .action, .export{
-    width : 142px;
+    width : 135px;
     height : 44px;
     display: flex;
     justify-content: center;
     cursor : pointer;
     align-items: center;
+    border-radius: 8px;
 }
 
 .targetDiv{
@@ -86,7 +119,6 @@ td {
     font-family: "Roboto", sans-serif;
     font-weight: 600;
     color : white;
-    border-radius: 5px;
     line-height: 24px;
 }
 
@@ -163,6 +195,7 @@ td {
 
 .hero-right{
     border-radius: 10px;
+    border : 1px solid #F2F2F2;
 }
 
 @media(max-width : 576px){
@@ -193,7 +226,7 @@ td {
     font-family: "Roboto", sans-serif;
     font-weight: 600;
     font-size: 16px;
-    line-height: 16px;
+    line-height: 18.75px;
     color : #003C5D;
     width: 10rem;
 }
@@ -212,6 +245,7 @@ td {
     padding: 10px 24px;
     background: linear-gradient(90deg, #8DC63F 0%, #007DC1 100%);
     border-radius: 8px;
+    cursor: pointer;
 }
 
 .view-Ai i{
@@ -362,10 +396,10 @@ td {
 .body-content{
     background-color: white;
     padding: 0.25rem;
-    border-radius: 5px;
+    border-radius: 10px;
 }
 
-.accordion-body1{
+.accordion-bodySum{
     background-color: #0000000F;
     padding: 0.5rem 0 !important;
 }

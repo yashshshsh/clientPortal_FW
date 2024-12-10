@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import downImg from '../Images/vertical_align_bottom.png'
 import textImg from '../Images/Text.png'
-import * as XLSX from "xlsx";
+import ExcelJS from "exceljs";
+import { saveAs } from "file-saver";
 import '../CSS/ActionTrack.css'
 import { useFetchActionReport } from '../CustomHooks/ActionTrackHook'
 import axios from "axios";
 import { useFetchQueTypes, useFetchAudCycles } from '../CustomHooks/UseFetchUrl'
+import { Link } from 'react-router-dom';
 
 const ActionTrack = () => {
 
@@ -54,28 +56,96 @@ const ActionTrack = () => {
     const [openNestedDropdowns, setOpenNestedDropdowns] = useState(null);
 
     const downloadTableAsExcelObs = () => {
-        const table = document.getElementById("table-to-export");
-
-        const wb = XLSX.utils.table_to_book(table, { sheet: "Sheet1" });
-
-        // Create a binary string from the workbook
-        const wbout = XLSX.write(wb, { bookType: "xlsx", type: "binary" });
-
-        // Create a buffer for the binary string
-        const s2ab = (s) => {
-            const buf = new ArrayBuffer(s.length);
-            const view = new Uint8Array(buf);
-            for (let i = 0; i < s.length; i++) view[i] = s.charCodeAt(i) & 0xff;
-            return buf;
-        };
-
-        // Create a download link and trigger it
-        const blob = new Blob([s2ab(wbout)], { type: "application/octet-stream" });
-        const link = document.createElement("a");
-        link.href = URL.createObjectURL(blob);
-        link.download = "table-report.xlsx"; // Set the file name
-        link.click();
+        const workbook = new ExcelJS.Workbook();
+        const worksheet = workbook.addWorksheet("Filtered Data Export");
+    
+        // Title Row
+        const titleRow = worksheet.addRow(["Filtered Data Export"]);
+        titleRow.getCell(1).font = { bold: true, size: 20, color: { argb: "FF353E4C" } }; // Dark gray font
+        titleRow.getCell(1).alignment = { horizontal: "center", vertical: "middle" }; // Center alignment
+        worksheet.mergeCells(1, 1, 1, 8); // Merge cells for the title
+        worksheet.getRow(1).height = 30;
+    
+        // Header Row
+        const headerRow = worksheet.addRow([
+            "S No.",
+            "Report ID",
+            "Person Responsible",
+            "Target Date",
+            "Store Details",
+            "Created By",
+            "Action Plan Description",
+            "Status"
+        ]);
+        headerRow.eachCell((cell) => {
+            cell.font = { bold: true, size: 12, name: "Roboto", color: { argb: "FF353E4C" } }; // Dark gray font
+            cell.fill = {
+                type: "pattern",
+                pattern: "solid",
+                fgColor: { argb: "FFF2F2F2" }, // Light gray background
+            };
+            cell.alignment = { horizontal: "center", vertical: "middle", wrapText: true }; // Center text
+            cell.border = {
+                top: { style: "thin", color: { argb: "FFCCCCCC" } },
+                left: { style: "thin", color: { argb: "FFCCCCCC" } },
+                bottom: { style: "thin", color: { argb: "FFCCCCCC" } },
+                right: { style: "thin", color: { argb: "FFCCCCCC" } },
+            };
+        });
+        worksheet.getRow(2).height = 30;
+    
+        // Add Filtered Data Rows
+        filteredData?.forEach((data, index) => {
+            const rowData = [
+                index + 1, // S No.
+                data.id, // Report ID
+                data.person_responsible, // Person Responsible
+                data.target_date, // Target Date
+                data.store_details, // Store Details
+                data.created_by, // Created By
+                data.action_plan_description, // Action Plan Description
+                data.status === "TAKEN" ? "Action Taken" : "Action Pending", // Status
+            ];
+            const newRow = worksheet.addRow(rowData);
+            newRow.eachCell((cell) => {
+                cell.font = { size: 12, name: "Lato", color: { argb: "FF000000" } }; // Black font
+                cell.fill = {
+                    type: "pattern",
+                    pattern: "solid",
+                    fgColor: { argb: "FFFFFFFF" }, // White background
+                };
+                cell.alignment = { horizontal: "center", vertical: "middle", wrapText: true };
+                cell.border = {
+                    top: { style: "thin", color: { argb: "FFCCCCCC" } },
+                    left: { style: "thin", color: { argb: "FFCCCCCC" } },
+                    bottom: { style: "thin", color: { argb: "FFCCCCCC" } },
+                    right: { style: "thin", color: { argb: "FFCCCCCC" } },
+                };
+            });
+            worksheet.getRow(newRow.number).height = 25; // Set row height
+        });
+    
+        // Adjust Column Widths
+        worksheet.columns = [
+            { width: 20 }, // S No.
+            { width: 20 }, // Report ID
+            { width: 35 }, // Person Responsible
+            { width: 30 }, // Target Date
+            { width: 40 }, // Store Details
+            { width: 30 }, // Created By
+            { width: 50 }, // Action Plan Description
+            { width: 30 }, // Status
+        ];
+    
+        // Download the Excel File
+        workbook.xlsx.writeBuffer().then((buffer) => {
+            const blob = new Blob([buffer], {
+                type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            });
+            saveAs(blob, "Filtered_Data_Export.xlsx");
+        });
     };
+    
 
     const [selectedOption, setSelectedOption] = useState('');
     const handleSelectChange = (event) => {
@@ -87,7 +157,7 @@ const ActionTrack = () => {
     const [selectedOption1, setSelectedOption1] = useState('');
     const handleSelectChange1 = (event) => {
         const selectedId1 = parseInt(event.target.value, 10);
-        setSelectedOption1(event.target.value,10);
+        setSelectedOption1(event.target.value, 10);
         getactionRepApiData(`audit_cycle/${selectedId1}/action_reports`);
     };
 
@@ -96,7 +166,7 @@ const ActionTrack = () => {
             const token = localStorage.getItem("authToken");
             const url = `http://localhost:8080/client/action_report/${id}/change_status`;
 
-            const response = await axios.get(url,{
+            const response = await axios.get(url, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Token ${token}`,
@@ -117,6 +187,13 @@ const ActionTrack = () => {
             // alert("Failed to update the status. Please try again.");
         }
     };
+
+    const [statusFilter, setStatusFilter] = useState('ALL');
+
+    const filteredData = tabData.filter((item) => {
+        if (statusFilter === 'ALL') return true; // Show all items
+        return item.status === statusFilter; // Filter by status
+    });
 
     return (
         <div>
@@ -192,7 +269,7 @@ const ActionTrack = () => {
                                     <li>
                                         <div className="dropList d-flex justify-content-between align-items-center"
                                             onClick={() => {
-                                                setOpenNestedDropdowns('All');
+                                                setStatusFilter('ALL');
                                                 setOpenDropdown(false);
                                             }}>
                                             <p className="my-2">All</p>
@@ -201,7 +278,7 @@ const ActionTrack = () => {
                                     <li>
                                         <div className="dropList d-flex justify-content-between align-items-center"
                                             onClick={() => {
-                                                setOpenNestedDropdowns('Pending');
+                                                setStatusFilter('PENDING');
                                                 setOpenDropdown(false);
                                             }}>
                                             <p className="my-2">Pending</p>
@@ -211,7 +288,7 @@ const ActionTrack = () => {
                                         <div
                                             className="dropList d-flex justify-content-between align-items-center"
                                             onClick={() => {
-                                                setOpenNestedDropdowns('Action Taken');
+                                                setStatusFilter('TAKEN');
                                                 setOpenDropdown(false);
                                             }}
                                         >
@@ -222,7 +299,7 @@ const ActionTrack = () => {
                             </div>
                         )}
                     </div>
-                    <div onClick={() => { setOpenNestedDropdowns(null) }} className="clearFilter d-flex align-items-center">
+                    <div onClick={() => { setStatusFilter('ALL'); }} className="clearFilter d-flex align-items-center">
                         <p className="my-1">Clear Filter</p>
                     </div>
                 </div>
@@ -243,7 +320,7 @@ const ActionTrack = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {tabData.map((row, index) => (
+                            {filteredData.map((row, index) => (
                                 <tr key={row.id}>
                                     <td>{index + 1}</td>
                                     <td>{row.id}</td>
@@ -253,14 +330,12 @@ const ActionTrack = () => {
                                     <td>{row.created_by}</td>
                                     <td>{row.action_plan_description}</td>
                                     <td>
-                                        <div
-                                            className="pendingTd d-flex justify-content-center align-items-center"
-                                        >
+                                        <div className="pendingTd d-flex justify-content-center align-items-center">
                                             <div
-                                                className={`status ${row.status === "TAKEN" ? "taken" : "pending"} d-flex align-items-center justify-content-center`}
+                                                className={`status ${row.status === "TAKEN" ? "taken" : "pending"
+                                                    } d-flex align-items-center justify-content-center`}
                                                 style={{
-                                                    backgroundColor:
-                                                        row.status === "TAKEN" ? "#E9FFEF" : "#FFF2DD",
+                                                    backgroundColor: row.status === "TAKEN" ? "#E9FFEF" : "#FFF2DD",
                                                     borderRadius: "10px",
                                                     width: "135px",
                                                     height: "30px",
@@ -283,9 +358,7 @@ const ActionTrack = () => {
                                                         color: row.status === "TAKEN" ? "#409261" : "#D98634",
                                                     }}
                                                 >
-                                                    {row.status === "TAKEN"
-                                                        ? "Action Taken"
-                                                        : "Action Pending"}
+                                                    {row.status === "TAKEN" ? "Action Taken" : "Action Pending"}
                                                 </p>
                                             </div>
                                         </div>
@@ -296,14 +369,30 @@ const ActionTrack = () => {
                                                 <div className="penComp d-flex gap-2 align-items-center justify-content-center">
                                                     <button
                                                         className="markBtn"
-                                                        onClick={() => handleMarkAsCompleted(row.id)} 
+                                                        onClick={() => handleMarkAsCompleted(row.id)}
                                                     >
                                                         Mark as Completed
                                                     </button>
-                                                    <button className="reportBtn">Report</button>
+                                                    <Link
+                                                        to={{
+                                                            pathname: "/auditReport",
+                                                        }}
+                                                        state={{ auditStoreId: row.audit_store_id }}
+                                                        className="reportBtn"
+                                                    >
+                                                        <button className="reportBtn">Report</button>
+                                                    </Link>
                                                 </div>
                                             ) : (
-                                                <button className="reportBt">Report</button>
+                                                <Link
+                                                    to={{
+                                                        pathname: "/auditReport",
+                                                    }}
+                                                    state={{ auditStoreId: row.audit_store_id }}
+                                                    className="reportBt"
+                                                >
+                                                    <button className="reportBt">Report</button>
+                                                </Link>
                                             )}
                                         </div>
                                     </td>

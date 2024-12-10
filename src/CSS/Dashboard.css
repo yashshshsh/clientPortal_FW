@@ -17,7 +17,7 @@
 }
 
 .dashFirst {
-    min-height: 53vh;
+    min-height: 60vh;
 }
 
 .firstRight {
@@ -334,14 +334,14 @@ td{
 
 .tPer{
     min-width: 2.4rem;
-    height: 2rem;
-    background-color: #D7F1FF;
+    height: 1.2rem !important;
+    background-color: #007DC11F ;
     color : #007DC1;
     font-family: "Roboto", sans-serif; 
     font-weight: 600;
     font-size: 0.8rem;
     line-height: 1rem;
-    border-radius: 10px;
+    border-radius: 5px !important;
 }
 
 .tdFirst{
