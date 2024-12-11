@@ -63,7 +63,7 @@ const Login = () => {
   
         const response = await axios.post(fullUrl, formData, {
           headers: {
-            'Content-Type': 'multipart/form-data', // Ensure the content type is set to 'multipart/form-data'
+            'Content-Type': 'multipart/form-data', 
           },
         });
         localStorage.setItem("authToken",response.data.token);

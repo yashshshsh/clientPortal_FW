@@ -313,6 +313,8 @@ const AuditReport = () => {
                             </div>
                         </div>
                     </div>
+
+                    
                     <div className="audit-details-tab my-3 d-flex">
                         <p className='ms-2'>Report Actions</p>
                     </div>

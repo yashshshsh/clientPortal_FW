@@ -4,7 +4,6 @@ import '../CSS/AuditReport.css';
 const Question = ({ questionData, questionType }) => {
     const { questionLabel, questionText, maxMarks, options, answer } = questionData;
 
-    // Parse the answer for multiselect as an array (assuming it's a string of comma-separated values)
     const selectedAnswers = questionType === 'MULTISELECT' ? (answer?.answer_text || "").split(",") : [];
 
     return (
@@ -13,8 +12,7 @@ const Question = ({ questionData, questionType }) => {
                 <p className="q">{questionLabel}</p>
                 <p className="a">{questionText}</p>
             </div>
-
-            {/* Handle different question types */}
+            
             {questionType === 'PLAIN' && (
                 <div className="ans">
                     <p className="q">Answer</p>

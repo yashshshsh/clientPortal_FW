@@ -19,7 +19,7 @@ const ActionTrack = () => {
 
     useEffect(() => {
         if (actionRepData) {
-            setTabData(actionRepData); // Update tabData when actionRepData changes
+            setTabData(actionRepData);
         }
     }, [actionRepData]);
 
@@ -59,14 +59,12 @@ const ActionTrack = () => {
         const workbook = new ExcelJS.Workbook();
         const worksheet = workbook.addWorksheet("Filtered Data Export");
     
-        // Title Row
         const titleRow = worksheet.addRow(["Filtered Data Export"]);
-        titleRow.getCell(1).font = { bold: true, size: 20, color: { argb: "FF353E4C" } }; // Dark gray font
-        titleRow.getCell(1).alignment = { horizontal: "center", vertical: "middle" }; // Center alignment
-        worksheet.mergeCells(1, 1, 1, 8); // Merge cells for the title
+        titleRow.getCell(1).font = { bold: true, size: 20, color: { argb: "FF353E4C" } }; 
+        titleRow.getCell(1).alignment = { horizontal: "center", vertical: "middle" };
+        worksheet.mergeCells(1, 1, 1, 8); 
         worksheet.getRow(1).height = 30;
-    
-        // Header Row
+   
         const headerRow = worksheet.addRow([
             "S No.",
             "Report ID",
@@ -78,13 +76,13 @@ const ActionTrack = () => {
             "Status"
         ]);
         headerRow.eachCell((cell) => {
-            cell.font = { bold: true, size: 12, name: "Roboto", color: { argb: "FF353E4C" } }; // Dark gray font
+            cell.font = { bold: true, size: 12, name: "Roboto", color: { argb: "FF353E4C" } }; 
             cell.fill = {
                 type: "pattern",
                 pattern: "solid",
-                fgColor: { argb: "FFF2F2F2" }, // Light gray background
+                fgColor: { argb: "FFF2F2F2" }, 
             };
-            cell.alignment = { horizontal: "center", vertical: "middle", wrapText: true }; // Center text
+            cell.alignment = { horizontal: "center", vertical: "middle", wrapText: true }; 
             cell.border = {
                 top: { style: "thin", color: { argb: "FFCCCCCC" } },
                 left: { style: "thin", color: { argb: "FFCCCCCC" } },
@@ -94,25 +92,24 @@ const ActionTrack = () => {
         });
         worksheet.getRow(2).height = 30;
     
-        // Add Filtered Data Rows
         filteredData?.forEach((data, index) => {
             const rowData = [
-                index + 1, // S No.
-                data.id, // Report ID
-                data.person_responsible, // Person Responsible
-                data.target_date, // Target Date
-                data.store_details, // Store Details
-                data.created_by, // Created By
-                data.action_plan_description, // Action Plan Description
-                data.status === "TAKEN" ? "Action Taken" : "Action Pending", // Status
+                index + 1, 
+                data.id,
+                data.person_responsible,
+                data.target_date, 
+                data.store_details,
+                data.created_by,
+                data.action_plan_description, 
+                data.status === "TAKEN" ? "Action Taken" : "Action Pending",
             ];
             const newRow = worksheet.addRow(rowData);
             newRow.eachCell((cell) => {
-                cell.font = { size: 12, name: "Lato", color: { argb: "FF000000" } }; // Black font
+                cell.font = { size: 12, name: "Lato", color: { argb: "FF000000" } }; 
                 cell.fill = {
                     type: "pattern",
                     pattern: "solid",
-                    fgColor: { argb: "FFFFFFFF" }, // White background
+                    fgColor: { argb: "FFFFFFFF" }, 
                 };
                 cell.alignment = { horizontal: "center", vertical: "middle", wrapText: true };
                 cell.border = {
@@ -122,22 +119,20 @@ const ActionTrack = () => {
                     right: { style: "thin", color: { argb: "FFCCCCCC" } },
                 };
             });
-            worksheet.getRow(newRow.number).height = 25; // Set row height
+            worksheet.getRow(newRow.number).height = 25;
         });
     
-        // Adjust Column Widths
         worksheet.columns = [
-            { width: 20 }, // S No.
-            { width: 20 }, // Report ID
-            { width: 35 }, // Person Responsible
-            { width: 30 }, // Target Date
-            { width: 40 }, // Store Details
-            { width: 30 }, // Created By
-            { width: 50 }, // Action Plan Description
-            { width: 30 }, // Status
+            { width: 20 }, 
+            { width: 20 }, 
+            { width: 35 }, 
+            { width: 30 }, 
+            { width: 40 }, 
+            { width: 30 }, 
+            { width: 50 }, 
+            { width: 30 },
         ];
     
-        // Download the Excel File
         workbook.xlsx.writeBuffer().then((buffer) => {
             const blob = new Blob([buffer], {
                 type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
@@ -164,7 +159,7 @@ const ActionTrack = () => {
     const handleMarkAsCompleted = async (id) => {
         try {
             const token = localStorage.getItem("authToken");
-            const url = `http://localhost:8080/client/action_report/${id}/change_status`;
+            const url = `http://localhost:8000/client/action_report/${id}/change_status`;
 
             const response = await axios.get(url, {
                 headers: {
@@ -174,8 +169,6 @@ const ActionTrack = () => {
             });
 
             if (response.status === 200) {
-                // alert("Status updated successfully!");
-                // // Update the status in the table
                 const updatedData = tabData.map((item) =>
                     item.id === id ? { ...item, status: "TAKEN" } : item
                 );
@@ -184,15 +177,14 @@ const ActionTrack = () => {
             getactionRepApiData(`audit_cycle/${cycleId}/action_reports`);
         } catch (error) {
             console.error("Error updating status:", error);
-            // alert("Failed to update the status. Please try again.");
         }
     };
 
     const [statusFilter, setStatusFilter] = useState('ALL');
 
     const filteredData = tabData.filter((item) => {
-        if (statusFilter === 'ALL') return true; // Show all items
-        return item.status === statusFilter; // Filter by status
+        if (statusFilter === 'ALL') return true; 
+        return item.status === statusFilter; 
     });
 
     return (

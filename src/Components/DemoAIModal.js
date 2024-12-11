@@ -40,7 +40,7 @@ const DemoAIModal = ({ insightsData, viewref, showSenti, setShowSenti }) => {
 
     const renderKeywords = (keywords, colorClass) =>
         Object.entries(keywords || {}).map(([word, count], index) => {
-            const isNegative = colorClass === "negative"; // Check if it's a negative keyword
+            const isNegative = colorClass === "negative"; 
             return (
                 <div
                     className={`ai_words_smallbox ${isNegative ? "ai_negative" : ""}`}
@@ -89,9 +89,9 @@ const DemoAIModal = ({ insightsData, viewref, showSenti, setShowSenti }) => {
         const uniqueWords = Object.values(
             words.reduce((acc, word) => {
                 if (acc[word.text]) {
-                    acc[word.text].size += word.size; // Sum sizes for duplicates
+                    acc[word.text].size += word.size; 
                 } else {
-                    acc[word.text] = word; // Add unique word
+                    acc[word.text] = word; 
                 }
                 return acc;
             }, {})
@@ -101,7 +101,7 @@ const DemoAIModal = ({ insightsData, viewref, showSenti, setShowSenti }) => {
             .size([width, height])
             .words(uniqueWords)
             .padding(4)
-            .font("Roboto")  // Set font to Roboto
+            .font("Roboto")  
             .fontSize((d) => Math.min(d.size * 2, width / 10))
             .rotate(0)
             .on("end", render);

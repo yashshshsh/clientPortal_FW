@@ -8,18 +8,15 @@ const UpAudits = () => {
   ];
 
   const [activeMonth, setActiveMonth] = useState("November");
-  const [selectedDate, setSelectedDate] = useState(13); // Example: 13th is selected by default
+  const [selectedDate, setSelectedDate] = useState(13); 
 
   const year = 2023;
 
-  // Get the month index from the selected month name
   const monthIndex = months.indexOf(activeMonth);
 
-  // Calculate the number of days in the selected month
   const daysInMonth = new Date(year, monthIndex + 1, 0).getDate();
   const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
-  // Helper function to get the day of the week for a specific date
   const getDayOfWeek = (day) => {
     const date = new Date(year, monthIndex, day);
     return daysOfWeek[date.getDay()];

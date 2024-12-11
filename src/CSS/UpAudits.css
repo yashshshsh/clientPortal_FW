@@ -10,7 +10,6 @@
 
 /* font-family: "DM Sans", sans-serif; */
 
-/* Container that enables horizontal scrolling */
 .date-picker-container {
     overflow-x: auto;
     white-space: nowrap;
@@ -144,18 +143,18 @@
 .grid-container {
     display: flex;
     flex-direction: column;
-    gap: 1px; /* Space between rows */
-    background-color: #f8f9fa; /* Light background */
+    gap: 1px; 
+    background-color: #f8f9fa; 
   }
   
   .grid-row {
     display: flex;
-    gap: 1px; /* Space between columns */
+    gap: 1px; 
   }
   
   .grid-cell {
-    width: 100px; /* Adjust the width */
-    height: 80px; /* Adjust the height */
+    width: 100px;
+    height: 80px; 
     background-color: #ffffff;
     border: 1px solid #ddd;
     display: flex;

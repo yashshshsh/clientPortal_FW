@@ -33,6 +33,7 @@ const ReportBrowser = () => {
         if (selectedQueId && cycleId) {
             getstoresApiData(`/report/audit_cycle/${cycleId}/audit_store`);
             getreportAttApiData(`/audit_cycle/${cycleId}/report_attribute`);
+            console.log("CYCLE ID : ", cycleId);
         }
     }, [cycleId]);
 
@@ -60,14 +61,16 @@ const ReportBrowser = () => {
     const [openNestedDropdowns, setOpenNestedDropdowns] = useState([]);
     const [calenderOpen1, setCalenderOpen1] = useState(false);
     const [calenderOpen2, setCalenderOpen2] = useState(false);
+    const [startDate, setStartDate] = useState(null);
+    const [endDate, setEndDate] = useState(null);
 
     const toggleNestedDropdown = (item) => {
         setOpenNestedDropdowns((prev) => {
             if (prev.includes(item)) {
                 if (item === 'state') setSelectedState(null);
                 if (item === 'city') setSelectedCity(null);
-                if (item === 'startDate') setSelectedStartDate(null);
-                if (item === 'endDate') setSelectedEndDate(null);
+                if (item === 'startDate') setStartDate(null);
+                if (item === 'endDate') setEndDate(null);
                 return prev.filter((i) => i !== item);
             } else {
                 return [...prev, item];
@@ -80,8 +83,8 @@ const ReportBrowser = () => {
             if (prev === item) {
                 setSelectedState(null);
                 setSelectedCity(null);
-                setSelectedStartDate(null);
-                setSelectedEndDate(null);
+                setStartDate(null);
+                setEndDate(null);
             }
             return prev === item ? null : item;
         });
@@ -97,9 +100,9 @@ const ReportBrowser = () => {
         const worksheet = workbook.addWorksheet("Reports");
 
         const titleRow = worksheet.addRow(["Reports"]);
-        titleRow.getCell(1).font = { bold: true, size: 20, color: { argb: "FF353E4C" } }; 
-        titleRow.getCell(1).alignment = { horizontal: "center", vertical: "middle" }; 
-        worksheet.mergeCells(1, 1, 1, 5); 
+        titleRow.getCell(1).font = { bold: true, size: 20, color: { argb: "FF353E4C" } };
+        titleRow.getCell(1).alignment = { horizontal: "center", vertical: "middle" };
+        worksheet.mergeCells(1, 1, 1, 5);
         worksheet.getRow(1).height = 50;
 
         const headers = ["S No.", "Store Code", "Date", "Total Marks"];
@@ -110,15 +113,15 @@ const ReportBrowser = () => {
         }
         headers.push("Report");
 
-        const headerRow = worksheet.addRow(headers); // Define headerRow
+        const headerRow = worksheet.addRow(headers);
         headerRow.eachCell((cell) => {
-            cell.font = { bold: true, size: 12, name: "Roboto", color: { argb: "FF353E4C" } }; // Dark gray font
+            cell.font = { bold: true, size: 12, name: "Roboto", color: { argb: "FF353E4C" } };
             cell.fill = {
                 type: "pattern",
                 pattern: "solid",
-                fgColor: { argb: "FFF2F2F2" }, // Light gray background
+                fgColor: { argb: "FFF2F2F2" },
             };
-            cell.alignment = { horizontal: "center", vertical: "middle", wrapText: true }; // Centered text
+            cell.alignment = { horizontal: "center", vertical: "middle", wrapText: true };
             cell.border = {
                 top: { style: "thin", color: { argb: "FFCCCCCC" } },
                 left: { style: "thin", color: { argb: "FFCCCCCC" } },
@@ -130,18 +133,17 @@ const ReportBrowser = () => {
 
         finalFilteredStores.forEach((row, rowIndex) => {
             const rowData = [
-                rowIndex + 1, // S No.
-                row.store_code || "N/A", // Store Code
-                row.audit_date, // Audit Date
-                `${row.total_score.percentage}%`, // Total Score
+                rowIndex + 1,
+                row.store_code || "N/A",
+                row.audit_date,
+                `${row.total_score.percentage}%`,
             ];
 
-            // Add section percentages
             row.sections.forEach((section) => {
                 rowData.push(section.percentage === null ? "null" : `${section.percentage}%`);
             });
 
-            rowData.push("Report"); // Placeholder for Report column
+            rowData.push("Report");
 
             const newRow = worksheet.addRow(rowData);
             newRow.eachCell((cell, colIndex) => {
@@ -153,19 +155,19 @@ const ReportBrowser = () => {
                     left: { style: "thin", color: { argb: "FFCCCCCC" } },
                     bottom: { style: "thin", color: { argb: "FFCCCCCC" } },
                     right: { style: "thin", color: { argb: "FFCCCCCC" } },
-                };         
+                };
             });
 
             worksheet.getRow(newRow.number).height = 30;
         });
 
         worksheet.columns = [
-            { width: 20 }, // S No.
-            { width: 40 }, // Store Code
-            { width: 40 }, // Audit Date
-            { width: 30 }, // Total Score
-            ...finalFilteredStores[0]?.sections.map(() => ({ width: 40 })), // Dynamic sections
-            { width: 40 }, // Report
+            { width: 20 },
+            { width: 40 },
+            { width: 40 },
+            { width: 30 },
+            ...finalFilteredStores[0]?.sections.map(() => ({ width: 40 })),
+            { width: 40 },
         ];
 
         workbook.xlsx.writeBuffer().then((buffer) => {
@@ -173,7 +175,7 @@ const ReportBrowser = () => {
             saveAs(blob, "Audit_Summary_Report.xlsx");
         });
 
-        
+
     };
 
     const handleSelectChange = (event) => {
@@ -198,8 +200,7 @@ const ReportBrowser = () => {
 
     const [selectedState, setSelectedState] = useState("");
     const [selectedCity, setSelectedCity] = useState("");
-    const [selectedStartDate, setSelectedStartDate] = useState(null);
-    const [selectedEndDate, setSelectedEndDate] = useState(null);
+    const [filteredStores, setFilteredStores] = useState([]);
 
     const handleStateChange = (e) => {
         setSelectedState(e.target.value);
@@ -210,42 +211,46 @@ const ReportBrowser = () => {
         setSelectedCity(e.target.value);
     };
 
-    const filteredStores = storesData.filter((store) => {
-        const isStateMatch = selectedState ? store.state === selectedState : true;
-        const isCityMatch = selectedCity ? store.city_name === selectedCity : true;
-        return isStateMatch && isCityMatch;
-    });
-
-    const filteredDates = filteredStores.map((store) => new Date(store.audit_date));
-    const dynamicStartDate = filteredDates.length ? new Date(Math.min(...filteredDates)) : null;
-    const dynamicEndDate = filteredDates.length ? new Date(Math.max(...filteredDates)) : null;
-
     useEffect(() => {
-        if (dynamicStartDate && dynamicEndDate) {
-            if (!selectedStartDate || selectedStartDate < dynamicStartDate) {
-                setSelectedStartDate(dynamicStartDate);
-            }
-            if (!selectedEndDate || selectedEndDate > dynamicEndDate) {
-                setSelectedEndDate(dynamicEndDate);
-            }
+        if (filteredStores.length === 0) {
+            setStartDate(null);
+            setEndDate(null);
+            return;
         }
-    }, [dynamicStartDate, dynamicEndDate]);
+    
+        const filteredDates = filteredStores.map((store) => new Date(store.audit_date));
+        setStartDate(new Date(Math.min(...filteredDates)));
+        setEndDate(new Date(Math.max(...filteredDates)));
+    }, [filteredStores]);
 
     const handleClearFilters = () => {
         setSelectedState(null);
         setSelectedCity(null);
-        setSelectedStartDate(null);
-        setSelectedEndDate(null);
+        setStartDate(null);
+        setEndDate(null);
         setSelectedOption1(null);
         setOpenNestedDropdowns([]);
         setOpenDropdown(null);
         getstoresApiData('/report/audit_cycle/all/audit_store');
     };
 
+    useEffect(() => {
+        const updatedFilteredStores = storesData.filter((store) => {
+            const isStateMatch = selectedState ? store.state === selectedState : true;
+            const isCityMatch = selectedCity ? store.city_name === selectedCity : true;
+            return isStateMatch && isCityMatch;
+        });
+
+        setFilteredStores(updatedFilteredStores);
+    }, [storesData, selectedState, selectedCity]);
+
+
     const finalFilteredStores = filteredStores.filter((store) => {
         const auditDate = new Date(store.audit_date);
-        return auditDate >= selectedStartDate && auditDate <= selectedEndDate;
+        return auditDate >= startDate && auditDate <= endDate;
     });
+
+    
 
     return (
         <div>
@@ -349,19 +354,19 @@ const ReportBrowser = () => {
                                         }}
                                             className="startDateP df"
                                         >
-                                            <p className='my-1'>{selectedStartDate ? formatDate(selectedStartDate) : "Select a start date"}</p>
+                                            <p className='my-1'>{startDate ? formatDate(startDate) : "Select a start date"}</p>
                                         </div>
 
                                         {calenderOpen1 && (
                                             <div className="calendarContainer">
                                                 <Calendar
-                                                    value={selectedStartDate}
+                                                    value={startDate}
                                                     onChange={(date) => {
-                                                        setSelectedStartDate(date);
+                                                        setStartDate(date);
                                                         setCalenderOpen1(false);
                                                     }}
                                                     tileDisabled={({ date }) =>
-                                                        dynamicStartDate && (date < dynamicStartDate || date > dynamicEndDate)
+                                                        startDate && (date < startDate || date > endDate)
                                                     }
                                                 />
                                             </div>
@@ -376,19 +381,19 @@ const ReportBrowser = () => {
                                         }}
                                             className="startDateP df"
                                         >
-                                            <p className='my-1'>{selectedEndDate ? formatDate(selectedEndDate) : "Select a end date"}</p>
+                                            <p className='my-1'>{endDate ? formatDate(endDate) : "Select a end date"}</p>
                                         </div>
 
                                         {calenderOpen2 && (
                                             <div className="calendarContainer">
                                                 <Calendar
-                                                    value={selectedEndDate}
+                                                    value={endDate}
                                                     onChange={(date) => {
-                                                        setSelectedEndDate(date);
+                                                        setEndDate(date);
                                                         setCalenderOpen2(false);
                                                     }}
                                                     tileDisabled={({ date }) =>
-                                                        dynamicStartDate && (date < dynamicStartDate || date > dynamicEndDate)
+                                                        startDate && (date < startDate || date > endDate)
                                                     }
                                                 />
                                             </div>
@@ -457,7 +462,7 @@ const ReportBrowser = () => {
                 <table style={{ width: "95%" }} id="table-to-export">
                     <thead>
                         <tr>
-                            <th style={{backgroundColor : "#f2f2f2",width : "5vw"}}>S no.</th>
+                            <th style={{ backgroundColor: "#f2f2f2", width: "5vw" }}>S no.</th>
                             <th>Store Code</th>
                             <th style={{ width: "9vw" }}>Date</th>
                             <th>Total Marks</th>
@@ -472,7 +477,7 @@ const ReportBrowser = () => {
                     <tbody>
                         {finalFilteredStores.map((row, rowIndex) => (
                             <tr key={rowIndex}>
-                                <td style={{backgroundColor : "#f2f2f2",width : "5vw"}}>{rowIndex + 1}</td>
+                                <td style={{ backgroundColor: "#f2f2f2", width: "5vw" }}>{rowIndex + 1}</td>
                                 <td>{row.store_code || "N/A"}</td>
                                 <td>{row.audit_date}</td>
                                 <td>

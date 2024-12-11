@@ -31,7 +31,7 @@ const OverallPerformance = ({ downloadBarChartAsPNG, barChartRef, cityData }) =>
     value: scores?.[0]?.value || 0,
   }));
 
-  const total = 100; // Total value for percentage calculation
+  const total = 100; 
 
   const resizeHandler = () => {
     if (window.innerWidth < 767) {
@@ -48,7 +48,7 @@ const OverallPerformance = ({ downloadBarChartAsPNG, barChartRef, cityData }) =>
 
   useEffect(() => {
     window.addEventListener('resize', resizeHandler);
-    resizeHandler(); // Initialize on mount
+    resizeHandler(); 
     return () => window.removeEventListener('resize', resizeHandler);
   }, []);
 
@@ -102,7 +102,7 @@ const OverallPerformance = ({ downloadBarChartAsPNG, barChartRef, cityData }) =>
           options={{
             responsive: true,
             maintainAspectRatio: false,
-            devicePixelRatio: 2, // High-resolution rendering
+            devicePixelRatio: 2, 
             plugins: {
               legend: {
                 display: false,

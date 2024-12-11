@@ -262,7 +262,6 @@ select {
 
 .calendarContainer {
     position: absolute;
-    /* top: 100%;  */
     left: 0;
     z-index: 100;
     width: 20vw;

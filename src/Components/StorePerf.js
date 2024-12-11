@@ -86,7 +86,7 @@ const StorePerf = ({ setState }) => {
         }, 300);
     };
 
-    const [openDropdown, setOpenDropdown] = useState(null); // For parent dropdown
+    const [openDropdown, setOpenDropdown] = useState(null); 
     const [openNestedDropdowns, setOpenNestedDropdowns] = useState([]);
 
     const toggleNestedDropdown = (item) => {
@@ -103,10 +103,8 @@ const StorePerf = ({ setState }) => {
 
         const wb = XLSX.utils.table_to_book(table, { sheet: "Sheet1" });
 
-        // Create a binary string from the workbook
         const wbout = XLSX.write(wb, { bookType: "xlsx", type: "binary" });
 
-        // Create a buffer for the binary string
         const s2ab = (s) => {
             const buf = new ArrayBuffer(s.length);
             const view = new Uint8Array(buf);
@@ -114,11 +112,10 @@ const StorePerf = ({ setState }) => {
             return buf;
         };
 
-        // Create a download link and trigger it
         const blob = new Blob([s2ab(wbout)], { type: "application/octet-stream" });
         const link = document.createElement("a");
         link.href = URL.createObjectURL(blob);
-        link.download = "table-report.xlsx"; // Set the file name
+        link.download = "table-report.xlsx"; 
         link.click();
     };
 

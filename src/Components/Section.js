@@ -3,23 +3,19 @@ import '../CSS/AuditReport.css';
 import downImg from '../Images/vertical_align_bottom.png';
 
 const Section = ({ section, ansData, RepSecData, AttachIdData, idx }) => {
-    const [prevUrl, setPrevUrl] = useState(null); // For preview URL
-    const [directUrl, setDirectUrl] = useState(null); // For download URL
+    const [prevUrl, setPrevUrl] = useState(null);
+    const [directUrl, setDirectUrl] = useState(null); 
 
-    // Get the section data related to the current section id
     const sectionData = RepSecData.find(data => data.section === section.id);
 
-    // Check if any question has 0 marks
     const hasZeroMarks = section.questions.some(question => {
         const answer = ansData.find(ans => ans.question === question.id);
         return answer?.marks_obtained === 0;
     });
 
-    // Set background and text colors based on marks
     const sectionBackgroundColor = hasZeroMarks ? "#ffe0cc" : "#e0ffcc";
     const sectionTextColor = hasZeroMarks ? "#993d00" : "#6fb93f";
 
-    // Handle file download when the download icon is clicked
     const handleDownloadClick = (url) => {
         if (url) {
             const a = document.createElement('a');
@@ -29,7 +25,6 @@ const Section = ({ section, ansData, RepSecData, AttachIdData, idx }) => {
         }
     };
 
-    // Check if there are attachments for the current section
     const hasAttachments = AttachIdData[section.id] && AttachIdData[section.id].length > 0;
 
     const { totalObtainedMarks, totalMaxMarks } = section.questions.reduce(
@@ -44,7 +39,6 @@ const Section = ({ section, ansData, RepSecData, AttachIdData, idx }) => {
 
     return (
         <div className="section-table mt-2">
-            {/* Section Name */}
             <div
                 className="sec-name d-flex flex-column justify-content-center"
                 style={{
@@ -56,7 +50,6 @@ const Section = ({ section, ansData, RepSecData, AttachIdData, idx }) => {
                 <p className="ms-3 my-3">{idx + 1}. {section.name}</p>
             </div>
 
-            {/* Table of Questions and Answers */}
             <table>
                 <thead>
                     <tr>
@@ -88,10 +81,8 @@ const Section = ({ section, ansData, RepSecData, AttachIdData, idx }) => {
                 </tbody>
             </table>
 
-            {/* White Blank Spacer */}
             <div style={{ height: "1rem", backgroundColor: "white" }} className="white-blank"></div>
 
-            {/* Section Summary */}
             {sectionData && (
                     <div style={{ backgroundColor: "#f5f5f5" }} className="section-summary my-1 p-3">
                         <div className="marks" style={{ fontWeight: "bold", marginBottom: "1rem" }}>
@@ -103,7 +94,6 @@ const Section = ({ section, ansData, RepSecData, AttachIdData, idx }) => {
             )}
 
 
-            {/* Attachments */}
             {hasAttachments && (
                 <>
                     <div className="attachHead">
@@ -115,13 +105,12 @@ const Section = ({ section, ansData, RepSecData, AttachIdData, idx }) => {
                                 key={index}
                                 className="attachImg d-flex"
                                 onClick={() => {
-                                    // Toggle the preview URL if the same attachment is clicked again
                                     if (prevUrl === attachment.extra.preview_url) {
-                                        setPrevUrl(null);  // Reset preview
+                                        setPrevUrl(null);  
                                     } else {
-                                        setPrevUrl(attachment.extra.preview_url);  // Set the new preview
+                                        setPrevUrl(attachment.extra.preview_url);  
                                     }
-                                    setDirectUrl(attachment.direct_url);  // Update download URL
+                                    setDirectUrl(attachment.direct_url);  
                                 }}
                             >
                                 <img
@@ -135,7 +124,6 @@ const Section = ({ section, ansData, RepSecData, AttachIdData, idx }) => {
                 </>
             )}
 
-            {/* Preview and Download Section */}
             <div className={`largeImg df flex-column my-3 ${prevUrl ? "" : "d-none"}`}>
                 {prevUrl && (<img src={prevUrl} alt="Preview" style={{ maxWidth: "500px" }} />)}
                 <div

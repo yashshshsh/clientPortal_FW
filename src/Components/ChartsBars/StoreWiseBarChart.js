@@ -89,7 +89,7 @@ const StoreWiseBarChart = ({ downloadBarChartAsPNG, barChartRef, stData }) => {
           </div>
         </div>
       </div>
-      <div className="chart-container my-2 p-3" style={{ width: '100%', height: "380px" }}>
+      <div className="chart-container my-2 p-3" ref={barChartRef} style={{ width: '100%', height: "380px" }}>
         <Bar
           data={{
             labels,

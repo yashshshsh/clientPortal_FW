@@ -20,7 +20,7 @@ ChartJS.register(
 );
 
 const BarChart = ({ filteredData }) => {
-  const chartRef = useRef(null); // Reference to the chart
+  const chartRef = useRef(null); 
   const sectionLabels = filteredData?.section_master || [];
   const values = filteredData?.values[0] || [];
 
@@ -56,7 +56,7 @@ const BarChart = ({ filteredData }) => {
         }}
       >
         <Bar
-          ref={chartRef} // Attach ref to the chart
+          ref={chartRef} 
           data={{
             labels: sourceData.map((data) => data.label),
             datasets: [
@@ -75,7 +75,7 @@ const BarChart = ({ filteredData }) => {
           options={{
             responsive: true,
             maintainAspectRatio: false,
-            devicePixelRatio: 2, // Improve clarity for zoomed-in view
+            devicePixelRatio: 2,
             indexAxis: 'y',
             onClick: (event, elements) => {
               if (elements.length > 0) {

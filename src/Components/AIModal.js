@@ -20,25 +20,8 @@ const AIModal = ({ insightsData }) => {
     const [sentiments, setSentiments] = useState({});
     const wordCloudRef = useRef(null);
 
-    //   useEffect(() => {
-    //     const fetchData = async () => {
-    //       setLoading(true);
-    //       try {
-    //         // const result = await fetchSentimetModalData(params.summaryId);
-    //         // setSentiments(result[0] || {});
-    //       } catch (error) {
-    //         console.error("Error fetching sentiment data:", error);
-    //       } finally {
-    //         setLoading(false);
-    //       }
-    //     };
-
-    //     fetchData();
-    //   }, [params.summaryId]);
-
     useEffect(() => {
         if(insightsData){
-            // console.log("INSIGHTS DATA : ",insightsData.undefined[0]);
             setSentiments(insightsData.undefined[0] || {});
         }
     },[insightsData])
@@ -184,10 +167,9 @@ const AIModal = ({ insightsData }) => {
     );
 };
 
-AIModal.propTypes = {
-    params: PropTypes.shape({
-        // summaryId: PropTypes.number.isRequired,
-    }).isRequired,
-};
+// AIModal.propTypes = {
+//     params: PropTypes.shape({
+//     }).isRequired,
+// };
 
 export default AIModal;

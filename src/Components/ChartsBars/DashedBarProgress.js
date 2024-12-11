@@ -4,8 +4,8 @@ import '../../CSS/ChartsBarsCSS/DashedBarProgress.css';
 const DashedProgressBar = ({ progress,color,shadow }) => {
   const dashes = 5;
   const progressPerDash = 100 / dashes;
-  const filledDashes = Math.floor(progress / progressPerDash); // Full dashes
-  const partialFill = (progress % progressPerDash) / progressPerDash * 100; // Partial fill of the next dash
+  const filledDashes = Math.floor(progress / progressPerDash); 
+  const partialFill = (progress % progressPerDash) / progressPerDash * 100; 
 
   return (
     <div className={`progress-container${shadow === true?" shadow-lg ":""}`} style={{marginTop : "1rem"}}>
@@ -17,10 +17,10 @@ const DashedProgressBar = ({ progress,color,shadow }) => {
             className="dash"
             style={{
               background: index < filledDashes
-                ? `${color}`  // Fully filled dash
+                ? `${color}` 
                 : index === filledDashes
                 ? `linear-gradient(to right, ${color} ${partialFill}%, #e6e6e6 ${partialFill}%)`
-                : '#e6e6e6'  // Unfilled dash
+                : '#e6e6e6'
             }}  
           ></div>
         ))}

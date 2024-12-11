@@ -23,7 +23,7 @@
 .tags {
     display: flex;
     overflow-x: auto;
-    padding-right: 10px; /* Optional: Adds space for the last item */
+    padding-right: 10px;
     height: 100px;
     align-items: center;
 }
@@ -34,7 +34,7 @@
     border: 1px solid #9CA3AF;
     cursor: pointer;
     padding-top: 0.5rem;
-    margin-right: 8px; /* Optional: Adds spacing between items */
+    margin-right: 8px;
 }
 
 @media (min-width: 700px) {
@@ -46,7 +46,6 @@
 
 .tags img{
     height: 25px;
-    /* color : #9CA3AF; */
 }
 
 .tags p{

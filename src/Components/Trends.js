@@ -126,8 +126,8 @@ const Trends = () => {
                                                         className="dash2"
                                                         style={{
                                                             background: index < result.score
-                                                                ? "green"  // Fully filled dash
-                                                                : '#e6e6e6'  // Unfilled dash
+                                                                ? "green"  
+                                                                : '#e6e6e6'  
                                                         }}
                                                     ></div>
                                                 ))}
@@ -198,8 +198,8 @@ const Trends = () => {
                                                     className="dash2"
                                                     style={{
                                                         background: index < result.score
-                                                            ? "green"  // Fully filled dash
-                                                            : '#e6e6e6'  // Unfilled dash
+                                                            ? "green"  
+                                                            : '#e6e6e6'  
                                                     }}
                                                 ></div>
                                             ))}

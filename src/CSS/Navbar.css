@@ -257,7 +257,7 @@ img{
 }
 
 .gtranslate_wrapper {
-    position: static !important; /* Prevent floating or absolute positioning */
+    position: static !important;
     width: auto;
     text-align: center;
     display: flex;

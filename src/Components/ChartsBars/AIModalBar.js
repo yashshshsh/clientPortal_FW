@@ -10,7 +10,7 @@ const AIModalBar = ({ emotionData }) => {
                 data: emotionData.map((item) => item.value),
                 backgroundColor: "#337ab7",
                 borderWidth: 1,
-                barThickness: 20,  // Decrease the bar width here (adjust as needed)
+                barThickness: 20,  
             },
         ],
     };
@@ -21,7 +21,7 @@ const AIModalBar = ({ emotionData }) => {
         scales: {
             x: {
                 grid: {
-                    drawOnChartArea: false, // Remove vertical lines
+                    drawOnChartArea: false, 
                 },
                 title: {
                     display: true,
@@ -31,8 +31,8 @@ const AIModalBar = ({ emotionData }) => {
             },
             y: {
                 grid: {
-                    color: "rgba(0,0,0,0.2)", // Color for horizontal grid lines
-                    borderDash: [5, 5], // Dashed horizontal lines
+                    color: "rgba(0,0,0,0.2)",
+                    borderDash: [5, 5], 
                 },
                 title: {
                     display: true,
@@ -42,7 +42,7 @@ const AIModalBar = ({ emotionData }) => {
                 min: 0,
                 max: 10,
                 ticks: {
-                    stepSize: 3, // Three points: 0, 1.5, 3
+                    stepSize: 3, 
                 },
             },
         },
